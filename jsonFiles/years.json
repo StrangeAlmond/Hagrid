@@ -1,0 +1,71 @@
+{
+	"1": {
+		"xp": 0
+	},
+
+	"2": {
+		"xp": 1200,
+		"lootbox": {
+			"antidoteToCommonPoisons": 2,
+			"revivePotion": 2,
+			"trainingTokens": 2,
+			"wiggenweldPotion": 2,
+			"fireProtectionPotion": 1,
+			"girdingPotion": 1
+		}
+
+	},
+
+	"3": {
+		"xp": 4400,
+		"lootbox": {
+			"antidoteToCommonPoisons": 3,
+			"revivePotion": 3,
+			"trainingTokens": 2,
+			"wiggenweldPotion": 3,
+			"wideyePotion": 1
+		}
+
+	},
+
+	"4": {
+		"xp": 12400,
+		"lootbox": {
+			"antidoteToCommonPoisons": 4,
+			"revivePotion": 4,
+			"trainingTokens": 3,
+			"wiggenweldPotion": 4,
+			"wit-sharpeningPotion": 1
+		}
+	},
+
+	"5": {
+		"xp": 30800,
+		"lootbox": {
+			"antidoteToCommonPoisons": 5,
+			"revivePotion": 5,
+			"trainingTokens": 3,
+			"wiggenweldPotion": 5
+		}
+	},
+
+	"6": {
+		"xp": 69200,
+		"lootbox": {
+			"antidoteToCommonPoisons": 6,
+			"revivePotion": 6,
+			"trainingTokens": 4,
+			"wiggenweldPotion": 6
+		}
+	},
+
+	"7": {
+		"xp": 146000,
+		"lootbox": {
+			"antidoteToCommonPoisons": 7,
+			"revivePotion": 7,
+			"trainingTokens": 4,
+			"wiggenweldPotion": 7
+		}
+	}
+}

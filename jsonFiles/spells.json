@@ -1,0 +1,339 @@
+[{
+    "name": "Knockback Jinx",
+    "spellName": "flipendo",
+    "daysToLearn": 1,
+    "yearRequired": 1,
+    "use": "used to help defeat doxys.",
+    "class": "Defense against The Dark Arts"
+  },
+  {
+    "name": "Boggart-Banishing Spell",
+    "spellName": "riddikulus",
+    "daysToLearn": 7,
+    "yearRequired": 3,
+    "use": "used to banish boggarts.",
+    "class": "Defense against The Dark Arts"
+  },
+  {
+    "name": "Patronus Charm",
+    "spellName": "expecto patronum",
+    "daysToLearn": 18,
+    "yearRequired": 5,
+    "use": "used to banish dementors.",
+    "class": "Defense against The Dark Arts"
+  },
+  {
+    "name": "Freezing Spell",
+    "spellName": "glacius",
+    "daysToLearn": 7,
+    "yearRequired": 3,
+    "use": "used to help defeat ashwinders",
+    "class": "Defense against The Dark Arts"
+  },
+  {
+    "name": "Chest Opening Charm",
+    "spellName": "cistem aperio",
+    "daysToLearn": 12,
+    "yearRequired": 4,
+    "use": "used to open chests",
+    "class": "Charms"
+  },
+  {
+    "name": "Scouring Charm",
+    "spellName": "scourgify",
+    "daysToLearn": 12,
+    "yearRequired": 4,
+    "use": "used to help defeat bundimun",
+    "class": "Charms"
+  },
+  {
+    "name": "Stunning Spell",
+    "spellName": "stupefy",
+    "daysToLearn": 18,
+    "yearRequired": 5,
+    "use": "used to help defeat the pogrebin",
+    "class": "Charms"
+  },
+  {
+    "name": "Banishing Charm",
+    "spellName": "depulso",
+    "daysToLearn": 7,
+    "yearRequired": 3,
+    "use": "used to help defeat Red Caps, Shrakes, and Sea Serpents",
+    "class": "Charms"
+  },
+  {
+    "name": "Divination Spell",
+    "spellName": "divine",
+    "daysToLearn": 7,
+    "yearRequired": 3,
+    "use": "Ask the crystal ball a question",
+    "class": "Divination"
+  },
+  {
+    "name": "Fire-Making Spell",
+    "spellName": "incendio",
+    "daysToLearn": 3,
+    "yearRequired": 2,
+    "class": "Defense against The Dark Arts"
+  },
+  {
+    "name": "Wand-Lighting Spell",
+    "spellName": "lumos",
+    "daysToLearn": 1,
+    "yearRequired": 1,
+    "class": "Charms"
+  },
+  {
+    "name": "Seize and pull charm",
+    "spellName": "carpe retractum",
+    "daysToLearn": 7,
+    "yearRequired": 3,
+    "class": "Charms"
+  },
+  {
+    "name": "Aqua Eructo Charm",
+    "spellName": "aqua eructo",
+    "daysToLearn": 12,
+    "yearRequired": 4,
+    "class": "Defense against The Dark Arts"
+  },
+  {
+    "name": "Exploding Charm",
+    "spellName": "bombarda",
+    "daysToLearn": 12,
+    "yearRequired": 4,
+    "class": "Charms"
+  },
+  {
+    "name": "Wiggenweld Potion",
+    "spellName": "wiggenweld potion",
+    "daysToLearn": 1,
+    "yearRequired": 1,
+    "class": "Potions"
+  },
+  {
+    "name": "Antidote to Common Poisons",
+    "spellName": "antidote to common poisons",
+    "daysToLearn": 1,
+    "yearRequired": 1,
+    "class": "Potions"
+  },
+  {
+    "name": "Girding Potion",
+    "spellName": "girding potion",
+    "daysToLearn": 3,
+    "yearRequired": 2,
+    "class": "Potions"
+  },
+  {
+    "name": "Wideye Potion",
+    "spellName": "wideye potion",
+    "daysToLearn": 7,
+    "yearRequired": 3,
+    "class": "Potions"
+  },
+  {
+    "name": "Wit-Sharpening Potion",
+    "spellName": "wit-sharpening potion",
+    "daysToLearn": 12,
+    "yearRequired": 4,
+    "class": "Potions"
+  },
+  {
+    "name": "Felix Felicis",
+    "spellName": "felix felicis",
+    "daysToLearn": 26,
+    "yearRequired": 6,
+    "class": "Potions"
+  },
+  {
+    "name": "Ginger",
+    "spellName": "ginger root",
+    "daysToLearn": 1,
+    "yearRequired": 1,
+    "class": "Herbology",
+    "reward": "1 gingerRoot"
+  },
+  {
+    "name": "Mandrakes",
+    "spellName": "stewed mandrake",
+    "daysToLearn": 1,
+    "yearRequired": 2,
+    "class": "Herbology",
+    "reward": "1 stewedMandrake"
+  },
+  {
+    "name": "Wolfsbane",
+    "spellName": "sprig of wolfsbane",
+    "daysToLearn": 1,
+    "yearRequired": 2,
+    "class": "Herbology",
+    "reward": "1 sprigOfWolfsbane"
+  },
+  {
+    "name": "Gillyweed",
+    "spellName": "gillyweed",
+    "daysToLearn": 1,
+    "yearRequired": 4,
+    "class": "Herbology",
+    "reward": "1 gillyweed"
+  },
+  {
+    "name": "Squill",
+    "spellName": "squill bulb",
+    "daysToLearn": 1,
+    "yearRequired": 5,
+    "class": "Herbology",
+    "reward": "1 squillBulb"
+  },
+  {
+    "name": "Venomous Tentacula",
+    "spellName": "chizpurfle carapace",
+    "daysToLearn": 1,
+    "yearRequired": 6,
+    "class": "Herbology",
+    "reward": "1 chizpurfleCarapace"
+  },
+  {
+    "name": "Red Sparks",
+    "spellName": "vermillious",
+    "daysToLearn": 1,
+    "yearRequired": 4,
+    "class": "Charms"
+  },
+  {
+    "name": "Revelio Charm",
+    "spellName": "revelio",
+    "daysToLearn": 3,
+    "yearRequired": 2,
+    "class": "Transfiguration"
+  },
+  {
+    "name": "Fire Protection Potion",
+    "spellName": "fire protection potion",
+    "daysToLearn": 3,
+    "yearRequired": 2,
+    "class": "Potions"
+  },
+  {
+    "name": "Mimulus Mimbletonia",
+    "spellName": "vial of stinksap",
+    "daysToLearn": 1,
+    "yearRequired": 3,
+    "class": "Herbology",
+    "reward": "1 vialOfStinksap"
+  },
+  {
+    "name": "Unlocking Charm",
+    "spellName": "alohomora",
+    "daysToLearn": 1,
+    "yearRequired": 1,
+    "class": "Charms"
+  },
+  {
+    "name": "Antidote to Uncommon Poisons",
+    "spellName": "antidote to uncommon poisons",
+    "daysToLearn": 18,
+    "yearRequired": 5,
+    "class": "Potions"
+  }, {
+    "name": "Spider Repelling Charm",
+    "spellName": "arania exumai",
+    "daysToLearn": 7,
+    "yearRequired": 3,
+    "class": "Charms"
+  },
+  {
+    "name": "Summoning Charm",
+    "spellName": "accio",
+    "daysToLearn": 12,
+    "yearRequired": 4,
+    "class": "Charms"
+  },
+  {
+    "name": "Locomotor Charm",
+    "spellName": "locomotor",
+    "daysToLearn": 18,
+    "yearRequired": 5,
+    "class": "Charms"
+  },
+  {
+    "name": "Impediment Jinx",
+    "spellName": "impedimenta",
+    "daysToLearn": 18,
+    "yearRequired": 5,
+    "class": "Defense against The Dark Arts"
+  },
+  {
+    "name": "Billywigs",
+    "spellName": "billywig sting slime",
+    "daysToLearn": 1,
+    "yearRequired": 3,
+    "class": "Care of Magical Creatures",
+    "reward": "1 billywigStingSlime"
+  },
+  {
+    "name": "Horklumps",
+    "spellName": "bottle of horklump juice",
+    "daysToLearn": 1,
+    "yearRequired": 3,
+    "class": "Care of Magical Creatures",
+    "reward": "1 bottleOfHorklumpJuice"
+  },
+  {
+    "name": "Flobberworms",
+    "spellName": "vial of flobberworm mucus",
+    "daysToLearn": 1,
+    "yearRequired": 3,
+    "class": "Care of Magical Creatures",
+    "reward": "1 vialOfFlobberwormMucus"
+  },
+  {
+    "name": "Salamanders",
+    "spellName": "vial of salamander blood",
+    "daysToLearn": 1,
+    "yearRequired": 3,
+    "class": "Care of Magical Creatures",
+    "reward": "1 vialOfSalamanderBlood"
+  },
+  {
+    "name": "Murtlaps",
+    "spellName": "murtlap tentacle",
+    "daysToLearn": 1,
+    "yearRequired": 4,
+    "class": "Care of Magical Creatures",
+    "reward": "1 murtlapTentacle"
+  },
+  {
+    "name": "Fairies",
+    "spellName": "fairy wings",
+    "daysToLearn": 1,
+    "yearRequired": 5,
+    "class": "Care of Magical Creatures",
+    "reward": "2 fairyWings"
+  },
+  {
+    "name": "Occamy",
+    "spellName": "occamy eggshell",
+    "daysToLearn": 1,
+    "yearRequired": 6,
+    "class": "Care of Magical Creatures",
+    "reward": "1 occamyEggshell"
+  },
+  {
+    "name": "Graphorn",
+    "spellName": "powdered graphorn horn",
+    "daysToLearn": 1,
+    "yearRequired": 6,
+    "class": "Care of Magical Creatures",
+    "reward": "1 powderedGraphornHorn"
+  },
+  {
+    "name": "Strength Potion",
+    "spellName": "strength potion",
+    "daysToLearn": 18,
+    "yearRequired": 5,
+    "class": "Potions"
+  }
+]

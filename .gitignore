@@ -1,0 +1,6 @@
+node_modules
+data
+db-transfer.js
+logs.txt
+package-lock.json
+botconfig.json
