@@ -29,7 +29,7 @@ module.exports = {
 			if (!userData.inventory.wiggenweldPotion || userData.inventory.wiggenweldPotion <= 0) return message.channel.send("You don't have any wiggenweld potions!");
 			if (userData.stats.health >= userData.stats.maxHealth) return message.channel.send("You're already at your max health!");
 
-			const healthToGive = (userData.stats.health + 48) > userData.stats.maxHealth ? userData.stats.maxHealth - 48 : 48;
+			const healthToGive = (userData.stats.health + 48) > userData.stats.maxHealth ? 48 - userData.stats.health : 48;
 
 			bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", healthToGive, "stats.health");
 			bot.userInfo.dec(`${message.guild.id}-${message.author.id}`, "inventory.wiggenweldPotion");
