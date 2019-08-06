@@ -15,7 +15,6 @@ const users = {};
 /*
 	TODO:
 	- Easter eggs
-	- Raids
 */
 
 module.exports = async (bot, message) => {
