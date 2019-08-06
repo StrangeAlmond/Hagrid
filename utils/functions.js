@@ -442,7 +442,7 @@ module.exports = {
 					this.fainted(member, `${member} has fainted from a ${object.beast.name.toLowerCase()} attack! can you help me heal them faster?`, bot);
 				}
 			} else {
-				msgContent += `${member}, the ${object.beast.name.toLowerCase()} attacked you! you have ${userData.stats.health} left.`;
+				msgContent += `${member}, the ${object.beast.name.toLowerCase()} attacked you! you have ${userData.stats.health} health points left.`;
 			}
 		}
 
