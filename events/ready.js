@@ -67,13 +67,13 @@ module.exports = async bot => {
 		const users = bot.userInfo.array();
 
 		guilds.forEach(guild => {
-			if (guild.scheduledTrainingSessions.some(s => Date.now() > s.time)) {
+
+			if (guild.scheduledTrainingSessions.some(s => Date.now() >= s.time)) {
+				const trainingSession = guild.scheduledTrainingSessions.find(ts => Date.now() >= ts.time);
 				bot.guildInfo.removeFrom(guild.guild, "scheduledTrainingSessions", trainingSession);
 
 				const trainingChannel = bot.guilds.get(guild.guild).channels.find(c => c.name === "training-grounds");
 				if (!trainingChannel) return;
-
-				const trainingSession = guild.scheduledTrainingSessions.find(ts => Date.now() > ts.time);
 
 				bot.spawnTrainingSession(trainingChannel, trainingSession.spell);
 			}
