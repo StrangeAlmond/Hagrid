@@ -32,8 +32,8 @@ module.exports = {
 				.filter(i => i[1] > 0)
 				.sort((i, j) => i[0].localeCompare(j[0]))
 				.map(i => `${i[0]
-        .replace(/([A-Z])/g, " $1")
-        .replace(/^./, str => str.toUpperCase())}: ${i[1]}`)
+				.replace(/([A-Z])/g, " $1")
+				.replace(/^./, str => str.toUpperCase())}: ${i[1]}`)
 				.join("\n");
 
 			// Create an embed for displaying their inventory
