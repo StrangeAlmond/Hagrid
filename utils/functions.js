@@ -303,12 +303,24 @@ module.exports = {
 		channel.send(`A ${beast.name} has spawned! Use ${bot.prefix}${beast.spell.slice(1)} to help defeat it!`);
 	},
 
-	processTrainingSession(member, object, channel, bot) {
+	processTrainingSession: async function (member, object, channel, bot) {
 		const guild = member.guild;
 		const guildData = bot.guildInfo.get(guild.id);
 		const userData = bot.userInfo.get(`${guild.id}-${member.id}`);
 
 		if (!userData.studiedSpells.includes(object.beast.spell.slice(1))) return;
+
+		let webhooks = await channel.fetchWebhooks();
+		webhooks = webhooks.array().filter(w => w.name.toLowerCase() === bot.user.username.toLowerCase());
+
+		if (webhooks.length < 7) {
+			for (let i = webhooks.length; i < 7; i++) {
+				const webhook = await channel.createWebhook(bot.user.username, bot.user.displayAvatarURL);
+				webhooks.push(webhook);
+			}
+		}
+
+		const webhook = webhooks[Math.floor(Math.random() * webhooks.length)];
 
 		if (!object.users.some(u => u.id === member.id)) {
 			object.users.push({
@@ -362,7 +374,7 @@ module.exports = {
 			guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel === object.channel), 1);
 			bot.guildInfo.set(guild.id, guildData.spawns, "spawns");
 
-			channel.send(`Great job ${member}! you defeated the ${object.beast.name.toLowerCase()}, as a result, you have been awarded one sickle.`);
+			webhook.send(`Great job ${member}! you defeated the ${object.beast.name.toLowerCase()}, as a result, you have been awarded one sickle.`);
 
 			bot.userInfo.inc(`${guild.id}-${member.id}`, "stats.trainingSessionsDefeated");
 
@@ -410,13 +422,13 @@ module.exports = {
 				msg += `**${guild.members.get(u.id).displayName}**, you got a tier ${lootboxTier} lootbox! the contents are below:\n${lootbox.map(r => `${r.split(/ +/)[0]} ${this.fromCamelCase(r.split(/ +/)[1].split(".")[1])}`).join("\n")}\n\n`;
 
 				if (msg.length > 1800) {
-					channel.send(msg);
+					webhook.send(msg);
 					msg = "";
 				}
 
 			});
 
-			channel.send(msg);
+			webhook.send(msg);
 			return;
 		}
 
@@ -446,7 +458,7 @@ module.exports = {
 			}
 		}
 
-		channel.send(msgContent);
+		webhook.send(msgContent);
 
 		guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel === object.channel), 1, object);
 		bot.guildInfo.set(guild.id, guildData.spawns, "spawns");
