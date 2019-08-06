@@ -175,13 +175,13 @@ module.exports = {
 				bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "-", price, "balance.knuts");
 				bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", amount, "stats.purchases");
 
-				if (items[args[0]].name === "1002") amount = amount * 6;
+				if (items[args[0]].id === "1002") amount = amount * 6;
 				if (items[args[0]].id === "705") amount = amount * 2;
 				if (items[args[0]].id === "700") amount = amount * 10;
 				if (items[args[0]].id === "714") amount = amount * 10;
 				if (items[args[0]].id === "709") amount = amount * 10;
 				if (items[args[0]].id === "712") amount = amount * 5;
-				if (items[args[0]].name === "1102") amount = amount * 5;
+				if (items[args[0]].id === "1102") amount = amount * 5;
 
 				bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", amount, `inventory.${items[args[0]].key}`);
 				message.channel.send(`You have purchased ${amount} ${items[args[0]].name}(s)`);
