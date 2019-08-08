@@ -48,10 +48,10 @@ module.exports = async (bot, message) => {
 	// Ensure the user has data
 	bot.ensureUser(message.member);
 
-	bot.userInfo.set(`${message.guild.id}-${message.author.id}`, Date.now(), "lastMsg");
-
 	// Get the user's data
 	const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
+
+	bot.userInfo.set(`${message.guild.id}-${message.author.id}`, Date.now(), "lastMsg");
 
 	if (!message.member.hasPermission("MANAGE_SERVER") && message.channel.name !== "training-grounds") {
 		const key = `${message.guild.id}-${message.author.id}`;
