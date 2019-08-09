@@ -214,7 +214,7 @@ module.exports = {
 		const guild = channel.guild;
 		const guildData = bot.guildInfo.get(guild.id);
 
-		const attachment = new Discord.Attachment("./images/dementor.jpg", "dementor.jpg");
+		const attachment = new Discord.Attachment("./images/spawns/dementor.jpg", "dementor.jpg");
 		channel.send(`A dementor has spawned! Years 5 and up can banish it by using \`${bot.prefix}expecto patronum\`!`, attachment);
 
 		if (guildData.spawns.some(s => s.channel === object.channel)) bot.guildInfo.removeFrom(guild.id, guildData.spawns.find(s => s.channel === object.channel), "spawns");
@@ -230,7 +230,7 @@ module.exports = {
 		const guild = channel.guild;
 		const guildData = bot.guildInfo.get(guild.id);
 
-		const attachment = new Discord.Attachment("./images/boggart.jpg", "boggart.jpg");
+		const attachment = new Discord.Attachment("./images/spawns/boggart.jpg", "boggart.jpg");
 		channel.send(`A boggart has spawned! Years 3 and up can banish it by using \`${bot.prefix}riddikulus\`!`, attachment);
 
 		if (guildData.spawns.some(s => s.channel === object.channel)) bot.guildInfo.removeFrom(guild.id, guildData.spawns.find(s => s.channel === object.channel), "spawns");
@@ -246,7 +246,7 @@ module.exports = {
 		const guild = channel.guild;
 		const guildData = bot.guildInfo.get(guild.id);
 
-		const attachment = new Discord.Attachment("./images/chest.png", "chest.png");
+		const attachment = new Discord.Attachment("./images/spawns/chest.png", "chest.png");
 		channel.send(`A chest has appeared! open it with\`${bot.prefix}cistem aperio\`!`, attachment);
 
 		if (guildData.spawns.some(s => s.channel === object.channel)) bot.guildInfo.removeFrom(guild.id, guildData.spawns.find(s => s.channel === object.channel), "spawns");
