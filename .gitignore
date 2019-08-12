@@ -4,3 +4,4 @@ db-transfer.js
 logs.txt
 package-lock.json
 botconfig.json
+sync.bat
