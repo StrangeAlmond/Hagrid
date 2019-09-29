@@ -5,11 +5,11 @@ const ms = require("parse-ms");
 let spells = require("../jsonFiles/spells.json");
 
 spells = spells.sort((a, b) => {
-	if (a.yearRequired > b.yearRequired) return a;
-	if (b.yearRequired > a.yearRequired) return b;
+	if (a.yearRequired > b.yearRequired) return 1;
+	if (b.yearRequired > a.yearRequired) return -1;
 
-	if (a.name > b.name) return a;
-	if (b.name > a.name) return b;
+	if (a.name > b.name) return 1;
+	if (b.name > a.name) return -1;
 });
 
 for (let i = 0; i < spells.length; i++) {
@@ -120,7 +120,7 @@ module.exports = {
 				bot.userInfo.push(`${message.guild.id}-${message.author.id}`, spell.spellName, "studiedSpells");
 
 				const role = message.guild.roles.find(s => s.spellName === s.name.toLowerCase());
-				if (role) message.member.addRole(role);
+				if (role && userData.settings.trainingSessionAlerts) message.member.addRole(role);
 
 				message.channel.send(`Congratulations ${message.member.displayName}! You have finished learning the **${spell.name}**!`);
 			}
