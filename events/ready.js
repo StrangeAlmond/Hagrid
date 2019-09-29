@@ -130,6 +130,9 @@ module.exports = async bot => {
 
 			if ((Date.now() - message.createdTimestamp) < 300000) return;
 
+			const permissions = channel.permissionsFor(channel.guild.me);
+			if (!permissions.has("MANAGE_CHANNELS")) return;
+
 			channel.delete().catch(e => bot.logger.log("error", e.stack));
 		});
 
