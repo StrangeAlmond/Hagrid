@@ -130,7 +130,7 @@ module.exports = async bot => {
 
 			if ((Date.now() - message.createdTimestamp) < 300000) return;
 
-			channel.delete();
+			channel.delete().catch(e => bot.logger.log("error", e.stack));
 		});
 
 		const activeEffectsUsers = users.filter(u => u.stats.activeEffects.length > 0);
