@@ -8,20 +8,6 @@ module.exports = {
 	async execute(message, args, bot) {
 		if (!args[0]) return message.channel.send("Specify what to use!");
 
-		/*
-		Items that can be used:
-		Wiggenweld Potion - Gives a user up to 48 health, doesn't work if they've fainted.
-		Girding Potion - Increases a user's max health by one.
-		Wideye Potion - Allows a user to study again.
-		Fire Protection Potion - Gives the user the fire protection effect
-		Wit-Sharpening Potion - Gives a user 1000 xp
-		Strength Potion - Increases the user's defense by 2 for 2 hours.
-		Felix Felicis - Set's the users luck to 100%
-		Maximum Turbo Farts - The tagged user has the turbo fart emoji on every message they send for 30 messages.
-		Training Token - Allows a user to participate in a training session by giving them the "Training" role. This role is removed after 1 hour.
-		Stinksap - Revives a fainted pet.
-		*/
-
 		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
 
 		if (["714", "715", "wiggenweld potion"].some(i => i.includes(args.join(" ")))) {
@@ -143,10 +129,10 @@ module.exports = {
 
 			const user = bot.getUserFromMention(args[0], message.guild) || message.guild.members.get(args[0]) || message.member;
 
-			if (!bot.userInfo.hasProp(`${message.guild.id}-${user.id}`, "petInfo")) return message.channel.send(`${user.id === message.author.id ? "You don't have a pet!" : `${user.displayName} doesn't have a pet!`}`);
+			if (!bot.userInfo.hasProp(`${message.guild.id}-${user.id}`, "pet")) return message.channel.send(`${user.id === message.author.id ? "You don't have a pet!" : `${user.displayName} doesn't have a pet!`}`);
 
 			bot.userInfo.dec(`${message.guild.id}-${message.author.id}`, "inventory.stinksap");
-			bot.userInfo.set(`${message.guild.id}-${user.id}`, false, "petInfo.fainted");
+			bot.userInfo.set(`${message.guild.id}-${user.id}`, false, "pet.fainted");
 
 			message.channel.send(`You have revived ${user.id === message.author.id ? "your pet" : `${user.displayName}'s pet`}.`);
 		}
