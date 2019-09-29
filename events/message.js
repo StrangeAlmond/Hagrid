@@ -53,7 +53,7 @@ module.exports = async (bot, message) => {
 
 	bot.userInfo.set(`${message.guild.id}-${message.author.id}`, Date.now(), "lastMsg");
 
-	if (!message.member.hasPermission("MANAGE_SERVER") && message.channel.name !== "training-grounds") {
+	if (!message.member.hasPermission("MANAGE_GUILD") && message.channel.name !== "training-grounds") {
 		const key = `${message.guild.id}-${message.author.id}`;
 
 		if (!users[key]) users[key] = [];
