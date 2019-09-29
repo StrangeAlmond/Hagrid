@@ -187,7 +187,7 @@ module.exports = {
 				message.channel.send(`You have purchased ${amount} ${items[args[0]].name}(s)`);
 				bot.logger.log("info", `${message.member.displayName} purchased ${amount} ${items[args[0]].name}(s)`);
 			} else if (items[args[0]].type === "pet") {
-				if (bot.userInfo.hasProp(`${message.guild.id}-${message.author.id}`, "petInfo")) return message.channel.send("You already have a pet!");
+				if (bot.userInfo.hasProp(`${message.guild.id}-${message.author.id}`, "pet")) return message.channel.send("You already have a pet!");
 
 				if (!items[args[0]]) return message.channel.send("❌ | That's not a pet!");
 				const pet = items[args[0]];
@@ -208,7 +208,7 @@ module.exports = {
 					gender: genders[Math.floor(Math.random() * genders.length)]
 				};
 
-				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, petObject, "petInfo");
+				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, petObject, "pet");
 				bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "-", price, "balance.galleons");
 				bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "stats.purchases");
 

@@ -40,7 +40,7 @@ module.exports = {
 			"stats.defense": 1,
 			"stats.maxHealth": 48,
 			"stats.health": 48,
-			"petInfo.level": 1,
+			"pet.level": 1,
 			"balance.galleons": 0,
 			"balance.sickles": 0,
 			"balance.knuts": 0,
