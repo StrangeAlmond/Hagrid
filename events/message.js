@@ -62,16 +62,17 @@ module.exports = async (bot, message) => {
 
 		users[key].push(Date.now());
 
-		if (users[key].length < 4) return;
+		if (users[key].length > 4) {
+			const silencedRole = message.guild.roles.find(r => r.name.toLowerCase() === "silenced");
 
-		const silencedRole = message.guild.roles.find(r => r.name.toLowerCase() === "silenced");
-		if (!silencedRole) return;
+			if (silencedRole) {
+				message.member.addRole(silencedRole);
 
-		message.member.addRole(silencedRole);
-
-		setTimeout(() => {
-			message.member.removeRole(silencedRole);
-		}, 5000);
+				setTimeout(() => {
+					message.member.removeRole(silencedRole);
+				}, 5000);
+			}
+		}
 	}
 
 	if (bot.blacklistedWords.some(w => plainArgs.includes(w))) {
@@ -84,23 +85,25 @@ module.exports = async (bot, message) => {
 		}).then(msg => msg.delete(5000));
 
 		const logChannel = message.guild.channels.find(c => c.name === "incidents");
-		if (!logChannel) return;
 
-		const logEmbed = new Discord.RichEmbed()
-			.setAuthor("Profanity Filter")
-			.addField("User", message.member.displayName, true)
-			.addField("Channel", `${message.channel}`, true)
-			.addField("Detected Word", bot.blacklistedWords.find(w => plainArgs.includes(w)), true)
-			.addField("Message Content", message.content)
-			.setColor("#DD889F")
-			.setFooter(`${message.member.displayName} has used profanity ${bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "profanityWarns")} time(s).`)
-			.setTimestamp();
+		if (logChannel) {
 
-		bot.quickWebhook(logChannel, logEmbed, {
-			username: "Dolores Umbridge",
-			avatar: "./images/webhook avatars/doloresUmbridge.png",
-			deleteAfterUse: true
-		});
+			const logEmbed = new Discord.RichEmbed()
+				.setAuthor("Profanity Filter")
+				.addField("User", message.member.displayName, true)
+				.addField("Channel", `${message.channel}`, true)
+				.addField("Detected Word", bot.blacklistedWords.find(w => plainArgs.includes(w)), true)
+				.addField("Message Content", message.content)
+				.setColor("#DD889F")
+				.setFooter(`${message.member.displayName} has used profanity ${bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "profanityWarns")} time(s).`)
+				.setTimestamp();
+
+			bot.quickWebhook(logChannel, logEmbed, {
+				username: "Dolores Umbridge",
+				avatar: "./images/webhook avatars/doloresUmbridge.png",
+				deleteAfterUse: true
+			});
+		}
 	}
 
 	if (userData.stats.activeEffects.some(e => e.type === "maximum turbo farts")) {
@@ -149,13 +152,15 @@ module.exports = async (bot, message) => {
 
 		const houses = ["slytherin", "gryffindor", "hufflepuff", "ravenclaw"];
 		const house = houses.find(h => message.member.roles.some(r => r.name.toLowerCase() === h));
-		if (!house) return;
 
-		bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "stats.housePoints");
-		bot.guildInfo.inc(message.guild.id, `housePoints.${house}`);
-		bot.guildInfo.removeFrom(message.guild.id, "spawns", guildData.spawns.find(s => s.channel === message.channel.id));
+		if (house) {
 
-		bot.quickWebhook(message.channel, `Congratulations ${message.member}! You guessed the answer correctly! you and your house have gained 1 point.`, webhookObjects[house]);
+			bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "stats.housePoints");
+			bot.guildInfo.inc(message.guild.id, `housePoints.${house}`);
+			bot.guildInfo.removeFrom(message.guild.id, "spawns", guildData.spawns.find(s => s.channel === message.channel.id));
+
+			bot.quickWebhook(message.channel, `Congratulations ${message.member}! You guessed the answer correctly! you and your house have gained 1 point.`, webhookObjects[house]);
+		}
 	}
 
 	const chance = Math.random() * 100;
@@ -190,44 +195,48 @@ module.exports = async (bot, message) => {
 
 			const houses = ["slytherin", "gryffindor", "hufflepuff", "ravenclaw"];
 			const house = houses.find(h => message.member.roles.some(r => r.name.toLowerCase() === h));
-			if (!house) return;
 
-			const channel = message.guild.channels.find(c => c.name.includes(house));
-			if (!channel) return;
+			if (house) {
 
-			if (!guildData.spawns.some(s => s.channel === channel.id)) {
+				const channel = message.guild.channels.find(c => c.name.includes(house));
 
-				object.channel = channel.id;
+				if (channel) {
 
-				const triviaObject = triviaQuestions[Math.floor(Math.random() * triviaQuestions.length)];
+					if (!guildData.spawns.some(s => s.channel === channel.id)) {
 
-				const question = triviaObject.question;
+						object.channel = channel.id;
 
-				const webhookObjects = {
-					slytherin: {
-						username: "Bloody Baron",
-						avatar: "./images/webhook avatars/bloodyBaron.jpg"
-					},
+						const triviaObject = triviaQuestions[Math.floor(Math.random() * triviaQuestions.length)];
 
-					gryffindor: {
-						username: "Nearly Headless Nick",
-						avatar: "./images/webhook avatars/nearlyHeadlessNick.jpg"
-					},
+						const question = triviaObject.question;
 
-					hufflepuff: {
-						username: "Fat Friar",
-						avatar: "./images/webhook avatars/fatFriar.png"
-					},
+						const webhookObjects = {
+							slytherin: {
+								username: "Bloody Baron",
+								avatar: "./images/webhook avatars/bloodyBaron.jpg"
+							},
 
-					ravenclaw: {
-						username: "The Grey Lady",
-						avatar: "./images/webhook avatars/theGreyLady.jpg"
+							gryffindor: {
+								username: "Nearly Headless Nick",
+								avatar: "./images/webhook avatars/nearlyHeadlessNick.jpg"
+							},
+
+							hufflepuff: {
+								username: "Fat Friar",
+								avatar: "./images/webhook avatars/fatFriar.png"
+							},
+
+							ravenclaw: {
+								username: "The Grey Lady",
+								avatar: "./images/webhook avatars/theGreyLady.jpg"
+							}
+						};
+
+						object.webhookObject = webhookObjects[house];
+
+						bot.quickWebhook(channel, `It's trivia time ${house} members! try to guess the answer to the question below:\n\n${question}`, webhookObjects[house]);
 					}
-				};
-
-				object.webhookObject = webhookObjects[house];
-
-				bot.quickWebhook(channel, `It's trivia time ${house} members! try to guess the answer to the question below:\n\n${question}`, webhookObjects[house]);
+				}
 			}
 		}
 
