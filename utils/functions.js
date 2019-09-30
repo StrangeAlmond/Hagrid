@@ -448,7 +448,7 @@ module.exports = {
 			bot.userInfo.set(`${guild.id}-${member.id}`, userData.stats.health, "stats.health");
 
 			if (userData.stats.health <= 0) {
-				if ((Date.now() - userData.cooldowns.lastResurrectionStoneUse) > 3600000) {
+				if (userData.inventory.resurrectionStone > 1 && (Date.now() - userData.cooldowns.lastResurrectionStoneUse) > 3600000) {
 					msgContent += `Just as ${member} was about to be attacked, the spirit of their loved one appeared and protected them.`;
 
 					bot.userInfo.math(`${guild.id}-${member.id}`, "+", damage, "stats.health");
