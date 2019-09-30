@@ -310,7 +310,7 @@ module.exports = async (bot, message) => {
 
 	if (guildData.spawns.some(s => s.type === "training session" && s.channel === message.channel.id && args.join(" ") === s.beast.spell.slice(1))) {
 		const object = guildData.spawns.find(s => s.type === "training session" && s.channel === message.channel.id && args.join(" ") === s.beast.spell.slice(1));
-		return bot.processTrainingSession(message.member, object, message.channel, bot);
+		return await bot.processTrainingSession(message.member, object, message.channel, bot);
 	}
 
 	// Ensure their knuts and sickles aren't above 29 and 17 respectively
