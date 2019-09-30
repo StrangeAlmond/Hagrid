@@ -429,6 +429,10 @@ module.exports = {
 			});
 
 			webhook.send(msg);
+
+			const greatHall = guild.channels.find(c => c.name === "great-hall");
+			greatHall.send("**This training session has ended**");
+
 			return;
 		}
 
