@@ -188,7 +188,7 @@ module.exports = async (bot, message) => {
 		} else if (spawn === "chest") {
 			object.type = "chest";
 
-			const attachment = new Discord.Attachment("./images/chest.png", "chest.png");
+			const attachment = new Discord.Attachment("./images/spawns/chest.png", "chest.png");
 			message.channel.send(`A chest has appeared! open it with \`${bot.prefix}cistem aperio\`!`, attachment);
 		} else if (spawn === "trivia") {
 			object.type = "trivia";
