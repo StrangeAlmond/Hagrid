@@ -125,13 +125,13 @@ module.exports = {
 			message.delete();
 			message.author.send(`You have used a maximum turbo farts potion on ${mentionedUser.displayName}`);
 		} else if (["stinksap"].some(i => args.join(" ").includes(i))) {
-			if (!userData.inventory.stinksap || userData.inventory.stinksap <= 0) return message.channel.send("You don't have any stinksap!");
+			if (!userData.inventory.vialOfStinksap || userData.inventory.vialOfStinksap <= 0) return message.channel.send("You don't have any stinksap!");
 
 			const user = bot.getUserFromMention(args[0], message.guild) || message.guild.members.get(args[0]) || message.member;
 
 			if (!bot.userInfo.hasProp(`${message.guild.id}-${user.id}`, "pet")) return message.channel.send(`${user.id === message.author.id ? "You don't have a pet!" : `${user.displayName} doesn't have a pet!`}`);
 
-			bot.userInfo.dec(`${message.guild.id}-${message.author.id}`, "inventory.stinksap");
+			bot.userInfo.dec(`${message.guild.id}-${message.author.id}`, "inventory.vialOfStinksap");
 			bot.userInfo.set(`${message.guild.id}-${user.id}`, false, "pet.fainted");
 
 			message.channel.send(`You have revived ${user.id === message.author.id ? "your pet" : `${user.displayName}'s pet`}.`);
