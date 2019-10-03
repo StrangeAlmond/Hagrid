@@ -132,6 +132,7 @@ module.exports = {
 			if (!bot.userInfo.hasProp(`${message.guild.id}-${user.id}`, "pet")) return message.channel.send(`${user.id === message.author.id ? "You don't have a pet!" : `${user.displayName} doesn't have a pet!`}`);
 
 			bot.userInfo.dec(`${message.guild.id}-${message.author.id}`, "inventory.vialOfStinksap");
+			bot.userInfo.set(`${message.guild.id}-${user.id}`, null, "petInfo.lastFeed");
 			bot.userInfo.set(`${message.guild.id}-${user.id}`, false, "pet.fainted");
 
 			message.channel.send(`You have revived ${user.id === message.author.id ? "your pet" : `${user.displayName}'s pet`}.`);
