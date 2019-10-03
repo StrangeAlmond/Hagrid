@@ -114,7 +114,7 @@ module.exports = {
 
 				if (!userData.inventory[item]) bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 0, `inventory.${item}`);
 
-				bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "-", amount, `inventory.${item}`);
+				bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", amount, `inventory.${item}`);
 				message.channel.send(`Congratulations ${message.member.displayName}! You have finished studying ${spell.name} and have gained ${amount} ${spell.spellName}`);
 			} else {
 				bot.userInfo.push(`${message.guild.id}-${message.author.id}`, spell.spellName, "studiedSpells");
@@ -141,7 +141,7 @@ module.exports = {
 		}
 
 		function spellEntry(s) {
-			return `**${findType(s)}:** ${userData.spellInfo[s.spellName] ? `**__${s.name}__**` : s.name} (${capitalizeFirstLetter(s.spellName)})\n**ID:** ${s.id}\n**Days to Learn:** ${userData.spellInfo[s.spellName] ? userData.spellInfo[s.spellName].daysToLearn : s.daysToLearn}`;
+			return `**${findType(s)}:** ${userData.spellInfo[s.spellName] ? `**__${s.name}__**` : s.name} (${capitalizeFirstLetter(s.spellName)})\n**ID:** ${s.id}\n**Days to Learn:** ${!userData.spellInfo[s.spellName] ? s.daysToLearn : userData.spellInfo[s.spellName].daysToLearn}`;
 		}
 
 		function capitalizeFirstLetter(string) {
