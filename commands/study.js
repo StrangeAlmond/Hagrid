@@ -6,10 +6,10 @@ let spells = require("../jsonFiles/spells.json");
 
 spells = spells.sort((a, b) => {
 	if (a.yearRequired > b.yearRequired) return 1;
-	if (b.yearRequired > a.yearRequired) return -1;
+	if (a.yearRequired < b.yearRequired) return -1;
 
 	if (a.name > b.name) return 1;
-	if (b.name > a.name) return -1;
+	if (a.name < b.name) return -1;
 });
 
 for (let i = 0; i < spells.length; i++) {
@@ -141,7 +141,7 @@ module.exports = {
 		}
 
 		function spellEntry(s) {
-			return `**${findType(s)}:** ${userData.spellInfo[s.spellName] ? `**__${s.name}__**` : s.name} (${capitalizeFirstLetter(s.spellName)})\n**ID:** ${s.id}\n**Days to Learn:** ${!userData.spellInfo[s.spellName] ? s.daysToLearn : userData.spellInfo[s.spellName].daysToLearn}`;
+			return `**${findType(s)}:** ${userData.spellInfo[s.spellName] ? `**__${s.name}__**` : s.name} (${capitalizeFirstLetter(s.spellName)})\n**ID:** ${s.id}\n**Days to Learn:** ${userData.spellInfo[s.spellName] ? userData.spellInfo[s.spellName].daysToLearn : s.daysToLearn}`;
 		}
 
 		function capitalizeFirstLetter(string) {
