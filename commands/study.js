@@ -142,8 +142,6 @@ module.exports = {
 		}
 
 		function spellEntry(s) {
-			console.log(userData.spellInfo[s.spellName]);
-			console.log(userData.spellInfo[s.spellName] ? userData.spellInfo[s.spellName].daysToLearn : s.daysToLearn);
 			return `**${findType(s)}:** ${userData.spellInfo[s.spellName] ? `**__${s.name}__**` : s.name} (${capitalizeFirstLetter(s.spellName)})\n**ID:** ${s.id}\n**Days to Learn:** ${userData.spellInfo[s.spellName] ? userData.spellInfo[s.spellName].daysToLearn : s.daysToLearn}`;
 		}
 
