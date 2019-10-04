@@ -38,7 +38,7 @@ module.exports = {
 					.setTitle(spell.class)
 					.setDescription(classSpells)
 					.setColor(message.member.displayHexColor)
-					.setFooter(userData.cooldowns.lastStudy === moment.tz("America/Los_Angeles").format("l") ? `Use ${bot.prefix}study <spell id> to study a spell` : `You can study again in ${timeTillNextStudy.hours} hours, ${timeTillNextStudy.minutes} minutes, and ${timeTillNextStudy.seconds} seconds`)
+					.setFooter(userData.cooldowns.lastStudy === moment.tz("America/Los_Angeles").format("l") ? `You can study again in ${timeTillNextStudy.hours} hours, ${timeTillNextStudy.minutes} minutes, and ${timeTillNextStudy.seconds} seconds` : `Use ${bot.prefix}study <spell id> to study a spell`)
 					.setTimestamp();
 				pages.push(embed);
 				classesFound.push(spell.class);
@@ -99,7 +99,7 @@ module.exports = {
 
 		if (!userData.spellInfo[spell.spellName]) {
 			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, spell, `spellInfo.${spell.spellName}`);
-			userData.spellInfo[spell.spellName] = spell;
+			userData.spellInfo[spell.spellName] = Object.assign({}, spell);
 		}
 
 		userData.spellInfo[spell.spellName].daysToLearn--;
@@ -125,6 +125,7 @@ module.exports = {
 				message.channel.send(`Congratulations ${message.member.displayName}! You have finished learning the **${spell.name}**!`);
 			}
 
+			delete userData.spellInfo[spell.spellName];
 			return bot.userInfo.delete(`${message.guild.id}-${message.author.id}`, `spellInfo.${spell.spellName}`);
 		}
 
@@ -141,6 +142,8 @@ module.exports = {
 		}
 
 		function spellEntry(s) {
+			console.log(userData.spellInfo[s.spellName]);
+			console.log(userData.spellInfo[s.spellName] ? userData.spellInfo[s.spellName].daysToLearn : s.daysToLearn);
 			return `**${findType(s)}:** ${userData.spellInfo[s.spellName] ? `**__${s.name}__**` : s.name} (${capitalizeFirstLetter(s.spellName)})\n**ID:** ${s.id}\n**Days to Learn:** ${userData.spellInfo[s.spellName] ? userData.spellInfo[s.spellName].daysToLearn : s.daysToLearn}`;
 		}
 
