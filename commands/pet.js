@@ -45,7 +45,7 @@ module.exports = {
 			const petEmbed = new Discord.RichEmbed()
 				.setAuthor(user.pet.nickname, message.author.displayAvatarURL)
 				.setThumbnail(user.pet.image)
-				.setDescription(`**Pet XP:** ${user.pet.xp}\n**Pet Status:** ${petHappiness}\n**Level:** ${user.pet.level}\n**Gender:** ${user.pet.gender}`)
+				.setDescription(`**Pet XP:** ${user.pet.xp}\n**Pet Status:** ${petHappiness}\n**Level:** ${user.pet.level}\n**Gender:** ${user.pet.gender.charAt(0).toUpperCase() + user.pet.gender.slice(1)}`)
 				.setColor(message.member.displayHexColor)
 				.setTimestamp();
 			message.channel.send(petEmbed);
