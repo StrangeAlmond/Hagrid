@@ -191,6 +191,10 @@ module.exports = {
 		return string.replace(/([A-Z])/g, " $1").replace(/^./, str => str.toUpperCase());
 	},
 
+	capitalizeFirstLetter: function (string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	},
+
 	getUserFromMention: function (mention, guild) {
 		if (!mention) return undefined;
 

@@ -33,6 +33,7 @@ module.exports = async bot => {
 	bot.quickWebhook = quickWebhook;
 	bot.timeUntilMidnight = functions.timeUntilMidnight;
 	bot.getUserFromMention = functions.getUserFromMention;
+	bot.capitalizeFirstLetter = functions.capitalizeFirstLetter;
 
 	bot.userInfo.array().filter(u => u.mazeInfo.inFight).forEach(user => {
 		bot.userInfo.set(`${user.guild}-${user.user}`, false, "mazeInfo.inFight");
