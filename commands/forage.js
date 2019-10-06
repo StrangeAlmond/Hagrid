@@ -7,6 +7,9 @@ module.exports = {
 	async execute(message, args, bot) {
 		const user = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
 
+		if (user.stats.fainted) return;
+		if (user.mazeInfo.inFight) return;
+
 		if (user.mazeInfo.dailyForagesLeft <= 0 && moment.tz("America/Los_Angeles").format("l") === user.mazeInfo.lastForage) return message.channel.send("It looks like this area has been picked clean already. We'd better wait a little bit to let it grow back.");
 
 		if (moment.tz("America/Los_Angeles").format("l") !== bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "mazeInfo.lastForage")) {
