@@ -8,4 +8,5 @@ experience as you interact with other students, journey through mazes
 and dungeons, fight together to take down ferocious beasts, brew potions, and a whole 
 lot more. For more information you can view the wiki [here](https://hagrid.fandom.com/wiki/Hagrid_Wiki).
 
-Hagrid is only designed to be used in the [offical discord server](https://discord.gg/PWKYMct). As such, any forks of this repo may require knowledge of programming in order to customize to your discord server.
+Hagrid is only designed to be used in the [offical discord server](https://discord.gg/PWKYMct). 
+As such, any forks of this repo may require knowledge of programming in order to customize the bot to your discord server.
