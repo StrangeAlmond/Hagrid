@@ -16,7 +16,7 @@ module.exports = {
 				.setTimestamp();
 
 			for (const house of houses) {
-				leaderboardEmbed.addField(house[0], `${house[1]} house points`);
+				leaderboardEmbed.addField(bot.capitalizeFirstLetter(house[0]), `${house[1]} house points`);
 			}
 
 			return message.channel.send(leaderboardEmbed);
