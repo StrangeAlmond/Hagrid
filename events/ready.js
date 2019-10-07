@@ -58,7 +58,7 @@ module.exports = async bot => {
 			const hospitalChannel = await bot.guilds.get(user.guild).channels.find(c => c.name.includes("hospital"));
 			const messages = await hospitalChannel.fetchMessages();
 
-			const msg = messages.find(m => m.content.includes(user.user) && m.content.toLowerCase().includes("revive"));
+			const msg = messages.find(m => m.content.includes(user.user) && m.content.toLowerCase().includes("fainted"));
 			if (msg) msg.delete();
 		}, bot.timeUntilMidnight());
 	});
