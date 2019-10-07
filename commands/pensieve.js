@@ -11,7 +11,7 @@ module.exports = {
 		args = message.content.split(/ +/);
 		args.shift();
 
-		const reminder = args.slice(0, args.length - 1);
+		const reminder = args.slice(0, args.length - 1).join(" ");
 		let time = args[args.length - 1].match(/\d+:\d+:\d+/);
 
 		if (!time) return message.channel.send(`Specify when to remind you! Proper Usage: \`${bot.prefix}pensieve <reminder> <days:hours:minutes>\``);
