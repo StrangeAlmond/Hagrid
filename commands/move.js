@@ -647,17 +647,17 @@ module.exports = {
 			// If there is no ambush on this tile send their current position
 			if (!ambushInfo) return sendCurPosition();
 
-			// Attachment with the ambush on it
-			const ambushAttachment = new Discord.Attachment(`./mazeInfo/${user.mazeInfo.curMaze}/Active/Forest_${user.mazeInfo.curPos}.png`, "map.png");
-			// Send the attachment
-			webhook.send(ambushInfo.spawnMessage, ambushAttachment);
-
 			// If the ambush is a poisoning ambush
 			if (ambushInfo.ambushType === "poison") {
 				// If they've already been poisoned don't poison them again
-				if (user.stats.poisonObject) return sendCurPosition();
+				if (user.stats.poisonedObject) return sendCurPosition();
 				// If they have the invisibility cloak don't poison them
 				if (user.inventory.invisibilityCloak >= 1) return sendCurPosition();
+
+				// Attachment with the ambush on it
+				const ambushAttachment = new Discord.Attachment(`./mazeInfo/${user.mazeInfo.curMaze}/Active/Forest_${user.mazeInfo.curPos}.png`, "map.png");
+				// Send the attachment
+				webhook.send(ambushInfo.spawnMessage, ambushAttachment);
 
 				// Execute the poisoned function on the user
 				bot.poisoned(message.member, `${message.author} has suffered an Acromantula bite and needs an antidote to common poison before they succumb to it.`, ambushInfo.poisonType);
