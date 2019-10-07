@@ -663,7 +663,7 @@ module.exports = {
 				bot.poisoned(message.member, `${message.author} has suffered an Acromantula bite and needs an antidote to common poison before they succumb to it.`, ambushInfo.poisonType);
 
 				// Ambush positions in this level of the maze
-				const ambushPositions = user.mazeInfo.ambushPositions.filter(i => fs.readdirSync(`./mazeInfo/${bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "mazeInfo.curMaze")}/Active`).some(f => f.toLowerCase().includes(i)));
+				const ambushPositions = ambushInfo.tiles.filter(i => fs.readdirSync(`./mazeInfo/${bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "mazeInfo.curMaze")}/Active`).some(f => f.toLowerCase().includes(i)));
 				// The new tile for this ambush
 				const newTile = ambushPositions[Math.floor(Math.random() * ambushPositions.length)];
 
