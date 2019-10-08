@@ -10,7 +10,7 @@ module.exports = {
 		const user = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
 
 		if (!user.pet) return message.channel.send("You don't have a pet!");
-		if (user.pet.fainted) return;
+		if (user.pet.fainted && args[0]) return message.channel.send("Your pet has fainted. You can revive your pet with **stinksap**.");
 
 		const lastFeed = user.pet.lastFeed;
 		const starveDate = moment.tz(new Date(lastFeed), "America/Los_Angeles");
@@ -22,7 +22,7 @@ module.exports = {
 			return message.channel.send(`Sorry ${message.author}, I'm gonna have to take yer ${pet.pet} away. Very disappointin' to see you neglect little ${pet.nickname} like that. When yer ready to care fer a pet again, you can go back to Diagon Alley and buy a new one.`);
 		}
 
-		if (lastFeed && lastFeedObj.days >= 3) {
+		if (lastFeed && lastFeedObj.days >= 3 && !user.pet.fainted) {
 			message.channel.send("Your pet has fainted after days of neglect!");
 			return bot.userInfo.set(`${message.guild.id}-${message.author.id}`, true, "pet.fainted");
 		}
