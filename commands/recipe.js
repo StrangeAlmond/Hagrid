@@ -17,7 +17,7 @@ module.exports = {
 
 			for (const potion of recipes) {
 				const ingredients = potion.ingredients;
-				const formattedIngredients = ingredients.map(i => `${formatString(i)} ${userData.inventory[i.split(/ +/)[1]] > parseInt(i.split(/ +/)[0]) ? "✅" : "❌"}`).sort().join("\n");
+				const formattedIngredients = ingredients.map(i => `${formatString(i)} ${userData.inventory[i.split(/ +/)[1]] >= parseInt(i.split(/ +/)[0]) ? "✅" : "❌"}`).sort().join("\n");
 
 				const embed = new Discord.RichEmbed()
 					.setTitle(`${formatString(potion.potion)} Recipe`)
@@ -65,7 +65,7 @@ module.exports = {
 		if (!potion) return errorMessage("Invalid Potion.");
 
 		const ingredients = potion.ingredients;
-		const formattedIngredients = ingredients.map(i => `${formatString(i)} ${userData.inventory[i.split(/ +/)[1]] > parseInt(i.split(/ +/)[0]) ? "✅" : "❌"}`).sort().join("\n");
+		const formattedIngredients = ingredients.map(i => `${formatString(i)} ${userData.inventory[i.split(/ +/)[1]] >= parseInt(i.split(/ +/)[0]) ? "✅" : "❌"}`).sort().join("\n");
 
 		const recipeEmbed = new Discord.RichEmbed()
 			.setTitle(`${formatString(potion.potion)} Recipe`)
