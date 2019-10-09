@@ -56,7 +56,8 @@
 		"spell": "!glacius",
 		"image": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a3352183-4d1f-4658-bae3-9f5a1fda1405/daqatnd-f1704c9e-6f0a-4270-9158-b003e3fa2f98.jpg/v1/fill/w_894,h_894,q_70,strp/ashwinder_by_szokekissmarton_daqatnd-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTAyNCIsInBhdGgiOiJcL2ZcL2EzMzUyMTgzLTRkMWYtNDY1OC1iYWUzLTlmNWExZmRhMTQwNVwvZGFxYXRuZC1mMTcwNGM5ZS02ZjBhLTQyNzAtOTE1OC1iMDAzZTNmYTJmOTguanBnIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.SJiZ8-Awt3PHTB2HGeYbFYqsWkcAwBZ8a4OphzP3oGM",
 		"message": "An Ashwinder is ready in the #training-grounds",
-		"color": "#8C85AF"
+		"color": "#8C85AF",
+		"notes": "This training session requires a fire protection potion."
 	},
 	{
 		"name": "Sea Serpent",

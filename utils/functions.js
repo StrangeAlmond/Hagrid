@@ -257,7 +257,7 @@ module.exports = {
 		bot.guildInfo.push(guild.id, object, "spawns");
 	},
 
-	spawnTrainingSession: async function (channel, bot, spell) {
+	spawnTrainingSession: async function (channel, bot, filter) {
 		const object = {
 			channel: channel.id,
 			time: Date.now(),
@@ -268,7 +268,7 @@ module.exports = {
 		const guild = channel.guild;
 		const guildData = bot.guildInfo.get(guild.id);
 
-		const possibleBeasts = beasts.find(b => b.spell.slice(1) === spell) ? beasts.filter(b => b.spell.slice(1) === spell) : beasts;
+		const possibleBeasts = beasts.find(b => b.spell.slice(1) === filter || b.name.toLowerCase() === filter) ? beasts.filter(b => b.spell.slice(1) === filter || b.name.toLowerCase() === filter) : beasts;
 		const beast = possibleBeasts[Math.floor(Math.random() * possibleBeasts.length)];
 
 		object.beast = beast;
@@ -284,7 +284,8 @@ module.exports = {
 			**Attack Power:** ${beast.attack}
 			**HP:** ${beast.health}
 			
-			Use \`${bot.prefix}${beast.spell.slice(1)}\` to participate in this training session!`;
+			Use \`${bot.prefix}${beast.spell.slice(1)}\` to participate in this training session!
+			${beast.notes ? `**${beast.notes}**` : ""}`;
 
 		const role = guild.roles.find(r => r.name.toLowerCase() === beast.spell.slice(1));
 

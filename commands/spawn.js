@@ -23,7 +23,7 @@ module.exports = {
 			const trainingChannel = message.guild.channels.find(c => c.name === "training-grounds");
 			if (!trainingChannel) return;
 
-			if (beasts.find(b => b.spell.slice(1) === args[args.length - 1])) {
+			if (beasts.find(b => b.spell.slice(1) === args[args.length - 1] || b.name.toLowerCase() === args[args.length - 1])) {
 				bot.spawnTrainingSession(trainingChannel, args[args.length - 1]);
 				return;
 			}
