@@ -315,6 +315,8 @@ module.exports = {
 
 		if (!userData.studiedSpells.includes(object.beast.spell.slice(1))) return;
 
+		if (object.beast.name.toLowerCase() === "ashwinder" && !userData.stats.activeEffects.some(a => a.type.toLowerCase() === "fire protection")) return;
+
 		let webhooks = await channel.fetchWebhooks();
 		webhooks = webhooks.array().filter(w => w.name.toLowerCase() === bot.user.username.toLowerCase());
 
