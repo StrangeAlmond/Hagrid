@@ -14,7 +14,7 @@ module.exports = {
 		if (!message.channel.name.includes(message.member.displayName.toLowerCase().replace(/[^a-z0-9+ ]+/gi, "").split(/ +/).join("-"))) return message.channel.send(`❌ | Use \`${bot.prefix}start\` to begin your journey!`);
 
 		// Get the user's data from the database
-		const user = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
+		let user = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
 
 		// Ensure they haven't fainted and aren't currently in a fight
 		if (user.stats.fainted) return;
@@ -60,7 +60,7 @@ module.exports = {
 		curPos = curPos.toFixed(2);
 
 		// If they're trying to enter level 2 execute the centaur function
-		if (curPos === "33.12" && user.mazeInfo.lastPos === "34.12") return centaur();
+		if (curPos === "33.12" && user.mazeInfo.lastPos === "34.12") return await centaur();
 
 		// Set their new position
 		user.mazeInfo.curPos = curPos;
@@ -70,14 +70,14 @@ module.exports = {
 		if (curPos === "34.12" && user.mazeInfo.lastPos === "33.12") bot.userInfo.set(`${message.guild.id}-${message.author.id}`, "level1", "mazeInfo.curMaze");
 
 		// If they're visiting the dark wizard execute the darkWizard function
-		if (curPos === "34.14" && user.mazeInfo.lastPos === "35.14") return darkWizard();
+		if (curPos === "34.14" && user.mazeInfo.lastPos === "35.14") return await darkWizard();
 		// If they've entered an ambush positon spawn the ambush
-		if (user.mazeInfo.ambushPositions.includes(curPos)) return spawnAmbush();
+		if (user.mazeInfo.ambushPositions.includes(curPos)) return await spawnAmbush();
 		// If they've entered an encounter position spawn the encounter
-		if (user.mazeInfo.encounterPositions.includes(curPos)) return spawnEncounter();
+		if (user.mazeInfo.encounterPositions.includes(curPos)) return await spawnEncounter();
 
 		// Send their current position
-		sendCurPosition();
+		await sendCurPosition();
 
 		// Function to send the user's current position
 		function sendCurPosition() {
@@ -675,6 +675,7 @@ module.exports = {
 
 		// Function to spawn an encounter
 		function spawnEncounter() {
+
 			// Encounter information for this tile
 			const encounterInfo = encountersFile.find(e => e.tiles.includes(curPos));
 			// If there is no encounter information for this tile send the user's current position
@@ -700,6 +701,8 @@ module.exports = {
 			// When the user attacks the encounter or uses the flee command
 			messageCollectors[message.author.id].on("collect", collected => {
 
+				user = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
+
 				// If they decided to flee
 				if (collected.content === `${bot.prefix}flee`) {
 					// Stop the message collector
@@ -714,8 +717,11 @@ module.exports = {
 					user.mazeInfo.lastPos = curPos;
 					user.mazeInfo.curPos = lastPos;
 
-					// They're no longer in a fight
+					curPos = lastPos;
+
+					// Set the user's inFight status to false
 					user.mazeInfo.inFight = false;
+					bot.userInfo.set(`${message.guild.id}-${message.author.id}`, false, "mazeInfo.inFight");
 
 					// Hagrid says
 					webhook.send("You have retreated back to your original position.");

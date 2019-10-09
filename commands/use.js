@@ -12,6 +12,12 @@ module.exports = {
 
 		if (["714", "715", "wiggenweld potion"].some(i => i.includes(args.join(" ")))) {
 			if (userData.stats.fainted) return;
+
+			if (userData.stats.health < 0) {
+				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 0, "stats.health");
+				userData.stats.health = 0;
+			}
+
 			if (!userData.inventory.wiggenweldPotion || userData.inventory.wiggenweldPotion <= 0) return message.channel.send("You don't have any wiggenweld potions!");
 			if (userData.stats.health >= userData.stats.maxHealth) return message.channel.send("You're already at your max health!");
 
