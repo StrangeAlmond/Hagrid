@@ -175,6 +175,8 @@ module.exports = {
 				bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "-", price, "balance.knuts");
 				bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", amount, "stats.purchases");
 
+				message.channel.send(`You have purchased ${amount} ${items[args[0]].name}(s)`);
+
 				if (items[args[0]].id === "1002") amount = amount * 6;
 				if (items[args[0]].id === "705") amount = amount * 2;
 				if (items[args[0]].id === "700") amount = amount * 10;
@@ -184,7 +186,6 @@ module.exports = {
 				if (items[args[0]].id === "1102") amount = amount * 5;
 
 				bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", amount, `inventory.${items[args[0]].key}`);
-				message.channel.send(`You have purchased ${amount} ${items[args[0]].name}(s)`);
 				bot.logger.log("info", `${message.member.displayName} purchased ${amount} ${items[args[0]].name}(s)`);
 			} else if (items[args[0]].type === "pet") {
 				if (bot.userInfo.hasProp(`${message.guild.id}-${message.author.id}`, "pet")) return message.channel.send("You already have a pet!");
