@@ -67,7 +67,10 @@ module.exports = {
 		bot.userInfo.set(`${message.guild.id}-${message.author.id}`, curPos, "mazeInfo.curPos");
 
 		// If they're traveling from the 2nd level to the 1st level set their curMaze to the 1st level
-		if (curPos === "34.12" && user.mazeInfo.lastPos === "33.12") bot.userInfo.set(`${message.guild.id}-${message.author.id}`, "level1", "mazeInfo.curMaze");
+		if (curPos === "34.12" && user.mazeInfo.lastPos === "33.12") {
+			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, "level1", "mazeInfo.curMaze");
+			user.mazeInfo.curMaze = "level1";
+		}
 
 		// If they're visiting the dark wizard execute the darkWizard function
 		if (curPos === "34.14" && user.mazeInfo.lastPos === "35.14") return await darkWizard();
