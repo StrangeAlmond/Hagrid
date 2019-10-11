@@ -11,7 +11,7 @@ module.exports = {
 	description: "Move around the maze",
 	async execute(message, args, bot) {
 		// Ensure they own this channel
-		if (!message.channel.name.includes(message.member.displayName.toLowerCase().replace(/[^a-z0-9+ ]+/gi, "").split(/ +/).join("-"))) return message.channel.send(`❌ | Use \`${bot.prefix}start\` to begin your journey!`);
+		if (!bot.isMazeChannel(message.channel.name, message.member)) return message.channel.send(`❌ | Use \`${bot.prefix}start\` to begin your journey!`);
 
 		// Get the user's data from the database
 		let user = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);

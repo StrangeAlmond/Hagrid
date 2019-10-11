@@ -9,6 +9,7 @@ module.exports = {
 
 		if (user.stats.fainted) return;
 		if (user.mazeInfo.inFight) return;
+		if (!bot.isMazeChannel(message.channel.name, message.member)) return;
 
 		if (user.mazeInfo.dailyForagesLeft <= 0 && moment.tz("America/Los_Angeles").format("l") === user.mazeInfo.lastForage) return message.channel.send("It looks like this area has been picked clean already. We'd better wait a little bit to let it grow back.");
 

@@ -195,6 +195,11 @@ module.exports = {
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	},
 
+	isMazeChannel: function (channelName, user) {
+		if (!channelName.includes(user.displayName.toLowerCase().replace(/[^a-z0-9+ ]+/gi, "").split(/ +/).join("-"))) return false;
+		return true;
+	},
+
 	getUserFromMention: function (mention, guild) {
 		if (!mention) return undefined;
 

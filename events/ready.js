@@ -34,7 +34,9 @@ module.exports = async bot => {
 	bot.timeUntilMidnight = functions.timeUntilMidnight;
 	bot.getUserFromMention = functions.getUserFromMention;
 	bot.capitalizeFirstLetter = functions.capitalizeFirstLetter;
+	bot.isMazeChannel = functions.isMazeChannel;
 
+	// Remove anyone that was in a fight from their fight.
 	bot.userInfo.array().filter(u => u.mazeInfo.inFight).forEach(user => {
 		bot.userInfo.set(`${user.guild}-${user.user}`, false, "mazeInfo.inFight");
 	});
