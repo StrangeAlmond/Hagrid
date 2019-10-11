@@ -103,14 +103,22 @@ module.exports = async (bot, reaction, user) => {
 
 		bot.userInfo.dec(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`);
 
-		const houses = ["slytherin", "gryffindor", "hufflepuff", "ravenclaw"];
-		const house = houses.find(h => curer.roles.find(r => r.name.toLowerCase() === h.toLowerCase()));
-		if (!house) return;
+		let msgContent = "";
 
-		bot.guildInfo.inc(message.guild.id, `housePoints.${house}`);
-		bot.userInfo.inc(`${message.guild.id}-${curer.id}`, "stats.housePoints");
+		if (curer.id === curee.id) {
+			msgContent = "You have cured yourself";
+		} else {
+			msgContent = `${curer}, You have cured ${curee} and recieved 1 house point!`;
 
-		const msg = await bot.quickWebhook(message.channel, `${curer}, You have cured ${curee} and recieved 1 house point!`, {
+			const houses = ["slytherin", "gryffindor", "hufflepuff", "ravenclaw"];
+			const house = houses.find(h => curer.roles.find(r => r.name.toLowerCase() === h.toLowerCase()));
+			if (!house) return;
+
+			bot.guildInfo.inc(message.guild.id, `housePoints.${house}`);
+			bot.userInfo.inc(`${message.guild.id}-${curer.id}`, "stats.housePoints");
+		}
+
+		const msg = await bot.quickWebhook(message.channel, msgContent, {
 			username: "Madam Pomfrey",
 			avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/5/56/Madam_Pomfrey.png/revision/latest/scale-to-width-down/290?cb=20131110073338"
 		});
