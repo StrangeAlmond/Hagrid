@@ -1,372 +1,372 @@
 [{
-    "name": "Blood Sucking Bugbear",
-    "spawnMessage": "You've encountered a Blood Sucking Bugbear!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the Blood Sucking Bugbear and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 4,
-    "defense": 0,
-    "health": 3,
-    "spell": "flipendo",
-    "tiles": ["34.10", "37.13", "40.15", "41.10", "25.04", "28.06", "31.11", "32.09"]
-  },
+		"name": "Blood Sucking Bugbear",
+		"spawnMessage": "You've encountered a Blood Sucking Bugbear!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the Blood Sucking Bugbear and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 4,
+		"defense": 0,
+		"health": 3,
+		"spell": "flipendo",
+		"tiles": ["34.10", "37.13", "40.15", "41.10", "25.04", "28.06", "31.11"]
+	},
 
-  {
-    "name": "Blood Sucking Bugbear",
-    "spawnMessage": "You've encountered a Blood Sucking Bugbear!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the Blood Sucking Bugbear and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 4,
-    "defense": 0,
-    "health": 3,
-    "spell": "flipendo",
-    "tiles": ["23.06", "24.04", "25.09"]
-  },
+	{
+		"name": "Blood Sucking Bugbear",
+		"spawnMessage": "You've encountered a Blood Sucking Bugbear!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the Blood Sucking Bugbear and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 4,
+		"defense": 0,
+		"health": 3,
+		"spell": "flipendo",
+		"tiles": ["23.06", "24.04", "25.09"]
+	},
 
-  {
-    "name": "Fox",
-    "spawnMessage": "You ran into a fox!\nUse `!flipendo` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the fox and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 2,
-    "defense": 0,
-    "health": 2,
-    "spell": "flipendo",
-    "tiles": ["40.11", "41.08", "41.13", "41.14", "41.16", "26.03", "28.08", "30.02", "33.04", "33.11"]
-  },
+	{
+		"name": "Fox",
+		"spawnMessage": "You ran into a fox!\nUse `!flipendo` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the fox and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 2,
+		"defense": 0,
+		"health": 2,
+		"spell": "flipendo",
+		"tiles": ["40.11", "41.08", "41.13", "41.14", "41.16", "26.03", "28.08", "30.02", "33.04", "33.11"]
+	},
 
-  {
-    "name": "Fox",
-    "spawnMessage": "You ran into a fox!\nUse `!flipendo` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the fox and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 2,
-    "defense": 0,
-    "health": 2,
-    "spell": "flipendo",
-    "tiles": ["34.11", "36.08", "36.11", "37.11", "38.10", "38.13", "39.12", "21.07", "23.09", "24.02"]
-  },
+	{
+		"name": "Fox",
+		"spawnMessage": "You ran into a fox!\nUse `!flipendo` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the fox and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 2,
+		"defense": 0,
+		"health": 2,
+		"spell": "flipendo",
+		"tiles": ["34.11", "36.08", "36.11", "37.11", "38.10", "38.13", "39.12", "21.07", "23.09", "24.02"]
+	},
 
-  {
-    "name": "Fox",
-    "spawnMessage": "You ran into a fox!\nUse `!flipendo` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the fox and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 2,
-    "defense": 0,
-    "health": 2,
-    "spell": "flipendo",
-    "tiles": ["34.15", "36.14", "36.16", "37.14", "37.16"]
-  },
+	{
+		"name": "Fox",
+		"spawnMessage": "You ran into a fox!\nUse `!flipendo` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the fox and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 2,
+		"defense": 0,
+		"health": 2,
+		"spell": "flipendo",
+		"tiles": ["34.15", "36.14", "36.16", "37.14", "37.16"]
+	},
 
-  {
-    "name": "Wolf",
-    "spawnMessage": "You ran into a wolf!\nUse `!flipendo` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the wolf and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 4,
-    "defense": 0,
-    "health": 3,
-    "spell": "flipendo",
-    "tiles": ["39.13", "40.12", "40.13"]
-  },
+	{
+		"name": "Wolf",
+		"spawnMessage": "You ran into a wolf!\nUse `!flipendo` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the wolf and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 4,
+		"defense": 0,
+		"health": 3,
+		"spell": "flipendo",
+		"tiles": ["39.13", "40.12", "40.13"]
+	},
 
-  {
-    "name": "Wolf",
-    "spawnMessage": "You ran into a wolf!\nUse `!flipendo` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the wolf and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 4,
-    "defense": 0,
-    "health": 3,
-    "spell": "flipendo",
-    "tiles": ["34.09", "35.15", "36.09", "36.10"]
-  },
+	{
+		"name": "Wolf",
+		"spawnMessage": "You ran into a wolf!\nUse `!flipendo` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the wolf and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 4,
+		"defense": 0,
+		"health": 3,
+		"spell": "flipendo",
+		"tiles": ["34.09", "35.15", "36.09", "36.10"]
+	},
 
-  {
-    "name": "Two Wolves",
-    "spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the wolves and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 6,
-    "defense": 0,
-    "health": 4,
-    "spell": "flipendo",
-    "tiles": ["41.11", "42.09", "42.10", "42.14"]
-  },
+	{
+		"name": "Two Wolves",
+		"spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the wolves and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 6,
+		"defense": 0,
+		"health": 4,
+		"spell": "flipendo",
+		"tiles": ["41.11", "42.09", "42.10", "42.14"]
+	},
 
-  {
-    "name": "Two Wolves",
-    "spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the wolves and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 6,
-    "defense": 0,
-    "health": 4,
-    "spell": "flipendo",
-    "tiles": ["37.09", "38.11", "38.12", "39.14"]
-  },
+	{
+		"name": "Two Wolves",
+		"spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the wolves and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 6,
+		"defense": 0,
+		"health": 4,
+		"spell": "flipendo",
+		"tiles": ["37.09", "38.11", "38.12", "39.14"]
+	},
 
-  {
-    "name": "Three Wolves",
-    "spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the wolves and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 8,
-    "defense": 0,
-    "health": 5,
-    "spell": "flipendo",
-    "tiles": ["39.08", "39.09", "41.09", "41.15", "42.15", "28.07", "32.05", "32.10"]
-  },
+	{
+		"name": "Three Wolves",
+		"spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the wolves and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 8,
+		"defense": 0,
+		"health": 5,
+		"spell": "flipendo",
+		"tiles": ["39.08", "39.09", "41.09", "41.15", "42.15", "28.07", "32.05", "32.10"]
+	},
 
-  {
-    "name": "Three Wolves",
-    "spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the wolves and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 8,
-    "defense": 0,
-    "health": 5,
-    "spell": "flipendo",
-    "tiles": ["35.08", "35.11", "37.15", "38.15", "39.11", "28.02", "31.02"]
-  },
+	{
+		"name": "Three Wolves",
+		"spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the wolves and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 8,
+		"defense": 0,
+		"health": 5,
+		"spell": "flipendo",
+		"tiles": ["35.08", "35.11", "37.15", "38.15", "39.11", "28.02", "31.02"]
+	},
 
-  {
-    "name": "Four Wolves",
-    "spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the wolves and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 10,
-    "defense": 0,
-    "health": 6,
-    "spell": "flipendo",
-    "tiles": ["29.06", "32.07", "32.11"]
-  },
+	{
+		"name": "Four Wolves",
+		"spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the wolves and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 10,
+		"defense": 0,
+		"health": 6,
+		"spell": "flipendo",
+		"tiles": ["29.06", "32.07", "32.11"]
+	},
 
-  {
-    "name": "Four Wolves",
-    "spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the wolves and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 10,
-    "defense": 0,
-    "health": 6,
-    "spell": "flipendo",
-    "tiles": ["29.01", "30.03", "32.03"]
-  },
+	{
+		"name": "Four Wolves",
+		"spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the wolves and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 10,
+		"defense": 0,
+		"health": 6,
+		"spell": "flipendo",
+		"tiles": ["29.01", "30.03", "32.03"]
+	},
 
-  {
-    "name": "Four Wolves",
-    "spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the wolves and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 10,
-    "defense": 0,
-    "health": 6,
-    "spell": "flipendo",
-    "tiles": ["23.01", "27.03", "28.04"]
-  },
+	{
+		"name": "Four Wolves",
+		"spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the wolves and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 10,
+		"defense": 0,
+		"health": 6,
+		"spell": "flipendo",
+		"tiles": ["23.01", "27.03", "28.04"]
+	},
 
-  {
-    "name": "Four Wolves",
-    "spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the wolves and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 10,
-    "defense": 0,
-    "health": 6,
-    "spell": "flipendo",
-    "tiles": ["22.03", "22.05", "22.08", "23.04"]
-  },
+	{
+		"name": "Four Wolves",
+		"spawnMessage": "You ran into a pack of wolves!\nUse `!flipendo` to scare them off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the wolves and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 10,
+		"defense": 0,
+		"health": 6,
+		"spell": "flipendo",
+		"tiles": ["22.03", "22.05", "22.08", "23.04"]
+	},
 
-  {
-    "name": "Forest Troll",
-    "spawnMessage": "You ran into a forest troll!\nUse `!depulso` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the forest troll and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 15,
-    "defense": 2,
-    "health": 12,
-    "spell": "depulso",
-    "tiles": ["25.02", "28.08", "29.03", "29.10", "31.09", "31.12", "33.08"]
-  },
+	{
+		"name": "Forest Troll",
+		"spawnMessage": "You ran into a forest troll!\nUse `!depulso` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the forest troll and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 15,
+		"defense": 2,
+		"health": 12,
+		"spell": "depulso",
+		"tiles": ["25.02", "28.08", "29.03", "29.10", "31.09", "31.12", "33.08"]
+	},
 
-  {
-    "name": "Forest Troll",
-    "spawnMessage": "You ran into a forest troll!\nUse `!depulso` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the forest troll and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 15,
-    "defense": 2,
-    "health": 12,
-    "spell": "depulso",
-    "tiles": ["29.04", "31.01", "31.04", "32.01", "33.03"]
-  },
+	{
+		"name": "Forest Troll",
+		"spawnMessage": "You ran into a forest troll!\nUse `!depulso` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the forest troll and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 15,
+		"defense": 2,
+		"health": 12,
+		"spell": "depulso",
+		"tiles": ["29.04", "31.01", "31.04", "32.01", "33.03"]
+	},
 
-  {
-    "name": "Forest Troll",
-    "spawnMessage": "You ran into a forest troll!\nUse `!depulso` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the forest troll and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 15,
-    "defense": 2,
-    "health": 12,
-    "spell": "depulso",
-    "tiles": ["25.01", "25.03", "26.01", "27.01"]
-  },
+	{
+		"name": "Forest Troll",
+		"spawnMessage": "You ran into a forest troll!\nUse `!depulso` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the forest troll and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 15,
+		"defense": 2,
+		"health": 12,
+		"spell": "depulso",
+		"tiles": ["25.01", "25.03", "26.01", "27.01"]
+	},
 
-  {
-    "name": "Forest Trolls",
-    "spawnMessage": "You ran into Forest Trolls!\nUse `!depulso` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the forest trolls and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 24,
-    "defense": 2,
-    "health": 20,
-    "spell": "depulso",
-    "tiles": ["21.02", "21.04", "23.07"]
-  },
+	{
+		"name": "Forest Trolls",
+		"spawnMessage": "You ran into Forest Trolls!\nUse `!depulso` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the forest trolls and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 24,
+		"defense": 2,
+		"health": 20,
+		"spell": "depulso",
+		"tiles": ["21.02", "21.04", "23.07"]
+	},
 
-  {
-    "name": "Werewolf",
-    "spawnMessage": "You ran into a Werewolf!\nUse `!stupefy` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the Werewolf and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 14,
-    "defense": 1,
-    "health": 10,
-    "spell": "stupefy",
-    "tiles": ["21.02", "21.04", "23.07"]
-  },
+	{
+		"name": "Werewolf",
+		"spawnMessage": "You ran into a Werewolf!\nUse `!stupefy` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the Werewolf and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 14,
+		"defense": 1,
+		"health": 10,
+		"spell": "stupefy",
+		"tiles": ["21.02", "21.04", "23.07"]
+	},
 
-  {
-    "name": "Blast Ended Skrewt",
-    "spawnMessage": "You ran into a Blast Ended Skrewt!\nUse `!impedimenta` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the Blast Ended Skrewt and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 12,
-    "defense": 0,
-    "health": 2,
-    "spell": "impedimenta",
-    "tiles": ["33.13"]
-  },
+	{
+		"name": "Blast Ended Skrewt",
+		"spawnMessage": "You ran into a Blast Ended Skrewt!\nUse `!impedimenta` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the Blast Ended Skrewt and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 12,
+		"defense": 0,
+		"health": 2,
+		"spell": "impedimenta",
+		"tiles": ["33.13"]
+	},
 
-  {
-    "name": "Blast Ended Skrewt",
-    "spawnMessage": "You ran into a Blast Ended Skrewt!\nUse `!impedimenta` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the Blast Ended Skrewt and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 12,
-    "defense": 0,
-    "health": 2,
-    "spell": "impedimenta",
-    "tiles": ["22.07", "24.01", "33.02"]
-  },
+	{
+		"name": "Blast Ended Skrewt",
+		"spawnMessage": "You ran into a Blast Ended Skrewt!\nUse `!impedimenta` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the Blast Ended Skrewt and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 12,
+		"defense": 0,
+		"health": 2,
+		"spell": "impedimenta",
+		"tiles": ["22.07", "24.01", "33.02"]
+	},
 
-  {
-    "name": "Blast Ended Skrewt",
-    "spawnMessage": "You ran into a Blast Ended Skrewt!\nUse `!impedimenta` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the Blast Ended Skrewt and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 12,
-    "defense": 0,
-    "health": 2,
-    "spell": "impedimenta",
-    "tiles": ["24.07", "25.06", "25.07", "26.07"]
-  },
+	{
+		"name": "Blast Ended Skrewt",
+		"spawnMessage": "You ran into a Blast Ended Skrewt!\nUse `!impedimenta` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the Blast Ended Skrewt and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 12,
+		"defense": 0,
+		"health": 2,
+		"spell": "impedimenta",
+		"tiles": ["24.07", "25.06", "25.07", "26.07"]
+	},
 
-  {
-    "name": "Grindlylow",
-    "spawnMessage": "You ran into a Grindlylow!\nUse `!depulso` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the Grindlylow and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 6,
-    "defense": 0,
-    "health": 4,
-    "spell": "depulso",
-    "tiles": ["29.08", "30.05", "32.06", "32.08"]
-  },
+	{
+		"name": "Grindlylow",
+		"spawnMessage": "You ran into a Grindlylow!\nUse `!depulso` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the Grindlylow and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 6,
+		"defense": 0,
+		"health": 4,
+		"spell": "depulso",
+		"tiles": ["29.08", "30.05", "32.06", "32.08"]
+	},
 
-  {
-    "name": "Spider",
-    "spawnMessage": "You ran into a Spider!\nUse `!arania exumai` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the Spider and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 15,
-    "defense": 1,
-    "health": 12,
-    "spell": "arania exumai",
-    "tiles": ["28.11", "29.13", "30.12", "30.13", "32.13"]
-  },
+	{
+		"name": "Spider",
+		"spawnMessage": "You ran into a Spider!\nUse `!arania exumai` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the Spider and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 15,
+		"defense": 1,
+		"health": 12,
+		"spell": "arania exumai",
+		"tiles": ["28.11", "29.13", "30.12", "30.13", "32.13"]
+	},
 
-  {
-    "name": "Spider",
-    "spawnMessage": "You ran into a Spider!\nUse `!arania exumai` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the Spider and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 15,
-    "defense": 1,
-    "health": 12,
-    "spell": "arania exumai",
-    "tiles": ["27.10", "27.11", "27.13", "28.09"]
-  },
+	{
+		"name": "Spider",
+		"spawnMessage": "You ran into a Spider!\nUse `!arania exumai` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the Spider and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 15,
+		"defense": 1,
+		"health": 12,
+		"spell": "arania exumai",
+		"tiles": ["27.10", "27.11", "27.13", "28.09"]
+	},
 
-  {
-    "name": "Spider",
-    "spawnMessage": "You ran into a Spider!\nUse `!arania exumai` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the Spider and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 15,
-    "defense": 1,
-    "health": 12,
-    "spell": "arania exumai",
-    "tiles": ["24.10", "25.10", "26.13"]
-  },
+	{
+		"name": "Spider",
+		"spawnMessage": "You ran into a Spider!\nUse `!arania exumai` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the Spider and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 15,
+		"defense": 1,
+		"health": 12,
+		"spell": "arania exumai",
+		"tiles": ["24.10", "25.10", "26.13"]
+	},
 
-  {
-    "name": "Acromantula",
-    "spawnMessage": "You ran into an Acromantula!\nUse `!arania exumai` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the Acromantula and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 15,
-    "defense": 2,
-    "health": 12,
-    "spell": "arania exumai",
-    "tiles": ["21.11", "23.13", "25.12"]
-  },
+	{
+		"name": "Acromantula",
+		"spawnMessage": "You ran into an Acromantula!\nUse `!arania exumai` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the Acromantula and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 15,
+		"defense": 2,
+		"health": 12,
+		"spell": "arania exumai",
+		"tiles": ["21.11", "23.13", "25.12"]
+	},
 
-  {
-    "name": "Acromantula",
-    "spawnMessage": "You ran into an Acromantula!\nUse `!arania exumai` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the Acromantula and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 15,
-    "defense": 2,
-    "health": 12,
-    "spell": "arania exumai",
-    "tiles": ["23.12", "24.13", "25.13"]
-  },
+	{
+		"name": "Acromantula",
+		"spawnMessage": "You ran into an Acromantula!\nUse `!arania exumai` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the Acromantula and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 15,
+		"defense": 2,
+		"health": 12,
+		"spell": "arania exumai",
+		"tiles": ["23.12", "24.13", "25.13"]
+	},
 
-  {
-    "name": "Acromantula",
-    "spawnMessage": "You ran into an Acromantula!\nUse `!arania exumai` to scare it off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the Acromantula and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 15,
-    "defense": 2,
-    "health": 12,
-    "spell": "arania exumai",
-    "tiles": ["23.10", "27.09", "29.12"]
-  },
+	{
+		"name": "Acromantula",
+		"spawnMessage": "You ran into an Acromantula!\nUse `!arania exumai` to scare it off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the Acromantula and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 15,
+		"defense": 2,
+		"health": 12,
+		"spell": "arania exumai",
+		"tiles": ["23.10", "27.09", "29.12"]
+	},
 
-  {
-    "name": "Acromantulas",
-    "spawnMessage": "You ran into Acromantulas!\nUse `!arania exumai` to scare them off.\nUse `!flee` to retreat to your original location.",
-    "defeatMessage": "You scared off the Acromantulas and got 5 xp as a result!",
-    "encounterType": "fight",
-    "attack": 15,
-    "defense": 2,
-    "health": 12,
-    "spell": "arania exumai",
-    "tiles": ["21.10", "21.12", "22.13"]
-  }
+	{
+		"name": "Acromantulas",
+		"spawnMessage": "You ran into Acromantulas!\nUse `!arania exumai` to scare them off.\nUse `!flee` to retreat to your original location.",
+		"defeatMessage": "You scared off the Acromantulas and got 5 xp as a result!",
+		"encounterType": "fight",
+		"attack": 15,
+		"defense": 2,
+		"health": 12,
+		"spell": "arania exumai",
+		"tiles": ["21.10", "21.12", "22.13"]
+	}
 ]
