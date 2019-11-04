@@ -54,7 +54,6 @@ module.exports = {
 
 		} else if (args[0] === "links") {
 			// Delete message that have links only
-
 			if (isNaN(args[1])) {
 				return bot.quickWebhook(message.channel, "Specify the amount of messages to delete!", {
 					username: "Argus Filch",
@@ -133,12 +132,10 @@ module.exports = {
 			message.channel.bulkDelete(messagesToDelete, true)
 				.catch(() => {
 					bot.quickWebhook(message.channel, "Something went wrong, it's likely you tried to clear messages 14 days or older, try lowering the amount of messages you are clearing.", {
-							username: "Argus Filch",
-							avatar: "https://images.ctfassets.net/bxd3o8b291gf/hPVjS561mEisoyq6SECsK/1e444dfdaebe186874b1163b15b724f9/WB_F4_ArgusFilch_FilchLookingDisgruntled_HP4D-09902.jpg?w=320&h=320&fit=thumb&f=face&q=85",
-							deleteAfterUse: true
-						})
-
-						.then(msg => msg.delete(5000));
+						username: "Argus Filch",
+						avatar: "https://images.ctfassets.net/bxd3o8b291gf/hPVjS561mEisoyq6SECsK/1e444dfdaebe186874b1163b15b724f9/WB_F4_ArgusFilch_FilchLookingDisgruntled_HP4D-09902.jpg?w=320&h=320&fit=thumb&f=face&q=85",
+						deleteAfterUse: true
+					}).then(msg => msg.delete(5000));
 				});
 		}
 	},
