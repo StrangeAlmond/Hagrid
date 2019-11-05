@@ -35,7 +35,7 @@ module.exports = {
 			});
 
 		} catch (err) {
-			// ERROR - DOES NOT COMPUTE
+			// Let me know there's an error and delete the message shortly after
 			message.channel.send(`**Error:**\n!\`\`\`js\n${err}\`\`\``).then(msg => {
 				msg.delete(60000);
 				message.delete(120000);
