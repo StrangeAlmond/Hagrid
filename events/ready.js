@@ -71,7 +71,7 @@ module.exports = async bot => {
 
 		guilds.forEach(guild => {
 
-			if (guild.scheduledTrainingSessions.some(s => Date.now() >= s.time)) {
+			if (guild.scheduledTrainingSessions.some(s => Date.now() >= s.time)) { // Training Sessions
 				const trainingSession = guild.scheduledTrainingSessions.find(ts => Date.now() >= ts.time);
 				bot.guildInfo.removeFrom(guild.guild, "scheduledTrainingSessions", trainingSession);
 
@@ -81,8 +81,8 @@ module.exports = async bot => {
 				bot.spawnTrainingSession(trainingChannel, trainingSession.spell);
 			}
 
-			if (guild.spawns.some(s => s.type === "trivia" && (Date.now() - s.time) >= 600000)) {
-				const triviaQuestion = guild.spawns.find(s => s.type === "trivia" && (Date.now() - s.time) >= 600000);
+			if (guild.spawns.some(s => s.type === "trivia" && (Date.now() - s.time) >= 1)) { // Trivia questions
+				const triviaQuestion = guild.spawns.find(s => s.type === "trivia" && (Date.now() - s.time) >= 1);
 				if (!triviaQuestion) return;
 
 				bot.guildInfo.removeFrom(guild.guild, "spawns", triviaQuestion);
