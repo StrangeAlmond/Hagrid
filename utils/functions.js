@@ -322,6 +322,13 @@ module.exports = {
 
 		if (object.beast.name.toLowerCase() === "ashwinder" && !userData.stats.activeEffects.some(a => a.type.toLowerCase() === "fire protection")) return;
 
+		if (!object.users.some(u => u.id === member.id)) {
+			object.users.push({
+				id: member.id,
+				damageDealt: 0
+			});
+		}
+
 		const user = object.users.find(u => u.id === member.id);
 
 		let damageDealt = userData.stats.attack - object.beast.defense;
@@ -348,12 +355,6 @@ module.exports = {
 
 		const webhook = webhooks[Math.floor(Math.random() * webhooks.length)];
 
-		if (!object.users.some(u => u.id === member.id)) {
-			object.users.push({
-				id: member.id,
-				damageDealt: 0
-			});
-		}
 
 		let msgContent = "";
 
