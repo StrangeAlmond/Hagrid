@@ -322,6 +322,20 @@ module.exports = {
 
 		if (object.beast.name.toLowerCase() === "ashwinder" && !userData.stats.activeEffects.some(a => a.type.toLowerCase() === "fire protection")) return;
 
+		const user = object.users.find(u => u.id === member.id);
+
+		let damageDealt = userData.stats.attack - object.beast.defense;
+		if (damageDealt < 0) damageDealt = 0;
+
+		object.beast.health -= damageDealt;
+
+		guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel === object.channel), 1, object);
+		bot.guildInfo.set(guild.id, guildData.spawns, "spawns");
+
+		user.damageDealt += damageDealt;
+
+		object.users[object.users.find(u => u.id === member.id)] = user;
+
 		let webhooks = await channel.fetchWebhooks();
 		webhooks = webhooks.array().filter(w => w.name.toLowerCase() === bot.user.username.toLowerCase());
 
@@ -341,48 +355,39 @@ module.exports = {
 			});
 		}
 
-		const user = object.users.find(u => u.id === member.id);
-
-		const lootBoxData = {
-			"A": ["8 balance.knuts", "9 balance.knuts", "10 balance.knuts", "11 balance.knuts", "12 balance.knuts"],
-			"B": ["16 balance.knuts", "17 balance.knuts", "18 balance.knuts", "19 balance.knuts", "20 balance.knuts", "21 balance.knuts", "22 balance.knuts", "23 balance.knuts", "24 balance.knuts"],
-			"C": ["1 balance.sickles", "2 balance.sickles", "3 balance.sickles"],
-			"D": ["4 balance.sickles", "5 balance.sickles", "6 balance.sickles"],
-			"E": ["8 balance.sickles", "9 balance.sickles", "10 balance.sickles"],
-			"F": ["14 balance.sickles", "16 balance.sickles", "1 balance.galleons"],
-			"G": ["1 balance.galleons", "2 balance.galleons"],
-			"T": ["1 inventory.boomBerryJuice", "1 inventory.chizpurfleFangs", "1 inventory.dropsOfHoneywater", "1 inventory.moondewDrops", "1 inventory.slothBrainMucus"],
-			"U": ["1 inventory.billywigStingSlime", "1 inventory.boomBerryJuice", "1 inventory.bottleOfHorklumpJuice", "1 inventory.chizpurfleFangs", "1 inventory.dropsOfHoneywater", "1 inventory.lionfishSpines", "1 inventory.moondewDrops", "1 inventory.slothBrainMucus", "1 inventory.sprigOfWolfsbane", "1 inventory.stewedMandrake", "1 inventory.pinchOfUnicornHorn", "1 inventory.vialOfFlobberwormMucus", "1 inventory.vialOfSalamanderBlood", "1 inventory.bezoar", "1 inventory.standardIngredients"],
-			"V": ["1 inventory.snakeFangs", "1 inventory.billywigStingSlime", "1 inventory.bottleOfHorklumpJuice", "1 inventory.sprigOfWolfsbane", "1 inventory.stewedMandrake", "1 inventory.sprigOfWolfsbane", "1 inventory.stewedMandrake", "1 inventory.pinchOfUnicornHorn", "1 inventory.vialOfFlobberwormMucus", "1 inventory.vialOfSalamanderBlood", "1 inventory.bezoar", "1 inventory.standardIngredients"],
-			"W": ["1 inventory.snakeFangs", "1 inventory.bezoar", "1 inventory.standardIngredients"],
-			"X": ["1 inventory.snakeFangs", "1 inventory.tinctureOfThyme"],
-			"Y": ["1 inventory.wiggenweldPotion", "1 inventory.revivePotion", "1 inventory.antidoteToCommonPoisons"],
-			"Z": ["1 inventory.wiggenweldPotion", "1 inventory.revivePotion", "1 inventory.antidoteToCommonPoisons"],
-
-			"tiers": {
-				"2": ["B", "T", "U"],
-				"3": ["C", "U", "V"],
-				"4": ["D", "U", "V", "W"],
-				"5": ["E", "U", "V", "W", "X"],
-				"6": ["F", "X", "Y"],
-				"7": ["G", "X", "Y", "Z"]
-			}
-		};
-
 		let msgContent = "";
-
-		let damageDealt = userData.stats.attack - object.beast.defense;
-		if (damageDealt < 0) damageDealt = 0;
-
-		object.beast.health -= damageDealt;
-		user.damageDealt += damageDealt;
-
-		object.users[object.users.find(u => u.id === member.id)] = user;
 
 		bot.userInfo.math(`${guild.id}-${member.id}`, "+", damageDealt, "xp");
 		bot.userInfo.math(`${guild.id}-${member.id}`, "+", damageDealt, "stats.trainingSessionDamage");
 
 		if (object.beast.health <= 0) {
+
+			const lootBoxData = {
+				"A": ["8 balance.knuts", "9 balance.knuts", "10 balance.knuts", "11 balance.knuts", "12 balance.knuts"],
+				"B": ["16 balance.knuts", "17 balance.knuts", "18 balance.knuts", "19 balance.knuts", "20 balance.knuts", "21 balance.knuts", "22 balance.knuts", "23 balance.knuts", "24 balance.knuts"],
+				"C": ["1 balance.sickles", "2 balance.sickles", "3 balance.sickles"],
+				"D": ["4 balance.sickles", "5 balance.sickles", "6 balance.sickles"],
+				"E": ["8 balance.sickles", "9 balance.sickles", "10 balance.sickles"],
+				"F": ["14 balance.sickles", "16 balance.sickles", "1 balance.galleons"],
+				"G": ["1 balance.galleons", "2 balance.galleons"],
+				"T": ["1 inventory.boomBerryJuice", "1 inventory.chizpurfleFangs", "1 inventory.dropsOfHoneywater", "1 inventory.moondewDrops", "1 inventory.slothBrainMucus"],
+				"U": ["1 inventory.billywigStingSlime", "1 inventory.boomBerryJuice", "1 inventory.bottleOfHorklumpJuice", "1 inventory.chizpurfleFangs", "1 inventory.dropsOfHoneywater", "1 inventory.lionfishSpines", "1 inventory.moondewDrops", "1 inventory.slothBrainMucus", "1 inventory.sprigOfWolfsbane", "1 inventory.stewedMandrake", "1 inventory.pinchOfUnicornHorn", "1 inventory.vialOfFlobberwormMucus", "1 inventory.vialOfSalamanderBlood", "1 inventory.bezoar", "1 inventory.standardIngredients"],
+				"V": ["1 inventory.snakeFangs", "1 inventory.billywigStingSlime", "1 inventory.bottleOfHorklumpJuice", "1 inventory.sprigOfWolfsbane", "1 inventory.stewedMandrake", "1 inventory.sprigOfWolfsbane", "1 inventory.stewedMandrake", "1 inventory.pinchOfUnicornHorn", "1 inventory.vialOfFlobberwormMucus", "1 inventory.vialOfSalamanderBlood", "1 inventory.bezoar", "1 inventory.standardIngredients"],
+				"W": ["1 inventory.snakeFangs", "1 inventory.bezoar", "1 inventory.standardIngredients"],
+				"X": ["1 inventory.snakeFangs", "1 inventory.tinctureOfThyme"],
+				"Y": ["1 inventory.wiggenweldPotion", "1 inventory.revivePotion", "1 inventory.antidoteToCommonPoisons"],
+				"Z": ["1 inventory.wiggenweldPotion", "1 inventory.revivePotion", "1 inventory.antidoteToCommonPoisons"],
+
+				"tiers": {
+					"2": ["B", "T", "U"],
+					"3": ["C", "U", "V"],
+					"4": ["D", "U", "V", "W"],
+					"5": ["E", "U", "V", "W", "X"],
+					"6": ["F", "X", "Y"],
+					"7": ["G", "X", "Y", "Z"]
+				}
+			};
+
 			guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel === object.channel), 1);
 			bot.guildInfo.set(guild.id, guildData.spawns, "spawns");
 
@@ -476,7 +481,6 @@ module.exports = {
 
 		webhook.send(msgContent);
 
-		guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel === object.channel), 1, object);
-		bot.guildInfo.set(guild.id, guildData.spawns, "spawns");
+		return;
 	}
 };
