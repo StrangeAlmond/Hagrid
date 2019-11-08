@@ -127,7 +127,7 @@ module.exports = async (bot, message) => {
 		message.react("🐸");
 	}
 
-	if (triviaQuestions.some(q => q.answers.some(a => plainArgs.includes(a))) && guildData.spawns.some(s => s.type === "trivia" && s.channel === message.channel.id)) {
+	if (triviaQuestions.some(q => q.answers.some(a => a === message.content.toLowerCase())) && guildData.spawns.some(s => s.type === "trivia" && s.channel === message.channel.id)) {
 		const webhookObjects = {
 			slytherin: {
 				username: "Bloody Baron",
