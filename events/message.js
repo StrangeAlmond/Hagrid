@@ -178,12 +178,12 @@ module.exports = async (bot, message) => {
 		if (spawn === "dementor") {
 			object.type = "dementor";
 
-			const attachment = new Discord.Attachment("./images/dementor.jpg", "dementor.jpg");
+			const attachment = new Discord.Attachment("./images/spawns/dementor.jpg", "dementor.jpg");
 			message.channel.send(`A dementor has spawned! Years 5 and up can banish it by using \`${bot.prefix}expecto patronum\`!`, attachment);
 		} else if (spawn === "boggart") {
 			object.type = "boggart";
 
-			const attachment = new Discord.Attachment("./images/boggart.jpg", "boggart.jpg");
+			const attachment = new Discord.Attachment("./images/spawns/boggart.jpg", "boggart.jpg");
 			message.channel.send(`A boggart has spawned! Years 3 and up can banish it by using \`${bot.prefix}riddikulus\`!`, attachment);
 		} else if (spawn === "chest") {
 			object.type = "chest";
