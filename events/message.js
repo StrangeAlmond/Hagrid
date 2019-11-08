@@ -275,6 +275,21 @@ module.exports = async (bot, message) => {
 			bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", value, `inventory.${key}`);
 		}
 
+		const roleNames = {
+			1: "First Year",
+			2: "Second Year",
+			3: "Third Year",
+			4: "Fourth Year",
+			5: "Fifth Year",
+			6: "Sixth Year",
+			7: "Seventh Year"
+		};
+
+		const role = message.guild.roles.find(r => r.name.toLowerCase() === roleNames[userData.year].toLowerCase());
+		const newRole = message.guild.roles.find(r => r.name.toLowerCase() === roleNames[userData.year + 1].toLowerCase());
+		message.member.removeRole(role);
+		message.member.addRole(newRole);
+
 		bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "year");
 
 		bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", 2, "stats.health");
