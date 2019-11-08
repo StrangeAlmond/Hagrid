@@ -334,14 +334,13 @@ module.exports = {
 		let damageDealt = userData.stats.attack - object.beast.defense;
 		if (damageDealt < 0) damageDealt = 0;
 
+		user.damageDealt += damageDealt;
+		object.users[object.users.find(u => u.id === member.id)] = user;
+
 		object.beast.health -= damageDealt;
 
 		guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel === object.channel), 1, object);
 		bot.guildInfo.set(guild.id, guildData.spawns, "spawns");
-
-		user.damageDealt += damageDealt;
-
-		object.users[object.users.find(u => u.id === member.id)] = user;
 
 		let webhooks = await channel.fetchWebhooks();
 		webhooks = webhooks.array().filter(w => w.name.toLowerCase() === bot.user.username.toLowerCase());
@@ -354,7 +353,6 @@ module.exports = {
 		}
 
 		const webhook = webhooks[Math.floor(Math.random() * webhooks.length)];
-
 
 		let msgContent = "";
 
