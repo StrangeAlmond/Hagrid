@@ -9,6 +9,7 @@ module.exports = async (bot, reaction, user) => {
 	if (reaction.emoji.name === "⚔" && message.author.id === bot.user.id && message.embeds.length > 0 && message.embeds[0].description.toLowerCase().includes(guildData.spawns.find(s => s.type === "training session").beast.name.toLowerCase())) {
 		const userData = bot.userInfo.get(`${message.guild.id}-${user.id}`);
 		const member = message.guild.members.get(user.id);
+		const channel = message.guild.channels.find(c => c.name === "training-grounds");
 
 		if (!userData.inventory.trainingTokens || userData.inventory.trainingTokens <= 0) {
 			message.channel.send("You don't have any training tokens!").then(m => m.delete(5000));
@@ -28,7 +29,7 @@ module.exports = async (bot, reaction, user) => {
 		bot.userInfo.dec(`${message.guild.id}-${user.id}`, "inventory.trainingTokens");
 		bot.userInfo.set(`${message.guild.id}-${user.id}`, Date.now(), "trainingTokenUse");
 
-		return message.channel.send("You have used one training token. This will expire in one hour!").then(m => m.delete(5000));
+		return message.channel.reply(`You have used one training token to gain access to <#${channel.id}>. This will expire in one hour!`).then(m => m.delete(5000));
 	}
 
 	if (!message.channel.name.includes("hospital")) return;

@@ -1,340 +1,340 @@
 {
-  "300": {
-    "id": "300",
-    "name": "Barn Owl",
-    "shop": "Magical Menagerie",
-    "price": "10 galleons",
-    "image": "https://i.imgur.com/ZdsM2Wo.png",
-    "type": "pet"
-  },
-  "301": {
-    "id": "301",
-    "name": "Barred Owl",
-    "shop": "Magical Menagerie",
-    "price": "11 galleons",
-    "image": "https://i.imgur.com/EzCZsea.png",
-    "type": "pet"
-  },
-  "302": {
-    "id": "302",
-    "name": "Black Cat",
-    "shop": "Magical Menagerie",
-    "price": "9 galleons",
-    "image": "https://i.imgur.com/hGZkEYZ.png",
-    "type": "pet"
-  },
-  "303": {
-    "id": "303",
-    "name": "Brown Owl",
-    "shop": "Magical Menagerie",
-    "price": "10 galleons",
-    "image": "https://i.imgur.com/a3Kk79z.png",
-    "type": "pet"
-  },
-  "304": {
-    "id": "304",
-    "name": "Common Toad",
-    "shop": "Magical Menagerie",
-    "price": "5 galleons",
-    "image": "https://i.imgur.com/09As5dm.png",
-    "type": "pet"
-  },
-  "305": {
-    "id": "305",
-    "name": "Crested Toad",
-    "shop": "Magical Menagerie",
-    "price": "9 galleons",
-    "image": "https://i.imgur.com/TZs5OFr.png",
-    "type": "pet"
-  },
-  "306": {
-    "id": "306",
-    "name": "Ginger Cat",
-    "price": "9 galleons",
-    "shop": "Magical Menagerie",
-    "image": "https://i.imgur.com/kP0FnF6.png",
-    "type": "pet"
-  },
-  "307": {
-    "id": "307",
-    "name": "Harlequin Toad",
-    "shop": "Magical Menagerie",
-    "price": "9 galleons",
-    "image": "https://i.imgur.com/u3OTFb6.png",
-    "type": "pet"
-  },
-  "308": {
-    "id": "308",
-    "name": "Natterjack Toad",
-    "shop": "Magical Menagerie",
-    "price": "5 galleons",
-    "image": "https://i.imgur.com/ZkDn7Ep.png",
-    "type": "pet"
-  },
-  "309": {
-    "id": "309",
-    "name": "Rat",
-    "shop": "Magical Menagerie",
-    "price": "5 galleons",
-    "image": "https://i.imgur.com/Fhh7BR0.png",
-    "type": "pet"
-  },
-  "310": {
-    "id": "310",
-    "name": "Screech Owl",
-    "shop": "Magical Menagerie",
-    "price": "15 galleons",
-    "image": "https://i.imgur.com/BxaG4Wb.png",
-    "type": "pet"
-  },
-  "311": {
-    "id": "311",
-    "name": "Siamese Cat",
-    "shop": "Magical Menagerie",
-    "price": "11 galleons",
-    "image": "https://i.imgur.com/0BoChUJ.png",
-    "type": "pet"
-  },
-  "312": {
-    "id": "312",
-    "name": "Snowy Owl",
-    "shop": "Magical Menagerie",
-    "price": "15 galleons",
-    "image": "https://i.imgur.com/1ncsaiW.png",
-    "type": "pet"
-  },
-  "313": {
-    "id": "313",
-    "name": "Tabby Cat",
-    "shop": "Magical Menagerie",
-    "price": "9 galleons",
-    "image": "https://i.imgur.com/M3tWWmp.png",
-    "type": "pet"
-  },
-  "314": {
-    "id": "314",
-    "name": "Tawny Owl",
-    "shop": "Magical Menagerie",
-    "price": "10 galleons",
-    "image": "https://i.imgur.com/QjJu27N.png",
-    "type": "pet"
-  },
-  "315": {
-    "id": "315",
-    "name": "Western Green Toad",
-    "shop": "Magical Menagerie",
-    "price": "9 galleons",
-    "image": "https://i.imgur.com/WqjaKsD.png",
-    "type": "pet"
-  },
-  "316": {
-    "id": "316",
-    "name": "White Cat",
-    "shop": "Magical Menagerie",
-    "price": "9 galleons",
-    "image": "https://i.imgur.com/R5xjuQl.png",
-    "type": "pet"
-  },
-  "500": {
-    "name": "Brass Cauldron, Size 2",
-    "id": "500",
-    "shop": "Potages",
-    "key": "cauldronType",
-    "requires": "pewter",
-    "price": "21 galleons",
-    "type": "item"
-  },
-  "501": {
-    "name": "Copper Cauldron, Size 2",
-    "id": "501",
-    "shop": "Potages",
-    "key": "cauldronType",
-    "requires": "brass",
-    "price": "25 galleons",
-    "type": "item"
-  },
-  "700": {
-    "id": "700",
-    "name": "Antidote to Common Poisons Bottle",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "antidoteToCommonPoisons",
-    "price": "2 galleons, 6 sickles",
-    "type": "item"
-  },
-  "701": {
-    "id": "701",
-    "name": "Antidote to Common Poisons",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "antidoteToCommonPoisons",
-    "price": "5 sickles",
-    "type": "item"
-  },
-  "702": {
-    "id": "702",
-    "name": "Boom Berry Juice",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "boomBerryJuice",
-    "price": "12 knuts",
-    "type": "item"
-  },
-  "703": {
-    "id": "703",
-    "name": "Chizpurfle Fangs",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "chizpurfleFangs",
-    "price": "11 knuts",
-    "type": "item"
-  },
-  "704": {
-    "id": "704",
-    "name": "Dragonfly Thoraxes",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "dragonflyThoraxes",
-    "price": "9 sickles",
-    "type": "item"
-  },
-  "705": {
-    "id": "705",
-    "name": "Dried Billywig Stings",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "driedBillywigStings",
-    "price": "10 sickles",
-    "type": "item"
-  },
-  "706": {
-    "id": "706",
-    "name": "Drops of Honeywater",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "dropsOfHoneywater",
-    "price": "13 knuts",
-    "type": "item"
-  },
-  "707": {
-    "id": "707",
-    "name": "Lionfish Spines",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "lionfishSpines",
-    "price": "15 knuts",
-    "type": "item"
-  },
-  "708": {
-    "id": "708",
-    "name": "Moondew Drops",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "moondewDrops",
-    "price": "12 knuts",
-    "type": "item"
-  },
-  "709": {
-    "id": "709",
-    "name": "Revive Potion Bottle",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "revivePotion",
-    "price": "1 galleon, 16 sickles",
-    "type": "item"
-  },
-  "710": {
-    "id": "710",
-    "name": "Revive Potion",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "revivePotion",
-    "price": "4 sickles",
-    "type": "item"
-  },
-  "711": {
-    "id": "711",
-    "name": "Sloth Brain Mucus",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "slothBrainMucus",
-    "price": "14 knuts",
-    "type": "item"
-  },
-  "712": {
-    "id": "712",
-    "name": "Standard Ingredient",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "standardIngredients",
-    "price": "12 sickles",
-    "type": "item"
-  },
-  "713": {
-    "id": "713",
-    "name": "Wartcap Powder",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "wartcapPowder",
-    "price": "7 sickles",
-    "type": "item"
-  },
-  "714": {
-    "id": "714",
-    "name": "Wiggenweld Potion Bottle",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "wiggenweldPotion",
-    "price": "1 galleon, 13 sickles",
-    "type": "item"
-  },
-  "715": {
-    "id": "715",
-    "name": "Wiggenweld Potion",
-    "shop": "Slug & Jiggers Apothecary",
-    "key": "wiggenweldPotion",
-    "price": "4 sickles",
-    "type": "item"
-  },
-  "900": {
-    "id": "900",
-    "name": "Floo Powder",
-    "shop": "Wiseacre's Wizarding Equipment",
-    "key": "flooPowder",
-    "price": "2 sickles",
-    "type": "item"
-  },
-  "1002": {
-    "id": "1002",
-    "name": "Bertie Bott's Beans",
-    "shop": "Honeydukes",
-    "key": "beans",
-    "price": "6 sickles",
-    "type": "item"
-  },
-  "1100": {
-    "id": "1100",
-    "name": "Mallowsweet",
-    "shop": "J. Pippin's Potions",
-    "key": "mallowsweet",
-    "price": "6 sickles",
-    "type": "item"
-  },
-  "1101": {
-    "id": "1101",
-    "name": "Ground Scarab Beetles",
-    "shop": "J. Pippin's Potions",
-    "key": "groundScarabBeetles",
-    "price": "5 sickles",
-    "type": "item"
-  },
-  "1102": {
-    "id": "1102",
-    "name": "Armadillo Bile",
-    "shop": "J. Pippin's Potions",
-    "key": "armadilloBile",
-    "price": "13 sickles",
-    "type": "item"
-  },
-  "1600": {
-    "id": "1600",
-    "name": "Frog Spawn Soap",
-    "shop": "Zonko's Joke Shop",
-    "key": "frogSpawnSoap",
-    "price": "5 galleons",
-    "type": "item"
-  },
-  "1601": {
-    "id": "1601",
-    "name": "Maximum Turbo Farts",
-    "shop": "Zonko's Joke Shop",
-    "key": "maximumTurboFarts",
-    "price": "6 sickles",
-    "type": "item"
-  }
+	"300": {
+		"id": "300",
+		"name": "Barn Owl",
+		"shop": "Magical Menagerie",
+		"price": "10 galleons",
+		"image": "https://i.imgur.com/ZdsM2Wo.png",
+		"type": "pet"
+	},
+	"301": {
+		"id": "301",
+		"name": "Barred Owl",
+		"shop": "Magical Menagerie",
+		"price": "11 galleons",
+		"image": "https://i.imgur.com/EzCZsea.png",
+		"type": "pet"
+	},
+	"302": {
+		"id": "302",
+		"name": "Black Cat",
+		"shop": "Magical Menagerie",
+		"price": "9 galleons",
+		"image": "https://i.imgur.com/hGZkEYZ.png",
+		"type": "pet"
+	},
+	"303": {
+		"id": "303",
+		"name": "Brown Owl",
+		"shop": "Magical Menagerie",
+		"price": "10 galleons",
+		"image": "https://i.imgur.com/a3Kk79z.png",
+		"type": "pet"
+	},
+	"304": {
+		"id": "304",
+		"name": "Common Toad",
+		"shop": "Magical Menagerie",
+		"price": "5 galleons",
+		"image": "https://i.imgur.com/09As5dm.png",
+		"type": "pet"
+	},
+	"305": {
+		"id": "305",
+		"name": "Crested Toad",
+		"shop": "Magical Menagerie",
+		"price": "9 galleons",
+		"image": "https://i.imgur.com/TZs5OFr.png",
+		"type": "pet"
+	},
+	"306": {
+		"id": "306",
+		"name": "Ginger Cat",
+		"price": "9 galleons",
+		"shop": "Magical Menagerie",
+		"image": "https://i.imgur.com/kP0FnF6.png",
+		"type": "pet"
+	},
+	"307": {
+		"id": "307",
+		"name": "Harlequin Toad",
+		"shop": "Magical Menagerie",
+		"price": "9 galleons",
+		"image": "https://i.imgur.com/u3OTFb6.png",
+		"type": "pet"
+	},
+	"308": {
+		"id": "308",
+		"name": "Natterjack Toad",
+		"shop": "Magical Menagerie",
+		"price": "5 galleons",
+		"image": "https://i.imgur.com/ZkDn7Ep.png",
+		"type": "pet"
+	},
+	"309": {
+		"id": "309",
+		"name": "Rat",
+		"shop": "Magical Menagerie",
+		"price": "5 galleons",
+		"image": "https://i.imgur.com/Fhh7BR0.png",
+		"type": "pet"
+	},
+	"310": {
+		"id": "310",
+		"name": "Screech Owl",
+		"shop": "Magical Menagerie",
+		"price": "15 galleons",
+		"image": "https://i.imgur.com/BxaG4Wb.png",
+		"type": "pet"
+	},
+	"311": {
+		"id": "311",
+		"name": "Siamese Cat",
+		"shop": "Magical Menagerie",
+		"price": "11 galleons",
+		"image": "https://i.imgur.com/0BoChUJ.png",
+		"type": "pet"
+	},
+	"312": {
+		"id": "312",
+		"name": "Snowy Owl",
+		"shop": "Magical Menagerie",
+		"price": "15 galleons",
+		"image": "https://i.imgur.com/1ncsaiW.png",
+		"type": "pet"
+	},
+	"313": {
+		"id": "313",
+		"name": "Tabby Cat",
+		"shop": "Magical Menagerie",
+		"price": "9 galleons",
+		"image": "https://i.imgur.com/M3tWWmp.png",
+		"type": "pet"
+	},
+	"314": {
+		"id": "314",
+		"name": "Tawny Owl",
+		"shop": "Magical Menagerie",
+		"price": "10 galleons",
+		"image": "https://i.imgur.com/QjJu27N.png",
+		"type": "pet"
+	},
+	"315": {
+		"id": "315",
+		"name": "Western Green Toad",
+		"shop": "Magical Menagerie",
+		"price": "9 galleons",
+		"image": "https://i.imgur.com/WqjaKsD.png",
+		"type": "pet"
+	},
+	"316": {
+		"id": "316",
+		"name": "White Cat",
+		"shop": "Magical Menagerie",
+		"price": "9 galleons",
+		"image": "https://i.imgur.com/R5xjuQl.png",
+		"type": "pet"
+	},
+	"500": {
+		"name": "Brass Cauldron, Size 2",
+		"id": "500",
+		"shop": "Potages",
+		"key": "cauldronType",
+		"requires": "pewter",
+		"price": "21 galleons",
+		"type": "item"
+	},
+	"501": {
+		"name": "Copper Cauldron, Size 2",
+		"id": "501",
+		"shop": "Potages",
+		"key": "cauldronType",
+		"requires": "brass",
+		"price": "25 galleons",
+		"type": "item"
+	},
+	"700": {
+		"id": "700",
+		"name": "Antidote to Common Poisons Bottle",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "antidoteToCommonPoisons",
+		"price": "2 galleons, 6 sickles",
+		"type": "item"
+	},
+	"701": {
+		"id": "701",
+		"name": "Antidote to Common Poisons",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "antidoteToCommonPoisons",
+		"price": "5 sickles",
+		"type": "item"
+	},
+	"702": {
+		"id": "702",
+		"name": "Boom Berry Juice",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "boomBerryJuice",
+		"price": "12 knuts",
+		"type": "item"
+	},
+	"703": {
+		"id": "703",
+		"name": "Chizpurfle Fangs",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "chizpurfleFangs",
+		"price": "11 knuts",
+		"type": "item"
+	},
+	"704": {
+		"id": "704",
+		"name": "Dragonfly Thoraxes",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "dragonflyThoraxes",
+		"price": "9 sickles",
+		"type": "item"
+	},
+	"705": {
+		"id": "705",
+		"name": "Dried Billywig Stings",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "driedBillywigStings",
+		"price": "10 sickles",
+		"type": "item"
+	},
+	"706": {
+		"id": "706",
+		"name": "Drops of Honeywater",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "dropsOfHoneywater",
+		"price": "13 knuts",
+		"type": "item"
+	},
+	"707": {
+		"id": "707",
+		"name": "Lionfish Spines",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "lionfishSpines",
+		"price": "15 knuts",
+		"type": "item"
+	},
+	"708": {
+		"id": "708",
+		"name": "Moondew Drops",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "moondewDrops",
+		"price": "12 knuts",
+		"type": "item"
+	},
+	"709": {
+		"id": "709",
+		"name": "Revive Potion Bottle",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "revivePotion",
+		"price": "1 galleon, 16 sickles",
+		"type": "item"
+	},
+	"710": {
+		"id": "710",
+		"name": "Revive Potion",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "revivePotion",
+		"price": "4 sickles",
+		"type": "item"
+	},
+	"711": {
+		"id": "711",
+		"name": "Sloth Brain Mucus",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "slothBrainMucus",
+		"price": "14 knuts",
+		"type": "item"
+	},
+	"712": {
+		"id": "712",
+		"name": "Standard Ingredient",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "standardIngredients",
+		"price": "12 sickles",
+		"type": "item"
+	},
+	"713": {
+		"id": "713",
+		"name": "Wartcap Powder",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "wartcapPowder",
+		"price": "7 sickles",
+		"type": "item"
+	},
+	"714": {
+		"id": "714",
+		"name": "Wiggenweld Potion Bottle",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "wiggenweldPotion",
+		"price": "1 galleon, 13 sickles",
+		"type": "item"
+	},
+	"715": {
+		"id": "715",
+		"name": "Wiggenweld Potion",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "wiggenweldPotion",
+		"price": "4 sickles",
+		"type": "item"
+	},
+	"900": {
+		"id": "900",
+		"name": "Floo Powder",
+		"shop": "Wiseacre's Wizarding Equipment",
+		"key": "flooPowder",
+		"price": "2 sickles",
+		"type": "item"
+	},
+	"1002": {
+		"id": "1002",
+		"name": "Bertie Bott's Beans",
+		"shop": "Honeydukes",
+		"key": "beans",
+		"price": "6 sickles",
+		"type": "item"
+	},
+	"1100": {
+		"id": "1100",
+		"name": "Mallowsweet",
+		"shop": "J. Pippin's Potions",
+		"key": "mallowsweet",
+		"price": "6 sickles",
+		"type": "item"
+	},
+	"1101": {
+		"id": "1101",
+		"name": "Ground Scarab Beetles",
+		"shop": "J. Pippin's Potions",
+		"key": "groundScarabBeetles",
+		"price": "5 sickles",
+		"type": "item"
+	},
+	"1102": {
+		"id": "1102",
+		"name": "Armadillo Bile",
+		"shop": "J. Pippin's Potions",
+		"key": "armadilloBile",
+		"price": "13 sickles",
+		"type": "item"
+	},
+	"1600": {
+		"id": "1600",
+		"name": "Frog Spawn Soap",
+		"shop": "Zonko's Joke Shop",
+		"key": "frogSpawnSoap",
+		"price": "5 galleons",
+		"type": "item"
+	},
+	"1601": {
+		"id": "1601",
+		"name": "Maximum Turbo Farts",
+		"shop": "Zonko's Joke Shop",
+		"key": "maximumTurboFarts",
+		"price": "6 sickles",
+		"type": "item"
+	}
 }
