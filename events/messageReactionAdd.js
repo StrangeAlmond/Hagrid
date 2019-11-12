@@ -29,7 +29,7 @@ module.exports = async (bot, reaction, user) => {
 		bot.userInfo.dec(`${message.guild.id}-${user.id}`, "inventory.trainingTokens");
 		bot.userInfo.set(`${message.guild.id}-${user.id}`, Date.now(), "trainingTokenUse");
 
-		return message.channel.reply(`You have used one training token to gain access to <#${channel.id}>. This will expire in one hour!`).then(m => m.delete(5000));
+		return message.channel.send(`${member}, You have used one training token to gain access to <#${channel.id}>. This will expire in one hour!`).then(m => m.delete(5000));
 	}
 
 	if (!message.channel.name.includes("hospital")) return;
