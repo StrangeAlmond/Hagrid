@@ -318,7 +318,7 @@ module.exports = {
 		const guildData = bot.guildInfo.get(guild.id);
 		const userData = bot.userInfo.get(`${guild.id}-${member.id}`);
 
-		if (!userData.studiedSpells.includes(object.beast.spell.slice(1))) return;
+		if (!userData.studiedSpells.includes(object.beast.spell.slice(1)) || userData.stats.fainted) return;
 
 		if (object.beast.name.toLowerCase() === "ashwinder" && !userData.stats.activeEffects.some(a => a.type.toLowerCase() === "fire protection")) return;
 
