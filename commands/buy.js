@@ -19,20 +19,19 @@ module.exports = {
 			// Make sure they can buy a wand
 			if (!message.member.roles.find(r => r.name.toLowerCase() === "ollivanders")) return;
 
-			// Send a webhook message as ollivanders
-			await bot.quickWebhook(message.channel, `Curious indeed how these things happen. The wand chooses the wizard, remember...I think we must expect great things from you, ${message.author}`, {
-				username: "Ollivanders",
-				avatar: "http://www.the-leaky-cauldron.org/wp-content/uploads/assets/65a68ab93cab1bfda806f9a2b9e04bf6.jpg",
-				deleteAfterUse: true
-			});
-
 			// Find these two roles
 			const ollivanderRole = await message.guild.roles.find(r => r.name.toLowerCase() === "ollivanders");
 			const wandRole = await message.guild.roles.find(r => r.name.toLowerCase() === "wand");
 
-			// Remove the ollivander role and give them the wand role
-			await message.member.removeRole(ollivanderRole);
-			await message.member.addRole(wandRole);
+			message.member.addRole(wandRole);
+
+			boughtItem(message.member, ollivanderRole);
+
+			// Send a webhook message as ollivanders
+			await bot.quickWebhook(message.channel, `Curious indeed how these things happen. The wand chooses the wizard, remember...I think we must expect great things from you, ${message.author}`, {
+				username: "Ollivanders",
+				avatar: "http://www.the-leaky-cauldron.org/wp-content/uploads/assets/65a68ab93cab1bfda806f9a2b9e04bf6.jpg"
+			});
 
 		} else if (args[0] === "books") {
 			// Make sure they can buy a book
@@ -40,59 +39,52 @@ module.exports = {
 
 			// Get the flourish and blotts role
 			const flourishAndBlottsRole = await message.guild.roles.find(r => r.name.toLowerCase() === "flourish and blotts");
+			boughtItem(message.member, flourishAndBlottsRole);
+
 			// Send a message as the flourish and blotts webhook
 			await bot.quickWebhook(message.channel, `This should get you started ${message.author}. Copies of A Beginner's Guide to Transfiguration, A History of Magic, Fantastic Beasts and Where to Find Them, Magical Drafts and Potions, Magical Theory, One Thousand Magical Herbs and Fungi, The Dark Forces: A Guide to Self-Protection, and  of course The Standard Book of Spells, Grade One.`, {
 				username: "Flourish and Blotts",
-				avatar: "https://i.pinimg.com/originals/9a/96/87/9a9687faa57829154c395b260fae2f60.png",
-				deleteAfterUse: true
+				avatar: "https://i.pinimg.com/originals/9a/96/87/9a9687faa57829154c395b260fae2f60.png"
 			});
-
-			// Remove the flourish and blotts role from the member
-			message.member.removeRole(flourishAndBlottsRole);
 		} else if (args[0] === "clothes") {
 			// Make sure they have the madam malkins role
 			if (!message.member.roles.find(r => r.name.toLowerCase() === "madam malkins")) return;
 
 			// Make sure they have the madam malkins role
 			const madamMalkinsRole = await message.guild.roles.find(r => r.name.toLowerCase() === "madam malkins");
+			boughtItem(message.member, madamMalkinsRole);
+
 			// Send a message with the madam malkins webhook
 			await bot.quickWebhook(message.channel, "This should cover you! Three plain black robes, one pointed hat, one pair gloves, and one fashionable winter cloak. Thank you for visiting Madam Malkin's Robes for All Occasions.", {
 				username: "Madam Malkins",
 				avatar: "http://t4.rbxcdn.com/51c51b55e778c6d3e140898631a61e03"
 			});
-
-			// Remove the madam malkins role from the member
-			message.member.removeRole(madamMalkinsRole);
 		} else if (args[0] === "cauldron") {
 			// Make sure they have the potages role
 			if (!message.member.roles.find(r => r.name.toLowerCase() === "potages")) return;
 
 			// Get the potages role
-			const potages = await message.guild.roles.find(r => r.name.toLowerCase() === "potages");
+			const potagesRole = await message.guild.roles.find(r => r.name.toLowerCase() === "potages");
+			boughtItem(message.member, potagesRole);
+
 			// Send a message with the potages webhook
 			await bot.quickWebhook(message.channel, `${message.author} You purchased a pewter cauldron, standard size 2. It should serve you well for all your beginner potion needs.`, {
 				username: "Potages",
-				avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/9/97/Potage%27s_hoarding.png/revision/latest?cb=20120404181518",
-				deleteAfterUse: true
+				avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/9/97/Potage%27s_hoarding.png/revision/latest?cb=20120404181518"
 			});
-
-			// Remove the potages role from the member
-			message.member.removeRole(potages);
 		} else if (args[0] === "supplies") {
 			// Make sure they have the wiseacres role
 			if (!message.member.roles.find(r => r.name.toLowerCase() === "wiseacres")) return;
 
 			// Get the wiseacres role
 			const wiseacresRole = await message.guild.roles.find(r => r.name.toLowerCase() === "wiseacres");
+			boughtItem(message.member, wiseacresRole);
+
 			// Send a message with the wiseacres webhook
 			await bot.quickWebhook(message.channel, `Here you are ${message.author}, 1 set of crystal phials, 1 set brass scales, and a telescope. Please make sure to visit us again for all your wizarding needs!`, {
 				username: "Wiseacres",
-				avatar: "https://i.imgur.com/Q3d3Yna.png",
-				deleteAfterUse: true
+				avatar: "https://i.imgur.com/Q3d3Yna.png"
 			});
-
-			// Remove the wiseacres role from the member
-			message.member.removeRole(wiseacresRole);
 		} else if (args[0] === "900") {
 			// If they're buying floo powder
 			const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
@@ -288,6 +280,12 @@ module.exports = {
 				// Log that they bought a pet to the console
 				bot.logger.log("info", `${message.member.displayName} purchased a ${items[args[0]].name}`);
 			}
+		}
+
+		function boughtItem(member, role) {
+			setTimeout(() => {
+				member.removeRole(role);
+			}, 1500);
 		}
 	},
 };
