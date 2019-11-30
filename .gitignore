@@ -3,5 +3,4 @@ data
 logs.txt
 package-lock.json
 botconfig.json
-sync.bat
 data_backups
