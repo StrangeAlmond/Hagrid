@@ -1,0 +1,61 @@
+ [{
+ 	"name": "Alpha 1",
+ 	"tiles": ["35.10", "37.12", "40.16"],
+ 	"possibleItems": ["1 inventory.chizpurfleFangs", "1 inventory.slothBrainMucus", "1 inventory.lionfishSpines", "1 inventory.dropsOfHoneywater", "1 inventory.moondewDrops", "3 knuts", "4 knuts", "5 knuts"]
+ }, {
+ 	"name": "Alpha 2",
+ 	"tiles": ["36.15", "38.09", "41.12"],
+ 	"possibleItems": ["1 inventory.chizpurfleFangs", "1 inventory.slothBrainMucus", "1 inventory.lionfishSpines", "1 inventory.boomBerryJuice", "1 inventory.moondewDrops", "3 knuts", "4 knuts", "5 knuts"]
+ }, {
+ 	"name": "Alpha 3",
+ 	"tiles": ["37.10", "40.14", "42.11"],
+ 	"possibleItems": ["1 inventory.stewedMandrake", "1 inventory.slothBrainMucus", "1 inventory.boomBerryJuice", "1 inventory.dropsOfHoneywater", "3 knuts", "4 knuts", "5 knuts"]
+ }, {
+ 	"name": "Bravo 1",
+ 	"tiles": ["35.14", "37.08", "39.10", "42.13"],
+ 	"possibleItems": ["1 inventory.bottleOfHorklumpJuice", "1 inventory.vialOfFlobberwormMucus", "1 inventory.billywigStingSlime", "1 inventory.chizpurfleFangs", "1 inventory.slothBrainMucus", "1 inventory.lionfishSpines", "1 inventory.dropsOfHoneywater", "5 knuts", "6 knuts", "7 knuts"]
+ }, {
+ 	"name": "Bravo 2",
+ 	"tiles": ["35.09", "36.13", "39.15", "40.09"],
+ 	"possibleItems": ["1 inventory.vialOfSalamanderBlood", "1 inventory.sprigOfWolfsbane", "1 inventory.bezoar", "1 inventory.standardIngredients", "1 inventory.moondewDrops", "1 inventory.stewedMandrake", "1 inventory.boomBerryJuice", "5 knuts", "6 knuts", "7 knuts"]
+ }, {
+ 	"name": "Bravo 3",
+ 	"tiles": ["25.02", "27.04", "29.02", "29.09", "31.05", "32.09"],
+ 	"possibleItems": ["1 inventory.bottleOfHorklumpJuice", "1 inventory.vialOfFlobberwormMucus", "1 inventory.billywigStingSlime", "1 inventory.chizpurfleFangs", "1 inventory.slothBrainMucus", "1 inventory.lionfishSpines", "1 inventory.dropsOfHoneywater", "5 knuts", "6 knuts", "7 knuts"]
+ }, {
+ 	"name": "Bravo 4",
+ 	"tiles": ["28.03", "28.05", "30.01", "30.04", "33.06", "33.10"],
+ 	"possibleItems": ["1 inventory.vialOfSalamanderBlood", "1 inventory.sprigOfWolfsbane", "1 inventory.bezoar", "1 inventory.standardIngredients", "1 inventory.moondewDrops", "1 inventory.stewedMandrake", "1 inventory.boomBerryJuice", "5 knuts", "6 knuts", "7 knuts"]
+ }, {
+ 	"name": "Bravo 5",
+ 	"tiles": ["21.05", "23.02", "23.05", "24.03", "24.09"],
+ 	"possibleItems": ["1 inventory.bottleOfHorklumpJuice", "1 inventory.vialOfFlobberwormMucus", "1 inventory.billywigStingSlime", "1 inventory.chizpurfleFangs", "1 inventory.slothBrainMucus", "1 inventory.lionfishSpines", "1 inventory.dropsOfHoneywater", "5 knuts", "6 knuts", "7 knuts"]
+ }, {
+ 	"name": "Bravo 6",
+ 	"tiles": ["22.12", "24.12", "26.10", "26.11", "27.12", "29.11", "31.13"],
+ 	"possibleItems": ["1 inventory.vialOfSalamanderBlood", "1 inventory.sprigOfWolfsbane", "1 inventory.bezoar", "1 inventory.standardIngredients", "1 inventory.moondewDrops", "1 inventory.stewedMandrake", "1 inventory.boomBerryJuice", "5 knuts", "6 knuts", "7 knuts"]
+ }, {
+ 	"name": "Charlie 1",
+ 	"tiles": ["34.16", "35.12", "38.14", "40.08"],
+ 	"possibleItems": ["1 inventory.bottleOfHorklumpJuice", "1 inventory.vialOfFlobberwormMucus", "1 inventory.sprigOfWolfsbane", "1 inventory.bezoar", "1 inventory.standardIngredients", "7 knuts", "8 knuts", "9 knuts"]
+ }, {
+ 	"name": "Charlie 2",
+ 	"tiles": ["25.05", "28.01", "29.03", "32.02", "32.12"],
+ 	"possibleItems": ["1 inventory.bottleOfHorklumpJuice", "1 inventory.vialOfFlobberwormMucus", "1 inventory.billywigStingSlime", "1 inventory.sprigOfWolfsbane", "1 inventory.bezoar", "1 inventory.standardIngredients", "7 knuts", "8 knuts", "9 knuts"]
+ }, {
+ 	"name": "Charlie 3",
+ 	"tiles": ["21.06", "21.08", "22.06", "24.05", "26.04", "27.06"],
+ 	"possibleItems": ["1 inventory.bottleOfHorklumpJuice", "1 inventory.vialOfFlobberwormMucus", "1 inventory.billywigStingSlime", "1 inventory.sprigOfWolfsbane", "1 inventory.bezoar", "1 inventory.standardIngredients", "6 knuts", "7 knuts", "8 knuts"]
+ }, {
+ 	"name": "Charlie 4",
+ 	"tiles": ["22.11", "23.11", "27.08", "28.13"],
+ 	"possibleItems": ["1 inventory.bottleOfHorklumpJuice", "1 inventory.vialOfFlobberwormMucus", "1 inventory.billywigStingSlime", "1 inventory.sprigOfWolfsbane", "1 inventory.bezoar", "1 inventory.standardIngredients", "6 knuts", "7 knuts", "8 knuts"]
+ }, {
+ 	"name": "Delta 1",
+ 	"tiles": ["21.01", "22.01", "26.02", "26.08", "33.05", "33.09"],
+ 	"possibleItems": ["1 inventory.bottleOfHorklumpJuice", "1 inventory.vialOfFlobberwormMucus", "1 inventory.billywigStingSlime", "1 inventory.vialOfSalamanderBlood", "1 inventory.sprigOfWolfsbane", "1 inventory.bezoar", "1 inventory.standardIngredients", "6 knuts", "7 knuts", "8 knuts"]
+ }, {
+ 	"name": "Delta 2",
+ 	"tiles": ["21.12", "22.10", "26.12", "28.10", "28.12"],
+ 	"possibleItems": ["1 inventory.bottleOfHorklumpJuice", "1 inventory.vialOfFlobberwormMucus", "1 inventory.billywigStingSlime", "1 inventory.vialOfSalamanderBlood", "1 inventory.sprigOfWolfsbane", "1 inventory.bezoar", "1 inventory.standardIngredients", "6 knuts", "7 knuts", "8 knuts"]
+ }]

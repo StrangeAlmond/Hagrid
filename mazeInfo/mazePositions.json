@@ -1,0 +1,734 @@
+{
+  "21.01": {
+    "validMoves": ["right"]
+  },
+  "21.02": {
+    "validMoves": ["down", "left"]
+  },
+  "21.03": {
+    "validMoves": ["up", "down"]
+  },
+  "21.04": {
+    "validMoves": ["down", "right"]
+  },
+  "21.05": {
+    "validMoves": ["down", "left"]
+  },
+  "21.06": {
+    "validMoves": ["right"]
+  },
+  "21.07": {
+    "validMoves": ["down", "left"]
+  },
+  "21.08": {
+    "validMoves": ["down"]
+  },
+  "21.09": {
+    "validMoves": ["right"]
+  },
+  "21.10": {
+    "validMoves": ["left", "right"]
+  },
+  "21.11": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "21.12": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "21.13": {
+    "validMoves": ["left"]
+  },
+  "22.01": {
+    "validMoves": ["down"]
+  },
+  "22.02": {
+    "validMoves": ["up", "down", "right"]
+  },
+  "22.03": {
+    "validMoves": ["up", "left"]
+  },
+  "22.04": {
+    "validMoves": ["up", "down"]
+  },
+  "22.05": {
+    "validMoves": ["up", "right"]
+  },
+  "22.06": {
+    "validMoves": ["left"]
+  },
+  "22.07": {
+    "validMoves": ["up", "down"]
+  },
+  "22.08": {
+    "validMoves": ["up", "down"]
+  },
+  "22.09": {
+    "validMoves": ["up"]
+  },
+  "22.10": {
+    "validMoves": ["down"]
+  },
+  "22.11": {
+    "validMoves": ["up"]
+  },
+  "22.12": {
+    "validMoves": ["up", "right"]
+  },
+  "22.13": {
+    "validMoves": ["down", "left"]
+  },
+  "23.01": {
+    "validMoves": ["up", "down"]
+  },
+  "23.02": {
+    "validMoves": ["up", "down"]
+  },
+  "23.03": {
+    "validMoves": ["right"]
+  },
+  "23.04": {
+    "validMoves": ["up", "down", "right"]
+  },
+  "23.05": {
+    "validMoves": ["left", "right"]
+  },
+  "23.06": {
+    "validMoves": ["left", "right"]
+  },
+  "23.07": {
+    "validMoves": ["up", "left", "right"]
+  },
+  "23.08": {
+    "validMoves": ["up", "left", "right"]
+  },
+  "23.09": {
+    "validMoves": ["down", "left"]
+  },
+  "23.10": {
+    "validMoves": ["up", "down"]
+  },
+  "23.11": {
+    "validMoves": ["right"]
+  },
+  "23.12": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "23.13": {
+    "validMoves": ["up", "down", "left"]
+  },
+  "24.01": {
+    "validMoves": ["up", "down"]
+  },
+  "24.02": {
+    "validMoves": ["up", "right"]
+  },
+  "24.03": {
+    "validMoves": ["left", "right"]
+  },
+  "24.04": {
+    "validMoves": ["up", "left"]
+  },
+  "24.05": {
+    "validMoves": ["right"]
+  },
+  "24.06": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "24.07": {
+    "validMoves": ["left", "right"]
+  },
+  "24.08": {
+    "validMoves": ["left"]
+  },
+  "24.09": {
+    "validMoves": ["up", "down"]
+  },
+  "24.10": {
+    "validMoves": ["up", "down", "right"]
+  },
+  "24.11": {
+    "validMoves": ["down", "left"]
+  },
+  "24.12": {
+    "validMoves": ["up"]
+  },
+  "24.13": {
+    "validMoves": ["up", "down"]
+  },
+  "25.01": {
+    "validMoves": ["up", "right"]
+  },
+  "25.02": {
+    "validMoves": ["left", "right"]
+  },
+  "25.03": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "25.04": {
+    "validMoves": ["left", "right"]
+  },
+  "25.05": {
+    "validMoves": ["left"]
+  },
+  "25.06": {
+    "validMoves": ["up", "down", "right"]
+  },
+  "25.07": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "25.08": {
+    "validMoves": ["left", "right"]
+  },
+  "25.09": {
+    "validMoves": ["up", "down", "left"]
+  },
+  "25.10": {
+    "validMoves": ["up", "down"]
+  },
+  "25.11": {
+    "validMoves": ["up", "down", "right"]
+  },
+  "25.12": {
+    "validMoves": ["left", "right"]
+  },
+  "25.13": {
+    "validMoves": ["up", "left"]
+  },
+  "26.01": {
+    "validMoves": ["down", "right"]
+  },
+  "26.02": {
+    "validMoves": ["left"]
+  },
+  "26.03": {
+    "validMoves": ["up", "down"]
+  },
+  "26.04": {
+    "validMoves": ["right"]
+  },
+  "26.05": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "26.06": {
+    "validMoves": ["up", "left"]
+  },
+  "26.07": {
+    "validMoves": ["up", "down"]
+  },
+  "26.08": {
+    "validMoves": ["right"]
+  },
+  "26.09": {
+    "validMoves": ["up", "left"]
+  },
+  "26.10": {
+    "validMoves": ["up", "down"]
+  },
+  "26.11": {
+    "validMoves": ["up"]
+  },
+  "26.12": {
+    "validMoves": ["right"]
+  },
+  "26.13": {
+    "validMoves": ["down", "left"]
+  },
+  "27.01": {
+    "validMoves": ["up", "down", "right"]
+  },
+  "27.02": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "27.03": {
+    "validMoves": ["up", "left", "right"]
+  },
+  "27.04": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "27.05": {
+    "validMoves": ["up", "left"]
+  },
+  "27.06": {
+    "validMoves": ["right"]
+  },
+  "27.07": {
+    "validMoves": ["up", "left"]
+  },
+  "27.08": {
+    "validMoves": ["right"]
+  },
+  "27.09": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "27.10": {
+    "validMoves": ["up", "left", "right"]
+  },
+  "27.11": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "27.12": {
+    "validMoves": ["left", "right"]
+  },
+  "27.13": {
+    "validMoves": ["up", "down", "left"]
+  },
+  "28.01": {
+    "validMoves": ["up"]
+  },
+  "28.02": {
+    "validMoves": ["up", "down"]
+  },
+  "28.03": {
+    "validMoves": ["right"]
+  },
+  "28.04": {
+    "validMoves": ["up", "left"]
+  },
+  "28.05": {
+    "validMoves": ["down"]
+  },
+  "28.06": {
+    "validMoves": ["down", "right"]
+  },
+  "28.07": {
+    "validMoves": ["left", "right"]
+  },
+  "28.08": {
+    "validMoves": ["down", "left"]
+  },
+  "28.09": {
+    "validMoves": ["up", "right"]
+  },
+  "28.10": {
+    "validMoves": ["left"]
+  },
+  "28.11": {
+    "validMoves": ["up", "down"]
+  },
+  "28.12": {
+    "validMoves": ["down"]
+  },
+  "28.13": {
+    "validMoves": ["up"]
+  },
+  "29.01": {
+    "validMoves": ["down", "right"]
+  },
+  "29.02": {
+    "validMoves": ["up", "down", "left"]
+  },
+  "29.03": {
+    "validMoves": ["right"]
+  },
+  "29.04": {
+    "validMoves": ["left", "right"]
+  },
+  "29.05": {
+    "validMoves": ["up", "down", "left", "right"]
+  },
+  "29.06": {
+    "validMoves": ["up", "left"]
+  },
+  "29.07": {
+    "validMoves": ["right"]
+  },
+  "29.08": {
+    "validMoves": ["up", "left", "right"]
+  },
+  "29.09": {
+    "validMoves": ["left", "right"]
+  },
+  "29.10": {
+    "validMoves": ["down", "left"]
+  },
+  "29.11": {
+    "validMoves": ["up", "down"]
+  },
+  "29.12": {
+    "validMoves": ["up", "right"]
+  },
+  "29.13": {
+    "validMoves": ["down", "left"]
+  },
+  "30.01": {
+    "validMoves": ["up"]
+  },
+  "30.02": {
+    "validMoves": ["up", "down", "right"]
+  },
+  "30.03": {
+    "validMoves": ["left", "right"]
+  },
+  "30.04": {
+    "validMoves": ["left"]
+  },
+  "30.05": {
+    "validMoves": ["up", "down"]
+  },
+  "30.09": {
+    "validMoves": ["down"]
+  },
+  "30.10": {
+    "validMoves": ["up"]
+  },
+  "30.11": {
+    "validMoves": ["up", "right"]
+  },
+  "30.12": {
+    "validMoves": ["left", "right"]
+  },
+  "30.13": {
+    "validMoves": ["up", "down", "left"]
+  },
+  "31.01": {
+    "validMoves": ["down", "right"]
+  },
+  "31.02": {
+    "validMoves": ["up", "left", "right"]
+  },
+  "31.03": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "31.04": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "31.05": {
+    "validMoves": ["up", "left"]
+  },
+  "31.09": {
+    "validMoves": ["up", "down"]
+  },
+  "31.10": {
+    "validMoves": ["up"]
+  },
+  "31.11": {
+    "validMoves": ["down", "right"]
+  },
+  "31.12": {
+    "validMoves": ["down", "left"]
+  },
+  "31.13": {
+    "validMoves": ["up", "down"]
+  },
+  "32.01": {
+    "validMoves": ["up", "right"]
+  },
+  "32.02": {
+    "validMoves": ["left"]
+  },
+  "32.03": {
+    "validMoves": ["up", "down"]
+  },
+  "32.04": {
+    "validMoves": ["up", "right"]
+  },
+  "32.05": {
+    "validMoves": ["left", "right"]
+  },
+  "32.06": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "32.07": {
+    "validMoves": ["left", "right"]
+  },
+  "32.08": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "32.09": {
+    "validMoves": ["up", "left", "right"]
+  },
+  "32.10": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "32.11": {
+    "validMoves": ["up", "down", "left"]
+  },
+  "32.12": {
+    "validMoves": ["up"]
+  },
+  "32.13": {
+    "validMoves": ["up", "down"]
+  },
+  "33.01": {
+    "validMoves": ["right"]
+  },
+  "33.02": {
+    "validMoves": ["left", "right"]
+  },
+  "33.03": {
+    "validMoves": ["up", "left", "right"]
+  },
+  "33.04": {
+    "validMoves": ["left", "right"]
+  },
+  "33.05": {
+    "validMoves": ["left"]
+  },
+  "33.06": {
+    "validMoves": ["up"]
+  },
+  "33.07": {
+    "validMoves": ["up"]
+  },
+  "33.08": {
+    "validMoves": ["up", "right"]
+  },
+  "33.09": {
+    "validMoves": ["left"]
+  },
+  "33.10": {
+    "validMoves": ["up"]
+  },
+  "33.11": {
+    "validMoves": ["up", "right"]
+  },
+  "33.12": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "33.13": {
+    "validMoves": ["up", "left"]
+  },
+  "34.08": {
+    "validMoves": ["down"]
+  },
+  "34.09": {
+    "validMoves": ["down", "right"]
+  },
+  "34.10": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "34.11": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "34.12": {
+    "validMoves": ["up", "left"]
+  },
+  "34.13": {
+    "validMoves": ["right"]
+  },
+  "34.14": {
+    "validMoves": ["down", "left"]
+  },
+  "34.15": {
+    "validMoves": ["down", "right"]
+  },
+  "34.16": {
+    "validMoves": ["left"]
+  },
+  "35.08": {
+    "validMoves": ["up", "down"]
+  },
+  "35.09": {
+    "validMoves": ["up"]
+  },
+  "35.10": {
+    "validMoves": ["up", "down"]
+  },
+  "35.11": {
+    "validMoves": ["up", "right"]
+  },
+  "35.12": {
+    "validMoves": ["left"]
+  },
+  "35.13": {
+    "validMoves": ["right"]
+  },
+  "35.14": {
+    "validMoves": ["up", "left", "right"]
+  },
+  "35.15": {
+    "validMoves": ["up", "left", "right"]
+  },
+  "35.16": {
+    "validMoves": ["down", "left"]
+  },
+  "36.08": {
+    "validMoves": ["up", "right"]
+  },
+  "36.09": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "36.10": {
+    "validMoves": ["up", "down", "left", "right"]
+  },
+  "36.11": {
+    "validMoves": ["left", "right"]
+  },
+  "36.12": {
+    "validMoves": ["left"]
+  },
+  "36.13": {
+    "validMoves": ["right"]
+  },
+  "36.14": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "36.15": {
+    "validMoves": ["left"]
+  },
+  "36.16": {
+    "validMoves": ["up", "down"]
+  },
+  "37.08": {
+    "validMoves": ["right"]
+  },
+  "37.09": {
+    "validMoves": ["up", "down", "left"]
+  },
+  "37.10": {
+    "validMoves": ["up", "down"]
+  },
+  "37.11": {
+    "validMoves": ["down", "right"]
+  },
+  "37.12": {
+    "validMoves": ["left"]
+  },
+  "37.13": {
+    "validMoves": ["down", "right"]
+  },
+  "37.14": {
+    "validMoves": ["up", "left", "right"]
+  },
+  "37.15": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "37.16": {
+    "validMoves": ["up", "left"]
+  },
+  "38.08": {
+    "validMoves": ["down"]
+  },
+  "38.09": {
+    "validMoves": ["up"]
+  },
+  "38.10": {
+    "validMoves": ["up", "right"]
+  },
+  "38.11": {
+    "validMoves": ["up", "down", "left", "right"]
+  },
+  "38.12": {
+    "validMoves": ["left", "right"]
+  },
+  "38.13": {
+    "validMoves": ["up", "left"]
+  },
+  "38.14": {
+    "validMoves": ["down"]
+  },
+  "38.15": {
+    "validMoves": ["up", "down"]
+  },
+  "38.16": {
+    "validMoves": ["down"]
+  },
+  "39.08": {
+    "validMoves": ["up", "right"]
+  },
+  "39.09": {
+    "validMoves": ["down", "left"]
+  },
+  "39.10": {
+    "validMoves": ["right"]
+  },
+  "39.11": {
+    "validMoves": ["up", "left", "right"]
+  },
+  "39.12": {
+    "validMoves": ["left", "right"]
+  },
+  "39.13": {
+    "validMoves": ["left", "right"]
+  },
+  "39.14": {
+    "validMoves": ["up", "left"]
+  },
+  "39.15": {
+    "validMoves": ["up", "down", "right"]
+  },
+  "39.16": {
+    "validMoves": ["left"]
+  },
+  "40.08": {
+    "validMoves": ["down"]
+  },
+  "40.09": {
+    "validMoves": ["up", "right"]
+  },
+  "40.10": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "40.11": {
+    "validMoves": ["left", "right"]
+  },
+  "40.12": {
+    "validMoves": ["down", "left", "right"]
+  },
+  "40.13": {
+    "validMoves": ["left", "right"]
+  },
+  "40.14": {
+    "validMoves": ["left", "right"]
+  },
+  "40.15": {
+    "validMoves": ["up", "down", "left"]
+  },
+  "40.16": {
+    "validMoves": ["down"]
+  },
+  "41.08": {
+    "validMoves": ["up", "right"]
+  },
+  "41.09": {
+    "validMoves": ["left", "right"]
+  },
+  "41.10": {
+    "validMoves": ["up", "down", "left", "right"]
+  },
+  "41.11": {
+    "validMoves": ["down", "left"]
+  },
+  "41.12": {
+    "validMoves": ["up", "down", "right"]
+  },
+  "41.13": {
+    "validMoves": ["down", "left"]
+  },
+  "41.14": {
+    "validMoves": ["down", "right"]
+  },
+  "41.15": {
+    "validMoves": ["up", "down", "left", "right"]
+  },
+  "41.16": {
+    "validMoves": ["up", "left"]
+  },
+  "42.08": {
+    "validMoves": ["right"]
+  },
+  "42.09": {
+    "validMoves": ["left", "right"]
+  },
+  "42.10": {
+    "validMoves": ["up", "left"]
+  },
+  "42.11": {
+    "validMoves": ["up"]
+  },
+  "42.12": {
+    "validMoves": ["up"]
+  },
+  "42.13": {
+    "validMoves": ["up", "right"]
+  },
+  "42.14": {
+    "validMoves": ["up", "left"]
+  },
+  "42.15": {
+    "validMoves": ["up", "right"]
+  },
+  "42.16": {
+    "validMoves": ["left"]
+  }
+}

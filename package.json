@@ -1,0 +1,29 @@
+{
+	"name": "hagrid",
+	"version": "2.0.8",
+	"description": "Hagrid - A harry potter simulator for discord.",
+	"main": "bot.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "StrangeAlmond",
+	"license": "ISC",
+	"dependencies": {
+		"@discordjs/uws": "^10.149.0",
+		"better-sqlite-pool": "^0.2.2",
+		"bufferutil": "^4.0.0",
+		"chalk": "^2.4.2",
+		"discord.js": "^11.5.1",
+		"enmap": "^5.0.0",
+		"erlpack": "github:discordapp/erlpack",
+		"libsodium-wrappers": "^0.7.3",
+		"lodash": "^4.17.15",
+		"moment-timezone": "^0.5.26",
+		"nerds": "^1.3.6",
+		"node-fetch": "^2.6.0",
+		"numeral": "^2.0.6",
+		"parse-ms": "^2.1.0",
+		"string-similarity": "^3.0.0",
+		"winston": "^3.2.1"
+	}
+}
