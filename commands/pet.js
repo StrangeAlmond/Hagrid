@@ -53,6 +53,8 @@ module.exports = {
 			const petYear = user.pet.level;
 			const petXp = user.pet.xp;
 
+			if(petXp === 365) return message.channel.send("It seems your pet is too full to eat!");
+
 			const msToMidnight = bot.timeUntilMidnight();
 
 			if (lastFeed === moment.tz("America/Los_Angeles").format("l")) {
@@ -62,22 +64,22 @@ module.exports = {
 
 			await bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "pet.xp");
 
-			if (petYear === 1 && petXp >= 7) {
+			if (petYear === 1 && petXp > 6) {
 				message.channel.send("Your pet is now level 2!");
 				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 2, "pet.level");
-			} else if (petYear === 2 && petXp >= 14) {
+			} else if (petYear === 2 && petXp > 13) {
 				message.channel.send("Your pet is now level 3!");
 				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 3, "pet.level");
-			} else if (petYear === 3 && petXp >= 28) {
+			} else if (petYear === 3 && petXp > 27) {
 				message.channel.send("Your pet is now level 4!");
 				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 4, "pet.level");
-			} else if (petYear === 4 && petXp >= 52) {
+			} else if (petYear === 4 && petXp > 51) {
 				message.channel.send("Your pet is now level 5!");
 				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 5, "pet.level");
-			} else if (petYear === 5 && petXp >= 90) {
+			} else if (petYear === 5 && petXp > 89) {
 				message.channel.send("Your pet is now level 6!");
 				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 6, "pet.level");
-			} else if (petYear === 6 && petXp >= 180) {
+			} else if (petYear === 6 && petXp > 179) {
 				message.channel.send("Your pet is now level 7!");
 				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 7, "pet.level");
 
