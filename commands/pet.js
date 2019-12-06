@@ -29,14 +29,15 @@ module.exports = {
 
 		if (!args[0]) {
 			let petHappiness = "";
+			const today = moment.tz("America/Los_Angeles").format("l");
 
 			if (lastFeed && lastFeedObj.hours >= 24) {
 				petHappiness = "Starving";
-			} else if (lastFeed && lastFeed !== moment.tz("America/Los_Angeles").format("l")) {
+			} else if (lastFeed && lastFeed !== today) {
 				petHappiness = "Hungry";
 			} else if (lastFeed == null) {
 				petHappiness = "Hungry";
-			} else if (lastFeed && lastFeed === moment.tz("America/Los_Angeles").format("l")) {
+			} else if (lastFeed && lastFeed === today) {
 				petHappiness = "Full";
 			}
 
@@ -51,12 +52,11 @@ module.exports = {
 			message.channel.send(petEmbed);
 		} else if (args[0] === "feed") {
 			const petYear = user.pet.level;
-			const petXp = user.pet.xp;
+			let petXp = user.pet.xp;
 
-			if(petXp === 365) return message.channel.send("It seems your pet is too full to eat!");
+			if (petXp >= 365) return message.channel.send("It seems your pet isn't hungry!");
 
 			const msToMidnight = bot.timeUntilMidnight();
-
 			if (lastFeed === moment.tz("America/Los_Angeles").format("l")) {
 				const timeObj = ms(msToMidnight);
 				return message.channel.send(`${message.member}, You can feed your pet again in ${timeObj.hours}h, ${timeObj.minutes}m, ${timeObj.seconds}s.`);
@@ -64,28 +64,28 @@ module.exports = {
 
 			await bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "pet.xp");
 
-			if (petYear === 1 && petXp > 6) {
-				message.channel.send("Your pet is now level 2!");
-				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 2, "pet.level");
-			} else if (petYear === 2 && petXp > 13) {
-				message.channel.send("Your pet is now level 3!");
-				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 3, "pet.level");
-			} else if (petYear === 3 && petXp > 27) {
-				message.channel.send("Your pet is now level 4!");
-				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 4, "pet.level");
-			} else if (petYear === 4 && petXp > 51) {
-				message.channel.send("Your pet is now level 5!");
-				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 5, "pet.level");
-			} else if (petYear === 5 && petXp > 89) {
-				message.channel.send("Your pet is now level 6!");
-				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 6, "pet.level");
-			} else if (petYear === 6 && petXp > 179) {
-				message.channel.send("Your pet is now level 7!");
-				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 7, "pet.level");
+			petXp++;
 
-				if (!user.badges.includes(badges.find(b => b.name.toLowerCase() === "care of magical creatures badge").credential)) {
-					bot.userInfo.push(`${message.guild.id}-${message.author.id}`, badges.find(b => b.name.toLowerCase() === "care of magical creatures badge").credential, "badges");
-					message.channel.send(`${bot.emojis.get(badges.find(b => b.name.toLowerCase() === "care of magical creatures badge").emojiID)} - Care of Magical Creatures badge earned!`);
+			const levelUps = {
+				1: 7,
+				2: 15,
+				3: 28,
+				4: 52,
+				5: 90,
+				6: 180
+			};
+
+			if (petXp >= levelUps[petYear]) {
+				message.channel.send(`Your pet is now level ${petYear + 1}!`);
+				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, petYear + 1, "pet.level");
+
+				if ((petYear + 1) === 7) {
+					const badge = badges.find(b => b.name.toLowerCase() === "care of magical creatures badge"); // Care of magical creatures badge
+
+					if (!user.badges.includes(badge.credential)) {
+						bot.userInfo.push(`${message.guild.id}-${message.author.id}`, badge.credential, "badges");
+						await message.channel.send(`${bot.emojis.get(badge.emojiId)} - Care of Magical Creatures badge earned!`);
+					}
 				}
 			}
 
