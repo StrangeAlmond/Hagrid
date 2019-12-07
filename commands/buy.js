@@ -10,81 +10,72 @@ module.exports = {
 		const stores = ["wand", "books", "clothes", "cauldron", "supplies"];
 
 		// If they don't have access to diagon alley don't let them shop at diagon alley
-		if (stores.includes(args[0]) && !message.member.roles.find(r => r.name === "Unsorted")) return;
+		if (stores.includes(args[0]) && !message.member.roles.find(r => r.name.toLowerCase() === "unsorted")) return;
 		// If they still need to withdraw galleons from gringotts don't let them shop at diagon alley yet.
-		if (stores.includes(args[0]) && message.member.roles.find(r => r.name == "Gringotts")) return message.channel.send("❌ | You need to withdraw galleons from gringotts first!");
+		if (stores.includes(args[0]) && message.member.roles.find(r => r.name.toLowerCase() == "gringotts")) return message.channel.send("❌ | You need to withdraw galleons from gringotts first!");
 
-		// If they're buying a wand
-		if (args[0] === "wand") {
-			// Make sure they can buy a wand
-			if (!message.member.roles.find(r => r.name.toLowerCase() === "ollivanders")) return;
+		if (["wand", "books", "clothes", "cauldron", "supplies"].includes(args[0])) { // The five item to buy in Diagon Alley
+			const roleNames = { // Role/Store names for the corresponding item
+				wand: "ollivanders",
+				books: "flourish and blotts",
+				clothes: "madam malkins",
+				cauldron: "potages",
+				supplies: "wiseacres"
+			};
 
-			// Find these two roles
-			const ollivanderRole = await message.guild.roles.find(r => r.name.toLowerCase() === "ollivanders");
-			const wandRole = await message.guild.roles.find(r => r.name.toLowerCase() === "wand");
+			const messages = { // Unique store messages based on the item being bought
+				wand: "Curious indeed how these things happen. The wand chooses the wizard, remember...I think we must expect great things from you, {author}",
+				books: "This should get you started {author}. Copies of A Beginner's Guide to Transfiguration, A History of Magic, Fantastic Beasts and Where to Find Them, Magical Drafts and Potions, Magical Theory, One Thousand Magical Herbs and Fungi, The Dark Forces: A Guide to Self-Protection, and  of course The Standard Book of Spells, Grade One.",
+				clothes: "This should cover you! Three plain black robes, one pointed hat, one pair gloves, and one fashionable winter cloak. Thank you for visiting Madam Malkin's Robes for All Occasions.",
+				cauldron: "{author} You purchased a pewter cauldron, standard size 2. It should serve you well for all your beginner potion needs.",
+				supplies: "Here you are {author}, 1 set of crystal phials, 1 set brass scales, and a telescope. Please make sure to visit us again for all your wizarding needs!"
+			};
 
-			message.member.addRole(wandRole);
+			const webhookOptions = { // Unique webhook options based on the item being bought
+				wand: {
+					username: "Ollivanders",
+					avatar: "./images/webhook avatars/ollivanders.jpg"
+				},
 
-			boughtItem(message.member, ollivanderRole);
+				books: {
+					username: "Flourish and Blotts",
+					avatar: "./images/webhook avatars/flourishAndBlotts.png"
+				},
 
-			// Send a webhook message as ollivanders
-			await bot.quickWebhook(message.channel, `Curious indeed how these things happen. The wand chooses the wizard, remember...I think we must expect great things from you, ${message.author}`, {
-				username: "Ollivanders",
-				avatar: "http://www.the-leaky-cauldron.org/wp-content/uploads/assets/65a68ab93cab1bfda806f9a2b9e04bf6.jpg"
-			});
+				clothes: {
+					username: "Madam Malkins",
+					avatar: "./images/webhook avatars/madamMalkins.png"
+				},
 
-		} else if (args[0] === "books") {
-			// Make sure they can buy a book
-			if (!message.member.roles.find(r => r.name.toLowerCase() === "flourish and blotts")) return;
+				cauldron: {
+					username: "Potages",
+					avatar: "./images/webhook avatars/potages.png"
+				},
 
-			// Get the flourish and blotts role
-			const flourishAndBlottsRole = await message.guild.roles.find(r => r.name.toLowerCase() === "flourish and blotts");
-			boughtItem(message.member, flourishAndBlottsRole);
+				supplies: {
+					username: "Wiseacres",
+					avatar: "./images/webhook avatars/wiseacres.png"
+				}
+			};
 
-			// Send a message as the flourish and blotts webhook
-			await bot.quickWebhook(message.channel, `This should get you started ${message.author}. Copies of A Beginner's Guide to Transfiguration, A History of Magic, Fantastic Beasts and Where to Find Them, Magical Drafts and Potions, Magical Theory, One Thousand Magical Herbs and Fungi, The Dark Forces: A Guide to Self-Protection, and  of course The Standard Book of Spells, Grade One.`, {
-				username: "Flourish and Blotts",
-				avatar: "https://i.pinimg.com/originals/9a/96/87/9a9687faa57829154c395b260fae2f60.png"
-			});
-		} else if (args[0] === "clothes") {
-			// Make sure they have the madam malkins role
-			if (!message.member.roles.find(r => r.name.toLowerCase() === "madam malkins")) return;
+			const shopName = roleNames[args[0]]; // Name of the shop
+			const webhookMessage = messages[args[0]].replace("{author}", `${message.author}`); // Get the unique message for the item being bought and replace any instance of '${author}' with the user's user object
+			const webhookOption = webhookOptions[args[0]]; // Get the unique webhook options for the store that the item's being bought from
 
-			// Make sure they have the madam malkins role
-			const madamMalkinsRole = await message.guild.roles.find(r => r.name.toLowerCase() === "madam malkins");
-			boughtItem(message.member, madamMalkinsRole);
+			const shopRole = message.guild.roles.find(r => r.name.toLowerCase() === shopName); // Get the role for the shop
 
-			// Send a message with the madam malkins webhook
-			await bot.quickWebhook(message.channel, "This should cover you! Three plain black robes, one pointed hat, one pair gloves, and one fashionable winter cloak. Thank you for visiting Madam Malkin's Robes for All Occasions.", {
-				username: "Madam Malkins",
-				avatar: "http://t4.rbxcdn.com/51c51b55e778c6d3e140898631a61e03"
-			});
-		} else if (args[0] === "cauldron") {
-			// Make sure they have the potages role
-			if (!message.member.roles.find(r => r.name.toLowerCase() === "potages")) return;
+			if (args[0] === "wand") { // If they're buying a wand then we need to give them the 'wand' role.
+				const wandRole = await message.guild.roles.find(r => r.name.toLowerCase() === "wand"); // Get the wand role
+				message.member.addRole(wandRole); // Give it to the user
+			}
 
-			// Get the potages role
-			const potagesRole = await message.guild.roles.find(r => r.name.toLowerCase() === "potages");
-			boughtItem(message.member, potagesRole);
+			// Send the webhook message
+			await bot.quickWebhook(message.channel, webhookMessage, webhookOption);
 
-			// Send a message with the potages webhook
-			await bot.quickWebhook(message.channel, `${message.author} You purchased a pewter cauldron, standard size 2. It should serve you well for all your beginner potion needs.`, {
-				username: "Potages",
-				avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/9/97/Potage%27s_hoarding.png/revision/latest?cb=20120404181518"
-			});
-		} else if (args[0] === "supplies") {
-			// Make sure they have the wiseacres role
-			if (!message.member.roles.find(r => r.name.toLowerCase() === "wiseacres")) return;
-
-			// Get the wiseacres role
-			const wiseacresRole = await message.guild.roles.find(r => r.name.toLowerCase() === "wiseacres");
-			boughtItem(message.member, wiseacresRole);
-
-			// Send a message with the wiseacres webhook
-			await bot.quickWebhook(message.channel, `Here you are ${message.author}, 1 set of crystal phials, 1 set brass scales, and a telescope. Please make sure to visit us again for all your wizarding needs!`, {
-				username: "Wiseacres",
-				avatar: "https://i.imgur.com/Q3d3Yna.png"
-			});
+			// Wait 1.5 seconds before removing their role to give time to read the message
+			setTimeout(() => {
+				message.member.removeRole(shopRole);
+			}, 1500);
 		} else if (args[0] === "900") {
 			// If they're buying floo powder
 			const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
@@ -280,12 +271,6 @@ module.exports = {
 				// Log that they bought a pet to the console
 				bot.logger.log("info", `${message.member.displayName} purchased a ${items[args[0]].name}`);
 			}
-		}
-
-		function boughtItem(member, role) {
-			setTimeout(() => {
-				member.removeRole(role);
-			}, 1500);
 		}
 	},
 };
