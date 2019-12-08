@@ -28,13 +28,11 @@ module.exports = {
 
 			// Create a variable for the inventory message
 			let usersInventoryMessage = Object
-				.entries(memberData.inventory)
-				.filter(i => i[1] > 0)
-				.sort((i, j) => i[0].localeCompare(j[0]))
-				.map(i => `${i[0]
-				.replace(/([A-Z])/g, " $1")
-				.replace(/^./, str => str.toUpperCase())}: ${i[1]}`)
-				.join("\n");
+				.entries(memberData.inventory) // Get all the entries from their inventory in a [key, value] format
+				.filter(i => i[1] > 0) // Filter out items which the user does not have
+				.sort((i, j) => i[0].localeCompare(j[0])) // Sort it alphabetically
+				.map(i => `${i[0].replace(/([A-Z])/g, " $1").replace(/^./, str => str.toUpperCase())}: ${i[1]}`) // Convert the key into a user-readable format
+				.join("\n"); // Join it all together seperated by a line break
 
 			// Create an embed for displaying their inventory
 			const inventoryEmbed = new Discord.RichEmbed()
