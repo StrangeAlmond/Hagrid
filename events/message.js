@@ -200,45 +200,39 @@ module.exports = async (bot, message) => {
 			const house = houses.find(h => message.member.roles.some(r => r.name.toLowerCase() === h));
 
 			if (house) {
-
 				const channel = message.guild.channels.find(c => c.name.includes(house));
 
-				if (channel) {
+				if (channel && !guildData.spawns.some(s => s.channel === channel.id)) {
+					object.channel = channel.id;
 
-					if (!guildData.spawns.some(s => s.channel === channel.id)) {
+					const triviaObject = triviaQuestions[Math.floor(Math.random() * triviaQuestions.length)];
 
-						object.channel = channel.id;
+					const question = triviaObject.question;
 
-						const triviaObject = triviaQuestions[Math.floor(Math.random() * triviaQuestions.length)];
+					const webhookObjects = {
+						slytherin: {
+							username: "Bloody Baron",
+							avatar: "./images/webhook avatars/bloodyBaron.jpg"
+						},
 
-						const question = triviaObject.question;
+						gryffindor: {
+							username: "Nearly Headless Nick",
+							avatar: "./images/webhook avatars/nearlyHeadlessNick.jpg"
+						},
 
-						const webhookObjects = {
-							slytherin: {
-								username: "Bloody Baron",
-								avatar: "./images/webhook avatars/bloodyBaron.jpg"
-							},
+						hufflepuff: {
+							username: "Fat Friar",
+							avatar: "./images/webhook avatars/fatFriar.png"
+						},
 
-							gryffindor: {
-								username: "Nearly Headless Nick",
-								avatar: "./images/webhook avatars/nearlyHeadlessNick.jpg"
-							},
+						ravenclaw: {
+							username: "The Grey Lady",
+							avatar: "./images/webhook avatars/theGreyLady.jpg"
+						}
+					};
 
-							hufflepuff: {
-								username: "Fat Friar",
-								avatar: "./images/webhook avatars/fatFriar.png"
-							},
-
-							ravenclaw: {
-								username: "The Grey Lady",
-								avatar: "./images/webhook avatars/theGreyLady.jpg"
-							}
-						};
-
-						object.webhookObject = webhookObjects[house];
-
-						bot.quickWebhook(channel, `It's trivia time ${house} members! try to guess the answer to the question below:\n\n${question}`, webhookObjects[house]);
-					}
+					object.webhookObject = webhookObjects[house];
+					bot.quickWebhook(channel, `It's trivia time ${house} members! try to guess the answer to the question below:\n\n${question}`, webhookObjects[house]);
 				}
 			}
 		}
