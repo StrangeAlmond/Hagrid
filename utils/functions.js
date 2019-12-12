@@ -137,10 +137,12 @@ module.exports = {
 		const hospitalChannel = member.guild.channels.find(c => c.name.includes("hospital"));
 		if (!hospitalChannel) return;
 
+		const userData = bot.userInfo.get(`${member.guild.id}-${member.id}`);
+
 		bot.userInfo.set(`${member.guild.id}-${member.id}`, true, "stats.fainted");
 
 		const hospitalMessages = await hospitalChannel.fetchMessages();
-		const poisonedMessage = hospitalMessages.find(m => m.content.includes(member.id) && !m.content.toLowerCase().includes("poisoned"));
+		const poisonedMessage = hospitalMessages.find(m => m.content.includes(member.id) && m.content.toLowerCase().includes("poison") && !userData.stats.poisonedObject);
 
 		if (poisonedMessage) poisonedMessage.delete();
 
