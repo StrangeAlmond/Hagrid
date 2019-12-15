@@ -9,7 +9,7 @@ module.exports = async (bot, member) => {
 			const roleObject = await member.guild.roles.find(r => r.name === role);
 			member.addRole(roleObject);
 		} catch (e) {
-			bot.logger.log("error", chalk.red(`Error adding roles to new member: ${e}`));
+			bot.log(`Error adding roles to new member: ${e.stack}`, "error");
 		}
 	});
 };

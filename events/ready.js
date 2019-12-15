@@ -1,4 +1,5 @@
 const functions = require("../utils/functions.js");
+const logger = require("../utils/logger.js");
 const quickWebhook = require("../utils/quickWebhook.js");
 
 const botconfig = require("../botconfig.json");
@@ -7,9 +8,6 @@ const prefix = botconfig.prefix;
 const chalk = require("chalk");
 
 module.exports = async bot => {
-	// Log that the bot is online
-	bot.logger.log("info", chalk.green(`Bot is logged in!\nUser: ${bot.user.username}\nGuilds: ${bot.guilds.size}\nMembers: ${bot.users.size}\nChannels: ${bot.channels.size}\nPrefix: ${prefix}\nCommands Loaded: ${bot.commands.size}\nBot is logged in!`));
-
 	// Variables
 	bot.frogSoapChannels = [];
 	bot.prefix = prefix;
@@ -36,13 +34,15 @@ module.exports = async bot => {
 	bot.capitalizeFirstLetter = functions.capitalizeFirstLetter;
 	bot.isMazeChannel = functions.isMazeChannel;
 
-	// Remove anyone that was in a fight from their fight.
+	// Remove anyone that was in a fight in the maze from their fight.
 	bot.userInfo.array().filter(u => u.mazeInfo.inFight).forEach(user => {
 		bot.userInfo.set(`${user.guild}-${user.user}`, false, "mazeInfo.inFight");
 	});
 
 	// Set the bots activity
 	bot.user.setActivity("Just Started, Sorry for the downtime!");
+	// Log that the bot is online
+	bot.log(`${bot.user.username} is online!\nUser: ${bot.user.username}\nSnowflake: ${bot.user.id}\nGuilds: ${bot.guilds.size}\nUsers: ${bot.users.size}`, "info");
 
 	// Set it to something else after 5 minutes
 	setTimeout(async () => {
@@ -136,7 +136,7 @@ module.exports = async bot => {
 			const permissions = channel.permissionsFor(channel.guild.me);
 			if (!permissions.has("MANAGE_CHANNELS")) return;
 
-			channel.delete().catch(e => bot.logger.log("error", e.stack));
+			channel.delete().catch(e => bot.log(e.stack, "error"));
 		});
 
 		const activeEffectsUsers = users.filter(u => u.stats.activeEffects.length > 0);
@@ -161,15 +161,15 @@ module.exports = async bot => {
 					const u = guild.members.get(user.user);
 					u.removeRole(role);
 
-					bot.logger.log("info", "Removed a user's floo powder role.");
+					bot.log("Removed a user's floo powder role.", "info");
 				} else if (effect.type === "luck") {
 					bot.userInfo.set(`${user.guild}-${user.user}`, 0, "stats.luck");
-					bot.logger.log("info", "Removed a user's luck.");
+					bot.log("Removed a user's luck.", "info");
 				} else if (effect.type === "strength") {
 					bot.userInfo.math(`${user.guild}-${user.user}`, "-", 2, "stats.defense");
-					bot.logger.log("info", "Removed a users strength effect.");
+					bot.log("Removed a users strength effect.", "info");
 				} else if (effect.type === "fire protection") {
-					bot.logger.log("info", "Removed a user's fire protection effect.");
+					bot.log("Removed a user's fire protection effect.", "info");
 				}
 
 				bot.userInfo.removeFrom(`${user.guild}-${user.user}`, "stats.activeEffects", effect);

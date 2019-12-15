@@ -40,22 +40,12 @@ for (const file of eventFiles) {
 	delete require.cache[require.resolve(`./events/${file}`)];
 }
 
-const moment = require("moment-timezone");
-const winston = require("winston");
-const chalk = require("chalk");
+const logger = require("./utils/logger.js");
 
-bot.logger = winston.createLogger({
-	transports: [
-		new winston.transports.Console(),
-		new winston.transports.File({
-			filename: "logs.txt"
-		}),
-	],
-	format: winston.format.printf(log => `${moment.tz("America/Los_Angeles").format("LLLL")} [${log.level.toUpperCase()}] - ${log.message}\n`),
-});
+bot.log = logger;
 
 // Debugging
-process.on("unhandledRejection", error => bot.logger.log("info", chalk.red(`Uncaught Promise Rejection: ${error.stack}`)));
+process.on("unhandledRejection", error => bot.log(`Uncaught Promise Rejection: ${error.stack}`, "error"));
 
 bot.userInfo.changed((key, oldValue, newValue) => {
 	if (!oldValue) return;

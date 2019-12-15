@@ -159,7 +159,7 @@ module.exports = {
 				// Let them know it worked
 				message.channel.send(`You have purchased a ${items[args[0]].name}`);
 				// Log that they purchased a new cauldron
-				bot.logger.log("info", `${message.member.displayName} purchased a ${items[args[0]].name}`);
+				bot.log(`${message.member.displayName} purchased a ${items[args[0]].name}`, "info");
 			} else if (items[args[0]].type === "item") {
 				// Default amount value
 				let amount = 1;
@@ -228,7 +228,7 @@ module.exports = {
 				// Give them the item they purchased
 				bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", amount, `inventory.${items[args[0]].key}`);
 				// Log to the console what they bought and how much
-				bot.logger.log("info", `${message.member.displayName} purchased ${amount} ${items[args[0]].name}(s)`);
+				bot.log(`${message.member.displayName} purchased ${amount} ${items[args[0]].name}(s)`, "info");
 			} else if (items[args[0]].type === "pet") { // If they're buying a pet
 				// Make sure they don't already have a pet
 				if (bot.userInfo.hasProp(`${message.guild.id}-${message.author.id}`, "pet")) return message.channel.send("You already have a pet!");
@@ -269,7 +269,7 @@ module.exports = {
 				// Send a message saying it worked
 				message.channel.send(`Congratulations ${message.member.displayName}! You have purchased a ${pet.name}! Make sure you use !pet feed every day to make sure your pet doesn't faint!`);
 				// Log that they bought a pet to the console
-				bot.logger.log("info", `${message.member.displayName} purchased a ${items[args[0]].name}`);
+				bot.log(`${message.member.displayName} purchased a ${items[args[0]].name}`, "info");
 			}
 		}
 	},

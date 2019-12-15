@@ -352,11 +352,11 @@ module.exports = async (bot, message) => {
 
 	// Execute the command
 	command.execute(message, args, bot).catch(e => {
-		bot.logger.log("error", chalk.red(e.stack));
+		bot.log(e.stack, "error");
 		return message.channel.send("🚫  There was an error trying to execute that command, please contact StrangeAlmond#0001.");
 	});
 
 	// Log that they used that command
 	const commandLog = `${message.member.displayName} (${message.author.id}), used the !${command.name} ${args.join(" ")} command, in channel #${message.channel.name} (${message.channel.id}) at ${moment(message.createdTimestamp).tz("America/Los_Angeles").format("llll")}, in the guild ${message.guild.name} (${message.guild.id}).`;
-	bot.logger.log("info", chalk.cyan(commandLog));
+	bot.log(commandLog, "info");
 };

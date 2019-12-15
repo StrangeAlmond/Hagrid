@@ -59,6 +59,8 @@ module.exports = {
 		// Format the curpos again
 		curPos = curPos.toFixed(2);
 
+		bot.log(`${message.member.displayName} moved ${args[0]} in the forbidden forest ${user.mazeInfo.curMaze} from ${user.mazeInfo.lastPos} to ${curPos}`, "info");
+
 		// If they're trying to enter level 2 execute the centaur function
 		if (curPos === "33.12" && user.mazeInfo.lastPos === "34.12") return await centaur();
 
@@ -68,6 +70,7 @@ module.exports = {
 
 		// If they're traveling from the 2nd level to the 1st level set their curMaze to the 1st level
 		if (curPos === "34.12" && user.mazeInfo.lastPos === "33.12") {
+			bot.log(`${message.member.displayName} moved from the second level of the maze to the first level.`, "info");
 			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, "level1", "mazeInfo.curMaze");
 			user.mazeInfo.curMaze = "level1";
 		}
@@ -109,6 +112,7 @@ module.exports = {
 			// Set their last use to now
 			user.cooldowns.lastResurrectionStoneUse = Date.now();
 			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, user.cooldowns.lastResurrectionStoneUse, "cooldowns.lastResurrectionStoneUse");
+			bot.log(`${message.member.displayName} Used the resurrection stone.`, "info");
 		}
 
 		// Function to ensure their tiles are setup for their current level of the maze
@@ -185,6 +189,7 @@ module.exports = {
 				// Allow them to go to the 2nd level without talking to the centaur
 				await webhook.send("Level two unlocked.");
 				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, "level2", "mazeInfo.curMaze");
+				bot.log(`${message.member.displayName} moved from the first level of the forbidden forest to the second level via invisibility cloak`, "info");
 				return sendCurPosition();
 			}
 
@@ -213,7 +218,7 @@ module.exports = {
 					avatar: "https://i.imgur.com/z4n0Jcf.jpg"
 				});
 
-				// Bots says
+				// Bot says
 				setTimeout(async () => {
 					await webhook.send("What would you like to do?\n1. Give Mallowsweet\n2. Go back the way you came.");
 				}, 700);
@@ -227,6 +232,7 @@ module.exports = {
 				if (responseTwo.content === "1") {
 					// If they don't have any mallowseet
 					if (!user.inventory.mallowsweet || user.inventory.mallowsweet <= 0) {
+						bot.log(`${message.member.displayName} tried to trick the centaur.`, "info");
 						return bot.quickWebhook(message.channel, "Are you trying to trick me? I hope you're aware that tricking a centaur is never a good choice.", {
 							username: "Centaur",
 							avatar: "https://i.imgur.com/z4n0Jcf.jpg"
@@ -238,6 +244,8 @@ module.exports = {
 						username: "Centaur",
 						avatar: "https://i.imgur.com/z4n0Jcf.jpg"
 					});
+
+					bot.log(`${message.member.displayName} moved from the first level of the forbidden forest to the second level via invisibility cloak`, "info");
 
 					// Hagrid says
 					setTimeout(() => {
@@ -258,6 +266,9 @@ module.exports = {
 					// Send their current position
 					sendCurPosition();
 				} else if (responseTwo.content === "2") { // If they chose 2
+
+					bot.log(`${message.member.displayName} decided not to give the centaur any mallowsweet`);
+
 					// Set their curPos to tile to the left of the centaur
 					curPos = "34.11";
 
@@ -270,6 +281,7 @@ module.exports = {
 				}
 			} else if (response.content === "2") { // If they chose 2
 				// Bot and Centaur say
+				bot.log(`${message.member.displayName} attacked the centaur.`);
 				await webhook.send("You pull out your wand but before you can do anything you find yourself knocked backwards. The centaur attacked you for 20 damage.");
 				await bot.quickWebhook(message.channel, "Silly little human. Don't try that again.", {
 					username: "Centaur",
@@ -295,6 +307,7 @@ module.exports = {
 					bot.fainted(message.member, `${message.author} has fainted from a centaur attack! Would you like to use a revive potion to heal them faster?`);
 				}
 			} else if (response.content === "3") { // If they chose 3
+				bot.log(`${message.member.displayName} retreated from the centaur`, "info");
 				// Set their curPos to tile to the left of the centaur
 				curPos = "34.11";
 
@@ -309,6 +322,7 @@ module.exports = {
 
 		// Function for interacting with the dark wizard
 		async function darkWizard() {
+			bot.log(`${message.member.displayName} encounters the dark wizard`, "info");
 			// Create an attachment with the dark wizard on it
 			const darkWizardAttachment = new Discord.Attachment(`./mazeInfo/${user.mazeInfo.curMaze}/Active/Forest_${user.mazeInfo.curPos}.png`, "map.png");
 			// Send the attachment
@@ -386,6 +400,7 @@ module.exports = {
 			};
 
 			if (response.content === "1") { // Ignore the wizard
+				bot.log(`${message.member.displayName} ignores the dark wizard`, "info");
 				// Chance for whether or not he attacks the user
 				const chance = Math.random() * 100;
 
@@ -407,11 +422,11 @@ module.exports = {
 
 					// If that item is undefined don't take away the item
 					if (!item) return;
-
 					// Decrease their amount of that item by 1
 					bot.userInfo.dec(`${message.guild.id}-${message.author.id}`, `inventory.${item}`);
 				}
 			} else if (response.content === "2") { // Buy an item from the wizard
+				bot.log(`${message.member.displayName} is buying an item from the dark wizard`, "info");
 				// Dark Wizard Says
 				bot.quickWebhook(message.channel, "Sure I could 'elp. Follow me over here.", {
 					username: "Dark Wizard",
@@ -448,6 +463,7 @@ module.exports = {
 
 				// If they used the nevermind command
 				if (buyResponse.content === `${bot.prefix}nevermind`) {
+					bot.log(`${message.member.displayName} changed their mind.`, "info");
 					// Chance for the dark wizard to attack the user
 					const chance = Math.random() * 100;
 
@@ -459,7 +475,7 @@ module.exports = {
 							avatar: "https://i.imgur.com/oXahnDf.png"
 						});
 					} else { // Wizard attacks user
-
+						bot.log(`${message.member.displayName} got attacked by the dark wizard`, "info");
 						// Dark Wizard Says
 						await bot.quickWebhook(message.channel, "You think it's funny to waste my time like that?!", {
 							username: "Dark Wizard",
@@ -542,6 +558,7 @@ module.exports = {
 					}, 1000);
 				}
 			} else if (response.content === "3") { // If they want to sell an item
+				bot.log(`${message.member.displayName} is selling an item to the dark wizard`, "info");
 				// Items object formatted with the selling information
 				const itemsMessage = Object.keys(items).map(i => `${Object.keys(items).indexOf(i) + 1}. ${i.replace(/([A-Z])/g, " $1").replace(/^./, str => str.toUpperCase())} - ${items[i].sell}`).join("\n");
 
@@ -563,6 +580,7 @@ module.exports = {
 
 				// If they use the nevermind command
 				if (sellResponse === `${bot.prefix}nevermind`) {
+					bot.log(`${message.member.displayName} changed their mind.`, "info");
 					// Chance for whether or not the dark wizard will attack them
 					const chance = Math.random() * 100;
 
@@ -574,7 +592,7 @@ module.exports = {
 							avatar: "https://i.imgur.com/oXahnDf.png"
 						});
 					} else { // Dark wizard attacks them
-
+						bot.log(`${message.member.displayName} got attacked by the dark wizard`, "info");
 						// Dark wizard says
 						await bot.quickWebhook(message.channel, "You think it's funny to waste my time like that?!", {
 							username: "Dark Wizard",
@@ -657,6 +675,8 @@ module.exports = {
 				// If they have the invisibility cloak don't poison them
 				if (user.inventory.invisibilityCloak >= 1) return sendCurPosition();
 
+				bot.log(`${message.member.displayName} is being ambushed by an acromantula`, "info");
+
 				// Attachment with the ambush on it
 				const ambushAttachment = new Discord.Attachment(`./mazeInfo/${user.mazeInfo.curMaze}/Active/Forest_${user.mazeInfo.curPos}.png`, "map.png");
 				// Send the attachment
@@ -678,7 +698,7 @@ module.exports = {
 
 		// Function to spawn an encounter
 		function spawnEncounter() {
-
+			bot.log(`${message.member.displayName} has encountered a creature.`, "info");
 			// Encounter information for this tile
 			const encounterInfo = encountersFile.find(e => e.tiles.includes(curPos));
 			// If there is no encounter information for this tile send the user's current position
@@ -708,6 +728,7 @@ module.exports = {
 
 				// If they decided to flee
 				if (collected.content === `${bot.prefix}flee`) {
+					bot.log(`${message.member.displayName} has fled from their encounter`, "info");
 					// Stop the message collector
 					stopMessageCollector();
 
@@ -774,6 +795,7 @@ module.exports = {
 
 				// If the chanceForAttack is below or equal to 50 then the encounter will attack
 				if (chanceForAttack <= 50) {
+					bot.log(`${message.member.displayName} was attacked by their encounter.`, "info");
 					// The amount of damage dealt by the encounter
 					let damageDealtByEncounter = encounterInfo.attack - user.stats.defense;
 					if (damageDealtByEncounter < 0) damageDealtByEncounter = 0;
@@ -809,6 +831,7 @@ module.exports = {
 
 				// If the encounter is dead
 				if (health <= 0) {
+					bot.log(`${message.member.displayName} has defeated their encounter.`, "info");
 					// Stop the message collector
 					stopMessageCollector();
 
@@ -832,7 +855,7 @@ module.exports = {
 					user.mazeInfo.encounterPositions.splice(user.mazeInfo.encounterPositions.indexOf(curPos), 1, newTile);
 					bot.userInfo.set(`${message.guild.id}-${message.author.id}`, user.mazeInfo.encounterPositions, "mazeInfo.encounterPositions");
 				} else { // Otherwise if the encounter isn't dead
-
+					bot.log(`${message.member.displayName} attacked their encounter.`, "info");
 					// Send a message saying the user attacked the encounter
 					webhook.send(`You cast ${encounterInfo.spell} for ${damageDealtByUser} damage!\nthe ${encounterInfo.name} has/have ${health} health left.`);
 				}
