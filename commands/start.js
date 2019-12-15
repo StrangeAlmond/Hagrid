@@ -70,7 +70,7 @@ module.exports = {
 		}
 
 		// Send their current position and guide on how to navigate the maze to the newly created maze channel
-		usersChannel.send("Use `!move up` (or `!u`) to move up.\nUse `!move down` (or `!d`) to move down.\nUse `!move left` (or `!l`) to move left.\nUse `!move right` (or `!r`) to move right.\nUse `!leave` to delete this channel when you are done.", attachment);
+		usersChannel.send(`Use \`${bot.prefix}move up\` (or \`${bot.prefix}u\`) to move up.Use \`${bot.prefix}move down\` (or \`${bot.prefix}d\`) to move down.\nUse \`${bot.prefix}move left\` (or \`${bot.prefix}l\`) to move left.\nUse \`${bot.prefix}move right\` (or \`${bot.prefix}r\`) to move right.\nUse \`${bot.prefix}leave\` to delete this channel when you are done.`, attachment);
 
 		// Set the positions for encounters
 		function setEncounters() {

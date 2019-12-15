@@ -42,7 +42,7 @@ module.exports = async bot => {
 	// Set the bots activity
 	bot.user.setActivity("Just Started, Sorry for the downtime!");
 	// Log that the bot is online
-	bot.log(`${bot.user.username} is online!\nUser: ${bot.user.username}\nSnowflake: ${bot.user.id}\nGuilds: ${bot.guilds.size}\nUsers: ${bot.users.size}`, "info");
+	bot.log(`${bot.user.username} is online!\nUser: ${bot.user.username}\nSnowflake: ${bot.user.id}\nGuilds: ${bot.guilds.size}\nUsers: ${bot.users.size}\nPrefix: ${bot.prefix}`, "info");
 
 	// Set it to something else after 5 minutes
 	setTimeout(async () => {

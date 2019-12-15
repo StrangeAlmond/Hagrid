@@ -357,6 +357,6 @@ module.exports = async (bot, message) => {
 	});
 
 	// Log that they used that command
-	const commandLog = `${message.member.displayName} (${message.author.id}), used the !${command.name} ${args.join(" ")} command, in channel #${message.channel.name} (${message.channel.id}) at ${moment(message.createdTimestamp).tz("America/Los_Angeles").format("llll")}, in the guild ${message.guild.name} (${message.guild.id}).`;
+	const commandLog = `${message.member.displayName} (${message.author.id}), used the ${bot.prefix}${command.name} ${args.join(" ")} command, in channel #${message.channel.name} (${message.channel.id}) at ${moment(message.createdTimestamp).tz("America/Los_Angeles").format("llll")}, in the guild ${message.guild.name} (${message.guild.id}).`;
 	bot.log(commandLog, "info");
 };
