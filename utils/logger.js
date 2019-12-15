@@ -8,7 +8,7 @@ function log(message, level, file) {
 
 	const time = moment.tz("America/Los_Angeles").format("LLLL"); // Get the current time
 
-	let m = "";
+	let m = ""; // Use a message variable that will be updated by the switch-case statement below
 
 	switch (level) { // Different color with chalk depending on the level
 		case ("info"):
@@ -27,7 +27,7 @@ function log(message, level, file) {
 			break;
 	}
 
-	fs.appendFile(`./${file}`, `${m}`, (err) => {
+	fs.appendFile(`./${file}`, m, (err) => { // Write the message variable to the log file
 		if (err) throw err;
 	});
 }
