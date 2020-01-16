@@ -312,7 +312,7 @@ module.exports = {
 		const attachment = new Discord.Attachment(beast.image, `${beast.name}.png`);
 
 		await channel.send(attachment);
-		channel.send(`A ${beast.name} has spawned! Use ${bot.prefix}${beast.spell.slice(1)} to help defeat it!`);
+		channel.send(`A ${beast.name} has spawned! Use ${bot.prefix}${beast.spell.slice(1)} to help defeat it!\n${beast.notes ? `**${beast.notes}**` : ""}`);
 	},
 
 	processTrainingSession: async function (member, object, channel, bot) {
