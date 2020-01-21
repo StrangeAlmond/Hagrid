@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "reset",
-	description: "Reset a members cooldown",
+	description: "Reset a members daily, merit, weekly, or study cooldown.",
 	async execute(message, args, bot) {
 		if (!["356172624684122113", "137269251361865728"].includes(message.author.id)) return;
 		if (!args[0]) return message.channel.send(`Specify a cooldown to reset! Proper Usage: \`${bot.prefix}reset <daily/merit/weekly/study> <@member>\``);

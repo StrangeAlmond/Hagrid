@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "reload",
-	description: "Reload a command",
+	description: "Reload a command.",
 	async execute(message, args, bot) {
 		if (message.author.id !== "356172624684122113") return;
 

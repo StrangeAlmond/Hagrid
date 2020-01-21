@@ -18,7 +18,7 @@ for (let i = 0; i < spells.length; i++) {
 
 module.exports = {
 	name: "study",
-	description: "study a spell",
+	description: "Study a spell or view the spells you can study.",
 	async execute(message, args, bot) {
 		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
 		const timeTillNextStudy = ms(bot.timeUntilMidnight());

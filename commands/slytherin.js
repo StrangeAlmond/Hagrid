@@ -1,6 +1,6 @@
 module.exports = {
 	name: "slytherin",
-	description: "Assign yourself to a house",
+	description: "Assign yourself to a hogwarts house.",
 	aliases: ["gryffindor", "hufflepuff", "ravenclaw"],
 	async execute(message, args, bot) {
 		// Make sure the command is being used in #sorting-ceremony

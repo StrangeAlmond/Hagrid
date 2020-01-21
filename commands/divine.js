@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "divine",
-	description: "Ask the crystal ball a question",
+	description: "Ask the divine crystal ball a question.",
 	aliases: ["8ball", "orb"],
 	async execute(message, args, bot) {
 		// Make sure they have learned the spell

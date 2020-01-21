@@ -3,7 +3,7 @@ const moment = require("moment-timezone");
 
 module.exports = {
 	name: "merit",
-	description: "Give a user a merit!",
+	description: "Give a fellow wizard a merit.",
 	aliases: ["m"],
 	async execute(message, args, bot) {
 		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);

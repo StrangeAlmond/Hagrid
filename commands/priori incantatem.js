@@ -1,6 +1,6 @@
 module.exports = {
 	name: "priori",
-	description: "Display a users last spell",
+	description: "Display's the user's last spell.",
 	async execute(message, args, bot) {
 		if (args[0] !== "incantatem") return;
 

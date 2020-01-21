@@ -1,6 +1,6 @@
 module.exports = {
 	name: "clear",
-	description: "Delete messages",
+	description: "Purge a certain amount of messages from the current channel",
 	aliases: ["deletrius", "evanesco"],
 	async execute(message, args, bot) {
 		// Check if they have the proper permissions to use this command

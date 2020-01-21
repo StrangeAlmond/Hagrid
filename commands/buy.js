@@ -3,7 +3,7 @@ const items = require("../jsonFiles/shop.json");
 
 module.exports = {
 	name: "buy",
-	description: "Buy an item",
+	description: "Purchase an item.",
 	aliases: ["purchase"],
 	async execute(message, args, bot) {
 		// Stores in diagon alley

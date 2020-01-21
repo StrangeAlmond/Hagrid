@@ -4,7 +4,7 @@ const ms = require("parse-ms");
 
 module.exports = {
 	name: "silencio",
-	description: "cast silencio on a user",
+	description: "Silences the user for the given time.",
 	aliases: ["mute", "silence"],
 	async execute(message, args, bot) {
 		if (!message.member.hasPermission("MANAGE_MESSAGES")) return;

@@ -4,7 +4,7 @@ const fs = require("fs");
 
 module.exports = {
 	name: "explore",
-	description: "Explore your current location in the maze",
+	description: "Check for any hidden items at your current position in the maze",
 	async execute(message, args, bot) {
 		if (!bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "mazeInfo.itemPositions").includes(bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "mazeInfo.curPos"))) return message.channel.send("You search the area but can't seem to find anything.");
 		if (!bot.isMazeChannel(message.channel.name, message.member)) return;

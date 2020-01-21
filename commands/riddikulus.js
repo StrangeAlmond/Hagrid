@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "riddikulus",
-	description: "Banish a boggart",
+	description: "Banish a boggart.",
 	async execute(message, args, bot) {
 		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
 		if (userData.year < 3) return;

@@ -3,7 +3,7 @@ const recipes = require("../jsonFiles/potions.json");
 
 module.exports = {
 	name: "recipe",
-	description: "Get the recipe of a potion",
+	description: "View the recipe of a potion.",
 	async execute(message, args, bot) {
 		const webhookOptions = {
 			username: "Severus Snape",

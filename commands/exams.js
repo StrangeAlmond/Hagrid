@@ -3,7 +3,7 @@ const moment = require("moment-timezone");
 
 module.exports = {
 	name: "exams",
-	description: "Take your OWL",
+	description: "Take your OWL exams.",
 	aliases: ["owls"],
 	async execute(message, args, bot) {
 		// If the user isn't year 5 then don't let them use this command

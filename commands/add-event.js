@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "add-event",
-	description: "Add an event",
+	description: "Add an event to your server's list of active events.",
 	aliases: ["event-add"],
 	async execute(message, args, bot) {
 		// Make sure only ChesterLampwick and StrangeAlmond can use this command.

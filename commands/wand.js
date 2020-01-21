@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "wand",
-	description: "View your wand information",
+	description: "View your wand information.",
 	async execute(message, args, bot) {
 		const user = bot.getUserFromMention(args[0], message.guild) || message.guild.members.get(args[0]) || message.member;
 		const userData = bot.userInfo.get(`${message.guild.id}-${user.id}`);

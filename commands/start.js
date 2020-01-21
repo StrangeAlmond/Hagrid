@@ -6,7 +6,7 @@ const fs = require("fs");
 
 module.exports = {
 	name: "start",
-	description: "Start a maze sessions",
+	description: "Create a maze channel for you to explore the maze in.",
 	aliases: ["enter"],
 	async execute(message, args, bot) {
 		if (message.channel.name !== "forbidden-forest") return;

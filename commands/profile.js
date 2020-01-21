@@ -5,7 +5,7 @@ const numeral = require("numeral");
 
 module.exports = {
 	name: "profile",
-	description: "Display your profile",
+	description: "View your profile.",
 	aliases: ["p"],
 	async execute(message, args, bot) {
 		const user = bot.getUserFromMention(args[0], message.guild) || message.guild.members.get(args[0]) || message.member;

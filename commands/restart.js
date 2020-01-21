@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "restart",
-	description: "Restarts the bot",
+	description: "Restarts Hagrid.",
 	async execute(message, args, bot) {
 		if (message.author.id !== "356172624684122113") return;
 

@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "rule",
+	description: "View a list of Hogwarts rules.",
 	aliases: ["rules", "decree", "decrees"],
 	async execute(message, args, bot) {
 		if (!args[0]) {

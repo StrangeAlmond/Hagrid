@@ -3,7 +3,7 @@ const moment = require("moment-timezone");
 
 module.exports = {
 	name: "forage",
-	description: "Forage for mushrooms",
+	description: "Forage for an item in the forbidden forest.",
 	async execute(message, args, bot) {
 		const user = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
 

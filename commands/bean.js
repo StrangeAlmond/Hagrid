@@ -1,6 +1,6 @@
 module.exports = {
 	name: "bean",
-	description: "Get a flavored Jelly Bean!",
+	description: "Get/collect a flavored jelly bean from Bertie Bott's Beans.",
 	aliases: ["jellybean"],
 	async execute(message, args, bot) {
 		if (!bot.userInfo.hasProp(`${message.guild.id}-${message.author.id}`, "inventory.beans")) {

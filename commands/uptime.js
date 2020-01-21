@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "uptime",
-	description: "Check the bot's uptime",
+	description: "View Hagrid's uptime.",
 	async execute(message, args, bot) {
 		let totalSeconds = (bot.uptime / 1000);
 

@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "houses",
-	description: "See the different houses",
+	description: "View hogwart's different houses and their statistics.",
 	async execute(message, args, bot) {
 
 		const houses = ["Slytherin", "Gryffindor", "Hufflepuff", "Ravenclaw"];

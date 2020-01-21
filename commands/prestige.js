@@ -3,7 +3,7 @@ const badges = require("../jsonFiles/badges.json");
 
 module.exports = {
 	name: "prestige",
-	description: "Prestige",
+	description: "Start over with a special item.",
 	async execute(message, args, bot) {
 		if (message.author.id !== "356172624684122113" && message.author.id !== "137269251361865728") return;
 

@@ -4,7 +4,7 @@ const nodeFetch = require("node-fetch");
 
 module.exports = {
 	name: "spell",
-	description: "random spell",
+	description: "Get information about a random spell.",
 	aliases: ["randomspell"],
 	async execute(message, args, bot) {
 		let body = await nodeFetch(`https://www.potterapi.com/v1/spells?key=${botconfig.potterAPIKey}`);

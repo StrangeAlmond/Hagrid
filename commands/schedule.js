@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "schedule",
-	description: "The training schedule for the next week",
+	description: "View this months training schedule.",
 	aliases: ["training-schedule", "training_schedule"],
 	async execute(message, args, bot) {
 		const channel = await message.guild.channels.find(r => r.name === "training-schedule");

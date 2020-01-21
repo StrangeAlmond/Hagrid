@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "stats",
-	description: "Display your stats",
+	description: "View your statistics.",
 	async execute(message, args, bot) {
 		const user = bot.getUserFromMention(args[0], message.guild) || message.guild.members.get(args[0]) || message.member;
 		const usersData = bot.userInfo.get(`${message.guild.id}-${user.id}`);

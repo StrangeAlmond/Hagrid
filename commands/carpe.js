@@ -3,7 +3,7 @@ const moment = require("moment-timezone");
 
 module.exports = {
 	name: "carpe",
-	description: "Fish",
+	description: "Fish for flying seahorses.",
 	async execute(message, args, bot) {
 		// Ensure the full command is !carpe retractum
 		if (args[0] !== "retractum") return;

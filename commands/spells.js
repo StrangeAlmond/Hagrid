@@ -3,7 +3,7 @@ const spellsFile = require("../jsonFiles/spells.json");
 
 module.exports = {
 	name: "spells",
-	description: "see your learned spells",
+	description: "View your studied spells.",
 	aliases: ["learnedspells"],
 	async execute(message, args, bot) {
 		const user = bot.getUserFromMention(args[0], message.guild) || message.guild.members.get(args[0]) || message.member;

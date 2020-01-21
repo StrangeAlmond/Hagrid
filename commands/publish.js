@@ -1,6 +1,6 @@
 module.exports = {
 	name: "publish",
-	description: "Publish a newspaper",
+	description: "Publish a newspaper.",
 	async execute(message, args, bot) {
 		const permittedRoles = ["headmaster", "deputy headmaster"];
 		if (!message.member.roles.some(r => permittedRoles.includes(r.name.toLowerCase()))) return;

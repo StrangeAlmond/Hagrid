@@ -4,7 +4,7 @@ const yearsFile = require("../jsonFiles/years.json");
 
 module.exports = {
 	name: "xp",
-	description: "Check your xp",
+	description: "View your XP.",
 	aliases: ["year"],
 	async execute(message, args, bot) {
 		const user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.member;

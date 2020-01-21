@@ -4,7 +4,7 @@ const ms = require("parse-ms");
 
 module.exports = {
 	name: "about",
-	description: "About hagrid",
+	description: "About hagrid and the people who worked on it.",
 	async execute(message, args, bot) {
 		// Get the uptime
 		const uptimeObject = ms(Date.now() - bot.uptime);

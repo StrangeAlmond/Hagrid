@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "sonorus",
-	description: "cast sonorus on a member",
+	description: "Unsilences a wizard.",
 	aliases: ["unmute", "unsilence", "unsilencio"],
 	async execute(message, args, bot) {
 		if (!message.member.hasPermission("MANAGE_MESSAGES")) return;

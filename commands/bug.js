@@ -3,7 +3,7 @@ const moment = require("moment-timezone");
 
 module.exports = {
 	name: "bug",
-	description: "Report a bug",
+	description: "Report a bug.",
 	aliases: ["bugreport", "reportbug", "bugs"],
 	async execute(message, args, bot) {
 		// Create an embed for displaying the information about this bug.

@@ -5,7 +5,7 @@ const badges = require("../jsonFiles/badges.json");
 
 module.exports = {
 	name: "pet",
-	description: "Display your pet",
+	description: "View your pet, Feed your pet, or change your pet's name",
 	async execute(message, args, bot) {
 		const user = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
 

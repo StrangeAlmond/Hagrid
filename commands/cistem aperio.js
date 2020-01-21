@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "cistem",
-	description: "Open a chest",
+	description: "Open a chest.",
 	async execute(message, args, bot) {
 		// Make sure the full message is "!cistem aperio"
 		if (args[0] !== "aperio") return;

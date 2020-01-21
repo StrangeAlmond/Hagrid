@@ -8,7 +8,7 @@ let toDuelMessage;
 
 module.exports = {
 	name: "duel",
-	description: "Duel another player",
+	description: "Challenge a fellow wizard to a duel.",
 	aliases: ["battle"],
 	async execute(message, args, bot) {
 		// Grab the user they mentioned

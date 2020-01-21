@@ -4,7 +4,7 @@ const moment = require("moment-timezone");
 
 module.exports = {
 	name: "schedule-training",
-	description: "Schedule a training session",
+	description: "Schedule a training session.",
 	aliases: ["schedule-training-session"],
 	async execute(message, args, bot) {
 		if (!["356172624684122113", "137269251361865728"].includes(message.author.id)) return;

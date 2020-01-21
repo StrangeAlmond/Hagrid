@@ -3,7 +3,7 @@ const badges = require("../jsonFiles/badges.json");
 
 module.exports = {
 	name: "badge",
-	description: "The main badges command",
+	description: "The main badges command, this command allows you to get a list of badges, give someone a badge, revoke someone's badge, view your own badges, or view a specific badge's info.",
 	aliases: ["badges"],
 	async execute(message, args, bot) {
 		// List of staff roles, a user is required to have at least one of these roles for certain commands.

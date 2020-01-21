@@ -3,7 +3,7 @@ const houseCupChannel = require("../botconfig.json").houseCupChannel;
 
 module.exports = {
 	name: "crucio",
-	description: "A forbidden curse",
+	description: "The torture curse.",
 	async execute(message, args, bot) {
 		// If they're a staff member don't run the command.
 		if (["prefect", "heads of house", "head girl", "head boy", "deputy headmaster", "headmaster"].some(r => message.member.roles.some(role => r.toLowerCase() === role.name.toLowerCase()))) return;

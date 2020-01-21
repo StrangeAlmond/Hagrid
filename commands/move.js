@@ -8,7 +8,7 @@ const messageCollectors = {};
 
 module.exports = {
 	name: "move",
-	description: "Move around the maze",
+	description: "Move around the forbidden forest.",
 	async execute(message, args, bot) {
 		// Ensure they own this channel
 		if (!bot.isMazeChannel(message.channel.name, message.member)) return message.channel.send(`❌ | Use \`${bot.prefix}start\` to begin your journey!`);

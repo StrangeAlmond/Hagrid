@@ -4,7 +4,7 @@ const moment = require("moment-timezone");
 
 module.exports = {
 	name: "weekly",
-	description: "get your weekly chest",
+	description: "Claim your weekly chest.",
 	aliases: ["weeklychest"],
 	async execute(message, args, bot) {
 		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);

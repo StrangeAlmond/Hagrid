@@ -3,7 +3,7 @@ const beasts = require("../jsonFiles/beasts.json");
 
 module.exports = {
 	name: "spawn",
-	description: "Spawn an encounter",
+	description: "Spawn a dementor, boggart, chest, or training session.",
 	async execute(message, args, bot) {
 		if (!["356172624684122113", "137269251361865728"].includes(message.author.id)) return;
 		if (!args[0]) return message.channel.send("Specify what to spawn!");

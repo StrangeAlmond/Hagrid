@@ -4,7 +4,7 @@ const moment = require("moment-timezone");
 
 module.exports = {
 	name: "daily",
-	description: "Gives you your daily sickle",
+	description: "Gives you your daily items.",
 	aliases: ["d"],
 	async execute(message, args, bot) {
 		// Get the user's object from the db

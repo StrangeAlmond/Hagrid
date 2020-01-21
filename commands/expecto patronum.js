@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "expecto",
-	description: "Expecto Patronum",
+	description: "Cast the patronus charm.",
 	async execute(message, args, bot) {
 		// Make sure the whole message is "!expecto patronum"
 		if (args[0] !== "patronum") return;

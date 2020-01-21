@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "remove-event",
-	description: "Remove an event",
+	description: "Remove an event from your server's list of active events.",
 	async execute(message, args, bot) {
 		if (!["356172624684122113", "137269251361865728"].includes(message.author.id)) return;
 

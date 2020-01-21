@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "points",
-	description: "Give points to a team/user",
+	description: "Give house points to house or user.",
 	aliases: ["givepoints"],
 	async execute(message, args, bot) {
 		const houses = ["slytherin", "gryffindor", "hufflepuff", "ravenclaw"];

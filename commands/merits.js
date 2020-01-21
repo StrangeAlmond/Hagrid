@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "merits",
-	description: "Display how many merits you have",
+	description: "View how many merits you have.",
 	async execute(message, args, bot) {
 		const user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.member;
 		const uMerits = bot.userInfo.get(`${message.guild.id}-${user.id}`, "stats.merits");

@@ -3,7 +3,7 @@ const moment = require("moment-timezone");
 
 module.exports = {
 	name: "pensieve",
-	description: "Use the pensieve spell",
+	description: "Reminds you of a message of your choosing at the given time.",
 	aliases: ["remindme", "remembrall"],
 	async execute(message, args, bot) {
 		if (!args[0]) return message.channel.send(`Specify what to remind you! Proper Usage: \`${bot.prefix}pensieve <reminder> <days:hours:minutes>\``);

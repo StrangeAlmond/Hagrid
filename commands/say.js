@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "say",
-	description: "Copy a user's message",
+	description: "Send's a copy of the user's message as Hagrid.",
 	async execute(message, args, bot) {
 		if (!["356172624684122113", "137269251361865728"].includes(message.author.id)) return;
 

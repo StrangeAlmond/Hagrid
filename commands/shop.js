@@ -3,7 +3,7 @@ const items = require("../jsonFiles/shop.json");
 
 module.exports = {
 	name: "shop",
-	description: "Open the shop",
+	description: "View a shop's items.",
 	async execute(message, args, bot) {
 		const shops = {
 			"Diagon Alley": {

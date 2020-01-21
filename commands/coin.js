@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 module.exports = {
 	name: "coin",
-	description: "Flip a coin",
+	description: "Flip a coin.",
 	aliases: ["flipcoin", "coinflip"],
 	async execute(message, args, bot) {
 		// Choices

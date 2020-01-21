@@ -3,7 +3,7 @@ const sm = require("string-similarity");
 
 module.exports = {
 	name: "inventory",
-	description: "Check your inventory",
+	description: "View your inventory.",
 	aliases: ["inv", "bag", "items", "things", "stuff", "mystuff"],
 	async execute(message, args, bot) {
 

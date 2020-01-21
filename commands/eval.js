@@ -3,7 +3,7 @@ const botConfig = require("../botconfig.json");
 
 module.exports = {
 	name: "eval",
-	description: "Evaluate the given code.",
+	description: "An owner-only command, this command evaluates the given code.",
 	aliases: ["evaluate"],
 	async execute(message, args, bot) {
 		// Only I can use this command

@@ -5,7 +5,7 @@ const badges = require("../jsonFiles/badges.json");
 
 module.exports = {
 	name: "brew",
-	description: "Brew a potion",
+	description: "Brew a potion.",
 	async execute(message, args, bot) {
 		// The webhook options object we'll use when sending a webhook as Severus Snape.
 		const webhookOptions = {
