@@ -14,8 +14,8 @@ module.exports = {
 		const lastDaily = userData.cooldowns.lastDaily;
 
 		// Sickles and training tokens given
-		const sickles = 6;
-		const trainingTokens = 1;
+		let sickles = 6;
+		let trainingTokens = 1;
 
 		// If they've already gotten their daily today
 		if (lastDaily === moment.tz("America/Los_Angeles").format("l")) {
@@ -27,6 +27,14 @@ module.exports = {
 				username: "Gringotts Goblin",
 				avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/e/e3/Gringotts_Head_Goblin.jpg/revision/latest/scale-to-width-down/350?cb=20100214234030"
 			});
+		}
+
+		if (userData.stats.activeEffects.some(e => e.type == "luck")) {
+			const chance = Math.floor(Math.random() * 100);
+
+			if (chance <= 30) {
+				sickles += 2;
+			}
 		}
 
 		// Give them <sickles> amount of sickles

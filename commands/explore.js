@@ -12,7 +12,7 @@ module.exports = {
 		const itemObject = Object.values(items).find(i => i.tiles.includes(bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "mazeInfo.curPos")));
 
 		const item = itemObject.possibleItems[Math.floor(Math.random() * itemObject.possibleItems.length)];
-		const amount = parseInt(item.split(/ +/)[0]);
+		let amount = parseInt(item.split(/ +/)[0]);
 		const itemKey = item.split(/ +/)[1];
 
 		if (!bot.userInfo.hasProp(`${message.guild.id}-${message.author.id}`, itemKey)) bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 0, itemKey);
@@ -24,6 +24,14 @@ module.exports = {
 		itemName = itemName.replace(/([A-Z])/g, " $1").replace(/^./, function (str) {
 			return str.toUpperCase();
 		});
+
+		if (bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "stats.activeEffects").some(e => e.type == "luck")) {
+			const chance = Math.floor(Math.random() * 100);
+
+			if (chance <= 60) {
+				amount++;
+			}
+		}
 
 		message.channel.send(`You discover a bag in the corner, someone must have left it behind. You open it and find ${amount} ${itemName}`);
 

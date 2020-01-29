@@ -61,19 +61,27 @@ module.exports = {
 			let authorDodgeChance = 0;
 			let toDuelDodgeChance = 0;
 
-			const authorNumber = bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "year");
-			const toDuelNumber = bot.userInfo.get(`${message.guild.id}-${toDuel.id}`, "year");
+			const authorYear = bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "year");
+			const toDuelYear = bot.userInfo.get(`${message.guild.id}-${toDuel.id}`, "year");
 
 			let authorDodged = false;
 			let toDuelDodged = false;
 
-			if (authorNumber > toDuelNumber) {
-				authorDodgeChance = (authorNumber - toDuelNumber) * 10;
+			if (authorYear > toDuelYear) {
+				authorDodgeChance = (authorYear - toDuelYear) * 10;
 				toDuelDodgeChance = 0;
 			}
-			if (toDuelNumber > authorNumber) {
-				toDuelDodgeChance = (toDuelNumber - authorNumber) * 10;
+			if (toDuelYear > authorYear) {
+				toDuelDodgeChance = (toDuelYear - authorYear) * 10;
 				authorDodgeChance = 0;
+			}
+
+			if (bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "stats.activeEffects").some(e => e.type == "luck")) {
+				authorDodgeChance = 100;
+			}
+
+			if (bot.userInfo.get(`${message.guild.id}-${toDuel.id}`, "stats.activeEffects").some(e => e.type == "luck")) {
+				toDuelDodgeChance = 100;
 			}
 
 			if (message.author.id === "137269251361865728") {

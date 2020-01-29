@@ -41,7 +41,10 @@ module.exports = {
 		};
 
 		// Get their brew chance with a fancy math equation.
-		const brewChance = brewChances[user.cauldron] + ((user.year - spells.find(s => s.spellName.toLowerCase() === potionName.toLowerCase()).yearRequired) * 2) + (user.stats.luck);
+		let brewChance = brewChances[user.cauldron] + ((user.year - spells.find(s => s.spellName.toLowerCase() === potionName.toLowerCase()).yearRequired) * 2) + (user.stats.luck);
+
+		if (bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "stats.activeEffects").some(e => e.type == "luck")) brewChance = 100; // Brew chance is 100% if they've used a felix felicis potion
+
 		// Generate a random number.
 		const chance = Math.floor(Math.random() * 100);
 

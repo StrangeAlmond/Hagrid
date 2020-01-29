@@ -101,7 +101,7 @@ module.exports = {
 			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, moment.tz("America/Los_Angeles").format("l"), "mazeInfo.lastForage");
 		}
 
-		if (chanceNumber <= 10) {
+		if (chanceNumber <= 10 || user.stats.activeEffects.some(e => e.type === "luck")) {
 			if (!bot.userInfo.hasProp(`${message.guild.id}-${message.author.id}`, `inventory.${forageItem.key}`)) bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 0, `inventory.${forageItem.key}`);
 
 			bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, `inventory.${forageItem.key}`);
