@@ -264,41 +264,7 @@ module.exports = async (bot, message) => {
 
 	}
 
-	if (userData.year < 7 && userData.xp > years[userData.year + 1].xp) {
-		const lootbox = years[userData.year + 1].lootbox;
-
-		for (let [key, value] of Object.entries(lootbox)) {
-			if (!bot.userInfo.hasProp(`${message.guild.id}-${message.author.id}`, `inventory.${key}`)) bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 0, `inventory.${key}`);
-			bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", value, `inventory.${key}`);
-		}
-
-		const roleNames = {
-			1: "First Year",
-			2: "Second Year",
-			3: "Third Year",
-			4: "Fourth Year",
-			5: "Fifth Year",
-			6: "Sixth Year",
-			7: "Seventh Year"
-		};
-
-		const role = message.guild.roles.find(r => r.name.toLowerCase() === roleNames[userData.year].toLowerCase());
-		const newRole = message.guild.roles.find(r => r.name.toLowerCase() === roleNames[userData.year + 1].toLowerCase());
-		message.member.removeRole(role);
-		message.member.addRole(newRole);
-
-		bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "year");
-
-		bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", 2, "stats.health");
-		bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", 2, "stats.maxHealth");
-
-		bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "stats.defense");
-		bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "stats.attack");
-
-		const lootboxContent = Object.entries(lootbox).map(i => `**${i[0].replace(/([A-Z])/g, " $1").replace(/^./, str => str.toUpperCase())}:** ${i[1]}`).join("\n");
-
-		message.channel.send(`Congratulations ${message.member}! You've just leveled up to year ${userData.year + 1} and have a achieved a tier ${userData.year + 1} lootbox with the below content:\n${lootboxContent}`);
-	}
+	if (userData.year < 7 && userData.xp > years[userData.year + 1].xp) bot.levelUp(message.member, message.channel);
 
 	if (!message.content.startsWith(bot.prefix)) return;
 

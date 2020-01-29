@@ -1,26 +1,42 @@
 const Discord = require("discord.js");
 const moment = require("moment-timezone");
+const examInfo = require("../jsonFiles/exams.json");
 
 module.exports = {
 	name: "exams",
-	description: "Take your OWL exams.",
-	aliases: ["owls"],
+	description: "Take either your OWL or NEWT exams.",
 	async execute(message, args, bot) {
-		// If the user isn't year 5 then don't let them use this command
-		if (bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "year") !== 5) return;
+		const examType = args[0];
+		if (!examType || !["owls"].includes(examType)) return message.channel.send(`Incorrect Usage. Proper Usage: \`${bot.prefix}exams [owls/newts]\``);
+
+		// Get the user's data from the db
+		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
+
+		if (examInfo[examType].requiredYear && examInfo[examType].requiredYear != userData.year) return;
 
 		// Valid weeks that users can use this command in
 		const validWeeks = [12, 13, 25, 26, 38, 39, 51, 52];
 		// Make sure the current week is equal to one of the above weeks
 		if (!validWeeks.includes(moment().tz("America/Los_Angeles").week())) return;
 
-		// Get the user's data from the db
-		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
 		// Amount of spells the user has learned
 		const amountOfSpellsLearned = userData.studiedSpells.length;
+		const gradeInfo = examInfo[examType].grades;
 
 		// Ask them if they're sure they want to take their exams
-		message.channel.send("**__O.W.L.s__**\n\nO - Outstanding (25 spells/potions learned)\nE - Exceeds Expectations (23 spells/potions learned)\nA - Acceptable (21 spells/potions learned)\nFailing Grades P - Poor (15-20 spells/potions learned)\nD - Dreadful (6-14 spells/potions learned)\nT - Troll (0-5 spells/potions learned)\n\n**Are you sure you'd like to take your O.W.L Exams?**").then(async msg => {
+		message.channel.send(`**${examType.split("").map(i => i.toUpperCase()).join(".")}**
+
+		__Passing Grades:__
+		O - Outstanding (${gradeInfo.O} spells/potions learned)
+		E - Exceeds Expectations (${gradeInfo.E} spells/potions learned)
+		A - Acceptable (${gradeInfo.A} spells/potions learned)
+
+		__Failing Grades:__
+		P - Poor (${gradeInfo.D + 1}-${gradeInfo.P} spells/potions learned)
+		D - Dreadful (${gradeInfo.T + 1}-${gradeInfo.D} spells/potions learned)
+		T - Troll (0-${gradeInfo.T} spells/potions learned)
+
+**Are you sure you'd like to take your ${examType.split("").map(i => i.toUpperCase()).join(".")} Exams?**`).then(async msg => {
 			// React with ✅ and ❌
 			await msg.react("✅");
 			await msg.react("❌");
@@ -43,34 +59,33 @@ module.exports = {
 				const passingGrades = ["A - Acceptable", "E - Exceeds Expectations", "O - Outstanding"];
 
 				// Determine their grade
-				if (amountOfSpellsLearned <= 5) {
+				if (amountOfSpellsLearned <= gradeInfo.T) {
 					grade = "T - Troll";
-				} else if (amountOfSpellsLearned <= 14) {
+				} else if (amountOfSpellsLearned <= gradeInfo.D) {
 					grade = "D - Dreadful";
-				} else if (amountOfSpellsLearned <= 20) {
+				} else if (amountOfSpellsLearned <= gradeInfo.P) {
 					grade = "P - Poor";
-				} else if (amountOfSpellsLearned <= 21) {
+				} else if (amountOfSpellsLearned <= gradeInfo.A) {
 					grade = "A - Acceptable";
-				} else if (amountOfSpellsLearned <= 23) {
+				} else if (amountOfSpellsLearned <= gradeInfo.E) {
 					grade = "E - Exceeds Expectations";
-				} else if (amountOfSpellsLearned <= 25) {
+				} else if (amountOfSpellsLearned <= gradeInfo.O) {
 					grade = "O - Outstanding";
 				}
 
 				// If they have a passing grade
 				if (passingGrades.includes(grade)) {
 					// Set their grade
-					bot.userInfo.set(`${message.guild.id}-${message.author.id}`, grade, "stats.owls");
+					bot.userInfo.set(`${message.guild.id}-${message.author.id}`, grade, `stats.${examType}`);
 
 					// Let them know they've leveled up
-					await message.channel.send("You have passed your O.W.Ls and have been promoted to year 6.");
+					await message.channel.send(examInfo[examType].passingMessage);
 
-					// Execute the level up function
-					bot.emit("levelUp", message.member, message.channel);
+					if (examType === "owls") bot.levelUp(message.member, message.channel);
 				} else {
 					// They fail horribly
-					bot.userInfo.set(`${message.guild.id}-${message.author.id}`, grade, "stats.owls");
-					await message.channel.send("You have failed your O.W.Ls. Come back when you've actually studied.");
+					bot.userInfo.set(`${message.guild.id}-${message.author.id}`, grade, `stats.${examType}`);
+					await message.channel.send(examInfo[examType].failingMessage);
 				}
 			});
 		});

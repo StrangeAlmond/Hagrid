@@ -25,6 +25,7 @@ module.exports = async bot => {
 	bot.spawnTrainingSession = (channel, spell) => functions.spawnTrainingSession(channel, bot, spell);
 
 	bot.processTrainingSession = (member, object, channel) => functions.processTrainingSession(member, object, channel, bot);
+	bot.levelUp = (member, channel) => functions.levelUp(bot, member, channel);
 
 	bot.toCamelCase = functions.toCamelCase;
 	bot.fromCamelCase = functions.fromCamelCase;
