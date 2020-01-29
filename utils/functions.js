@@ -329,6 +329,9 @@ module.exports = {
 				id: member.id,
 				damageDealt: 0
 			});
+
+			const newRateLimit = 1 * object.users.length;
+			channel.setRateLimitPerUser(newRateLimit, "Dynamic slow mode.");
 		}
 
 		const user = object.users.find(u => u.id === member.id);
@@ -391,6 +394,8 @@ module.exports = {
 
 			guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel === object.channel), 1);
 			bot.guildInfo.set(guild.id, guildData.spawns, "spawns");
+
+			channel.setRateLimitPerUser(0, "Training session ended.");
 
 			webhook.send(`Great job ${member}! you defeated the ${object.beast.name.toLowerCase()}, as a result, you have been awarded one sickle.`);
 
