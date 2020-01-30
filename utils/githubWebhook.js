@@ -6,7 +6,7 @@ const logger = require("./logger.js");
 const botconfig = require("../botconfig.json");
 
 const secret = botconfig.githubWebhookSecret;
-const repo = "/home/strangealmond/Discord-Bots/Hagrid";
+const repo = "~/Discord-Bots/Hagrid";
 
 function createServer() {
 	http.createServer((req, res) => {
