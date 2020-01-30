@@ -16,6 +16,9 @@ bot.guildInfo = new Enmap({
 	name: "guilds"
 });
 
+const githubWebook = require("./utils/githubWebhook.js");
+githubWebook();
+
 const fs = require("fs");
 
 // Create a discord collection for commands and get an array of all the commands.
