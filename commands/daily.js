@@ -29,10 +29,10 @@ module.exports = {
 			});
 		}
 
-		if (userData.stats.activeEffects.some(e => e.type == "luck")) {
+		if (userData.stats.activeEffects.some(e => e.type == "luck")) { // If the user has used a felix felicis potion
 			const chance = Math.floor(Math.random() * 100);
 
-			if (chance <= 30) {
+			if (chance <= 30) { // Give them a 30% chance to get 2 extra sickles
 				sickles += 2;
 			}
 		}
