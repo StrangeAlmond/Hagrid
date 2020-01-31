@@ -74,7 +74,9 @@ module.exports = async bot => {
 
 			if (guild.scheduledTrainingSessions.some(s => Date.now() >= s.time)) { // Training Sessions
 				const trainingSession = guild.scheduledTrainingSessions.find(ts => Date.now() >= ts.time);
-				bot.guildInfo.removeFrom(guild.guild, "scheduledTrainingSessions", trainingSession);
+
+				guild.scheduledTrainingSessions.splice(guild.scheduledTrainingSessions.findIndex(s => s.id == trainingSession.id), 1); // Removes the training session from the list of scheduled training sessions
+				bot.guildInfo.set(guild.guild, guild.scheduledTrainingSessions, "scheduledTrainingSessions");
 
 				const trainingChannel = bot.guilds.get(guild.guild).channels.find(c => c.name === "training-grounds");
 				if (!trainingChannel) return;
