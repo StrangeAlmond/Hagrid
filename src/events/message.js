@@ -80,7 +80,7 @@ module.exports = async (bot, message) => {
 
 		bot.quickWebhook(message.channel, "Please don't use muggle profanity in the wizard world!", {
 			username: "Dolores Umbridge",
-			avatar: "./images/webhook avatars/doloresUmbridge.png",
+			avatar: "./images/webhook_avatars/doloresUmbridge.png",
 			deleteAfterUse: true
 		}).then(msg => msg.delete(5000));
 
@@ -100,7 +100,7 @@ module.exports = async (bot, message) => {
 
 			bot.quickWebhook(logChannel, logEmbed, {
 				username: "Dolores Umbridge",
-				avatar: "./images/webhook avatars/doloresUmbridge.png",
+				avatar: "./images/webhook_avatars/doloresUmbridge.png",
 				deleteAfterUse: true
 			});
 		}
@@ -131,22 +131,22 @@ module.exports = async (bot, message) => {
 		const webhookObjects = {
 			slytherin: {
 				username: "Bloody Baron",
-				avatar: "./images/webhook avatars/bloodyBaron.jpg"
+				avatar: "./images/webhook_avatars/bloodyBaron.jpg"
 			},
 
 			gryffindor: {
 				username: "Nearly Headless Nick",
-				avatar: "./images/webhook avatars/nearlyHeadlessNick.jpg"
+				avatar: "./images/webhook_avatars/nearlyHeadlessNick.jpg"
 			},
 
 			hufflepuff: {
 				username: "Fat Friar",
-				avatar: "./images/webhook avatars/fatFriar.png"
+				avatar: "./images/webhook_avatars/fatFriar.png"
 			},
 
 			ravenclaw: {
 				username: "The Grey Lady",
-				avatar: "./images/webhook avatars/theGreyLady.jpg"
+				avatar: "./images/webhook_avatars/theGreyLady.jpg"
 			}
 		};
 
@@ -212,22 +212,22 @@ module.exports = async (bot, message) => {
 					const webhookObjects = {
 						slytherin: {
 							username: "Bloody Baron",
-							avatar: "./images/webhook avatars/bloodyBaron.jpg"
+							avatar: "./images/webhook_avatars/bloodyBaron.jpg"
 						},
 
 						gryffindor: {
 							username: "Nearly Headless Nick",
-							avatar: "./images/webhook avatars/nearlyHeadlessNick.jpg"
+							avatar: "./images/webhook_avatars/nearlyHeadlessNick.jpg"
 						},
 
 						hufflepuff: {
 							username: "Fat Friar",
-							avatar: "./images/webhook avatars/fatFriar.png"
+							avatar: "./images/webhook_avatars/fatFriar.png"
 						},
 
 						ravenclaw: {
 							username: "The Grey Lady",
-							avatar: "./images/webhook avatars/theGreyLady.jpg"
+							avatar: "./images/webhook_avatars/theGreyLady.jpg"
 						}
 					};
 

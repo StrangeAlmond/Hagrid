@@ -34,27 +34,27 @@ module.exports = {
 			const webhookOptions = { // Unique webhook options based on the item being bought
 				wand: {
 					username: "Ollivanders",
-					avatar: "./images/webhook avatars/ollivanders.jpg"
+					avatar: "./images/webhook_avatars/ollivanders.jpg"
 				},
 
 				books: {
 					username: "Flourish and Blotts",
-					avatar: "./images/webhook avatars/flourishAndBlotts.png"
+					avatar: "./images/webhook_avatars/flourishAndBlotts.png"
 				},
 
 				clothes: {
 					username: "Madam Malkins",
-					avatar: "./images/webhook avatars/madamMalkins.png"
+					avatar: "./images/webhook_avatars/madamMalkins.png"
 				},
 
 				cauldron: {
 					username: "Potages",
-					avatar: "./images/webhook avatars/potages.png"
+					avatar: "./images/webhook_avatars/potages.png"
 				},
 
 				supplies: {
 					username: "Wiseacres",
-					avatar: "./images/webhook avatars/wiseacres.png"
+					avatar: "./images/webhook_avatars/wiseacres.png"
 				}
 			};
 

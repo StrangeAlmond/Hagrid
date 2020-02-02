@@ -35,7 +35,7 @@ module.exports = {
 		// Send the embed
 		return bot.quickWebhook(channel, memberEmbed, {
 			username: "House Cup",
-			avatar: "./images/webhook avatars/houseCup.png",
+			avatar: "./images/webhook_avatars/houseCup.png",
 			deleteAfterUse: true
 		});
 	},

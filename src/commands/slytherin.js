@@ -22,7 +22,7 @@ module.exports = {
 		// Sorting hat chooses <house>
 		bot.quickWebhook(message.channel, `I choose... ${house.charAt(0).toUpperCase() + house.slice(1)}!`, {
 			username: "Sorting Hat",
-			avatar: "./images/webhook avatars/sortingHat.png"
+			avatar: "./images/webhook_avatars/sortingHat.png"
 		});
 
 		// Get the emoji for that house

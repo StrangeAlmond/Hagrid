@@ -7,7 +7,7 @@ module.exports = {
 	async execute(message, args, bot) {
 		const webhookOptions = {
 			username: "Severus Snape",
-			avatar: "./images/webhook avatars/severusSnape.jpg"
+			avatar: "./images/webhook_avatars/severusSnape.jpg"
 		};
 
 		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);

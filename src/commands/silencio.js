@@ -57,7 +57,7 @@ module.exports = {
 
 		bot.quickWebhook(logChannel, embed, {
 			username: "Dolores Umbridge",
-			avatar: "./images/webhook avatars/doloresUmbridge.png"
+			avatar: "./images/webhook_avatars/doloresUmbridge.png"
 		});
 
 		message.channel.send(`${userToMute.displayName} has been ${!temporary ? "permanently muted" : `muted for **${timeObject.hours} hours**, **${timeObject.minutes} minutes**, and **${timeObject.seconds} seconds**`} for **${reason}**`);

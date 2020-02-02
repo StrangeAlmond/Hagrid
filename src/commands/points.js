@@ -52,14 +52,14 @@ module.exports = {
 		channels.forEach(channel => {
 			bot.quickWebhook(channel, embed, {
 				username: "House Cup",
-				avatar: "./images/webhook avatars/houseCup.png"
+				avatar: "./images/webhook_avatars/houseCup.png"
 			});
 		});
 
 		function errorMessage(msg) {
 			return bot.quickWebhook(message.channel, msg, {
 				username: "House Cup",
-				avatar: "./images/webhook avatars/houseCup.png"
+				avatar: "./images/webhook_avatars/houseCup.png"
 			});
 		}
 	},

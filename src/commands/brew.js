@@ -10,7 +10,7 @@ module.exports = {
 		// The webhook options object we'll use when sending a webhook as Severus Snape.
 		const webhookOptions = {
 			username: "Severus Snape",
-			avatar: "./images/webhook avatars/severusSnape.jpg"
+			avatar: "./images/webhook_avatars/severusSnape.jpg"
 		};
 
 		// Make sure they specify a potion to brew.

@@ -18,7 +18,7 @@ module.exports = {
 
 		const webhookOptions = {
 			username: "Dolores Umbridge",
-			avatar: "./images/webhook avatars/doloresUmbridge.png"
+			avatar: "./images/webhook_avatars/doloresUmbridge.png"
 		};
 
 		const mutedRole = await message.guild.roles.find(r => r.name === "Silenced");

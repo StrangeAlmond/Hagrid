@@ -20,12 +20,12 @@ module.exports = {
 
 		bot.quickWebhook(message.channel, "Your message has been published.", {
 			username: "Rita Skeeter",
-			avatar: "./images/webhook avatars/ritaSkeeter.jpg"
+			avatar: "./images/webhook_avatars/ritaSkeeter.jpg"
 		});
 
 		bot.quickWebhook(publishChannel, messageContent, {
 			username: "Rita Skeeter",
-			avatar: "./images/webhook avatars/ritaSkeeter.jpg"
+			avatar: "./images/webhook_avatars/ritaSkeeter.jpg"
 		});
 	}
 };
