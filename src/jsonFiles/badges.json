@@ -1,0 +1,106 @@
+ [{
+     "name": "Beginners Luck Badge",
+     "description": "Successfully brew a potion for the first time",
+     "id": "1100",
+     "emojiID": "521027195356053504",
+     "credential": "2hD@&($t=Z'Tjf1u1a{F"
+   },
+   {
+     "name": "Potions Club Star Badge",
+     "description": "Brew 3 potions",
+     "id": "1101",
+     "emojiID": "521027193703235590",
+     "credential": "5Mz9ZC^7.HktA79]g5Pr"
+   },
+   {
+     "name": "Master Potioneer Bronze Badge",
+     "description": "Brew 50 potions",
+     "id": "1102",
+     "emojiID": "545727068567109664",
+     "credential": "Sq$hQg4Gl{sm@.!iIAbV"
+   },
+   {
+     "name": "Master Potioneer Silver Badge",
+     "description": "Brew 200 potions",
+     "id": "1103",
+     "emojiID": "545727061264826368",
+     "credential": "ZJPy}tQ8k0[6~xebRq{I"
+   },
+   {
+     "name": "Master Potioneer Gold Badge",
+     "description": "Brew 500 potions",
+     "id": "1104",
+     "emojiID": "545727068344680451",
+     "credential": "b%jUoEFc[e,{%[(Eu.'G"
+   },
+   {
+     "name": "Dueling Veteran Bronze Badge",
+     "description": "Win 50 duels.",
+     "id": "1105",
+     "emojiID": "545727067581579284",
+     "credential": "aAQS!;X^OnVW=Kn-eqQc"
+   },
+   {
+     "name": "Dueling Veteran Silver Badge",
+     "description": "Win 200 duels.",
+     "id": "1106",
+     "emojiID": "545727059264274448",
+     "credential": "8R&&6qez!nEm}Siz8sQ0"
+   },
+   {
+     "name": "Dueling Veteran Gold Badge",
+     "description": "Win 500 duels.",
+     "id": "1107",
+     "emojiID": "545727069049323531",
+     "credential": "w;Yg]8Z~c$Ws1-hm)qcX"
+   },
+   {
+     "name": "Dueling Club Champion Badge",
+     "description": "Win a house dueling tournament.",
+     "id": "1108",
+     "emojiID": "521027196165554195",
+     "credential": "~5a_fn)3oRFMCAi3zOIF"
+   },
+   {
+     "name": "Master Duelist Badge",
+     "description": "Win a dueling tournament.",
+     "id": "1109",
+     "emojiID": "521027195481620490",
+     "credential": "CAp_T.R1ITzx]i#^HX_,"
+   },
+   {
+     "name": "Hagrid Badge",
+     "description": "Firs' thing yeh gotta know abou' Hippogriffs...",
+     "id": "1110",
+     "emojiID": "545730478448050186",
+     "credential": ";pr2)_GO2jnXkg%5ak)1"
+   },
+   {
+     "name": "Care of Magical Creatures Badge",
+     "description": "Reach maximum pet level.",
+     "id": "1111",
+     "emojiID": "521028433443291137",
+     "credential": "KV$P2s2UQ_n1$E)Sw;U4"
+   },
+   {
+     "name": "Reflex Badge",
+     "description": "Win a duel without getting hit.",
+     "id": "1112",
+     "emojiID": "521027195775221771",
+     "credential": "JFCyLLtafN4},8'CS_ob"
+   },
+   {
+     "name": "Ilvermorny Badge",
+     "description": "Awarded for visiting Ilvermorny on 4/1/2019",
+     "id": "1113",
+     "emojiID": "562434347328602112",
+     "credential": "0.C&V,c7_Q5zU;8xZA!K"
+   },
+   {
+     "name": "Deathly Hallows Badge",
+     "description": "Awarded for mastering the Deathly Hallows.",
+     "id": "1114",
+     "emojiID": "565778535709671435",
+     "credential": "Rrg!6WaYx$jqB-px+L%i"
+   }
+ ]

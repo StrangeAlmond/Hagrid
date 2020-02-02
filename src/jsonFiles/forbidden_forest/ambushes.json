@@ -1,0 +1,7 @@
+[{
+  "name": "Acromantula",
+  "spawnMessage": "You were ambushed by an Acromantula. You stumble around, feeling weak as the poison courses through your veins. You'll need to find an antidote soon.",
+  "ambushType": "poison",
+  "poisonType": "common",
+  "tiles": ["35.16", "40.10"]
+}]
