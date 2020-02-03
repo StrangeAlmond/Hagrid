@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const moment = require("moment-timezone");
+const items = require("../jsonFiles/forbidden_forest/forageLocations.json");
 
 module.exports = {
 	name: "forage",
@@ -11,54 +12,14 @@ module.exports = {
 		if (user.mazeInfo.inFight) return;
 		if (!bot.isMazeChannel(message.channel.name, message.member)) return;
 
-		if (user.mazeInfo.dailyForagesLeft <= 0 && moment.tz("America/Los_Angeles").format("l") === user.mazeInfo.lastForage) return message.channel.send("It looks like this area has been picked clean already. We'd better wait a little bit to let it grow back.");
+		const today = moment.tz("America/Los_Angeles").format("l");
 
-		if (moment.tz("America/Los_Angeles").format("l") !== bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "mazeInfo.lastForage")) {
+		if (user.mazeInfo.dailyForagesLeft <= 0 && today === user.mazeInfo.lastForage) return message.channel.send("It looks like this area has been picked clean already. We'd better wait a little bit to let it grow back.");
+
+		if (today !== bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "mazeInfo.lastForage")) {
 			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 100, "mazeInfo.dailyForagesLeft");
-			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, moment.tz("America/Los_Angeles").format("l"), "mazeInfo.lastForage");
+			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, today, "mazeInfo.lastForage");
 		}
-
-		const items = [{
-				name: "a Bursting Mushroom",
-				key: "burstingMushrooms",
-				location: "38.08"
-			},
-			{
-				name: "Mistletoe Berries",
-				key: "mistletoeBerries",
-				location: "42.16"
-			},
-			{
-				name: "Sprig of Mint",
-				key: "sprigOfMint",
-				location: "42.08"
-			},
-			{
-				name: "Wiggenweld Bark",
-				key: "wiggenweldBark",
-				location: "36.12"
-			},
-			{
-				name: "a pinch of Unicorn Horn",
-				key: "pinchOfUnicornHorn",
-				location: "35.13"
-			},
-			{
-				name: "Purple Thorn Blossoms",
-				key: "purpleThornBlossoms",
-				location: "33.01"
-			},
-			{
-				name: "Arm Bones",
-				key: "armBone",
-				location: "21.09"
-			},
-			{
-				name: "Fire Seeds",
-				key: "fireSeeds",
-				location: "24.08"
-			}
-		];
 
 		const forageItem = items.find(i => i.location === user.mazeInfo.curPos);
 		if (!forageItem) return message.channel.send("There's nothing to forage for here!");

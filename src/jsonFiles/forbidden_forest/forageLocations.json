@@ -1,0 +1,41 @@
+[{
+		"name": "a Bursting Mushroom",
+		"key": "burstingMushrooms",
+		"location": "38.08"
+	},
+	{
+		"name": "Mistletoe Berries",
+		"key": "mistletoeBerries",
+		"location": "42.16"
+	},
+	{
+		"name": "Sprig of Mint",
+		"key": "sprigOfMint",
+		"location": "42.08"
+	},
+	{
+		"name": "Wiggenweld Bark",
+		"key": "wiggenweldBark",
+		"location": "36.12"
+	},
+	{
+		"name": "a pinch of Unicorn Horn",
+		"key": "pinchOfUnicornHorn",
+		"location": "35.13"
+	},
+	{
+		"name": "Purple Thorn Blossoms",
+		"key": "purpleThornBlossoms",
+		"location": "33.01"
+	},
+	{
+		"name": "Arm Bones",
+		"key": "armBone",
+		"location": "21.09"
+	},
+	{
+		"name": "Fire Seeds",
+		"key": "fireSeeds",
+		"location": "24.08"
+	}
+]
