@@ -1,11 +1,7 @@
 const functions = require("../utils/functions.js");
-const logger = require("../utils/logger.js");
 const quickWebhook = require("../utils/quickWebhook.js");
-
 const botconfig = require("../botconfig.json");
 const prefix = botconfig.prefix;
-
-const chalk = require("chalk");
 
 module.exports = async bot => {
 	// Variables
@@ -26,7 +22,9 @@ module.exports = async bot => {
 
 	bot.processTrainingSession = (member, object, channel) => functions.processTrainingSession(member, object, channel, bot);
 	bot.levelUp = (member, channel) => functions.levelUp(bot, member, channel);
+	bot.useResurrectionStone = (member, channel) => functions.useResurrectionStone(bot, member, channel);
 
+	bot.awaitResponse = functions.awaitResponse;
 	bot.toCamelCase = functions.toCamelCase;
 	bot.fromCamelCase = functions.fromCamelCase;
 	bot.quickWebhook = quickWebhook;
@@ -34,11 +32,6 @@ module.exports = async bot => {
 	bot.getUserFromMention = functions.getUserFromMention;
 	bot.capitalizeFirstLetter = functions.capitalizeFirstLetter;
 	bot.isMazeChannel = functions.isMazeChannel;
-
-	// Remove anyone that was in a fight in the maze from their fight.
-	bot.userInfo.array().filter(u => u.mazeInfo.inFight).forEach(user => {
-		bot.userInfo.set(`${user.guild}-${user.user}`, false, "mazeInfo.inFight");
-	});
 
 	// Set the bots activity
 	bot.user.setActivity("Just Started, Sorry for the downtime!");
@@ -49,6 +42,12 @@ module.exports = async bot => {
 	setTimeout(async () => {
 		bot.user.setActivity(`!help | Version ${botconfig.version}`);
 	}, 300000);
+
+	// Remove users from their fights in the maze
+	const usersInFight = bot.userInfo.array().filter(u => u.mazeInfo.inFight);
+	usersInFight.forEach(user => {
+		bot.userInfo.set(`${user.guild}-${user.user}`, false, "mazeInfo.inFight");
+	});
 
 	const faintedUsers = bot.userInfo.array().filter(u => u.stats.fainted);
 	faintedUsers.forEach(user => {

@@ -1,0 +1,54 @@
+{
+	"billywigStingSlime": {
+		"buy": "24 knuts",
+		"sell": "4 knuts"
+	},
+	"boomBerryJuice": {
+		"buy": "16 knuts",
+		"sell": "2 knuts"
+	},
+	"bottleOfHorklumpJuice": {
+		"buy": "24 knuts",
+		"sell": "4 knuts"
+	},
+	"chizpurfleFangs": {
+		"buy": "16 knuts",
+		"sell": "2 knuts"
+	},
+	"dropsOfHoneywater": {
+		"buy": "16 knuts",
+		"sell": "2 knuts"
+	},
+	"lionfishSpines": {
+		"buy": "16 knuts",
+		"sell": "2 knuts"
+	},
+	"moondewDrops": {
+		"buy": "16 knuts",
+		"sell": "2 knuts"
+	},
+	"slothBrainMucus": {
+		"buy": "16 knuts",
+		"sell": "2 knuts"
+	},
+	"sprigOfWolfsbane": {
+		"buy": "24 knuts",
+		"sell": "4 knuts"
+	},
+	"stewedMandrake": {
+		"buy": "16 knuts",
+		"sell": "2 knuts"
+	},
+	"vialOfFlobberwormMucus": {
+		"buy": "24 knuts",
+		"sell": "4 knuts"
+	},
+	"vialOfSalamanderBlood": {
+		"buy": "3 sickles",
+		"sell": "4 sickles"
+	},
+	"standardIngredients": {
+		"buy": "3 sickles",
+		"sell": "4 sickles"
+	}
+}

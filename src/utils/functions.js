@@ -225,6 +225,45 @@ module.exports = {
 		msg.react(potionEmoji);
 	},
 
+	awaitResponse: function (filter, time, channel, integerOnly) {
+		// Return a Promise
+		return new Promise((resolve, reject) => {
+
+			// Create a message collector
+			const messageCollector = new Discord.MessageCollector(channel, filter, {
+				maxMatches: 1,
+				time: time
+			});
+
+			// Whether or not a response has been collected
+			let responseCollected = false;
+
+			// If/when the message collector collects a message
+			messageCollector.on("collect", collected => {
+				if (isNaN(collected) && integerOnly) return channel.send("Only numbers are accepted!");
+				// Set responseCollected to true and resolve the promise with the message
+				responseCollected = true;
+				resolve(collected);
+				// Stop the message collector
+				messageCollector.stop();
+			});
+
+			// When the message collector ends
+			messageCollector.on("end", collected => {
+				// If a message wasn't collected resolve the promise with undefined
+				if (!responseCollected) resolve(undefined);
+			});
+		});
+	},
+
+	useResurrectionStone: function (bot, member, channel) {
+		// Send the resurrection stone message
+		channel.send(`Just as ${member} was about to be attacked, the spirit of their loved one appeared and protected them.`);
+		// Set their last use to now
+		bot.userInfo.set(`${member.guild.id}-${member.id}`, Date.now(), "cooldowns.lastResurrectionStoneUse");
+		bot.log(`${member.displayName} used the resurrection stone.`, "info");
+	},
+
 	toCamelCase: function (string) {
 		return string.replace(/\W+(.)/g, (match, chr) => chr.toUpperCase());
 	},
