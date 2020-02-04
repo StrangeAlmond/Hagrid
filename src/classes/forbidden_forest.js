@@ -176,7 +176,7 @@ class ForbiddenForest {
 
 		this.bot.userInfo.set(this.dbKey, true, "mazeInfo.inFight");
 
-		const userData = this.bot.userInfo.get(this.dbKey);
+		let userData = this.bot.userInfo.get(this.dbKey);
 
 		const attachment = new Discord.Attachment(this.activeTilesFormat + `Forest_${this.curPos}.png`, "map.png");
 		await this.webhook.send(attachment);
@@ -199,6 +199,8 @@ class ForbiddenForest {
 
 				return this.webhook.send("You have retreated back to your original position.");
 			}
+
+			userData = this.bot.userInfo.get(this.dbKey);
 
 			const chance = Math.random() * 100;
 
