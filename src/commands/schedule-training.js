@@ -14,9 +14,9 @@ module.exports = {
 		if (!args[0]) return message.channel.send(`Specify when to spawn a training session! Proper Usage: \`${bot.prefix}schedule-training <year-month-date hh:mm:ss>, [spell]\``);
 
 		const time = args[0];
-		let spell = args[1];
+		let filter = args[1];
 
-		if (spell && spell.startsWith(bot.prefix)) spell = spell.slice(bot.prefix.length);
+		if (filter && filter.startsWith(bot.prefix)) filter = filter.slice(bot.prefix.length);
 
 		const timeFormat = "YYYY-MM-DD HH:mm:ss";
 
@@ -31,7 +31,7 @@ module.exports = {
 			id: message.id
 		};
 
-		if (spell && beasts.some(b => b.spell.slice(1) === spell)) object.spell = spell;
+		if (filter && beasts.some(b => b.spell.slice(1) === filter || b.name.toLowerCase() == filter)) object.spell = filter;
 
 		bot.guildInfo.push(message.guild.id, object, "scheduledTrainingSessions");
 

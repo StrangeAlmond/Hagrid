@@ -80,7 +80,7 @@ module.exports = async bot => {
 				const trainingChannel = bot.guilds.get(guild.guild).channels.find(c => c.name === "training-grounds");
 				if (!trainingChannel) return;
 
-				bot.spawnTrainingSession(trainingChannel, trainingSession.spell);
+				bot.spawnTrainingSession(trainingChannel, trainingSession.filter);
 			}
 
 			if (guild.spawns.some(s => s.type === "trivia" && (Date.now() - s.time) >= 600000)) { // Trivia questions
