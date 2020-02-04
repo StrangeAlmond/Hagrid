@@ -249,7 +249,7 @@ class ForbiddenForest {
 			}
 
 			this.bot.log(`${this.member.displayName} attacked their encounter`, "info");
-			this.webhook.send(`You cast ${encounterInfo.spell} for ${damageByUser} damage!\nThe ${encounterInfo.name} has/have ${health} left.`);
+			this.webhook.send(`You cast ${encounterInfo.spell} for ${damageByUser} damage!\nThe ${encounterInfo.name} has/have ${health} health left.`);
 
 		});
 	}
