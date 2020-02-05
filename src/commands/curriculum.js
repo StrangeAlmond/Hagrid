@@ -48,6 +48,7 @@ module.exports = {
 
 			const embed = new Discord.RichEmbed()
 				.setTitle(`Year ${i} Curriculum`)
+				.setColor(message.member.displayHexColor)
 				.setDescription(msg)
 				.setTimestamp();
 
