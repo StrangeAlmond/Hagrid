@@ -110,24 +110,42 @@ class ForbiddenForest {
 	syncLocations() { // Ensures that all encounter, ambush, and item locations are available on the current level of the maze
 		const tiles = this.possibleActiveTiles(); // A list of possible tiles on the current level
 
-		if (this.encounterLocations.some(l => !tiles.some(t => t.includes(l)))) {
+		if (this.encounterLocations.some(l => !tiles.some(t => t.includes(l))) || this.encounterLocations.length <= 0) {
 			const possibleEncounters = encountersFile.filter(e => e.tiles.some(b => tiles.some(t => t.includes(b)))); // Filters encounters to ones available in the current level
+
+			for (let i = 0; i < possibleEncounters.length; i++) {
+				const encounter = possibleEncounters[i];
+				encounter.tiles = encounter.tiles.filter(t => tiles.some(ti => ti.includes(t)));
+			}
+
 			const newLocations = possibleEncounters.map(e => e.tiles[Math.floor(Math.random() * e.tiles.length)]); // Create an array of new locations
 
 			this.encounterLocations = newLocations;
 			this.bot.userInfo.set(this.dbKey, newLocations, "mazeInfo.encounterPositions");
 		}
 
-		if (this.ambushLocations.some(l => !tiles.some(t => t.includes(l)))) {
+		if (this.ambushLocations.some(l => !tiles.some(t => t.includes(l))) || this.ambushLocations.length <= 0) {
 			const possibleAmbushes = ambushesFile.filter(e => e.tiles.some(b => tiles.some(t => t.includes(b))));
+
+			for (let i = 0; i < possibleAmbushes.length; i++) {
+				const ambush = possibleAmbushes[i];
+				ambush.tiles = ambush.tiles.filter(a => tiles.some(ti => ti.includes(a)));
+			}
+
 			const newLocations = possibleAmbushes.map(e => e.tiles[Math.floor(Math.random() * e.tiles.length)]);
 
 			this.ambushLocations = newLocations;
 			this.bot.userInfo.set(this.dbKey, newLocations, "mazeInfo.ambushPositions");
 		}
 
-		if (this.itemLocations.some(l => !tiles.some(t => t.includes(l)))) {
+		if (this.itemLocations.some(l => !tiles.some(t => t.includes(l))) || this.itemLocations.length <= 0) {
 			const possibleItems = itemsFile.filter(e => e.tiles.some(b => tiles.some(t => t.includes(b))));
+
+			for (let i = 0; i < possibleItems.length; i++) {
+				const item = possibleItems[i];
+				item.tiles = item.tiles.filter(it => tiles.some(ti => ti.includes(it)));
+			}
+
 			const newLocations = possibleItems.map(e => e.tiles[Math.floor(Math.random() * e.tiles.length)]);
 
 			this.itemLocations = newLocations;
