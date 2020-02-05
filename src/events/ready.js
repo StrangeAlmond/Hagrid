@@ -23,6 +23,7 @@ module.exports = async bot => {
 	bot.levelUp = (member, channel) => functions.levelUp(bot, member, channel);
 	bot.useResurrectionStone = (member, channel) => functions.useResurrectionStone(bot, member, channel);
 
+	bot.capitalizeEveryFirstLetter = functions.capitalizeEveryFirstLetter;
 	bot.awaitResponse = functions.awaitResponse;
 	bot.toCamelCase = functions.toCamelCase;
 	bot.fromCamelCase = functions.fromCamelCase;

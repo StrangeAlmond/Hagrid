@@ -273,6 +273,10 @@ module.exports = {
 		return string.charAt(0).toUpperCase() + string.slice(1);
 	},
 
+	capitalizeEveryFirstLetter: function (string) {
+		return string.replace(/\b./g, m => m.toUpperCase());
+	},
+
 	isMazeChannel: function (channelName, user) {
 		if (!channelName.includes(user.displayName.toLowerCase().replace(/[^a-z0-9+ ]+/gi, "").split(/ +/).join("-"))) return false;
 		return true;
