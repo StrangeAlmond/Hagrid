@@ -17,7 +17,7 @@ module.exports = {
 		}
 
 		let commands = "";
-		const statsCommands = "**!profile** - View your profile.\n**!stats** - View your stats.\n**!xp** - View your xp.\n**!inventory [item]** - View your inventory, alternatively search for a specific item.\n**!houses** - View how many members are in each house.\n**!merits** - View your merits.\n**!badges profile** - View your badges.\n**!leaderboard [leaderboard type]** - View the leaderboard.";
+		const statsCommands = "**!profile** - View your profile.\n**!stats** - View your stats.\n**!xp** - View your xp.\n**!inventory [item]** - View your inventory, alternatively search for a specific item.\n**!curriculum** - View Hogwarts' current curriculum\n**!houses** - View how many members are in each house.\n**!merits** - View your merits.\n**!badges profile** - View your badges.\n**!leaderboard [leaderboard type]** - View the leaderboard.";
 		const mazeCommands = "**!start** - Create a maze channel for you to use the maze commands in.\n**!leave** - Delete your maze channel.\n**!move <left, right, up, or down>** - Move the direction specified in the maze.\n**!forage** - Forage for an item.\n**!explore** - Explore the maze for any items that may be lying around.";
 		const moneyCommands = "**!daily** - Collect your daily sickles.\n**!weekly** - Collect your weekly galleons (requires cistem aperio).\n**!balance** - View your balance.\n**!shop [shop id]** - View a shop's items.\n**!buy <item id>** - Buy an item from the shop.";
 
