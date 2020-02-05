@@ -21,7 +21,6 @@ module.exports = {
 		const pages = [];
 
 		for (let i = 1; i < 7; i++) {
-			console.log(i);
 			const yearSpells = spells.filter(s => s.yearRequired == i);
 
 			let msg = "";
