@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 
 const triviaQuestions = require("../jsonFiles/triviaQuestions.json");
 const years = require("../jsonFiles/years.json");
+const spells = require("../jsonFiles/spells.json");
 
 const TrainingSession = require("../classes/TrainingSession.js");
 
@@ -245,7 +246,10 @@ module.exports = async (bot, message) => {
 	}
 
 	// If the message isn't a command then give them xp
-	if (!bot.commands.find(cmd => cmd.name === plainArgs[0].slice(1)) && !bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(plainArgs[0].slice(1)))) {
+	if (!bot.commands.find(cmd => cmd.name === plainArgs[0].slice(1)) &&
+		!bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(plainArgs[0].slice(1))) &&
+		!spells.some(s => s.spell == message.content.toLowerCase()) &&
+		![`${bot.prefix}u`, `${bot.prefix}d`, `${bot.prefix}l`, `${bot.prefix}d`].includes(plainArgs[0])) {
 
 		// If their xp cooldown has expired give them xp
 		if (!xpCooldown.has(`${message.guild.id}-${message.author.id}`)) {
