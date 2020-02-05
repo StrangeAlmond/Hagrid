@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
-const beasts = require("../jsonFiles/beasts.json");
+const TrainingSession = require("../classes/TrainingSession.js");
+const beasts = require("../jsonFiles/training_sessions/beasts.json");
 
 module.exports = {
 	name: "spawn",
@@ -23,12 +24,15 @@ module.exports = {
 			const trainingChannel = message.guild.channels.find(c => c.name === "training-grounds");
 			if (!trainingChannel) return;
 
+			const trainingSession = new TrainingSession(bot, trainingChannel);
+
 			if (beasts.find(b => b.spell.slice(1) === args[args.length - 1] || b.name.toLowerCase() === args[args.length - 1])) {
-				bot.spawnTrainingSession(trainingChannel, args[args.length - 1]);
+				console.log(args[args.length - 1]);
+				trainingSession.spawnTrainingSession(args[args.length - 1]);
 				return;
 			}
 
-			bot.spawnTrainingSession(trainingChannel);
+			trainingSession.spawnTrainingSession();
 		}
 	},
 };

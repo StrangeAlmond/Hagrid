@@ -6,7 +6,7 @@ module.exports = async (bot, reaction, user) => {
 	const guildData = bot.guildInfo.get(message.guild.id);
 
 	// Allows a user to use a training token by clicking on the ⚔ emoji
-	if (reaction.emoji.name === "⚔" && message.author.id === bot.user.id && message.embeds.length > 0 && message.embeds[0].description.toLowerCase().includes(guildData.spawns.find(s => s.type === "training session").beast.name.toLowerCase())) {
+	if (reaction.emoji.name === "⚔" && message.author.id === bot.user.id && message.embeds.length > 0 && message.embeds[0].description.toLowerCase().includes(guildData.spawns.find(s => s.type === "trainingSession").beast.name.toLowerCase())) {
 		const userData = bot.userInfo.get(`${message.guild.id}-${user.id}`);
 		const member = message.guild.members.get(user.id);
 		const channel = message.guild.channels.find(c => c.name === "training-grounds");

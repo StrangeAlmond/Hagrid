@@ -1,0 +1,57 @@
+{
+	"missChances": {
+		"XXX": {
+			"1": 40,
+			"2": 30,
+			"3": 20,
+			"4": 10,
+			"5": 0,
+			"6": 0,
+			"7": 0
+		},
+		"XXXX": {
+			"1": 60,
+			"2": 50,
+			"3": 40,
+			"4": 30,
+			"5": 20,
+			"6": 10,
+			"7": 0
+		},
+		"XXXXX": {
+			"1": 70,
+			"2": 65,
+			"3": 50,
+			"4": 40,
+			"5": 25,
+			"6": 20,
+			"7": 15
+		}
+	},
+
+	"lootboxes": {
+		"A": ["8 balance.knuts", "9 balance.knuts", "10 balance.knuts", "11 balance.knuts", "12 balance.knuts"],
+		"B": ["16 balance.knuts", "17 balance.knuts", "18 balance.knuts", "19 balance.knuts", "20 balance.knuts", "21 balance.knuts", "22 balance.knuts", "23 balance.knuts", "24 balance.knuts"],
+		"C": ["1 balance.sickles", "2 balance.sickles", "3 balance.sickles"],
+		"D": ["4 balance.sickles", "5 balance.sickles", "6 balance.sickles"],
+		"E": ["8 balance.sickles", "9 balance.sickles", "10 balance.sickles"],
+		"F": ["14 balance.sickles", "16 balance.sickles", "1 balance.galleons"],
+		"G": ["1 balance.galleons", "2 balance.galleons"],
+		"T": ["1 inventory.boomBerryJuice", "1 inventory.chizpurfleFangs", "1 inventory.dropsOfHoneywater", "1 inventory.moondewDrops", "1 inventory.slothBrainMucus"],
+		"U": ["1 inventory.billywigStingSlime", "1 inventory.boomBerryJuice", "1 inventory.bottleOfHorklumpJuice", "1 inventory.chizpurfleFangs", "1 inventory.dropsOfHoneywater", "1 inventory.lionfishSpines", "1 inventory.moondewDrops", "1 inventory.slothBrainMucus", "1 inventory.sprigOfWolfsbane", "1 inventory.stewedMandrake", "1 inventory.pinchOfUnicornHorn", "1 inventory.vialOfFlobberwormMucus", "1 inventory.vialOfSalamanderBlood", "1 inventory.bezoar", "1 inventory.standardIngredients"],
+		"V": ["1 inventory.snakeFangs", "1 inventory.billywigStingSlime", "1 inventory.bottleOfHorklumpJuice", "1 inventory.sprigOfWolfsbane", "1 inventory.stewedMandrake", "1 inventory.sprigOfWolfsbane", "1 inventory.stewedMandrake", "1 inventory.pinchOfUnicornHorn", "1 inventory.vialOfFlobberwormMucus", "1 inventory.vialOfSalamanderBlood", "1 inventory.bezoar", "1 inventory.standardIngredients"],
+		"W": ["1 inventory.snakeFangs", "1 inventory.bezoar", "1 inventory.standardIngredients"],
+		"X": ["1 inventory.snakeFangs", "1 inventory.tinctureOfThyme"],
+		"Y": ["1 inventory.wiggenweldPotion", "1 inventory.revivePotion", "1 inventory.antidoteToCommonPoisons"],
+		"Z": ["1 inventory.wiggenweldPotion", "1 inventory.revivePotion", "1 inventory.antidoteToCommonPoisons"],
+
+		"tiers": {
+			"2": ["B", "T", "U"],
+			"3": ["C", "U", "V"],
+			"4": ["D", "U", "V", "W"],
+			"5": ["E", "U", "V", "W", "X"],
+			"6": ["F", "X", "Y"],
+			"7": ["G", "X", "Y", "Z"]
+		}
+	}
+}

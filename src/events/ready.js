@@ -1,6 +1,7 @@
 const functions = require("../utils/functions.js");
 const quickWebhook = require("../utils/quickWebhook.js");
 const botconfig = require("../botconfig.json");
+const TrainingSession = require("../classes/TrainingSession.js");
 const prefix = botconfig.prefix;
 
 module.exports = async bot => {
@@ -18,9 +19,7 @@ module.exports = async bot => {
 	bot.spawnDementor = (channel) => functions.spawnDementor(channel, bot);
 	bot.spawnBoggart = (channel) => functions.spawnBoggart(channel, bot);
 	bot.spawnChest = (channel) => functions.spawnChest(channel, bot);
-	bot.spawnTrainingSession = (channel, spell) => functions.spawnTrainingSession(channel, bot, spell);
 
-	bot.processTrainingSession = (member, object, channel) => functions.processTrainingSession(member, object, channel, bot);
 	bot.levelUp = (member, channel) => functions.levelUp(bot, member, channel);
 	bot.useResurrectionStone = (member, channel) => functions.useResurrectionStone(bot, member, channel);
 
@@ -80,7 +79,8 @@ module.exports = async bot => {
 				const trainingChannel = bot.guilds.get(guild.guild).channels.find(c => c.name === "training-grounds");
 				if (!trainingChannel) return;
 
-				bot.spawnTrainingSession(trainingChannel, trainingSession.filter);
+				const trainingSessionObject = new TrainingSession(bot, trainingChannel);
+				trainingSessionObject.spawnTrainingSession(trainingSession.filter);
 			}
 
 			if (guild.spawns.some(s => s.type === "trivia" && (Date.now() - s.time) >= 600000)) { // Trivia questions

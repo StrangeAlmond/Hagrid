@@ -3,7 +3,7 @@ const Discord = require("discord.js");
 const triviaQuestions = require("../jsonFiles/triviaQuestions.json");
 const years = require("../jsonFiles/years.json");
 
-const chalk = require("chalk");
+const TrainingSession = require("../classes/TrainingSession.js");
 
 const moment = require("moment-timezone");
 
@@ -286,9 +286,10 @@ module.exports = async (bot, message) => {
 		args = ["move", "right"];
 	}
 
-	if (guildData.spawns.some(s => s.type === "training session" && s.channel === message.channel.id && args.join(" ") === s.beast.spell.slice(1))) {
-		const object = guildData.spawns.find(s => s.type === "training session" && s.channel === message.channel.id && args.join(" ") === s.beast.spell.slice(1));
-		return await bot.processTrainingSession(message.member, object, message.channel, bot);
+	if (guildData.spawns.some(s => s.type == "trainingSession" && s.channel == message.channel.id && args.join(" ") == s.beast.spell.slice(1))) {
+		const object = guildData.spawns.find(s => s.type === "trainingSession" && s.channel === message.channel.id && args.join(" ") === s.beast.spell.slice(1));
+		const trainingSession = new TrainingSession(bot, message.channel);
+		return await trainingSession.processTrainingSession(message.member, object);
 	}
 
 	// Ensure their knuts and sickles aren't above 29 and 17 respectively

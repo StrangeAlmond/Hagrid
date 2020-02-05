@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const beasts = require("../jsonFiles/beasts.json");
+const beasts = require("../jsonFiles/training_sessions/beasts.json");
 const moment = require("moment-timezone");
 
 module.exports = {
@@ -31,7 +31,7 @@ module.exports = {
 			id: message.id
 		};
 
-		if (filter && beasts.some(b => b.spell.slice(1) === filter || b.name.toLowerCase() == filter)) object.spell = filter;
+		if (filter && beasts.some(b => b.spell.slice(1) === filter || b.name.toLowerCase() == filter)) object.filter = filter;
 
 		bot.guildInfo.push(message.guild.id, object, "scheduledTrainingSessions");
 
