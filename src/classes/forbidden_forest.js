@@ -303,6 +303,8 @@ class ForbiddenForest {
 					return this.bot.quickWebhook(this.channel, "Are you trying to trick me? I hope you're aware that tricking a centaur is never a good choice.", centaurWebhookInfo);
 				}
 
+				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+
 				userData.inventory.mallowsweet--;
 				this.bot.userInfo.dec(this.dbKey, "inventory.mallowsweet");
 
