@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const ForbiddenForest = require("../classes/forbidden_forest.js");
+const ForbiddenForest = require("../classes/ForbiddenForest.js");
 const mazePositions = require("../jsonFiles/forbidden_forest/mazePositions.json");
 
 module.exports = {
