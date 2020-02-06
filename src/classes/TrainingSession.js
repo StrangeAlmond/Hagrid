@@ -14,6 +14,7 @@ class TrainingSession {
 	async spawnTrainingSession(filter) {
 		const object = {
 			channel: this.channel.id,
+			guild: this.guild.id,
 			time: Date.now(),
 			type: "trainingSession",
 			users: []
@@ -85,18 +86,6 @@ class TrainingSession {
 
 		const user = object.users.find(u => u.id == member.id);
 
-		let damageDealt = userData.stats.attack > object.beast.defense ? userData.stats.attack - object.beast.defense : 0;
-
-		if (damageDealt > object.beast.health) damageDealt = object.beast.health;
-
-		user.damageDealt += damageDealt;
-		object.users[object.users.find(u => u.id === member.id)] = user;
-
-		object.beast.health -= damageDealt;
-
-		guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel == object.channel), 1, object);
-		this.bot.guildInfo.set(this.guild.id, guildData.spawns, "spawns");
-
 		let webhooks = await this.channel.fetchWebhooks();
 		webhooks = webhooks.array().filter(w => w.name.toLowerCase() == this.bot.user.username.toLowerCase());
 
@@ -110,78 +99,35 @@ class TrainingSession {
 		const webhook = webhooks[Math.floor(Math.random() * webhooks.length)];
 		let msgContent = "";
 
-		this.bot.userInfo.math(`${this.guild.id}-${member.id}`, "+", damageDealt, "xp");
-		this.bot.userInfo.math(`${this.guild.id}-${member.id}`, "+", damageDealt, "stats.trainingSessionDamage");
+		const missChances = info.missChances;
+		const missChance = missChances[object.beast.class][userData.year];
+		const chanceToMiss = Math.random() * 100;
 
-		if (object.beast.health <= 0) {
-			const lootboxData = info.lootboxes;
+		if (chanceToMiss <= missChance) {
+			msgContent += `${member.displayName}, you try to cast ${object.beast.spell.slice(1)} but miss and deal 0 damage.\n`;
+		} else {
+			let damageDealt = userData.stats.attack > object.beast.defense ? userData.stats.attack - object.beast.defense : 0;
 
-			guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel === object.channel), 1);
+			if (damageDealt > object.beast.health) damageDealt = object.beast.health;
+
+			user.damageDealt += damageDealt;
+			object.users[object.users.find(u => u.id === member.id)] = user;
+
+			object.beast.health -= damageDealt;
+
+			guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel == object.channel), 1, object);
 			this.bot.guildInfo.set(this.guild.id, guildData.spawns, "spawns");
 
-			this.channel.setRateLimitPerUser(0, "Training session ended.");
+			this.bot.userInfo.math(`${this.guild.id}-${member.id}`, "+", damageDealt, "xp");
+			this.bot.userInfo.math(`${this.guild.id}-${member.id}`, "+", damageDealt, "stats.trainingSessionDamage");
 
-			webhook.send(`Great job ${member}! you defeated the ${object.beast.name.toLowerCase()}, as a result, you have been awarded one sickle.`);
-
-			this.bot.userInfo.inc(`${this.guild.id}-${member.id}`, "stats.trainingSessionsDefeated");
-
-			object.users = object.users.sort((a, b) => b.damageDealt - a.damageDealt);
-
-			const beast = beasts.find(b => b.name == object.beast.name);
-
-			let msg = "";
-			msg += `**XP Given:**\n${object.users.map(u => `${this.guild.members.get(u.id).displayName}, you got ${u.damageDealt} XP!`).join("\n")}\n\n**Lootboxes Given:**\n`;
-
-			object.users.forEach(u => {
-				let lootbox;
-				let lootboxTier;
-
-				if (u.damageDealt >= (beast.health / 4)) {
-					lootbox = lootboxData.tiers[`${beast.class.length + 2}`];
-					lootboxTier = beast.class.length + 2;
-				} else if (u.damageDealt >= (beast.health / 10)) {
-					lootbox = lootboxData.tiers[`${beast.class.length + 1}`];
-					lootboxTier = beast.class.length + 1;
-				} else if (u.damageDealt >= (beast.health / 25)) {
-					lootbox = lootboxData.tiers[`${beast.class.length}`];
-					lootboxTier = beast.class.length;
-				} else {
-					lootbox = lootboxData.tiers[`${beast.class.length - 1}`];
-					lootboxTier = beast.class.length - 1;
-				}
-
-				lootbox = lootbox.map(r => lootboxData[r][Math.floor(Math.random() * lootboxData[r].length)]);
-
-				if (beast.name.toLowerCase() == "doxy") lootbox.push("1 inventory.doxyEggs");
-				if (beast.name.toLowerCase() == "ashwinder") lootbox.push("1 inventory.ashwinderEggs");
-
-				lootbox.forEach(reward => {
-					reward = reward.split(/ +/);
-					const item = reward[1];
-					const amount = parseInt(reward[0]);
-
-					if (!this.bot.userInfo.hasProp(`${this.guild.id}-${member.id}`, item)) this.bot.userInfo.set(`${this.guild.id}-${member.id}`, 0, item);
-
-					this.bot.userInfo.math(`${this.guild.id}-${member.id}`, "+", amount, item);
-				});
-
-				msg += `**${this.guild.members.get(u.id).displayName}**, you got a tier ${lootboxTier} lootbox! the contents are below:\n${lootbox.map(r => `${r.split(/ +/)[0]} ${this.bot.fromCamelCase(r.split(/ +/)[1].split(".")[1])}`).join("\n")}\n\n`;
-
-				if (msg.length > 1800) {
-					webhook.send(msg);
-					msg = "";
-				}
-			});
-
-			webhook.send(msg);
-
-			const greatHall = this.guild.channels.find(c => c.name == "great-hall");
-			greatHall.send("**This training session has ended**");
-
-			return object;
+			msgContent += `${member.displayName}, You cast ${object.beast.spell.slice(1)} for ${damageDealt} damage.\nThe beast has ${object.beast.health} health left.\n`;
 		}
 
-		msgContent += `${member.displayName}, You cast ${object.beast.spell.slice(1)} for ${damageDealt} damage.\nThe beast has ${object.beast.health} health left.\n`;
+		if (object.beast.health <= 0) {
+			webhook.send(`Great job ${member}! you defeated the ${object.beast.name.toLowerCase()}, as a result, you have been awarded one sickle.`);
+			return this.endTrainingSession(object, webhook, member);
+		}
 
 		const chanceToBeAttacked = Math.random() * 100;
 		if (chanceToBeAttacked <= 20) {
@@ -207,6 +153,72 @@ class TrainingSession {
 
 		webhook.send(msgContent);
 		return object;
+	}
+
+	endTrainingSession(object, webhook, member) {
+		const guildData = this.bot.guildInfo.get(this.guild.id);
+		const lootboxData = info.lootboxes;
+
+		guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel === object.channel), 1);
+		this.bot.guildInfo.set(this.guild.id, guildData.spawns, "spawns");
+
+		this.channel.setRateLimitPerUser(0, "Training session ended.");
+
+		this.bot.userInfo.inc(`${this.guild.id}-${member.id}`, "balance.sickles");
+		this.bot.userInfo.inc(`${this.guild.id}-${member.id}`, "stats.trainingSessionsDefeated");
+
+		object.users = object.users.sort((a, b) => b.damageDealt - a.damageDealt);
+
+		const beast = beasts.find(b => b.name == object.beast.name);
+
+		let msg = "";
+		msg += `**XP Given:**\n${object.users.map(u => `${this.guild.members.get(u.id).displayName}, you got ${u.damageDealt} XP!`).join("\n")}\n\n**Lootboxes Given:**\n`;
+
+		object.users.forEach(u => {
+			let lootbox;
+			let lootboxTier;
+
+			if (u.damageDealt >= (beast.health / 4)) {
+				lootbox = lootboxData.tiers[`${beast.class.length + 2}`];
+				lootboxTier = beast.class.length + 2;
+			} else if (u.damageDealt >= (beast.health / 10)) {
+				lootbox = lootboxData.tiers[`${beast.class.length + 1}`];
+				lootboxTier = beast.class.length + 1;
+			} else if (u.damageDealt >= (beast.health / 25)) {
+				lootbox = lootboxData.tiers[`${beast.class.length}`];
+				lootboxTier = beast.class.length;
+			} else {
+				lootbox = lootboxData.tiers[`${beast.class.length - 1}`];
+				lootboxTier = beast.class.length - 1;
+			}
+
+			lootbox = lootbox.map(r => lootboxData[r][Math.floor(Math.random() * lootboxData[r].length)]);
+
+			if (beast.name.toLowerCase() == "doxy") lootbox.push("1 inventory.doxyEggs");
+			if (beast.name.toLowerCase() == "ashwinder") lootbox.push("1 inventory.ashwinderEggs");
+
+			lootbox.forEach(reward => {
+				reward = reward.split(/ +/);
+				const item = reward[1];
+				const amount = parseInt(reward[0]);
+
+				if (!this.bot.userInfo.hasProp(`${this.guild.id}-${member.id}`, item)) this.bot.userInfo.set(`${this.guild.id}-${member.id}`, 0, item);
+
+				this.bot.userInfo.math(`${this.guild.id}-${member.id}`, "+", amount, item);
+			});
+
+			msg += `**${this.guild.members.get(u.id).displayName}**, you got a tier ${lootboxTier} lootbox! the contents are below:\n${lootbox.map(r => `${r.split(/ +/)[0]} ${this.bot.fromCamelCase(r.split(/ +/)[1].split(".")[1])}`).join("\n")}\n\n`;
+
+			if (msg.length > 1800) {
+				webhook.send(msg);
+				msg = "";
+			}
+		});
+
+		webhook.send(msg);
+
+		const greatHall = this.guild.channels.find(c => c.name == "great-hall");
+		greatHall.send("**This training session has ended**");
 	}
 }
 
