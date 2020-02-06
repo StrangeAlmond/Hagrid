@@ -36,8 +36,8 @@ module.exports = {
 		const successResponses = ["Nice one! You caught a Flying Seahorse and put it in your bag.", "After hours and hours of fishing you start to become frustrated when a Flying Seahorse jumps into your bag!"];
 
 		// Increase their forages stat
-		bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "forages");
 		bot.userInfo.dec(`${message.guild.id}-${message.author.id}`, "mazeInfo.dailyForagesLeft");
+		bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "stats.forages");
 
 		if (chanceNumber <= 10) { // They succeed
 			message.reply(successResponses[Math.floor(Math.random() * successResponses.length)]);
