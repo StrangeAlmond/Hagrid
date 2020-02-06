@@ -103,7 +103,9 @@ class TrainingSession {
 		const missChance = missChances[object.beast.class][userData.year];
 		const chanceToMiss = Math.random() * 100;
 
-		if (chanceToMiss <= missChance) {
+		const felixFelicisActive = userData.stats.activeEffects.some(e => e.type == "luck");
+
+		if (chanceToMiss <= missChance && !felixFelicisActive) {
 			msgContent += `${member.displayName}, you try to cast ${object.beast.spell.slice(1)} but miss and deal 0 damage.\n`;
 		} else {
 			let damageDealt = userData.stats.attack > object.beast.defense ? userData.stats.attack - object.beast.defense : 0;
