@@ -60,6 +60,18 @@
 		"notes": "This training session requires a fire protection potion."
 	},
 	{
+		"name": "Pogrebin",
+		"tier": 2,
+		"class": "XXX",
+		"attack": 12,
+		"defense": 0,
+		"health": 225,
+		"spell": "!stupefy",
+		"image": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a3352183-4d1f-4658-bae3-9f5a1fda1405/daqnkxb-57504ebf-59cc-40c5-8029-373759ab88aa.jpg/v1/fill/w_1280,h_1280,q_75,strp/pogrebin_by_szokekissmarton_daqnkxb-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiJcL2ZcL2EzMzUyMTgzLTRkMWYtNDY1OC1iYWUzLTlmNWExZmRhMTQwNVwvZGFxbmt4Yi01NzUwNGViZi01OWNjLTQwYzUtODAyOS0zNzM3NTlhYjg4YWEuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.kceceYjeUik3jqNPV4diady46cjaoKp5s6gXSCNnhZ4",
+		"message": "A pogrebin is ready in the #training-grounds",
+		"color": "#d1c0c6"
+	},
+	{
 		"name": "Sea Serpent",
 		"tier": 3,
 		"class": "XXX",
@@ -70,6 +82,18 @@
 		"image": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/intermediary/f/a3352183-4d1f-4658-bae3-9f5a1fda1405/darof3a-56fb51a2-f966-4ed8-a072-30495906a9bf.jpg/v1/fill/w_894,h_894,q_70,strp/sea_serpent_by_szokekissmarton_darof3a-pre.jpg",
 		"message": "A Sea Serpent is ready in the #training-grounds",
 		"color": "#3C9EB6"
+	},
+	{
+		"name": "Glumbumble",
+		"tier": 3,
+		"class": "XXX",
+		"attack": 14,
+		"defense": 1,
+		"health": 325,
+		"spell": "!depulso",
+		"image": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a3352183-4d1f-4658-bae3-9f5a1fda1405/daqaxa6-3f93c33e-b24e-4473-9d67-1994b775b88e.jpg/v1/fill/w_1280,h_1280,q_75,strp/glumbumble_by_szokekissmarton_daqaxa6-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiJcL2ZcL2EzMzUyMTgzLTRkMWYtNDY1OC1iYWUzLTlmNWExZmRhMTQwNVwvZGFxYXhhNi0zZjkzYzMzZS1iMjRlLTQ0NzMtOWQ2Ny0xOTk0Yjc3NWI4OGUuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.tl1EfhRb-Znc8H5p2TEFVqcbdz5Ut0bkjLdc9Pi2UCs",
+		"color": "#7cc9fd",
+		"message": "A glumbumble is ready in the #training-grounds"
 	},
 	{
 		"name": "Yeti",
