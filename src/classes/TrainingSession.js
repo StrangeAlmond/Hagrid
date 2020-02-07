@@ -80,7 +80,7 @@ class TrainingSession {
 				damageDealt: 0
 			});
 
-			const newRateLimit = object.users.length;
+			const newRateLimit = 2 * object.users.length;
 			this.channel.setRateLimitPerUser(newRateLimit, "Dynamic slow mode.");
 		}
 
