@@ -215,6 +215,25 @@ class ForbiddenForest {
 				this.setPos(parseFloat(this.lastPos));
 				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
+				this.bot.log(`${this.member.displayName} was attacked by their encounter`, "info");
+				const damageByEncounter = userData.stats.defense < encounterInfo.attack ? encounterInfo.attack - userData.stats.defense : 0;
+
+				userData.stats.health -= damageByEncounter;
+				this.bot.userInfo.set(this.dbKey, userData.stats.health, "stats.health");
+
+				if (userData.stats.health <= 0) {
+					if (userData.inventory.resurrectionStone > 0 && (Date.now() - userData.cooldowns.lastResurrectionStoneUse) >= 3600000) {
+						userData.stats.health += damageByEncounter;
+						this.bot.userInfo.set(this.dbKey, userData.stats.health, "stats.health");
+						return this.bot.useResurrectionStone(this.webhook, this.bot.guilds.get(this.guildId), this.member);
+					}
+
+					this.webhook.send("You have fainted!");
+					return this.bot.fainted(this.member, `${this.member} has fainted from a ${encounterInfo.name} attack! Would you like to use a revive potion to heal them faster?`);
+				}
+
+				this.webhook.send(`The ${encounterInfo.name} attacked you!\n${damageByEncounter == 0 ? "It dealt no damage to you." : `You have ${userData.stats.health} health left`}`);
+
 				return this.webhook.send("You have retreated back to your original position.");
 			}
 
