@@ -61,6 +61,8 @@ module.exports = {
 				galleons: 0
 			},
 
+			collectorsItems: {},
+
 			spellInfo: {},
 
 			inventory: {},

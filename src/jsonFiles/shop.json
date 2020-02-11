@@ -289,36 +289,44 @@
 		"price": "2 sickles",
 		"type": "item"
 	},
-	"1002": {
+	"10102": {
 		"id": "1002",
-		"name": "Bertie Bott's Beans",
-		"shop": "Honeydukes",
-		"key": "beans",
-		"price": "6 sickles",
-		"type": "item"
-	},
-	"1100": {
-		"id": "1100",
 		"name": "Mallowsweet",
 		"shop": "J. Pippin's Potions",
 		"key": "mallowsweet",
 		"price": "6 sickles",
 		"type": "item"
 	},
-	"1101": {
-		"id": "1101",
+	"1001": {
+		"id": "1001",
 		"name": "Ground Scarab Beetles",
 		"shop": "J. Pippin's Potions",
 		"key": "groundScarabBeetles",
 		"price": "5 sickles",
 		"type": "item"
 	},
-	"1102": {
-		"id": "1102",
+	"1000": {
+		"id": "1000",
 		"name": "Armadillo Bile",
 		"shop": "J. Pippin's Potions",
 		"key": "armadilloBile",
 		"price": "13 sickles",
+		"type": "item"
+	},
+	"1101": {
+		"id": "1101",
+		"name": "Bertie Bott's Beans",
+		"shop": "Honeydukes",
+		"key": "beans",
+		"price": "6 sickles",
+		"type": "item"
+	},
+	"1102": {
+		"id": "1102",
+		"name": "Chocolate Frog",
+		"shop": "Honeydukes",
+		"key": "chocolateFrogs",
+		"price": "9 sickles",
 		"type": "item"
 	},
 	"1600": {

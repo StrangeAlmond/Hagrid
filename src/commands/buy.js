@@ -217,13 +217,13 @@ module.exports = {
 				// Send a message saying they purchased it
 				message.channel.send(`You have purchased ${amount} ${items[args[0]].name}(s)`);
 
-				if (items[args[0]].id === "1002") amount = amount * 6;
-				if (items[args[0]].id === "705") amount = amount * 2;
-				if (items[args[0]].id === "700") amount = amount * 10;
-				if (items[args[0]].id === "714") amount = amount * 10;
-				if (items[args[0]].id === "709") amount = amount * 10;
-				if (items[args[0]].id === "712") amount = amount * 5;
-				if (items[args[0]].id === "1102") amount = amount * 5;
+				if (items[args[0]].id === "1101") amount *= 6;
+				if (items[args[0]].id === "705") amount *= 2;
+				if (items[args[0]].id === "700") amount *= 10;
+				if (items[args[0]].id === "714") amount *= 10;
+				if (items[args[0]].id === "709") amount *= 10;
+				if (items[args[0]].id === "712") amount *= 5;
+				if (items[args[0]].id === "1000") amount *= 5;
 
 				// Give them the item they purchased
 				bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", amount, `inventory.${items[args[0]].key}`);

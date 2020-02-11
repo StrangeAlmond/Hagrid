@@ -1,0 +1,61 @@
+{
+	"common": [
+		"Adalbert Waffling",
+		"Albus Dumbledore",
+		"Amarillo Lestoat",
+		"Beatrix Bloxam",
+		"Bridget Wenlock",
+		"Burdock Muldoon",
+		"Devlin Whitehorn",
+		"Dunbar Oglethorpe",
+		"Dymphna Fumage",
+		"Felix Sumerbee",
+		"Fulbert The Fearful",
+		"Glanmore Peakes",
+		"Gondoline Olpihant",
+		"Gwenog Jones",
+		"Hebridean Black Dragon",
+		"Honoria Nutcombe",
+		"Hungarian Horntail Dragon",
+		"Justus Pilliwickle",
+		"Leopoldina Smethwyck",
+		"Malodora Grymm",
+		"Manticore",
+		"Miranda Goshawk",
+		"Montague Knightley",
+		"Queen Maeve",
+		"Roland Kegg",
+		"Sir Herbert Varney",
+		"Unicorn",
+		"Wendelin The Weird",
+		"Xavier Rastrick"
+	],
+
+	"uncommon": [
+		"Almerick Sawbridge",
+		"Artemisa Lufkin",
+		"Cordelia Misericordia",
+		"Cyprian Youdle",
+		"Edgar Stroulger",
+		"Helga Hufflepuff",
+		"Jocunda Sykes",
+		"Joscelind Wadcock",
+		"Lady Carmilla Sanguina",
+		"Merwyn The Malicious",
+		"Norwegian Ridgeback Dragon",
+		"Phoenix",
+		"Roderick Plumpton",
+		"Rowena Ravenclaw",
+		"Yardley Platt"
+	],
+
+	"rare": [
+		"Bowman Wright",
+		"Calrlotta Pinkstone",
+		"Godric Gryffindor",
+		"Harry Potter",
+		"Leticia Somnolens",
+		"Merlin",
+		"Morgan Le Fay"
+	]
+}
