@@ -313,16 +313,16 @@
 		"price": "13 sickles",
 		"type": "item"
 	},
-	"1101": {
-		"id": "1101",
+	"1100": {
+		"id": "1100",
 		"name": "Bertie Bott's Beans",
 		"shop": "Honeydukes",
 		"key": "beans",
 		"price": "6 sickles",
 		"type": "item"
 	},
-	"1102": {
-		"id": "1102",
+	"1101": {
+		"id": "1101",
 		"name": "Chocolate Frog",
 		"shop": "Honeydukes",
 		"key": "chocolateFrogs",
