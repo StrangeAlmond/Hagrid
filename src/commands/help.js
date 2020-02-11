@@ -21,7 +21,7 @@ module.exports = {
 		const mazeCommands = "**!start** - Create a maze channel for you to use the maze commands in.\n**!leave** - Delete your maze channel.\n**!move <left, right, up, or down>** - Move the direction specified in the maze.\n**!forage** - Forage for an item.\n**!explore** - Explore the maze for any items that may be lying around.";
 		const moneyCommands = "**!daily** - Collect your daily sickles.\n**!weekly** - Collect your weekly galleons (requires cistem aperio).\n**!balance** - View your balance.\n**!shop [shop id]** - View a shop's items.\n**!buy <item id>** - Buy an item from the shop.";
 
-		const funCommands = "**!divine** - Ask the crystal ball a question.\n**!pensieve <reminder> <days:hours:minutes>** - Set a reminder.\n**!pensieve list** - List your reminders.\n**!joke** - Ask Peeves to tell you a joke.\n**!trivia** - Spawn a trivia question (these ones do not give house points).\n**!bean** - Eat a Bertie Botts bean.\n**!illegibilus** - Make text unreadable.";
+		const funCommands = "**!divine** - Ask the crystal ball a question.\n!cards - View your collectors cards.\n!card <card name> View a collectors card more closely.\n!open <item> - Open an item.\n**!pensieve <reminder> <days:hours:minutes>** - Set a reminder.\n**!pensieve list** - List your reminders.\n**!joke** - Ask Peeves to tell you a joke.\n**!trivia** - Spawn a trivia question (these ones do not give house points).\n**!bean** - Eat a Bertie Botts bean.\n**!illegibilus** - Make text unreadable.";
 		const petCommands = "**!pet** - View your pet\n**!pet feed** - Feed your pet.\n**!pet set-name <name>** - Set your pets nickname.";
 		const potionCommands = "**!recipe [potion]** - View a potions recipe.\n**!brew <potion>** - Brew a potion.";
 
