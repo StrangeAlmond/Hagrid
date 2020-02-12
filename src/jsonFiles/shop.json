@@ -281,6 +281,14 @@
 		"price": "4 sickles",
 		"type": "item"
 	},
+	"716": {
+		"id": "716",
+		"name": "Powdered Common Rue",
+		"shop": "Slug & Jiggers Apothecary",
+		"key": "powderedCommonRue",
+		"price": "8 sickles",
+		"type": "item"
+	},
 	"900": {
 		"id": "900",
 		"name": "Floo Powder",
