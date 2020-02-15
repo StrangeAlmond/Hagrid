@@ -171,7 +171,7 @@ module.exports = async (bot, message) => {
 	if (chance <= 1) {
 
 		let spawns = ["dementor", "boggart", "chest", "trivia"];
-		if (!["515765584970121217", "377943683472818207", "512781096946106378", "512781360943988736"].includes(message.channel.id)) spawns = spawns.filter(s => !["dementor", "boggart", "chest"].includes(s));
+		if (!["515765584970121217", "377943683472818207", "512781096946106378", "512781360943988736"].includes(message.channel.id)) spawns = [];
 		const spawn = spawns[Math.floor(Math.random() * spawns.length)];
 
 		const object = {
