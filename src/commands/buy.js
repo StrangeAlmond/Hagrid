@@ -231,7 +231,7 @@ module.exports = {
 				bot.log(`${message.member.displayName} purchased ${amount} ${items[args[0]].name}(s)`, "info");
 			} else if (items[args[0]].type === "pet") { // If they're buying a pet
 				// Make sure they don't already have a pet
-				if (bot.userInfo.hasProp(`${message.guild.id}-${message.author.id}`, "pet")) return message.channel.send("You already have a pet!");
+				if (user.pet && (user.pet.level != 7 || user.pet.tier != 1)) return message.channel.send("You already have a pet!");
 
 				// Make sure they're using the proper id id for a pet
 				if (!items[args[0]]) return message.channel.send("❌ | That's not a pet!");
@@ -241,6 +241,7 @@ module.exports = {
 				// Get the pet's price.
 				const price = parseInt(items[args[0]].price.split(/ +/)[0]);
 
+				if (pet.tier == 1 && user.pet.level == 7) return message.channel.send("You can only buy a tier 2 pet!");
 				// Make sure they can afford it
 				if (bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "balance.galleons") < price) return message.channel.send("You can't afford this pet!");
 
@@ -251,12 +252,12 @@ module.exports = {
 				const petObject = {
 					lastFeed: null,
 					fainted: false,
-					image: pet.image,
 					xp: 0,
 					level: 1,
 					pet: pet.name,
 					nickname: pet.name,
-					gender: genders[Math.floor(Math.random() * genders.length)]
+					tier: pet.tier,
+					gender: genders[Math.floor(Math.random() * genders.length)],
 				};
 
 				// Set the user's pet value to the object

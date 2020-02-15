@@ -58,7 +58,7 @@ module.exports = {
 		if (!shopIDs.includes(parseInt(args[0]))) return message.channel.send("❌ | Invalid shop.");
 
 		const shopName = shop.shops.find(s => s.id === parseInt(args[0])).name;
-		const shopItems = Object.values(items).filter(s => shopName.toLowerCase() === s.shop.toLowerCase()).map(i => `**${i.id}** ${i.name} - ${i.price}`);
+		let shopItems = Object.values(items).filter(s => shopName.toLowerCase() === s.shop.toLowerCase()).map(i => `**${i.id}** ${i.name} - ${i.price}`);
 
 		const shopEmbed = new Discord.RichEmbed()
 			.setAuthor(shop.shops.find(s => s.id === shopIDs.find(i => i === parseInt(args[0]))).name, message.author.displayAvatarURL)
@@ -66,6 +66,18 @@ module.exports = {
 			.setDescription(shopItems)
 			.setFooter(`You have ${bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "balance.knuts")} knuts, ${bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "balance.sickles")} sickles, and ${bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "balance.galleons")} galleons`)
 			.setTimestamp();
+
+		if (shopName == "Magical Menagerie") {
+			shopItems = Object.values(items).filter(s => shopName.toLowerCase() == s.shop.toLowerCase());
+
+			const formattedTierOnePets = shopItems.filter(i => i.tier == 1).map(i => `**${i.id}** ${i.name} - ${i.price}`);
+			const formattedTierTwoPets = shopItems.filter(i => i.tier == 2).map(i => `**${i.id}** ${i.name} - ${i.price}`);
+
+			shopEmbed.setDescription(`**Tier 1**\n${formattedTierOnePets.join("\n")}
+			
+${bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "pet.level") == 7 ? `**Tier 2**\n${formattedTierTwoPets.join("\n")}` : ""}`);
+		}
+
 		message.channel.send(shopEmbed);
 	},
 };

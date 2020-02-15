@@ -4,136 +4,256 @@
 		"name": "Barn Owl",
 		"shop": "Magical Menagerie",
 		"price": "10 galleons",
-		"image": "https://i.imgur.com/ZdsM2Wo.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"301": {
 		"id": "301",
 		"name": "Barred Owl",
 		"shop": "Magical Menagerie",
 		"price": "11 galleons",
-		"image": "https://i.imgur.com/EzCZsea.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"302": {
 		"id": "302",
 		"name": "Black Cat",
 		"shop": "Magical Menagerie",
 		"price": "9 galleons",
-		"image": "https://i.imgur.com/hGZkEYZ.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"303": {
 		"id": "303",
 		"name": "Brown Owl",
 		"shop": "Magical Menagerie",
 		"price": "10 galleons",
-		"image": "https://i.imgur.com/a3Kk79z.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"304": {
 		"id": "304",
 		"name": "Common Toad",
 		"shop": "Magical Menagerie",
 		"price": "5 galleons",
-		"image": "https://i.imgur.com/09As5dm.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"305": {
 		"id": "305",
 		"name": "Crested Toad",
 		"shop": "Magical Menagerie",
 		"price": "9 galleons",
-		"image": "https://i.imgur.com/TZs5OFr.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"306": {
 		"id": "306",
 		"name": "Ginger Cat",
 		"price": "9 galleons",
 		"shop": "Magical Menagerie",
-		"image": "https://i.imgur.com/kP0FnF6.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"307": {
 		"id": "307",
 		"name": "Harlequin Toad",
 		"shop": "Magical Menagerie",
 		"price": "9 galleons",
-		"image": "https://i.imgur.com/u3OTFb6.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"308": {
 		"id": "308",
 		"name": "Natterjack Toad",
 		"shop": "Magical Menagerie",
 		"price": "5 galleons",
-		"image": "https://i.imgur.com/ZkDn7Ep.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"309": {
 		"id": "309",
 		"name": "Rat",
 		"shop": "Magical Menagerie",
 		"price": "5 galleons",
-		"image": "https://i.imgur.com/Fhh7BR0.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"310": {
 		"id": "310",
 		"name": "Screech Owl",
 		"shop": "Magical Menagerie",
 		"price": "15 galleons",
-		"image": "https://i.imgur.com/BxaG4Wb.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"311": {
 		"id": "311",
 		"name": "Siamese Cat",
 		"shop": "Magical Menagerie",
 		"price": "11 galleons",
-		"image": "https://i.imgur.com/0BoChUJ.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"312": {
 		"id": "312",
 		"name": "Snowy Owl",
 		"shop": "Magical Menagerie",
 		"price": "15 galleons",
-		"image": "https://i.imgur.com/1ncsaiW.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"313": {
 		"id": "313",
 		"name": "Tabby Cat",
 		"shop": "Magical Menagerie",
 		"price": "9 galleons",
-		"image": "https://i.imgur.com/M3tWWmp.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"314": {
 		"id": "314",
 		"name": "Tawny Owl",
 		"shop": "Magical Menagerie",
 		"price": "10 galleons",
-		"image": "https://i.imgur.com/QjJu27N.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"315": {
 		"id": "315",
 		"name": "Western Green Toad",
 		"shop": "Magical Menagerie",
 		"price": "9 galleons",
-		"image": "https://i.imgur.com/WqjaKsD.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
 	},
 	"316": {
 		"id": "316",
 		"name": "White Cat",
 		"shop": "Magical Menagerie",
 		"price": "9 galleons",
-		"image": "https://i.imgur.com/R5xjuQl.png",
-		"type": "pet"
+		"type": "pet",
+		"tier": 1
+	},
+	"317": {
+		"id": "317",
+		"name": "Bowtruckle",
+		"shop": "Magical Menagerie",
+		"price": "24 galleons",
+		"type": "pet",
+		"tier": 2
+	},
+	"318": {
+		"id": "318",
+		"name": "Common Welsh Green Dragon",
+		"shop": "Magical Menagerie",
+		"price": "25 galleons",
+		"type": "pet",
+		"tier": 2
+	},
+	"319": {
+		"id": "319",
+		"name": "Crup",
+		"shop": "Magical Menagerie",
+		"price": "27 galleons",
+		"type": "pet",
+		"tier": 2
+	},
+	"320": {
+		"id": "320",
+		"name": "Diricawl",
+		"shop": "Magical Menagerie",
+		"price": "22 galleons",
+		"type": "pet",
+		"tier": 2
+	},
+	"321": {
+		"id": "321",
+		"name": "Dugbog",
+		"shop": "Magical Menagerie",
+		"price": "24 galleons",
+		"type": "pet",
+		"tier": 2
+	},
+	"322": {
+		"id": "322",
+		"name": "Hungarian Horntail",
+		"shop": "Magical Menagerie",
+		"price": "50 galleons",
+		"type": "pet",
+		"tier": 2
+	},
+	"323": {
+		"id": "323",
+		"name": "Jarvey",
+		"shop": "Magical Menagerie",
+		"price": "20 galleons",
+		"type": "pet",
+		"tier": 2
+	},
+	"324": {
+		"id": "324",
+		"name": "Knarl",
+		"shop": "Magical Menagerie",
+		"price": "19 galleons",
+		"type": "pet",
+		"tier": 2
+	},
+	"325": {
+		"id": "325",
+		"name": "Kneazle",
+		"shop": "Magical Menagerie",
+		"price": "25 galleons",
+		"type": "pet",
+		"tier": 2
+	},
+	"326": {
+		"id": "326",
+		"name": "Moke",
+		"shop": "Magical Menagerie",
+		"price": "17 galleons",
+		"type": "pet",
+		"tier": 2
+	},
+	"327": {
+		"id": "327",
+		"name": "Niffler",
+		"shop": "Magical Menagerie",
+		"price": "30 galleons",
+		"type": "pet",
+		"tier": 2
+	},
+	"328": {
+		"id": "328",
+		"name": "Norwegian Ridgeback Dragon",
+		"shop": "Magical Menagerie",
+		"price": "30 galleons",
+		"type": "pet",
+		"tier": 2
+	},
+	"329": {
+		"id": "329",
+		"name": "Puffskein",
+		"shop": "Magical Menagerie",
+		"price": "17 galleons",
+		"type": "pet",
+		"tier": 2
+	},
+	"330": {
+		"id": "330",
+		"name": "Salamander",
+		"shop": "Magical Menagerie",
+		"price": "25 galleons",
+		"type": "pet",
+		"tier": 2
+	},
+	"331": {
+		"id": "331",
+		"name": "Swedish Short Snout Dragon",
+		"shop": "Magical Menagerie",
+		"price": "35 galleons",
+		"type": "pet",
+		"tier": 2
 	},
 	"500": {
 		"name": "Brass Cauldron, Size 2",

@@ -43,13 +43,20 @@ module.exports = {
 
 			if (user.pet.fainted) petHappiness = "Fainted";
 
-			const petEmbed = new Discord.RichEmbed()
+			const embed = new Discord.RichEmbed()
 				.setAuthor(user.pet.nickname, message.author.displayAvatarURL)
-				.setThumbnail(user.pet.image)
+				.setThumbnail("attachment://image.png")
 				.setDescription(`**Pet XP:** ${user.pet.xp}\n**Pet Status:** ${petHappiness}\n**Level:** ${user.pet.level}\n**Gender:** ${user.pet.gender.charAt(0).toUpperCase() + user.pet.gender.slice(1)}`)
 				.setColor(message.member.displayHexColor)
 				.setTimestamp();
-			message.channel.send(petEmbed);
+
+			message.channel.send({
+				embed,
+				files: [{
+					attachment: `../images/pets/${bot.toCamelCase(user.pet.pet.toLowerCase())}.png`,
+					name: "image.png"
+				}]
+			});
 		} else if (args[0] === "feed") {
 			const petYear = user.pet.level;
 			let petXp = user.pet.xp;
