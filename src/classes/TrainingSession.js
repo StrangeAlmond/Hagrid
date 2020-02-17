@@ -39,7 +39,8 @@ class TrainingSession {
 		const image = beast.image;
 		const spawnMsg = `A ${beast.name} has been released into the ${this.channel}!
         **Spell:** ${beast.spell.slice(1)} (${spells.find(s => s.spellName === beast.spell.slice(1)).name})
-        **Attack Power:** ${beast.attack}
+		**Attack Power:** ${beast.attack}
+		**Defense Power:** ${beast.defense}
         **HP:** ${beast.health}
 
         Use the \`${this.bot.prefix}use training token\` to participate in this training sesssion!
