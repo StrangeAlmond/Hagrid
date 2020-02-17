@@ -16,7 +16,7 @@ module.exports = {
 
 		if (["wand", "books", "clothes", "cauldron", "supplies"].includes(args[0])) { // The five item to buy in Diagon Alley
 			const roleNames = { // Role/Store names for the corresponding item
-				wand: "ollivandekrs",
+				wand: "ollivanders",
 				books: "flourish and blotts",
 				clothes: "madam malkins",
 				cauldron: "potages",

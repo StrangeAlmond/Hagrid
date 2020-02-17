@@ -8,7 +8,7 @@ module.exports = {
 		const usersData = bot.userInfo.get(`${message.guild.id}-${user.id}`);
 
 		const stats = {
-			"Bean Eaten": "beansEaten",
+			"Beans Eaten": "beansEaten",
 			"Training Sessions": "trainingSessions",
 			"Damage Dealt in Training Sessions": "trainingSessionDamage",
 			"Training Sessions Defeated": "trainingSessionsDefeated",
