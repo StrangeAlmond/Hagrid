@@ -10,7 +10,8 @@ module.exports = {
 		const user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.member;
 		const userData = bot.userInfo.get(`${message.guild.id}-${user.id}`);
 
-		const xpToLevelUp = userData.year === 7 ? 0 : yearsFile[userData.year + 1].xp - userData.xp;
+		let xpToLevelUp = userData.year === 7 ? 0 : yearsFile[userData.year + 1].xp - userData.xp;
+		if (xpToLevelUp < 0) xpToLevelUp = 0; // The amount of xp until they level up should be not a negative number when displayed
 
 		const embedDescription = `
     **Year:** ${userData.year}

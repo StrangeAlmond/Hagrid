@@ -11,7 +11,9 @@ module.exports = {
 		const user = bot.getUserFromMention(args[0], message.guild) || message.guild.members.get(args[0]) || message.member;
 		const userData = bot.userInfo.get(`${message.guild.id}-${user.id}`);
 
-		const xpToLevelUp = userData.year < 7 ? yearsFile[userData.year + 1].xp - userData.xp : 0;
+		let xpToLevelUp = userData.year < 7 ? yearsFile[userData.year + 1].xp - userData.xp : 0;
+		if (xpToLevelUp < 0) xpToLevelUp = 0; // The amount of xp until they level up should be not a negative number when displayed
+
 		const badges = userData.badges.map(b => {
 			const badge = badgesArray.find(i => i.credential === b);
 			return `${bot.emojis.get(badge.emojiID) || ""} - ${badge.name}`;
