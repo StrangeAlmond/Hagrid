@@ -28,6 +28,8 @@ module.exports = {
 			cauldron: "pewter",
 
 			badges: [],
+			pets: [],
+
 			flooPowderInfo: null,
 
 			trainingTokenUse: null,

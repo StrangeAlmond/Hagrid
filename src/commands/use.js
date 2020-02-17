@@ -133,13 +133,22 @@ module.exports = {
 		} else if (["stinksap"].some(i => args.join(" ").includes(i))) {
 			if (!userData.inventory.vialOfStinksap || userData.inventory.vialOfStinksap <= 0) return message.channel.send("You don't have any stinksap!");
 
-			const user = bot.getUserFromMention(args[0], message.guild) || message.guild.members.get(args[0]) || message.member;
+			const user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.member;
+			const userObject = bot.userInfo.get(`${message.guild.id}-${user.id}`);
 
-			if (!bot.userInfo.hasProp(`${message.guild.id}-${user.id}`, "pet")) return message.channel.send(`${user.id === message.author.id ? "You don't have a pet!" : `${user.displayName} doesn't have a pet!`}`);
+			const pets = userObject.pets.filter(p => !p.retired);
+			const pet = pets[0];
+
+			if (!pet) return message.channel.send(`${user.id == message.author.id ? "You don't " : `${user.displayName} does not `} have a pet to revive!`);
 
 			bot.userInfo.dec(`${message.guild.id}-${message.author.id}`, "inventory.vialOfStinksap");
-			bot.userInfo.set(`${message.guild.id}-${user.id}`, null, "pet.lastFeed");
-			bot.userInfo.set(`${message.guild.id}-${user.id}`, false, "pet.fainted");
+
+			pet.lastFeed = null;
+			pet.fainted = false;
+
+			userObject.pets.splice(userObject.pets.findIndex(p => p.id == pet.id), 1, pet);
+
+			bot.userInfo.set(`${message.guild.id}-${user.id}`, userObject.pets, "pets");
 
 			message.channel.send(`You have revived ${user.id === message.author.id ? "your pet" : `${user.displayName}'s pet`}.`);
 		}

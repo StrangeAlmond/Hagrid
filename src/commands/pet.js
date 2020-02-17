@@ -2,64 +2,131 @@ const ms = require("parse-ms");
 const Discord = require("discord.js");
 const moment = require("moment-timezone");
 const badges = require("../jsonFiles/badges.json");
+const petImages = require("../jsonFiles/petImages.json");
 
 module.exports = {
 	name: "pet",
 	description: "View your pet, Feed your pet, or change your pet's name",
+	aliases: ["pets"],
 	async execute(message, args, bot) {
 		const user = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
 
-		if (!user.pet) return message.channel.send("You don't have a pet!");
-		if (user.pet.fainted && args[0]) return message.channel.send("Your pet has fainted. You can revive your pet with **stinksap**.");
+		const pets = user.pets.filter(p => !p.retired);
+		const pet = pets[0];
 
-		const lastFeed = user.pet.lastFeed;
+		if (pets.length <= 0) return message.channel.send("You don't have a pet!");
+		if (pet.fainted && args[0]) return message.channel.send("Your pet has fainted. You can revive your pet with **stinksap**.");
+
+		const lastFeed = pet.lastFeed;
 		const starveDate = moment.tz(new Date(lastFeed), "America/Los_Angeles");
 		const lastFeedObj = ms(Date.now() - starveDate.valueOf());
 
 		if (lastFeed && lastFeedObj.days >= 8) {
-			const pet = user.pet;
-			bot.userInfo.delete(`${message.guild.id}-${message.author.id}`, "pet");
+			user.pets.splice(user.pets.findIndex(p => p.id == pet.id), 1);
+			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, user.pets, "pets");
 			return message.channel.send(`Sorry ${message.author}, I'm gonna have to take yer ${pet.pet} away. Very disappointin' to see you neglect little ${pet.nickname} like that. When yer ready to care fer a pet again, you can go back to Diagon Alley and buy a new one.`);
 		}
 
-		if (lastFeed && lastFeedObj.days >= 3 && !user.pet.fainted) {
+		if (lastFeed && lastFeedObj.days >= 3 && !pet.fainted) {
 			message.channel.send("Your pet has fainted after days of neglect!");
-			return bot.userInfo.set(`${message.guild.id}-${message.author.id}`, true, "pet.fainted");
+			pet.fainted = true;
+			user.pets.splice(user.pets.findIndex(p => p.id == pet.id), 1, pet);
+			return bot.userInfo.set(`${message.guild.id}-${message.author.id}`, user.pets, "pets");
 		}
 
 		if (!args[0]) {
-			let petHappiness = "";
-			const today = moment.tz("America/Los_Angeles").format("l");
+			user.pets = user.pets.sort((a, b) => {
+				if (a.retired && !b.retired) return 1;
+				if (b.retired && !a.retired) return -1;
 
-			if (lastFeed && lastFeedObj.hours >= 24) {
-				petHappiness = "Starving";
-			} else if (lastFeed && lastFeed !== today) {
-				petHappiness = "Hungry";
-			} else if (lastFeed == null) {
-				petHappiness = "Hungry";
-			} else if (lastFeed && lastFeed === today) {
-				petHappiness = "Full";
+				if (a.retired && b.retired) return 0;
+			});
+
+			const pages = [];
+
+			for (let i = 0; i < user.pets.length; i++) {
+				const p = user.pets[i];
+				const lf = p.lastFeed;
+				const sd = moment.tz(new Date(lf), "America/Los_Angeles");
+				const lfo = ms(Date.now() - sd.valueOf());
+
+				const image = petImages[bot.toCamelCase(p.pet.toLowerCase())];
+
+				let petHappiness = "";
+				const today = moment.tz("America/Los_Angeles").format("l");
+
+				if (lf && lfo.hours >= 24) {
+					petHappiness = "Starving";
+				} else if (lf && lf != today) {
+					petHappiness = "Hungry";
+				} else if (lf == null) {
+					petHappiness = "Hungry";
+				} else if (lf && lf == today) {
+					petHappiness = "Full";
+				}
+
+				if (p.fainted) petHappiness = "Fainted";
+
+				const embed = new Discord.RichEmbed()
+					.setAuthor(p.nickname, message.author.displayAvatarURL)
+					.setThumbnail(image)
+					.setDescription(`**Pet XP:** ${p.xp}\n**Pet Status:** ${petHappiness}\n**Level:** ${p.level}\n**Gender:** ${bot.capitalizeFirstLetter(p.gender)}\n\n${p.retired ? "*This pet is retired*" : ""}`)
+					.setColor(message.member.displayHexColor)
+					.setTimestamp();
+
+				pages.push(embed);
 			}
 
-			if (user.pet.fainted) petHappiness = "Fainted";
+			let embed = pages[0];
 
-			const embed = new Discord.RichEmbed()
-				.setAuthor(user.pet.nickname, message.author.displayAvatarURL)
-				.setThumbnail("attachment://image.png")
-				.setDescription(`**Pet XP:** ${user.pet.xp}\n**Pet Status:** ${petHappiness}\n**Level:** ${user.pet.level}\n**Gender:** ${user.pet.gender.charAt(0).toUpperCase() + user.pet.gender.slice(1)}`)
-				.setColor(message.member.displayHexColor)
-				.setTimestamp();
+			if (pages.length == 1) return message.channel.send(embed);
 
-			message.channel.send({
-				embed,
-				files: [{
-					attachment: `../images/pets/${bot.toCamelCase(user.pet.pet.toLowerCase())}.png`,
-					name: "image.png"
-				}]
+			const msg = await message.channel.send(embed);
+
+			let page = 1;
+
+			await msg.react("◀");
+			await msg.react("▶");
+
+			const filter = (reaction, u) => ["▶", "◀"].includes(reaction.emoji.name) && u.id == message.author.id;
+			const reactionCollector = msg.createReactionCollector(filter, {
+				time: 120000
 			});
+
+			reactionCollector.on("collect", async collected => {
+				if (collected.emoji.name == "▶") {
+					if (page == pages.length) return msg.reactions.last().remove(message.author);
+
+					page++;
+
+					embed = pages[page - 1];
+					await msg.edit(embed);
+
+					msg.reactions.last().remove(message.author);
+				} else if (collected.emoji.name == "◀") {
+					if (page == 1) return msg.reactions.first().remove(message.author);
+
+					page--;
+
+					embed = pages[page - 1];
+
+					await msg.edit(embed);
+					msg.reactions.first().remove(message.author);
+				}
+			});
+
+			reactionCollector.on("end", async () => {
+				embed = pages[page - 1];
+
+				embed.setFooter("This reaction menu has expired.");
+
+				await msg.edit(embed);
+			});
+
 		} else if (args[0] === "feed") {
-			const petYear = user.pet.level;
-			let petXp = user.pet.xp;
+			if (!pet) return message.channel.send("It seems you don't have a pet to feed. You can purchase a pet at the **Magical Menagerie**");
+			const petYear = pet.level;
+			let petXp = pet.xp;
 
 			if (petXp >= 365) return message.channel.send("It seems your pet isn't hungry!");
 
@@ -69,8 +136,7 @@ module.exports = {
 				return message.channel.send(`${message.member}, You can feed your pet again in ${timeObj.hours}h, ${timeObj.minutes}m, ${timeObj.seconds}s.`);
 			}
 
-			await bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "pet.xp");
-
+			pet.xp++;
 			petXp++;
 
 			const levelUps = {
@@ -84,7 +150,7 @@ module.exports = {
 
 			if (petXp >= levelUps[petYear]) {
 				message.channel.send(`Your pet is now level ${petYear + 1}!`);
-				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, petYear + 1, "pet.level");
+				pet.level++;
 
 				if ((petYear + 1) === 7) {
 					const badge = badges.find(b => b.name.toLowerCase() === "care of magical creatures badge"); // Care of magical creatures badge
@@ -96,16 +162,26 @@ module.exports = {
 				}
 			}
 
-			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, moment.tz("America/Los_Angeles").format("l"), "pet.lastFeed");
+			pet.lastFeed = moment.tz("America/Los_Angeles").format("l");
+
+			user.pets.splice(user.pets.findIndex(p => p.id == pet.id), 1, pet);
+			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, user.pets, "pets");
+
 			message.channel.send("You have fed your pet!");
 		} else if (args[0] === "set-name") {
+			if (!pet) return message.channel.send("It seems you don't have a pet to name. You can purchase a pet at the **Magical Menagerie**");
+
 			if (!args[1]) return message.channel.send("❌ | Please specify what to name your pet!");
 
 			args = message.content.split(/ +/);
 			args.splice(0, 2);
 
 			const name = args.join(" ");
-			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, name, "pet.nickname");
+
+			pet.nickname = name;
+			user.pets.splice(user.pets.findIndex(p => p.id == pet.id), 1, pet);
+			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, user.pets, "pets");
+
 			message.channel.send(`I have set your pets name to ${name}`);
 		}
 	},

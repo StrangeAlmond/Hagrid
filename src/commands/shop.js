@@ -73,9 +73,12 @@ module.exports = {
 			const formattedTierOnePets = shopItems.filter(i => i.tier == 1).map(i => `**${i.id}** ${i.name} - ${i.price}`);
 			const formattedTierTwoPets = shopItems.filter(i => i.tier == 2).map(i => `**${i.id}** ${i.name} - ${i.price}`);
 
+			const pets = bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "pets").filter(p => !p.retired);
+			const pet = pets[0];
+
 			shopEmbed.setDescription(`**Tier 1**\n${formattedTierOnePets.join("\n")}
 			
-${bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "pet.level") == 7 ? `**Tier 2**\n${formattedTierTwoPets.join("\n")}` : ""}`);
+${pet && (pet.level == 7 || pet.tier == 2) ? `**Tier 2**\n${formattedTierTwoPets.join("\n")}` : ""}`);
 		}
 
 		message.channel.send(shopEmbed);
