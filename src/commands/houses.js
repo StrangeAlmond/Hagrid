@@ -22,7 +22,7 @@ module.exports = {
 		// Send the embed
 		bot.quickWebhook(message.channel, housesEmbed, {
 			username: "Sorting Hat",
-			avatar: "./images/webhook_avatars/sortingHat.png",
+			avatar: "../images/webhook_avatars/sortingHat.png",
 			deleteAfterUse: true
 		});
 	},
