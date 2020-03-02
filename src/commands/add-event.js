@@ -1,5 +1,3 @@
-const Discord = require("discord.js");
-
 module.exports = {
 	name: "add-event",
 	description: "Add an event to your server's list of active events.",

@@ -1,5 +1,3 @@
-const Discord = require("discord.js");
-
 module.exports = {
 	name: "say",
 	description: "Send's a copy of the user's message as Hagrid.",

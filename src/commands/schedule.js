@@ -1,5 +1,3 @@
-const Discord = require("discord.js");
-
 module.exports = {
 	name: "schedule",
 	description: "View this months training schedule.",

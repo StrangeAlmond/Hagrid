@@ -1,5 +1,3 @@
-const Discord = require("discord.js");
-
 module.exports = {
 	name: "frogsoap",
 	description: "Spawns frogs in the current channel.",

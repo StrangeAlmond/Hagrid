@@ -1,5 +1,3 @@
-const Discord = require("discord.js");
-
 module.exports = {
 	name: "optout",
 	description: "Opt out of training session notifications.",

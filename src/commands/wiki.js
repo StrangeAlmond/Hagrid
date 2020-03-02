@@ -1,5 +1,3 @@
-const Discord = require("discord.js");
-
 module.exports = {
 	name: "wiki",
 	description: "Get the link for Hagrid's wiki.",

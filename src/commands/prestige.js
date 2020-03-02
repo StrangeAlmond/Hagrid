@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const badges = require("../jsonFiles/badges.json");
 
 module.exports = {

@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const ms = require("parse-ms");
 const moment = require("moment-timezone");
 

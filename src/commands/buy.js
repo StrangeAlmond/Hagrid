@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const items = require("../jsonFiles/shop.json");
 
 module.exports = {

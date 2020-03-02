@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const sm = require("string-similarity");
 const inventoryItems = require("../jsonFiles/inventoryItems.json").map(i => `inventory.${i}`);
 const otherItems = ["balance.knuts", "balance.sickles", "balance.galleons", "stats.merits", "xp"];

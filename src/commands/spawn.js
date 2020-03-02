@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const TrainingSession = require("../classes/TrainingSession.js");
 const beasts = require("../jsonFiles/training_sessions/beasts.json");
 

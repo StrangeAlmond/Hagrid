@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const items = require("../jsonFiles/forbidden_forest/items.json");
 const fs = require("fs");
 

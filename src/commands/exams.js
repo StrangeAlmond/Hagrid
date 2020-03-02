@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const moment = require("moment-timezone");
 const examInfo = require("../jsonFiles/exams.json");
 

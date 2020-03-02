@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const houseCupChannel = require("../botconfig.json").houseCupChannel;
 
 module.exports = {
 	name: "crucio",

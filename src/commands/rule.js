@@ -1,5 +1,3 @@
-const Discord = require("discord.js");
-
 module.exports = {
 	name: "rule",
 	description: "View a list of Hogwarts rules.",

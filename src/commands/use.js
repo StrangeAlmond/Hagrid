@@ -1,6 +1,3 @@
-const Discord = require("discord.js");
-const botconfig = require("../botconfig.json");
-
 module.exports = {
 	name: "use",
 	description: "Use an item",
