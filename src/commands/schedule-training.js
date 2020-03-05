@@ -8,6 +8,15 @@ module.exports = {
 	async execute(message, args, bot) {
 		if (!["356172624684122113", "137269251361865728"].includes(message.author.id)) return;
 
+		if (args[0] == "list") {
+			const list = bot.guildInfo.get(message.guild.id, "scheduledTrainingSessions")
+				.map(ts => `${moment.tz(ts.time, "America/Los_Angeles").format("llll")} - ${ts.filter ? bot.capitalizeFirstLetter(ts.filter) : "No Filter"}`)
+				.join("\n");
+
+			message.channel.send(list);
+			return;
+		}
+
 		args = args.join(" ").split(/, +/);
 
 		if (!args[0]) return message.channel.send(`Specify when to spawn a training session! Proper Usage: \`${bot.prefix}schedule-training <year-month-date hh:mm:ss>, [spell]\``);
