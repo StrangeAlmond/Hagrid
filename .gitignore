@@ -2,4 +2,5 @@ node_modules
 data
 logs.txt
 package-lock.json
+botconfig.json
 data_backups
