@@ -12,7 +12,7 @@ const users = {};
 	- Easter eggs
 */
 module.exports = async (bot, message) => {
-  if (message.author.bot || message.chanel.type == "dm") return;
+  if (message.author.bot || message.channel.type == "dm") return;
 
   // Removes any weird characters that will mess up commands
   message.content = message.content.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/’/g, "'");
@@ -36,7 +36,7 @@ module.exports = async (bot, message) => {
 
   const key = `${message.guild.id}-${message.author.id}`;
 
-  const userData = bot.ensureUser(message.member);
+  const userData = bot.functions.ensureUser(message.member, bot);
   bot.userInfo.set(key, Date.now(), "lastMsg");
 
   if (!message.member.hasPermission("MANAGE_GUILD") && message.channel.name != "training-grounds") {
@@ -60,13 +60,13 @@ module.exports = async (bot, message) => {
   if (bot.blacklistedWords.some(w => plainArgs.includes(w))) {
     message.delete();
 
-    bot.quickWebhook(message.channel, "Please don't use muggle profanity in the wizard world!", {
+    bot.functions.quickWebhook(message.channel, "Please don't use muggle profanity in the wizard world!", {
       username: "Dolores Umbridge",
       avatar: "./images/webhook_avatars/doloresUmbridge.png",
       deleteAfterUse: true
     }).then(msg => msg.delete(5000));
 
-    const logChannel = message.guild.channels.find(c => c.name == "incidents");
+    const logChannel = message.guild.channels.cache.find(c => c.name == "incidents");
     if (logChannel) {
       const logEmbed = new Discord.RichEmbed()
         .setAuthor("Profanity Filter")
@@ -78,7 +78,7 @@ module.exports = async (bot, message) => {
         .setFooter(`${message.member.displayName} has used profanity ${bot.userInfo.get(key, "profanityWarns")} time(s).`)
         .setTimestamp();
 
-      bot.quickWebhook(logChannel, logEmbed, {
+      bot.functions.quickWebhook(logChannel, logEmbed, {
         username: "Dolores Umbridge",
         avatar: "./images/webhook_avatars/doloresUmbridge.png",
         deleteAfterUse: true
@@ -140,7 +140,7 @@ module.exports = async (bot, message) => {
       bot.guildInfo.inc(message.guild.id, `housePoints.${house}`);
       bot.guildInfo.removeFrom(message.guild.id, "spawns", triviaQuestion);
 
-      bot.quickWebhook(message.channel, `Congratulations ${message.member}! You guessed the answer correctly! you and your house have gained 1 point.`, webhookObjects[house]);
+      bot.functions.quickWebhook(message.channel, `Congratulations ${message.member}! You guessed the answer correctly! you and your house have gained 1 point.`, webhookObjects[house]);
     }
   }
 
@@ -210,7 +210,7 @@ module.exports = async (bot, message) => {
           };
 
           object.webhookObject = webhookObjects[house];
-          bot.quickWebhook(channel, `It's trivia time ${house} members! try to guess the answer to the question below:\n\n${question}`, webhookObjects[house]);
+          bot.functions.quickWebhook(channel, `It's trivia time ${house} members! try to guess the answer to the question below:\n\n${question}`, webhookObjects[house]);
         }
       }
     }
@@ -225,10 +225,8 @@ module.exports = async (bot, message) => {
   }
 
   // If the message isn't a command then give them xp
-  if (!bot.commands.find(cmd => cmd.name == plainArgs[0].slice(1)) &&
-    !bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(plainArgs[0].slice(1))) &&
-    !spells.some(s => s.spell == message.content.toLowerCase()) &&
-    ![`${bot.prefix}u`, `${bot.prefix}d`, `${bot.prefix}l`, `${bot.prefix}d`].includes(plainArgs[0])) {
+  if (!bot.commands.find(cmd => cmd.name == plainArgs[0].slice(1)) && !bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(plainArgs[0].slice(1))) &&
+    !spells.some(s => s.spell == message.content.toLowerCase()) && ![`${bot.prefix}u`, `${bot.prefix}d`, `${bot.prefix}l`, `${bot.prefix}d`].includes(plainArgs[0])) {
 
     if (!xpCooldown.has(key)) {
       bot.userInfo.math(key, "+", xpAmount, "xp");
@@ -240,7 +238,7 @@ module.exports = async (bot, message) => {
     }
   }
 
-  if (userData.year < 7 && userData.xp > years[userData.year + 1].xp) bot.levelUp(message.member, message.channel);
+  if (userData.year < 7 && userData.xp > years[userData.year + 1].xp) bot.functions.levelUp(message.member, message.channel);
   if (!message.content.startsWith(bot.prefix)) return;
 
   let args = message.content.slice(bot.prefix.length).toLowerCase().split(/ +/);
