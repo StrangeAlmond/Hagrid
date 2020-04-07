@@ -32,6 +32,7 @@ module.exports = async bot => {
   bot.getUserFromMention = functions.getUserFromMention;
   bot.capitalizeFirstLetter = functions.capitalizeFirstLetter;
   bot.isMazeChannel = functions.isMazeChannel;
+  bot.parseMs = functions.parseMs;
 
   bot.user.setActivity("Just Started, Sorry for the downtime!");
   bot.log(`${bot.user.username} is online!\nUser: ${bot.user.username}\nSnowflake: ${bot.user.id}\nGuilds: ${bot.guilds.cache.size}\nUsers: ${bot.users.cache.size}\nPrefix: ${bot.prefix}`, "info");

@@ -316,5 +316,33 @@ module.exports = {
 
     if (guildData.spawns.some(s => s.channel === object.channel)) bot.guildInfo.removeFrom(guild.id, guildData.spawns.find(s => s.channel === object.channel), "spawns");
     bot.guildInfo.push(guild.id, object, "spawns");
+  },
+
+  parseMs(ms, intOnly) { // Formats the given time and returns an object of different measures of time
+    const seconds = ms / 1000;
+    const minutes = seconds / 60;
+    const hours = minutes / 60;
+    const days = hours / 24;
+
+    let object = {};
+
+    if (intOnly) {
+      object = {
+        ms,
+        seconds: parseInt(seconds),
+        minutes: parseInt(minutes),
+        hours: parseInt(hours),
+        days: parseInt(days)
+      };
+    } else {
+      object = {
+        ms,
+        seconds,
+        hours,
+        days
+      };
+    }
+
+    return object;
   }
 };
