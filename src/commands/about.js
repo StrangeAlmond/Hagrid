@@ -14,7 +14,7 @@ module.exports = {
 
 		const statsEmbed = new Discord.MessageEmbed()
 			.setColor(message.member.displayHexColor)
-			.setThumbnail(bot.user.displayAvatarURL)
+			.setThumbnail(bot.user.displayAvatarURL())
 			.addField("Uptime", `${uptimeMsg}`)
 			.addField("Memory Usage", `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`)
 			.addField("Version", botconfig.version)
