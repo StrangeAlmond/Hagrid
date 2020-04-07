@@ -20,7 +20,7 @@ module.exports = {
 			const channel = message.guild.channels.find(c => c.name == "house-cup");
 			if (!channel) return;
 
-			const memberEmbed = new Discord.RichEmbed()
+			const memberEmbed = new Discord.MessageEmbed()
 				.setAuthor(`Minus 20 points from ${house} and ${message.member.displayName}!`)
 				.addField("Reason", "Tried to use a forbidden curse", true)
 				.setColor(message.member.displayHexColor)
