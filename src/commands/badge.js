@@ -43,7 +43,6 @@ module.exports = {
 					return message.channel.send(failEmbed);
 				}
 
-				// Add the badge credential to their badges.
 				bot.userInfo.push(`${message.guild.id}-${member.id}`, badge.credential, "badges");
 
 				const badgeAddedEmbed = new Discord.MessageEmbed()
