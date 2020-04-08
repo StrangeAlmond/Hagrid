@@ -5,7 +5,7 @@ module.exports = {
 	name: "about",
 	description: "About hagrid and the people who worked on it.",
 	async execute(message, args, bot) {
-		const uptime = bot.functions.parseMs(bot.uptime);
+		const uptime = bot.functions.parseMs(bot.uptime, true);
 		const uptimeMsg = `${uptime.days}d, ${uptime.hours}h, ${uptime.minutes}m, ${uptime.seconds}s`;
 
 		const developer = bot.users.cache.get(bot.ownerId).tag;

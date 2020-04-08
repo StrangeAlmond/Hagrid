@@ -319,10 +319,10 @@ module.exports = {
   },
 
   parseMs(ms, intOnly) { // Formats the given time and returns an object of different measures of time
-    const seconds = ms / 1000;
-    const minutes = seconds / 60;
-    const hours = minutes / 60;
-    const days = hours / 24;
+    const seconds = (ms / 1000) % 60;
+    const minutes = (ms / 60000) % 60;
+    const hours = (ms / 3600000) % 24;
+    const days = ms / 86400000;
 
     let object = {};
 
