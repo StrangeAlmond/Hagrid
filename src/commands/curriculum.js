@@ -32,7 +32,7 @@ module.exports = {
 					let classSpells = yearSpells.filter(s => s.class.toLowerCase() == curClass.toLowerCase());
 
 					if (["herbology", "care of magical creatures"].includes(curClass.toLowerCase())) {
-						classSpells = classSpells.map(s => `${s.name} - ${bot.capitalizeEveryFirstLetter(bot.fromCamelCase(s.reward))}`);
+						classSpells = classSpells.map(s => `${s.name} - ${bot.functions.capitalizeEveryFirstLetter(bot.functions.fromCamelCase(s.reward))}`);
 					} else if (["potions"].includes(curClass.toLowerCase())) {
 						classSpells = classSpells.map(s => `${s.name}`);
 					} else {
@@ -45,7 +45,7 @@ module.exports = {
 				}
 			}
 
-			const embed = new Discord.RichEmbed()
+			const embed = new Discord.MessageEmbed()
 				.setTitle(`Year ${i} Curriculum`)
 				.setColor(message.member.displayHexColor)
 				.setDescription(msg)
@@ -57,7 +57,6 @@ module.exports = {
 		let page = 1;
 
 		const msg = await message.channel.send(pages[0]);
-
 		await msg.react("◀");
 		await msg.react("▶");
 
@@ -68,20 +67,19 @@ module.exports = {
 
 		reactionCollector.on("collect", async collected => {
 			if (collected.emoji.name === "▶") {
-				if (page === pages.length) return msg.reactions.last().remove(message.author);
+				if (page === pages.length) return msg.reactions.cache.last().users.remove(message.author);
 
 				page++;
 
 				await msg.edit(pages[page - 1]);
-				msg.reactions.last().remove(message.author);
+				msg.reactions.cache.last().users.remove(message.author);
 			} else if (collected.emoji.name === "◀") {
-				if (page === 1) return msg.reactions.first().remove(message.author);
+				if (page === 1) return msg.reactions.cache.first().users.remove(message.author);
 
 				page--;
 
-				// Edit the message with the new page
 				await msg.edit(pages[page - 1]);
-				msg.reactions.first().remove(message.author);
+				msg.reactions.cache.first().users.remove(message.author);
 			}
 		});
 
