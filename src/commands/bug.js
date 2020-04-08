@@ -6,8 +6,7 @@ module.exports = {
 	description: "Report a bug.",
 	aliases: ["bugreport", "reportbug", "bugs"],
 	async execute(message, args, bot) {
-		// Create an embed for displaying the information about this bug.
-		const bugEmbed = new Discord.RichEmbed()
+		const bugEmbed = new Discord.MessageEmbed()
 			.setTitle(`🐛 Bug report from ${message.member.displayName}!`)
 			.setColor("#FF0000")
 			.addField("Description", args.join(" "), true)
@@ -16,9 +15,7 @@ module.exports = {
 			.addField("Time", moment(message.createdTimestamp).tz("America/Los_Angeles").format("llll"))
 			.addField("Images", message.attachments.size > 0 ? message.attachments.filter(a => a.width).map(a => a.url) : "N/A")
 			.setTimestamp();
-		// Find the bugs channel and send the embed to it
-		message.guild.channels.find(c => c.name.includes("bugs")).send(bugEmbed);
-		// React with a checkmark to the embed.
+		message.guild.channels.cache.find(c => c.name.includes("bugs")).send(bugEmbed);
 		message.react("✅");
 	},
 };
