@@ -291,6 +291,7 @@ module.exports = async (bot, message) => {
   if (!command) return;
 
   command.args = args;
+  message.author.key = `${message.guild.id}-${message.author.id}`;
   bot.userInfo.set(key, command, "stats.lastSpell");
 
   command.execute(message, args, bot).catch(e => {
