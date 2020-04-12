@@ -1,25 +1,18 @@
-const botConfig = require("../botconfig.json");
+const botconfig = require("../botconfig.json");
 
 module.exports = {
 	name: "eval",
 	description: "An owner-only command, this command evaluates the given code.",
 	aliases: ["evaluate"],
 	async execute(message, args, bot) {
-		// Only I can use this command
-		if (message.author.id !== "356172624684122113") return;
+		if (message.author.id != bot.ownerId) return;
 
-		// Evaluate the code
 		try {
-			// Get the code
 			const code = message.content.slice(6);
-
-			// Evaled code
 			const ev = require("util").inspect(eval(code));
 
-			// Replace bot token if its in the evaluation
-			if (ev.includes(botConfig.token)) ev.replace(/botConfig.token/gi, "Bot-Token-Replacement");
+			if (ev.includes(botconfig.token)) ev.replace(/botConfig.token/gi, "Bot-Token-Replacement");
 
-			// Too long to send
 			if (ev.length > 1850 || code.length > 1850) {
 				return message.channel.send("This worked but the response code is too long to send").then(msg => {
 					msg.delete(60000);
@@ -27,17 +20,18 @@ module.exports = {
 				});
 			}
 
-			// Send the response code
-			message.channel.send(`**Input:**\n\`\`\`js\n${code}\`\`\`\n\n**Eval:**\`\`\`js\n${ev}\`\`\``).then(msg => {
-				msg.delete(60000);
-				message.delete(120000);
+			message.channel.send(`Input:\n\n${code}\n\nResponse:\n\n${ev}`, {
+				code: "js"
+			}).then(msg => {
+				msg.delete({ timeout: 60000 });
+				message.delete({ timeout: 120000 });
 			});
-
 		} catch (err) {
-			// Let me know there's an error and delete the message shortly after
-			message.channel.send(`**Error:**\n!\`\`\`js\n${err}\`\`\``).then(msg => {
-				msg.delete(60000);
-				message.delete(120000);
+			message.channel.send(`Error:\n\n${err}`, {
+				code: "js"
+			}).then(msg => {
+				msg.delete({ timeout: 60000 });
+				message.delete({ timeout: 120000 });
 			});
 		}
 
