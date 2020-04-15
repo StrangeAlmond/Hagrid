@@ -15,8 +15,8 @@ module.exports = {
 
 			if (ev.length > 1850 || code.length > 1850) {
 				return message.channel.send("This worked but the response code is too long to send").then(msg => {
-					msg.delete(60000);
-					message.delete(120000);
+					msg.delete({ timeout: 60000 });
+					message.delete({ timeout: 120000 });
 				});
 			}
 
