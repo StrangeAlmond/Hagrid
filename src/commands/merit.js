@@ -33,7 +33,7 @@ module.exports = {
 		bot.functions.ensureUser(mUser, bot);
 
 		bot.userInfo.inc(`${message.guild.id}-${mUser.id}`, "stats.merits");
-		bot.userInfo.set(message.author.id, moment.tz("America/Los_Angeles").format("l"), "cooldowns.lastMerit");
+		bot.userInfo.set(message.author.key, moment.tz("America/Los_Angeles").format("l"), "cooldowns.lastMerit");
 
 		bot.functions.quickWebhook(message.channel,
 			`Congratulations ${mUser.displayName}! You have received a merit from ${message.member.displayName}.`,
