@@ -1,12 +1,11 @@
-const ms = require("parse-ms");
 const moment = require("moment-timezone");
 
 module.exports = {
 	name: "merit",
-	description: "Give a fellow wizard a merit.",
+	description: "Give your fellow wizards a merit.",
 	aliases: ["m"],
 	async execute(message, args, bot) {
-		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
+		const userData = bot.userInfo.get(message.author.key);
 		const lastMerit = userData.cooldowns.lastMerit;
 
 		const webhookObject = {
@@ -15,25 +14,30 @@ module.exports = {
 			deleteAfterUse: true
 		};
 
-		if (lastMerit === moment.tz("America/Los_Angeles").format("l")) {
-			const timeObj = ms(bot.timeUntilMidnight());
-			return bot.quickWebhook(message.channel, `You can award more merits in ${timeObj.hours} hours, ${timeObj.minutes} minutes, and ${timeObj.seconds} seconds.`, webhookObject);
+		if (lastMerit == moment.tz("America/Los_Angeles").format("l")) {
+			const timeObj = bot.function.parseMs(bot.functions.timeUntilMidnight(), true);
+			return bot.functions.quickWebhook(message.channel,
+				`You can award more merits in ${timeObj.hours} hours, ${timeObj.minutes} minutes, and ${timeObj.seconds} seconds.`, webhookObject);
 		}
 
-		if (!args[0]) return bot.quickWebhook(message.channel, "You can award one merit!", webhookObject);
+		if (!args[0]) return bot.functions.quickWebhook(message.channel, "You can award one merit!", webhookObject);
 
-		const mUser = bot.getUserFromMention(args[0], message.guild) || message.guild.members.get(args[0]);
+		const mUser = bot.functions.getUserFromMention(args[0], message.guild) || message.guild.members.cache.get(args[0]);
 
-		if (!mUser) return bot.quickWebhook(message.channel, "I couldn't find that user!", webhookObject);
-		if (mUser.id === message.author.id) return bot.quickWebhook(message.channel, "You can't give yourself a merit!", webhookObject);
-		if (mUser.user.bot) return bot.quickWebhook(message.channel, "You can't merit a bot!", webhookObject);
+		if (!mUser) return bot.functions.quickWebhook(message.channel, "I couldn't find that user!", webhookObject);
+		if (mUser.id == message.author.id) {
+			return bot.functions.quickWebhook(message.channel, "You can't give yourself a merit!", webhookObject);
+		}
+		if (mUser.user.bot) return bot.functions.quickWebhook(message.channel, "You can't merit a bot!", webhookObject);
 
-		bot.ensureUser(mUser);
+		bot.functions.ensureUser(mUser, bot);
 
 		bot.userInfo.inc(`${message.guild.id}-${mUser.id}`, "stats.merits");
-		bot.userInfo.set(`${message.guild.id}-${message.author.id}`, moment.tz("America/Los_Angeles").format("l"), "cooldowns.lastMerit");
+		bot.userInfo.set(message.author.id, moment.tz("America/Los_Angeles").format("l"), "cooldowns.lastMerit");
 
-		bot.quickWebhook(message.channel, `Congratulations ${mUser.displayName}! You have received a merit from ${message.member.displayName}.`, webhookObject);
+		bot.functions.quickWebhook(message.channel,
+			`Congratulations ${mUser.displayName}! You have received a merit from ${message.member.displayName}.`,
+			webhookObject);
 
 	},
 };
