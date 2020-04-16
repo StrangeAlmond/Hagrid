@@ -2,12 +2,12 @@ module.exports = {
 	name: "priori",
 	description: "Display's the user's last spell.",
 	async execute(message, args, bot) {
-		if (args[0] !== "incantatem") return;
+		if (args[0] != "incantatem") return;
 
 		const staffRoles = ["headmaster", "deputy headmaster", "heads of house", "auror", "support staff", "prefect", "head girl", "head boy"];
-		if (!staffRoles.some(r => message.member.roles.find(i => i.name.toLowerCase() === r))) return;
+		if (!staffRoles.some(r => message.member.roles.cache.find(i => i.name.toLowerCase() == r))) return;
 
-		const spellUser = bot.getUserFromMention(args[1], message.guild) || message.guild.members.get(args[1]);
+		const spellUser = bot.functions.getUserFromMention(args[1], message.guild) || message.guild.members.get(args[1]);
 		if (!args[1]) return message.channel.send("❌ | Specify who you'd like to user this spell on!");
 		if (!spellUser) return message.channel.send("❌ | I couldn't find that user");
 
