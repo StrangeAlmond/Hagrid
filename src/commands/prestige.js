@@ -4,32 +4,38 @@ module.exports = {
 	name: "prestige",
 	description: "Start over with a special item.",
 	async execute(message, args, bot) {
-		if (message.author.id !== "356172624684122113" && message.author.id !== "137269251361865728") return;
+		if (message.author.id != bot.ownerId && message.author.id != "137269251361865728") return;
 
-		const user = bot.getUserFromMention(args[0], message.guild);
-		if (!user) return message.channel.send(`Specify the user to prestige! Proper Usage: \`${bot.prefix}prestige <@member> <type>\``);
+		const user = bot.functions.getUserFromMention(args[0], message.guild);
+		if (!user) {
+			return message.channel.send(`Specify the user to prestige! Proper Usage: \`${bot.prefix}prestige <@member> <type>\``);
+		}
 
 		const userData = bot.userInfo.get(`${message.guild.id}-${user.id}`);
 
 		const items = ["elder wand", "invisibility cloak", "resurrection stone"];
-		const prestigeItem = items.find(i => args.slice(1).join(" ") === i);
+		const prestigeItem = items.find(i => args.slice(1).join(" ") == i);
 
-		if (!prestigeItem) return message.channel.send(`Specify the item to give the user! Proper Usage: \`${bot.prefix}prestige <@member< <type>\``);
+		if (!prestigeItem) {
+			return message.channel.send(`Specify the item to give the user! Proper Usage: \`${bot.prefix}prestige <@member< <type>\``);
+		}
 
-		const formattedPrestigeItem = bot.toCamelCase(prestigeItem);
+		const formattedPrestigeItem = bot.functions.toCamelCase(prestigeItem);
 
-		if (userData.inventory[formattedPrestigeItem] >= 1) return message.channel.send(`They have already have the ${prestigeItem}!`);
+		if (userData.inventory[formattedPrestigeItem] >= 1) {
+			return message.channel.send(`They have already have the ${prestigeItem}!`);
+		}
 
-		const yearSevenRole = user.roles.find(r => r.name.toLowerCase() === "seventh year");
-		if (yearSevenRole) user.removeRole(yearSevenRole);
+		const yearSevenRole = user.roles.cache.find(r => r.name.toLowerCase() == "seventh year");
+		if (yearSevenRole) user.roles.remove(yearSevenRole);
 
-		const yearOneRole = message.guild.roles.find(r => r.name.toLowerCase() === "first year");
-		user.addRole(yearOneRole);
+		const yearOneRole = message.guild.roles.cache.find(r => r.name.toLowerCase() == "first year");
+		user.roles.add(yearOneRole);
 
-		const studiedSpells = userData.studiedSpells.filter(s => user.roles.some(r => r.name.toLowerCase() === s));
+		const studiedSpells = userData.studiedSpells.filter(s => user.roles.cache.some(r => r.name.toLowerCase() == s));
 		studiedSpells.forEach(spell => {
-			const role = message.guild.roles.find(r => r.name.toLowerCase() === spell);
-			user.removeRole(role);
+			const role = message.guild.roles.cache.find(r => r.name.toLowerCase() == spell);
+			user.roles.remove(role);
 		});
 
 		const valuesToReset = {
@@ -58,17 +64,23 @@ module.exports = {
 			bot.userInfo.set(`${message.guild.id}-${user.id}`, value, key);
 		}
 
-		const prestigeItems = Object.keys(userData.inventory).filter(item => items.map(i => bot.toCamelCase(i)).includes(item));
+		const prestigeItems = Object.keys(userData.inventory)
+			.filter(item => items.map(i => bot.functions.toCamelCase(i)).includes(item));
+
 		prestigeItems.forEach(item => {
 			bot.userInfo.set(`${message.guild.id}-${user.id}`, 1, `inventory.${item}`);
 		});
 
-		if (prestigeItem === "elder wand") elderWand();
-		if (prestigeItem === "invisibility cloak") invisibilityCloak();
-		if (prestigeItem === "resurrection stone") resurrectionStone();
+		if (prestigeItem == "elder wand") elderWand();
+		if (prestigeItem == "invisibility cloak") invisibilityCloak();
+		if (prestigeItem == "resurrection stone") resurrectionStone();
 
-		if (userData.inventory.resurrectionStone >= 1 && userData.inventory.invisibilityCloak >= 1 && userData.inventory.elderWand >= 1) {
-			const badge = badges.badgesArray.find(b => b.name.toLowerCase() === "deathly ballows badge");
+		userData.inventory = bot.userInfo.get(message.author.key, "inventory");
+
+		if (userData.inventory.resurrectionStone >= 1 &&
+			userData.inventory.invisibilityCloak >= 1 &&
+			userData.inventory.elderWand >= 1) {
+			const badge = badges.find(b => b.name.toLowerCase() == "deathly hallows badge");
 			bot.userInfo.push(`${message.guild.id}-${user.id}`, badge.credential, "badges");
 		}
 
