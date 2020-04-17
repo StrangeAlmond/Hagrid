@@ -8,8 +8,12 @@ async function quickWebhook(channel, message, options) {
   }
 
   const webhooks = await channel.fetchWebhooks();
-  let hook = webhooks.find(w => w.name === options.username);
-  if (!hook) hook = await channel.createWebhook(options.username, options.avatar);
+  let hook = webhooks.find(w => w.name == options.username);
+  if (!hook) {
+    hook = await channel.createWebhook(options.username, {
+      avatar: options.avatar
+    });
+  }
 
   const msgObject = await hook.send(message, {
     username: options.name,
