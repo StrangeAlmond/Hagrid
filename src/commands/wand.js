@@ -4,17 +4,14 @@ module.exports = {
 	name: "wand",
 	description: "View your wand information.",
 	async execute(message, args, bot) {
-		const user = bot.getUserFromMention(args[0], message.guild) || message.guild.members.get(args[0]) || message.member;
+		const user = bot.functions.getUserFromMention(args[0], message.guild) || message.guild.members.cache.get(args[0]) || message.member;
 		const userData = bot.userInfo.get(`${message.guild.id}-${user.id}`);
 
-		const core = userData.wand.core;
-		const wood = userData.wand.wood;
-		const length = `${userData.wand.length}"`;
-		const flexibility = `${userData.wand.flexibility}`;
+		const { core, wood, length, flexibility } = userData.wand;
 
-		const wandEmbed = new Discord.RichEmbed()
+		const wandEmbed = new Discord.MessageEmbed()
 			.setAuthor(`${user.displayName}'s Wand`, user.user.displayAvatarURL)
-			.setDescription(`**Core:** ${core}\n**Wood:** ${wood}\n**Length:** ${length}\n**Flexibility:** ${flexibility}`)
+			.setDescription(`**Core:** ${core}\n**Wood:** ${wood}\n**Length:** ${length}"\n**Flexibility:** ${flexibility}`)
 			.setColor(user.displayHexColor)
 			.setTimestamp();
 
