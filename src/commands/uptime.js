@@ -4,22 +4,13 @@ module.exports = {
 	name: "uptime",
 	description: "View Hagrid's uptime.",
 	async execute(message, args, bot) {
-		let totalSeconds = (bot.uptime / 1000);
-
-		const hours = Math.floor(totalSeconds / 3600);
-
-		totalSeconds %= 3600;
-
-		const minutes = Math.floor(totalSeconds / 60);
-		const seconds = Math.round(totalSeconds % 60);
-		const days = Math.round(totalSeconds / 86400000);
-
-		const uptime = new Discord.RichEmbed()
+		const uptime = bot.functions.parseMs(bot.uptime, true);
+		const uptimeEmbed = new Discord.MessageEmbed()
 			.setAuthor("Uptime")
 			.setColor(message.member.displayHexColor)
-			.setDescription(`${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds`)
-			.setFooter(bot.user.username, bot.user.displayAvatarURL)
+			.setDescription(`${uptime.days} days, ${uptime.hours} hours, ${uptime.minutes} minutes, and ${uptime.seconds} seconds`)
+			.setFooter(bot.user.username, bot.user.displayAvatarURL())
 			.setTimestamp();
-		message.channel.send(uptime);
+		message.channel.send(uptimeEmbed);
 	},
 };
