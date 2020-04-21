@@ -5,43 +5,45 @@ module.exports = {
 	description: "Create a maze channel for you to explore the maze in.",
 	aliases: ["enter"],
 	async execute(message, args, bot) {
-		if (message.channel.name !== "forbidden-forest") return;
+		if (message.channel.name != "forbidden-forest") return;
 
-		// Get a list of the guild channel names
-		const forbiddenForestCategoryName = "forbidden forest";
-		const forbiddenForestCategory = message.guild.channels.find(c => c.name.toLowerCase() === forbiddenForestCategoryName.toLowerCase() && c.type === "category");
-		const forbiddenForestChannels = forbiddenForestCategory.children;
+		// Get a list of active maze forbidden forest channels
+		const forestCategoryName = "forbidden forest";
+		const forestCategory = message.guild.channels.cache.find(c =>
+			c.name.toLowerCase() == forestCategoryName.toLowerCase() &&
+			c.type == "category");
+		const forestChannels = forestCategory.children;
 
-		// If there isn't a channel made for them create one
-		if (forbiddenForestChannels.some(c => c.name.includes(formattedName()))) return message.reply("You already have a maze session open!");
+		if (forestChannels.some(c => c.name.includes(formattedName()))) {
+			return message.channel.send("You already have a maze session open!");
+		}
 
-		// Create the channel
-		const usersChannel = await message.guild.createChannel(`${formattedName()}-forbidden-forest`, {
+		const mutedRole = message.guild.roles.cache.find(r => ["silenced", "muted"].includes(r.name.toLowerCase()));
+
+		const usersChannel = await message.guild.channels.create(`${formattedName()}-forbidden-forest`, {
 			type: "text",
-
 			permissionOverwrites: [{
-					id: message.author.id,
-					allow: ["VIEW_CHANNEL", "READ_MESSAGES", "READ_MESSAGE_HISTORY", "EMBED_LINKS"]
-				},
-				{
-					id: "423184681765306368", // The muted role shouldn't be able to send messages in this channel
-					deny: "SEND_MESSAGES"
-				}, {
-					id: message.guild.id,
-					deny: ["VIEW_CHANNEL"]
-				}, {
-					id: bot.user.id,
-					allow: ["VIEW_CHANNEL", "READ_MESSAGE_HISTORY", "MANAGE_MESSAGES", "MANAGE_WEBHOOKS", "EMBED_LINKS", "ATTACH_FILES"]
-				}
-			]
+				id: message.author.id,
+				allow: ["VIEW_CHANNEL", "EMBED_LINKS"]
+			}, {
+				id: mutedRole.id,
+				deny: "SEND_MESSAGES"
+			}, {
+				id: message.guild.id,
+				deny: ["VIEW_CHANNEL"]
+			}, {
+				id: bot.user.id,
+				allow: ["VIEW_CHANNEL", "READ_MESSAGE_HISTORY", "MANAGE_MESSAGES", "MANAGE_WEBHOOKS", "EMBED_LINKS", "ATTACH_FILES"]
+			}]
 
 		});
 
 		// Set the maze channel's category to the forbidden forest
-		const category = await message.guild.channels.find(c => c.name.toLowerCase() === forbiddenForestCategoryName.toLowerCase() && c.type === "category");
+		const category = message.guild.channels.cache.find(c =>
+			c.name.toLowerCase() == forestCategoryName.toLowerCase() &&
+			c.type == "category");
 		usersChannel.setParent(category);
 
-		// Create five webhooks in their maze channel
 		for (let i = 0; i < 5; i++) {
 			usersChannel.createWebhook(bot.user.username, bot.user.displayAvatarURL);
 		}
@@ -52,19 +54,18 @@ module.exports = {
 		// Tell them the channel has been created
 		message.reply(`I have created a channel for you to use the maze commands in ${usersChannel}`);
 
-		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
+		const userData = bot.userInfo.get(message.author.key);
 		const curPos = userData.mazeInfo.curPos;
 		const curMazeLevel = userData.mazeInfo.curMaze;
 
 		// Create an attachment for their current location
 		let attachment;
-		if (bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "mazeInfo.itemPositions").includes(curPos)) {
-			attachment = new Discord.Attachment(`../images/forbidden_forest/${curMazeLevel}/Active/Forest_${curPos}.png`, "map.png");
+		if (bot.userInfo.get(message.author.key, "mazeInfo.itemPositions").includes(curPos)) {
+			attachment = new Discord.MessageAttachment(`../images/forbidden_forest/${curMazeLevel}/Active/Forest_${curPos}.png`, "map.png");
 		} else {
-			attachment = new Discord.Attachment(`../images/forbidden_forest/${curMazeLevel}/Inactive/Forest_${curPos}X.png`, "map.png");
+			attachment = new Discord.MessageAttachment(`../images/forbidden_forest/${curMazeLevel}/Inactive/Forest_${curPos}X.png`, "map.png");
 		}
 
-		// Send their current position and guide on how to navigate the maze to the newly created maze channel
 		usersChannel.send(`Use \`${bot.prefix}move up\` (or \`${bot.prefix}u\`) to move up.
 Use \`${bot.prefix}move down\` (or \`${bot.prefix}d\`) to move down.
 Use \`${bot.prefix}move left\` (or \`${bot.prefix}l\`) to move left.
