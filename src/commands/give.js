@@ -8,19 +8,24 @@ module.exports = {
 	async execute(message, args, bot) {
 		if (message.author.id != bot.ownerId && message.author.id != "137269251361865728") return;
 
+		const properUsage = `Proper Usage: \`${bot.prefix}give <@member> <amount> <item>\``;
+
 		let mentionedUsers = message.mentions.members;
 		if (args[0] == "all") mentionedUsers = message.guild.members.cache.filter(m => !m.user.bot);
 
-		if (!mentionedUsers) return message.channel.send("Mention a user to give an item to! Proper Usage: `!give <@member> <amount> <item>`");
-
-		if (args[0] != "all") {
-			args = args.slice(mentionedUsers.size);
+		if (!mentionedUsers) {
+			return message.channel.send(`Mention a user to give an item to! ${properUsage}`);
 		}
 
-		if (isNaN(args[1])) return message.channel.send("Specify how much of that item to give! Proper Usage: `!give <@member> <amount> <item>`");
-		const amount = parseInt(args[1]);
+		if (args[0] != "all") args = args.slice(mentionedUsers.size);
 
-		if (!args[2]) return message.channel.send("Specify what item to give! Proper Usage: `!give <@member> <amount> <item>`");
+		if (isNaN(args[0])) {
+			return message.channel.send(`Specify how much of that item to give! ${properUsage}`);
+		}
+
+		const amount = parseInt(args[0]);
+
+		if (!args[1]) return message.channel.send(`Specify what item to give! ${properUsage}`);
 		const possibleItems = inventoryItems.concat(otherItems);
 
 		const item = sm.findBestMatch(bot.functions.toCamelCase(args.slice(1).join(" ")), possibleItems).bestMatch.target;
