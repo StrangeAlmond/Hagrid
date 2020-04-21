@@ -1,12 +1,13 @@
 const sm = require("string-similarity");
-const inventoryItems = require("../jsonFiles/inventoryItems.json").map(i => `inventory.${i}`);
 const otherItems = ["balance.knuts", "balance.sickles", "balance.galleons", "stats.merits", "xp"];
+const inventoryItems = require("../jsonFiles/inventoryItems.json").map(i => `inventory.${i}`);
+
 
 module.exports = {
 	name: "give",
 	description: "Give an item to a user.",
 	async execute(message, args, bot) {
-		if (message.author.id != bot.ownerId && message.author.id != "137269251361865728") return;
+		if (![bot.ownerId, "137269251361865728"].includes(message.author.id)) return;
 
 		const properUsage = `Proper Usage: \`${bot.prefix}give <@member> <amount> <item>\``;
 
