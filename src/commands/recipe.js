@@ -88,7 +88,7 @@ module.exports = {
 		}
 
 		function errorMessage(msg) {
-			return bot.quickWebhook(message.channel, msg, webhookOptions);
+			return bot.functions.quickWebhook(message.channel, msg, webhookOptions);
 		}
 	},
 };
