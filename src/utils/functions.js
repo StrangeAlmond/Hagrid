@@ -144,8 +144,8 @@ module.exports = {
       7: "Seventh Year"
     };
 
-    const role = guild.roles.cache.find(r => r.name.toLowerCase() === roleNames[userData.year].toLowerCase());
-    const newRole = guild.roles.cache.find(r => r.name.toLowerCase() === roleNames[userData.year + 1].toLowerCase());
+    const role = guild.roles.cache.find(r => r.name.toLowerCase() == roleNames[userData.year].toLowerCase());
+    const newRole = guild.roles.cache.find(r => r.name.toLowerCase() == roleNames[userData.year + 1].toLowerCase());
     member.roles.remove(role);
     member.roles.add(newRole);
 
@@ -212,7 +212,7 @@ module.exports = {
 
     bot.userInfo.set(`${member.guild.id}-${member.id}`, poisonedObject, "stats.poisonedObject");
 
-    const potionEmoji = bot.emojis.cache.find(e => e.name.toLowerCase() === "potion");
+    const potionEmoji = bot.emojis.cache.find(e => e.name.toLowerCase() == "potion");
 
     const msg = await bot.quickWebhook(hospitalChannel, poisonMessage, {
       username: "Madam Pomfrey",
@@ -280,7 +280,7 @@ module.exports = {
     if (!matches) return;
 
     const id = matches[1];
-    const user = guild.members.get(id);
+    const user = guild.members.cache.get(id);
 
     if (!user) return;
     return user;
@@ -298,7 +298,7 @@ module.exports = {
     const attachment = new Discord.MessageAttachment("../images/spawns/dementor.jpg", "dementor.jpg");
     channel.send(`A dementor has spawned! Years 5 and up can banish it by using \`${bot.prefix}expecto patronum\`!`, attachment);
 
-    if (guildData.spawns.some(s => s.channel === object.channel)) bot.guildInfo.removeFrom(guild.id, guildData.spawns.find(s => s.channel === object.channel), "spawns");
+    if (guildData.spawns.some(s => s.channel == object.channel)) bot.guildInfo.removeFrom(guild.id, guildData.spawns.find(s => s.channel == object.channel), "spawns");
     bot.guildInfo.push(guild.id, object, "spawns");
   },
 
@@ -314,7 +314,26 @@ module.exports = {
     const attachment = new Discord.MessageAttachment("../images/spawns/boggart.jpg", "boggart.jpg");
     channel.send(`A boggart has spawned! Years 3 and up can banish it by using \`${bot.prefix}riddikulus\`!`, attachment);
 
-    if (guildData.spawns.some(s => s.channel === object.channel)) bot.guildInfo.removeFrom(guild.id, guildData.spawns.find(s => s.channel === object.channel), "spawns");
+    if (guildData.spawns.some(s => s.channel == object.channel)) bot.guildInfo.removeFrom(guild.id, guildData.spawns.find(s => s.channel == object.channel), "spawns");
+    bot.guildInfo.push(guild.id, object, "spawns");
+  },
+
+  spawnChest(channel, bot) {
+    const object = {
+      channel: channel.id,
+      type: "chest"
+    };
+
+    const guild = channel.guild;
+    const guildData = bot.guildInfo.get(guild.id);
+
+    const attachment = new Discord.MessageAttachment("../images/spawns/chest.png", "chest.png");
+    channel.send(`A chest has appeared! open it with \`${bot.prefix}cistem aperio\`!`, attachment);
+
+    if (guildData.spawns.some(s => s.channel == object.channel)) {
+      bot.guildInfo.removeFrom(guild.id, guildData.spawns.find(s => s.channel == object.channel), "spawns");
+    }
+
     bot.guildInfo.push(guild.id, object, "spawns");
   },
 
