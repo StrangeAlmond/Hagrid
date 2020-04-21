@@ -60,27 +60,29 @@ module.exports = async (bot, message) => {
   if (bot.blacklistedWords.some(w => plainArgs.includes(w))) {
     message.delete();
 
-    bot.functions.quickWebhook(message.channel, "Please don't use muggle profanity in the wizard world!", {
+    bot.functions.quickWebhook(message.channel, `Muggle profanity is forbidden in the wizard world, ${message.member.displayName}. I don't have to expel you, do I?`, {
       username: "Dolores Umbridge",
-      avatar: "./images/webhook_avatars/doloresUmbridge.png",
+      avatar: "../images/webhook_avatars/doloresUmbridge.png",
       deleteAfterUse: true
-    }).then(msg => msg.delete(5000));
+    }).then(msg => msg.delete({ timeout: 5000 }));
+
+    bot.userInfo.inc(key, "stats.profanityWarns");
 
     const logChannel = message.guild.channels.cache.find(c => c.name == "incidents");
     if (logChannel) {
-      const logEmbed = new Discord.RichEmbed()
+      const logEmbed = new Discord.MessageEmbed()
         .setAuthor("Profanity Filter")
         .addField("User", message.member.displayName, true)
         .addField("Channel", `${message.channel}`, true)
         .addField("Detected Word", bot.blacklistedWords.find(w => plainArgs.includes(w)), true)
         .addField("Message Content", message.content)
         .setColor("#DD889F")
-        .setFooter(`${message.member.displayName} has used profanity ${bot.userInfo.get(key, "profanityWarns")} time(s).`)
+        .setFooter(`${message.member.displayName} has used profanity ${bot.userInfo.get(key, "stats.profanityWarns")} time(s).`)
         .setTimestamp();
 
       bot.functions.quickWebhook(logChannel, logEmbed, {
         username: "Dolores Umbridge",
-        avatar: "./images/webhook_avatars/doloresUmbridge.png",
+        avatar: "../images/webhook_avatars/doloresUmbridge.png",
         deleteAfterUse: true
       });
     }
