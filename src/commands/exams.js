@@ -12,8 +12,8 @@ module.exports = {
 		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
 		if (examInfo[examType].requiredYear && examInfo[examType].requiredYear != userData.year) return;
 
-		// const validWeeks = [12, 13, 25, 26, 38, 39, 51, 52];
-		// if (!validWeeks.includes(moment.tz(bot.timezone).week())) return;
+		const validWeeks = [12, 13, 25, 26, 38, 39, 51, 52];
+		if (!validWeeks.includes(moment.tz(bot.timezone).week())) return;
 
 		const amountOfSpellsLearned = userData.studiedSpells.length;
 		const gradeInfo = examInfo[examType].grades;
