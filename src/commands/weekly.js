@@ -6,14 +6,16 @@ module.exports = {
 	description: "Claim your weekly chest.",
 	aliases: ["weeklychest"],
 	async execute(message, args, bot) {
-		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
+		const userData = bot.userInfo.get(message.author.key);
 
 		if (!userData.studiedSpells.includes("cistem aperio")) return;
 
 		const saturday = 6;
 		const today = moment.tz("America/Los_Angeles").day();
-		const saturdayObject = today <= saturday ? moment.tz("America/Los_Angeles").day(saturday) : moment.tz("America/Los_Angeles").add(1, "week").day(saturday);
-		const timeTillSaturdayObject = ms(saturdayObject.hour(0).minute(0).valueOf() - Date.now());
+		const saturdayObject = today <= saturday ?
+			moment.tz("America/Los_Angeles").day(saturday).hour(0).minute(0) :
+			moment.tz("America/Los_Angeles").add(1, "week").day(saturday).hour(0).minute(0);
+		const timeTillSaturdayObject = bot.functions.parseMs(saturdayObject.valueOf() - Date.now(), true);
 
 		const nextWeekly = userData.cooldowns.nextWeekly;
 
@@ -28,13 +30,15 @@ module.exports = {
 			7: 6
 		};
 
-		const galleons = galleonsObject[userData.year];
+		const galleons = galleonsObject[userData.year] || 0;
 
-		if (!userData.inventory.trainingTokens) bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 0, "inventory.trainingTokens");
+		if (!userData.inventory.trainingTokens) {
+			bot.userInfo.set(message.author.key, 0, "inventory.trainingTokens");
+		}
 
-		bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", galleons, "balance.galleons");
-		bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "inventory.trainingTokens");
-		bot.userInfo.set(`${message.guild.id}-${message.author.id}`, saturdayObject.valueOf(), "cooldowns.nextWeekly");
+		bot.userInfo.math(message.author.key, "+", galleons, "balance.galleons");
+		bot.userInfo.inc(message.author.key, "inventory.trainingTokens");
+		bot.userInfo.set(message.author.key, saturdayObject.valueOf(), "cooldowns.nextWeekly");
 
 		message.channel.send(`You have collected your ${galleons} weekly galleons and 1 training token.`);
 	},
