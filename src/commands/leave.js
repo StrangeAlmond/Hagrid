@@ -1,4 +1,3 @@
-// TODO: test command
 module.exports = {
 	name: "leave",
 	description: "Deletes your maze channel.",
