@@ -12,29 +12,29 @@ module.exports = async (bot, reaction, user) => {
     message.embeds[0].description.toLowerCase().includes(guildData.spawns.find(s => s.type == "trainingSession").beast.name.toLowerCase())) {
 
     const userData = bot.userInfo.get(`${message.guild.id}-${user.id}`);
-    const member = message.guild.members.get(user.id);
-    const channel = message.guild.channels.find(c => c.name == "training-grounds");
+    const member = message.guild.members.cache.get(user.id);
+    const channel = message.guild.channels.cache.find(c => c.name == "training-grounds");
 
     if (!userData.inventory.trainingTokens || userData.inventory.trainingTokens <= 0) {
-      message.channel.send("You don't have any training tokens!").then(m => m.delete(5000));
-      return message.reactions.cache.find(r => r.emoji.name == "⚔").remove(user);
+      message.channel.send("You don't have any training tokens!").then(m => m.delete({ timeout: 5000 }));
+      return message.reactions.cache.find(r => r.emoji.name == "⚔").users.remove(user);
     }
 
     if (member.roles.cache.find(r => r.name.toLowerCase() == "training")) {
-      message.channel.send("You have already used a training token!").then(m => m.delete(5000));
-      return message.reactions.cache.find(r => r.emoji.name == "⚔").remove(user);
+      message.channel.send("You have already used a training token!").then(m => m.delete({ timeout: 5000 }));
+      return message.reactions.cache.find(r => r.emoji.name == "⚔").users.remove(user);
     }
 
     const role = message.guild.roles.cache.find(r => r.name.toLowerCase() == "training");
     if (!role) return;
 
-    member.addRole(role);
+    member.roles.add(role);
 
     bot.userInfo.dec(`${message.guild.id}-${user.id}`, "inventory.trainingTokens");
     bot.userInfo.set(`${message.guild.id}-${user.id}`, Date.now(), "trainingTokenUse");
 
     return message.channel.send(`${member}, You have used one training token to gain access to <#${channel.id}>. This will expire in one hour!`)
-      .then(m => m.delete(5000));
+      .then(m => m.delete({ timeout: 5000 }));
   }
 
   if (!message.channel.name.includes("hospital")) return;
@@ -44,26 +44,26 @@ module.exports = async (bot, reaction, user) => {
     const revivee = bot.getUserFromMention(args[0], message.guild);
 
     if (reviver.id == revivee.id) {
-      message.reactions.cache.find(r => r.emoji.name == "✅").remove(reviver);
+      message.reactions.cache.find(r => r.emoji.name == "✅").users.remove(reviver);
 
       const msg = await bot.quickWebhook(message.channel, `${reviver}, you can't revive yourself!`, {
         username: "Madam Pomfrey",
         avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/5/56/Madam_Pomfrey.png/revision/latest/scale-to-width-down/290?cb=20131110073338"
       });
 
-      return msg.delete(5000);
+      return msg.delete({ timeout: 5000 });
     }
 
     if (!bot.userInfo.hasProp(`${message.guild.id}-${reviver.id}`, "inventory.revivePotion") ||
       bot.userInfo.get(`${message.guild.id}-${reviver.id}`, "inventory.revivePotion") <= 0) {
 
-      message.reactions.cache.find(r => r.emoji.name == "✅").remove(reviver);
+      message.reactions.cache.find(r => r.emoji.name == "✅").users.remove(reviver);
       const msg = await bot.quickWebhook(message.channel, `${reviver}, you don't have any revive potions!`, {
         username: "Madam Pomfrey",
         avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/5/56/Madam_Pomfrey.png/revision/latest/scale-to-width-down/290?cb=20131110073338"
       });
 
-      return msg.delete(5000);
+      return msg.delete({ timeout: 5000 });
     }
 
     if (!bot.userInfo.get(`${message.guild.id}-${revivee.id}`, "stats.fainted")) return message.delete();
@@ -85,7 +85,7 @@ module.exports = async (bot, reaction, user) => {
     });
 
     message.delete();
-    msg.delete(10000);
+    msg.delete({ timeout: 10000 });
 
   } else if (reaction.emoji.name.toLowerCase() == "potion") { // Cure a poisoned user
     const curer = message.guild.members.cache.get(user.id);
@@ -98,13 +98,13 @@ module.exports = async (bot, reaction, user) => {
     const requiredPotion = `antidoteTo${poisonType.charAt(0).toUpperCase() + poisonType.slice(1)}Poisons`;
 
     if (!bot.userInfo.hasProp(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`) || bot.userInfo.get(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`) <= 0) {
-      message.reactions.cache.find(r => r.emoji.name.toLowerCase() == "potion").remove(curer);
+      message.reactions.cache.find(r => r.emoji.name.toLowerCase() == "potion").users.remove(curer);
       const msg = await bot.quickWebhook(message.channel, `${curer}, you don't have any antidote to ${poisonType} poisons potions!`, {
         username: "Madam Pomfrey",
         avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/5/56/Madam_Pomfrey.png/revision/latest/scale-to-width-down/290?cb=20131110073338"
       });
 
-      return msg.delete(5000);
+      return msg.delete({ timeout: 5000 });
     }
 
     cureUser(curee);
@@ -132,7 +132,7 @@ module.exports = async (bot, reaction, user) => {
     });
 
     message.delete();
-    msg.delete(10000);
+    msg.delete({ timeout: 10000 });
   }
 
   async function reviveUser(toRevive) {

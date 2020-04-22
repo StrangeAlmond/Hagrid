@@ -26,41 +26,46 @@ class TrainingSession {
 		const beastSpells = beasts.map(b => b.spell.slice(1).toLowerCase());
 
 		const validFilter = (beastNames.includes(filter) || beastSpells.includes(filter));
-		const possibleBeasts = validFilter ? beasts.filter(b => b.name.toLowerCase() == filter || b.spell.slice(1).toLowerCase() == filter) : beasts;
+		const possibleBeasts = validFilter ?
+			beasts.filter(b => b.name.toLowerCase() == filter || b.spell.slice(1).toLowerCase() == filter) :
+			beasts;
 
 		const beast = possibleBeasts[Math.floor(Math.random() * possibleBeasts.length)];
 		object.beast = beast;
 
-		if (guildData.spawns.some(s => s.channel === object.channel)) guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel === object.channel), 1);
+		if (guildData.spawns.some(s => s.channel == object.channel)) {
+			guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel == object.channel), 1);
+		}
+
 		guildData.spawns.push(object);
 
 		this.bot.guildInfo.set(this.guild.id, guildData.spawns, "spawns");
 
 		const image = beast.image;
 		const spawnMsg = `A ${beast.name} has been released into the ${this.channel}!
-        **Spell:** ${beast.spell.slice(1)} (${spells.find(s => s.spellName === beast.spell.slice(1)).name})
-		**Attack Power:** ${beast.attack}
-		**Defense Power:** ${beast.defense}
+        **Spell:** ${beast.spell.slice(1)} (${spells.find(s => s.spellName == beast.spell.slice(1)).name})
+				**Attack Power:** ${beast.attack}
+				**Defense Power:** ${beast.defense}
         **HP:** ${beast.health}
 
         Use the \`${this.bot.prefix}use training token\` to participate in this training sesssion!
         ${beast.notes ? `**${beast.notes}**` : ""}`;
 
-		const role = this.guild.roles.find(r => r.name.toLowerCase() == beast.spell.slice(1).toLowerCase());
+		const role = this.guild.roles.cache.find(r => r.name.toLowerCase() == beast.spell.slice(1).toLowerCase());
 
-		const embed = new Discord.RichEmbed()
+		const embed = new Discord.MessageEmbed()
 			.setDescription(spawnMsg)
 			.setImage(image)
 			.setColor(beast.color)
 			.setTimestamp();
 
-		const greatHall = this.guild.channels.find(c => c.name === "great-hall");
+		const greatHall = this.guild.channels.cache.find(c => c.name == "great-hall");
 		if (!greatHall) throw new Error("Couldn't find the great hall channel!");
 
 		const msg = await greatHall.send(role, embed);
 		msg.react("⚔");
 
-		const attachment = new Discord.Attachment(beast.image, `${beast.name}.png`);
+		const attachment = new Discord.MessageAttachment(beast.image, `${beast.name}.png`);
 
 		await this.channel.send(attachment);
 		await this.channel.send(`A ${beast.name} has spawned! use ${this.bot.prefix}${beast.spell.slice(1)} to help defeat it!\n${beast.notes ? `**${beast.notes}**` : ""}`);
@@ -101,8 +106,8 @@ class TrainingSession {
 		let msgContent = "";
 
 		const missChances = info.missChances;
-		const missChance = missChances[object.beast.class][userData.year];
-		const chanceToMiss = Math.random() * 100;
+		const missChance = missChances[object.beast.class][userData.year]; // The chance they'll miss
+		const chanceToMiss = Math.random() * 100; // Randomly generated number for deciding whether or not they miss.
 
 		const felixFelicisActive = userData.stats.activeEffects.some(e => e.type == "luck");
 
@@ -114,7 +119,7 @@ class TrainingSession {
 			if (damageDealt > object.beast.health) damageDealt = object.beast.health;
 
 			user.damageDealt += damageDealt;
-			object.users[object.users.find(u => u.id === member.id)] = user;
+			object.users[object.users.find(u => u.id == member.id)] = user;
 
 			object.beast.health -= damageDealt;
 
@@ -147,7 +152,7 @@ class TrainingSession {
 					this.bot.userInfo.set(`${this.guild.id}-${member.id}`, Date.now(), "cooldowns.lastResurrectionStoneUse");
 				} else {
 					msgContent += `${member}, you have fainted!`;
-					this.bot.fainted(member, `${member} has fainted from a ${object.beast.name.toLowerCase()} attack! can you help me heal them faster?`, this.bot);
+					this.bot.functions.fainted(member, `${member} has fainted from a ${object.beast.name.toLowerCase()} attack! can you help me heal them faster?`, this.bot);
 				}
 			} else {
 				msgContent += `${member}, the ${object.beast.name.toLowerCase()} attacked you! you have ${userData.stats.health} health points left.`;
@@ -162,7 +167,7 @@ class TrainingSession {
 		const guildData = this.bot.guildInfo.get(this.guild.id);
 		const lootboxData = info.lootboxes;
 
-		guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel === object.channel), 1);
+		guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel == object.channel), 1);
 		this.bot.guildInfo.set(this.guild.id, guildData.spawns, "spawns");
 
 		this.channel.setRateLimitPerUser(0, "Training session ended.");
@@ -175,7 +180,11 @@ class TrainingSession {
 		const beast = beasts.find(b => b.name == object.beast.name);
 
 		let msg = "";
-		msg += `**XP Given:**\n${object.users.map(u => `${this.guild.members.get(u.id).displayName}, you got ${u.damageDealt} XP!`).join("\n")}\n\n**Lootboxes Given:**\n`;
+		msg += `**XP Given:**
+${object.users.map(u => `${this.guild.members.cache.get(u.id).displayName}, you got ${u.damageDealt} XP!`).join("\n")}
+
+**Lootboxes Given:**
+`;
 
 		object.users.forEach(u => {
 			let lootbox;
@@ -205,12 +214,15 @@ class TrainingSession {
 				const item = reward[1];
 				const amount = parseInt(reward[0]);
 
-				if (!this.bot.userInfo.hasProp(`${this.guild.id}-${member.id}`, item)) this.bot.userInfo.set(`${this.guild.id}-${member.id}`, 0, item);
+				if (!this.bot.userInfo.hasProp(`${this.guild.id}-${member.id}`, item)) {
+					this.bot.userInfo.set(`${this.guild.id}-${member.id}`, 0, item);
+				}
 
 				this.bot.userInfo.math(`${this.guild.id}-${member.id}`, "+", amount, item);
 			});
 
-			msg += `**${this.guild.members.get(u.id).displayName}**, you got a tier ${lootboxTier} lootbox! the contents are below:\n${lootbox.map(r => `${r.split(/ +/)[0]} ${this.bot.fromCamelCase(r.split(/ +/)[1].split(".")[1])}`).join("\n")}\n\n`;
+			msg += `**${this.guild.members.cache.get(u.id).displayName}**, you got a tier ${lootboxTier} lootbox! the contents are below:
+${lootbox.map(r => `${r.split(/ +/)[0]} ${this.bot.functions.fromCamelCase(r.split(/ +/)[1].split(".")[1])}`).join("\n")}\n\n`;
 
 			if (msg.length > 1800) {
 				webhook.send(msg);
@@ -220,7 +232,7 @@ class TrainingSession {
 
 		webhook.send(msg);
 
-		const greatHall = this.guild.channels.find(c => c.name == "great-hall");
+		const greatHall = this.guild.channels.cache.find(c => c.name == "great-hall");
 		greatHall.send("**This training session has ended**");
 	}
 }
