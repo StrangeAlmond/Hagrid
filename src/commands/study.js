@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const moment = require("moment-timezone");
-const ms = require("parse-ms");
 let spells = require("../jsonFiles/spells.json");
 
 spells = spells.sort((a, b) => {
