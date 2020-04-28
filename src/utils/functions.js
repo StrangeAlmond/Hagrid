@@ -214,7 +214,7 @@ module.exports = {
 
     const potionEmoji = bot.emojis.cache.find(e => e.name.toLowerCase() == "potion");
 
-    const msg = await bot.quickWebhook(hospitalChannel, poisonMessage, {
+    const msg = await quickWebhook(hospitalChannel, poisonMessage, {
       username: "Madam Pomfrey",
       avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/5/56/Madam_Pomfrey.png/revision/latest/scale-to-width-down/290?cb=20131110073338"
     });
