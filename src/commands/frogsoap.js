@@ -1,4 +1,3 @@
-// TODO: Test command
 module.exports = {
 	name: "frogsoap",
 	description: "Spawns frogs in the current channel.",
