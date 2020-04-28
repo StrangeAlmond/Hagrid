@@ -1,50 +1,44 @@
+// TODO: Test command once move command is updated
 const moment = require("moment-timezone");
 
 module.exports = {
 	name: "carpe",
 	description: "Fish for flying seahorses.",
 	async execute(message, args, bot) {
-		// Ensure the full command is !carpe retractum
-		if (args[0] !== "retractum") return;
+		if (args[0] != "retractum") return;
 
-		if (!bot.isMazeChannel(message.channel.name, message.member)) return;
+		if (!bot.functions.isMazeChannel(message.channel.name, message.member)) return;
 
-		// Get the user's data
-		const user = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
+		const user = bot.userInfo.get(message.author.key);
+		const today = moment.tz("America/Los_Angeles").format("l");
 
-		// Ensure they've learned the command
-		if (!user.studiedSpells.includes("carpe retractum")) return message.channel.send("You must learn carpe retractum to use this spell!");
-
-		// Ensure they're at the correct spot in the maze
-		if (user.mazeInfo.curPos.toString() !== "29.07") return;
-
-		// Ensure they can still forage
-		if (user.mazeInfo.dailyForagesLeft <= 0 && moment.tz("America/Los_Angeles").format("l") === user.mazeInfo.lastForage) return message.channel.send("It looks like this area has been picked clean already. We'd better wait a little bit to let it grow back.");
-
-		// Reset their forages
-		if (moment.tz("America/Los_Angeles").format("l") !== user.mazeInfo.lastForage) {
-			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 100, "mazeInfo.dailyForagesLeft");
-			bot.userInfo.set(`${message.guild.id}-${message.author.id}`, moment.tz("America/Los_Angeles").format("l"), "mazeInfo.lastForage");
+		if (!user.studiedSpells.includes("carpe retractum")) {
+			return message.channel.send("You must learn carpe retractum to use this spell!");
 		}
 
-		// Create the RNG number
-		const chanceNumber = Math.random() * 100;
+		if (user.mazeInfo.curPos.toString() != "29.07") return;
+		if (user.mazeInfo.dailyForagesLeft <= 0 && today == user.mazeInfo.lastForage) {
+			return message.channel.send("It looks like this area has been picked clean already. We'd better wait a little bit to let it grow back.");
+		}
 
-		// Fail responses and success responses
+		if (today != user.mazeInfo.lastForage) {
+			bot.userInfo.set(message.author.key, 100, "mazeInfo.dailyForagesLeft");
+			bot.userInfo.set(message.author.key, today, "mazeInfo.lastForage");
+		}
+
+		const chanceNumber = Math.random() * 100;
 		const failResponses = ["They don't seem to be biting right now. Better keep at it.", "Waving your wand around like it's an actual fishing pole probably isn't helping.", "You catch a Flying Seahorse, but you stop to celebrate and it flies away.", "You catch a Flying Seahorse but a bear takes it out of your bag and runs off."];
 		const successResponses = ["Nice one! You caught a Flying Seahorse and put it in your bag.", "After hours and hours of fishing you start to become frustrated when a Flying Seahorse jumps into your bag!"];
 
-		// Increase their forages stat
-		bot.userInfo.dec(`${message.guild.id}-${message.author.id}`, "mazeInfo.dailyForagesLeft");
-		bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "stats.forages");
+		bot.userInfo.dec(message.author.key, "mazeInfo.dailyForagesLeft");
+		bot.userInfo.inc(message.author.key, "stats.forages");
 
-		if (chanceNumber <= 10) { // They succeed
+		if (chanceNumber <= 10) {
 			message.reply(successResponses[Math.floor(Math.random() * successResponses.length)]);
 
-			if (!bot.userInfo.hasProp(`${message.guild.id}-${message.author.id}`, "inventory.flyingSeahorses")) bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 0, "inventory.flyingSeahorses");
-
-			bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "inventory.flyingSeahorses");
-		} else { // They fail
+			if (!bot.userInfo.hasProp(message.author.key, "inventory.flyingSeahorses")) bot.userInfo.set(message.author.key, 0, "inventory.flyingSeahorses");
+			bot.userInfo.inc(message.author.key, "inventory.flyingSeahorses");
+		} else {
 			message.channel.send(failResponses[Math.floor(Math.random() * failResponses.length)]);
 		}
 	},

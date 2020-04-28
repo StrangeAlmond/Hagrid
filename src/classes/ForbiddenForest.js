@@ -1,6 +1,5 @@
 const fs = require("fs");
 const Discord = require("discord.js");
-const mazePosition = require("../jsonFiles/forbidden_forest/mazePositions.json");
 const encountersFile = require("../jsonFiles/forbidden_forest/encounters.json");
 const ambushesFile = require("../jsonFiles/forbidden_forest/ambushes.json");
 const itemsFile = require("../jsonFiles/forbidden_forest/items.json");
@@ -58,8 +57,11 @@ class ForbiddenForest {
 	}
 
 	sendCurPosition() {
-		let attachment = new Discord.Attachment(`../images/forbidden_forest/${this.level}/Inactive/Forest_${this.curPos}X.png`, "map.png");
-		if (this.itemLocations.includes(this.curPos)) attachment = new Discord.Attachment(`../images/forbidden_forest/${this.level}/Active/Forest_${this.curPos}.png`, "map.png");
+		let attachment = new Discord.MessageAttachment(`../images/forbidden_forest/${this.level}/Inactive/Forest_${this.curPos}X.png`, "map.png");
+		if (this.itemLocations.includes(this.curPos)) {
+			attachment = new Discord.MessageAttachment(`../images/forbidden_forest/${this.level}/Active/Forest_${this.curPos}.png`, "map.png");
+		}
+
 		this.webhook.send(attachment);
 	}
 
@@ -153,7 +155,7 @@ class ForbiddenForest {
 		}
 	}
 
-	spawnAmbush() {
+	async	spawnAmbush() {
 		const ambushInfo = ambushesFile.find(a => a.tiles.includes(this.curPos)); // Gets the ambush info from the ambush file
 		if (!ambushInfo) return this.sendCurPosition(); // Invalid ambush location
 
@@ -166,11 +168,17 @@ class ForbiddenForest {
 			this.bot.log(`${this.member.displayName} is being ambushed by an ${ambushInfo.name}.`, "info");
 
 			// Send the forest image with the creature on it
-			const ambushAttachment = new Discord.Attachment(this.activeTilesFormat + `Forest_${this.curPos}.png`, "map.png");
-			this.webhook.send(ambushAttachment);
+			const ambushAttachment = new Discord.MessageAttachment(this.activeTilesFormat + `Forest_${this.curPos}.png`, "map.png");
+			await this.webhook.send(ambushAttachment);
+			this.webhook.send("You were ambushed by an Acromantula. You stumble around, feeling weak as the poison courses through your veins. You'll need to find an antidote soon.");
+
 
 			// Run the poisoned function on the user
-			this.bot.poisoned(this.member, `${this.member} has suffered an Acromantula bite and needs an antidote to common poison before they succumb to it.`, ambushInfo.poisonType);
+			this.bot.functions.poisoned(this.member,
+				`${this.member} has suffered an Acromantula bite and needs an antidote to common poison before they succumb to it.`,
+				ambushInfo.poisonType,
+				this.bot);
+
 
 			const tiles = this.possibleActiveTiles();
 
@@ -196,7 +204,7 @@ class ForbiddenForest {
 
 		let userData = this.bot.userInfo.get(this.dbKey);
 
-		const attachment = new Discord.Attachment(this.activeTilesFormat + `Forest_${this.curPos}.png`, "map.png");
+		const attachment = new Discord.MessageAttachment(this.activeTilesFormat + `Forest_${this.curPos}.png`, "map.png");
 		await this.webhook.send(attachment);
 		this.webhook.send(encounterInfo.spawnMessage);
 
@@ -229,7 +237,9 @@ class ForbiddenForest {
 					}
 
 					this.webhook.send("You have fainted!");
-					return this.bot.fainted(this.member, `${this.member} has fainted from a ${encounterInfo.name} attack! Would you like to use a revive potion to heal them faster?`);
+					return this.bot.functions.fainted(this.member,
+						`${this.member} has fainted from a ${encounterInfo.name} attack! Would you like to use a revive potion to heal them faster?`,
+						this.bot);
 				}
 
 				this.webhook.send(`The ${encounterInfo.name} attacked you!\n${damageByEncounter == 0 ? "It dealt no damage to you." : `You have ${userData.stats.health} health left`}`);
@@ -257,7 +267,9 @@ class ForbiddenForest {
 
 					this.webhook.send("You have fainted!");
 					this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
-					return this.bot.fainted(this.member, `${this.member} has fainted from a ${encounterInfo.name} attack! Would you like to use a revive potion to heal them faster?`);
+					return this.bot.functions.fainted(this.member,
+						`${this.member} has fainted from a ${encounterInfo.name} attack! Would you like to use a revive potion to heal them faster?`,
+						this.bot);
 				}
 
 				this.webhook.send(`The ${encounterInfo.name} attacked you!\n${damageByEncounter == 0 ? "It dealt no damage to you." : `You have ${userData.stats.health} health left`}`);
@@ -308,7 +320,7 @@ class ForbiddenForest {
 
 		this.bot.userInfo.set(this.dbKey, true, "mazeInfo.inFight");
 
-		await this.bot.quickWebhook(this.channel, "Halt! What makes you think you can wander around my forest?", centaurWebhookInfo);
+		await this.bot.functions.quickWebhook(this.channel, "Halt! What makes you think you can wander around my forest?", centaurWebhookInfo);
 
 		setTimeout(async () => {
 			await this.webhook.send("Your path is blocked by a centaur.");
@@ -319,17 +331,17 @@ class ForbiddenForest {
 
 		}, 1200);
 
-		const firstResponse = await this.bot.awaitResponse(m => ["1", "2", "3"].includes(m.content), 120000, this.channel, true);
+		const firstResponse = await this.bot.functions.awaitResponse(m => ["1", "2", "3"].includes(m.content), 120000, this.channel, true);
 		if (!firstResponse) return; // No response
 
 		if (firstResponse.content == "1") {
-			await this.bot.quickWebhook(this.channel, "I suppose I could let you pass, but I want something in return. I'm low on mallowsweet and the sky promises to be clear tonight. Bring me mallowsweet and you may continue on.", centaurWebhookInfo);
+			await this.bot.functions.quickWebhook(this.channel, "I suppose I could let you pass, but I want something in return. I'm low on mallowsweet and the sky promises to be clear tonight. Bring me mallowsweet and you may continue on.", centaurWebhookInfo);
 
 			setTimeout(async () => {
 				await this.webhook.send("What would you like to do?\n1. Give Mallowsweet\n2. Go back the way you came.");
 			}, 700);
 
-			const secondResponse = await this.bot.awaitResponse(m => ["1", "2"].includes(m.content), 120000, this.channel, true);
+			const secondResponse = await this.bot.functions.awaitResponse(m => ["1", "2"].includes(m.content), 120000, this.channel, true);
 			if (!secondResponse) return;
 
 			if (secondResponse.content == "1") {
@@ -337,7 +349,7 @@ class ForbiddenForest {
 				if (!userData.inventory.mallowsweet || userData.inventory.mallowsweet < 1) {
 					this.bot.log(`${this.member.displayName} tried to trick the centaur.`, "info");
 					this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
-					return this.bot.quickWebhook(this.channel, "Are you trying to trick me? I hope you're aware that tricking a centaur is never a good choice.", centaurWebhookInfo);
+					return this.bot.functions.quickWebhook(this.channel, "Are you trying to trick me? I hope you're aware that tricking a centaur is never a good choice.", centaurWebhookInfo);
 				}
 
 				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
@@ -345,7 +357,7 @@ class ForbiddenForest {
 				userData.inventory.mallowsweet--;
 				this.bot.userInfo.dec(this.dbKey, "inventory.mallowsweet");
 
-				await this.bot.quickWebhook(this.channel, "Thank you human, good luck in your adventures.", {
+				await this.bot.functions.quickWebhook(this.channel, "Thank you human, good luck in your adventures.", {
 					username: "Centaur",
 					avatar: "https://i.imgur.com/z4n0Jcf.jpg"
 				});
@@ -374,8 +386,8 @@ class ForbiddenForest {
 		} else if (firstResponse.content == "2") {
 			this.bot.log(`${this.member.displayName} attacked the centaur.`);
 
-			await this.webhook.send("You pull out your wand but before you can do anything you find yourself knocked backwards. The centaur attacked you for 20 damage.");
-			await this.bot.quickWebhook(this.channel, "Silly little human. Don't try that again.", centaurWebhookInfo);
+			await this.webhook.send("You pull out your wand but before you can do anything you find yourself knocked backwards. The centaur attacks you, dealing 20 damage.");
+			await this.bot.functions.quickWebhook(this.channel, "Silly little human. Don't try that again.", centaurWebhookInfo);
 
 			userData.stats.health -= 20;
 			this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
@@ -391,7 +403,9 @@ class ForbiddenForest {
 				// Send a message saying they fainted
 				this.webhook.send("You have fainted!");
 				// Execute the fainted function
-				this.bot.fainted(this.member, `${this.member} has fainted from a centaur attack! Would you like to use a revive potion to heal them faster?`);
+				this.bot.functions.fainted(this.member,
+					`${this.member} has fainted from a centaur attack! Would you like to use a revive potion to heal them faster?`,
+					this.bot);
 			}
 		} else if (firstResponse.content == "3") {
 			this.bot.log(`${this.member.displayName} retreated from the centaur`, "info");
@@ -411,16 +425,16 @@ class ForbiddenForest {
 		this.bot.userInfo.set(this.dbKey, true, "mazeInfo.inFight");
 		const userData = this.bot.userInfo.get(this.dbKey);
 
-		const darkWizardAttachment = new Discord.Attachment(`../images/forbidden_forest/${this.level}/Active/Forest_${this.curPos}.png`, "map.png");
+		const darkWizardAttachment = new Discord.MessageAttachment(`../images/forbidden_forest/${this.level}/Active/Forest_${this.curPos}.png`, "map.png");
 		await this.webhook.send(darkWizardAttachment);
 
-		await this.bot.quickWebhook(this.channel, "Kinda risky fer a young student like yourself to be wand'rin the forest all alone ain't it. You never know what kinda questionable characters you might find round these parts.", darkWizardWebhookInfo);
+		await this.bot.functions.quickWebhook(this.channel, "Kinda risky fer a young student like yourself to be wand'rin the forest all alone ain't it. You never know what kinda questionable characters you might find round these parts.", darkWizardWebhookInfo);
 
 		setTimeout(async () => {
 			await this.webhook.send("1. Ignore him\n2. Ask for help\n3. Offer to sell something");
 		}, 1000);
 
-		const response = await this.bot.awaitResponse(m => ["1", "2", "3"].includes(m.content), 120000, this.channel, true);
+		const response = await this.bot.functions.awaitResponse(m => ["1", "2", "3"].includes(m.content), 120000, this.channel, true);
 		if (!response) return;
 
 		if (response == "1") { // Flee
@@ -452,7 +466,7 @@ class ForbiddenForest {
 			}
 		} else if (response == "2") { // Buy an item
 			this.bot.log(`${this.member.displayName} is buying an item from the dark wizard`, "info");
-			this.bot.quickWebhook(this.channel, "Sure I could 'elp. Follow me over here.", darkWizardWebhookInfo);
+			this.bot.functions.quickWebhook(this.channel, "Sure I could 'elp. Follow me over here.", darkWizardWebhookInfo);
 
 			setTimeout(() => {
 				// Move the user to the left
@@ -460,20 +474,20 @@ class ForbiddenForest {
 				this.bot.userInfo.set(this.dbKey, this.curPos, "mazeInfo.curPos");
 
 				// Create an attachment for that area
-				const attachment = new Discord.Attachment(`../images/forbidden_forest/${this.level}/Active/Forest_${this.curPos}.png`, "map.png");
+				const attachment = new Discord.MessageAttachment(`../images/forbidden_forest/${this.level}/Active/Forest_${this.curPos}.png`, "map.png");
 				// Send the attachment
 				this.webhook.send(attachment);
 			}, 2000);
 
 			setTimeout(() => {
-				this.bot.quickWebhook(this.channel, `I've got a few things that you might need. Don't worry bout where they came from.\n${Object.keys(darkWizardItems).map(i => `${Object.keys(darkWizardItems).indexOf(i) + 1}. ${i.replace(/([A-Z])/g, " $1").replace(/^./, str => str.toUpperCase())} - ${darkWizardItems[i].buy}`).join("\n")}`, darkWizardWebhookInfo);
+				this.bot.functions.quickWebhook(this.channel, `I've got a few things that you might need. Don't worry bout where they came from.\n${Object.keys(darkWizardItems).map(i => `${Object.keys(darkWizardItems).indexOf(i) + 1}. ${i.replace(/([A-Z])/g, " $1").replace(/^./, str => str.toUpperCase())} - ${darkWizardItems[i].buy}`).join("\n")}`, darkWizardWebhookInfo);
 			}, 2750);
 
 			setTimeout(() => {
 				this.webhook.send(`To buy an item use \`<item number> <amount>\`\nTo leave, use \`${this.bot.prefix}nevermind\``);
 			}, 3750);
 
-			const buyResponse = await this.bot.awaitResponse(m =>
+			const buyResponse = await this.bot.functions.awaitResponse(m =>
 				(parseInt(m.content.split(/ +/)[0]) > 0 && parseInt(m.content.split(/ +/)[0]) <= Object.keys(darkWizardItems).length && parseInt(m.content.split(/ +/)[1]) > 0) ||
 				m.content == `${this.bot.prefix}nevermind`, 120000, this.channel);
 
@@ -491,11 +505,11 @@ class ForbiddenForest {
 
 				if (chance <= 50) { // Wizard doesn't attack user
 					// Dark Wizard Says
-					this.bot.quickWebhook(this.channel, "If you change yer mind you know where to find me.", darkWizardWebhookInfo);
+					this.bot.functions.quickWebhook(this.channel, "If you change yer mind you know where to find me.", darkWizardWebhookInfo);
 				} else { // Wizard attacks user
 					this.bot.log(`${this.member.displayName} got attacked by the dark wizard`, "info");
 					// Dark Wizard Says
-					await this.quickWebhook(this.channel, "You think it's funny to waste my time like that?!", darkWizardWebhookInfo);
+					await this.functions.quickWebhook(this.channel, "You think it's funny to waste my time like that?!", darkWizardWebhookInfo);
 
 					// Hagrid Says
 					setTimeout(() => {
@@ -565,7 +579,7 @@ class ForbiddenForest {
 				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
 				// Dark wizard says
-				this.bot.quickWebhook(this.channel, "Pleasure doin' business with ya. You know where to find me if you need somethin' in the future.", darkWizardWebhookInfo);
+				this.bot.functions.quickWebhook(this.channel, "Pleasure doin' business with ya. You know where to find me if you need somethin' in the future.", darkWizardWebhookInfo);
 
 				// Hagrid says
 				setTimeout(() => {
@@ -578,11 +592,11 @@ class ForbiddenForest {
 			// Items object formatted with the selling information
 			const itemsMessage = Object.keys(darkWizardItems).map(i => `${Object.keys(darkWizardItems)
 				.indexOf(i) + 1}. ${i.replace(/([A-Z])/g, " $1")
-				.replace(/^./, str => str.toUpperCase())} - ${darkWizardItems[i].sell}`)
+					.replace(/^./, str => str.toUpperCase())} - ${darkWizardItems[i].sell}`)
 				.join("\n");
 
 			// Dark wizard says
-			await this.bot.quickWebhook(this.channel, `What have you got? I swear you won't get no better rate anywhere else than I could offer yeh\n${itemsMessage}`, darkWizardWebhookInfo);
+			await this.bot.functions.quickWebhook(this.channel, `What have you got? I swear you won't get no better rate anywhere else than I could offer yeh\n${itemsMessage}`, darkWizardWebhookInfo);
 
 			// Hagrid says
 			setTimeout(() => {
@@ -590,9 +604,9 @@ class ForbiddenForest {
 			}, 1000);
 
 			// Await a response with what they'd like to buy and how much
-			const sellResponse = await this.bot.awaitResponse(m => (parseInt(m.content.split(/ +/)[0]) > 0 &&
-					parseInt(m.content.split(/ +/)[0]) <= Object.keys(darkWizardItems).length &&
-					parseInt(m.content.split(/ +/)[1]) > 0) ||
+			const sellResponse = await this.bot.functions.awaitResponse(m => (parseInt(m.content.split(/ +/)[0]) > 0 &&
+				parseInt(m.content.split(/ +/)[0]) <= Object.keys(darkWizardItems).length &&
+				parseInt(m.content.split(/ +/)[1]) > 0) ||
 				m.content === `${this.bot.prefix}nevermind`, 120000, this.channel);
 
 			// If they didn't respond don't do anything
@@ -609,12 +623,12 @@ class ForbiddenForest {
 
 				if (chance <= 50) { // Dark wizard doesn't attack them
 					// Dark wizard says
-					this.bot.quickWebhook(this.channel, "If you change yer mind you know where to find me.", darkWizardWebhookInfo);
+					this.bot.functions.quickWebhook(this.channel, "If you change yer mind you know where to find me.", darkWizardWebhookInfo);
 				} else { // Dark wizard attacks them
 					this.bot.log(`${this.member} got attacked by the dark wizard`, "info");
 
 					// Dark wizard says
-					await this.bot.quickWebhook(this.channel, "You think it's funny to waste my time like that?!", darkWizardWebhookInfo);
+					await this.bot.functions.quickWebhook(this.channel, "You think it's funny to waste my time like that?!", darkWizardWebhookInfo);
 
 					// Hagrid says
 					setTimeout(() => {
@@ -668,7 +682,7 @@ class ForbiddenForest {
 				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
 				// Dark wizard says
-				this.bot.quickWebhook(this.channel, "Pleasure doin' business with ya. You know where to find me next time you've got goods to unload.", darkWizardWebhookInfo);
+				this.bot.functions.quickWebhook(this.channel, "Pleasure doin' business with ya. You know where to find me next time you've got goods to unload.", darkWizardWebhookInfo);
 
 				// Hagrid says
 				setTimeout(() => {
