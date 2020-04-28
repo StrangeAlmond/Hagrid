@@ -41,12 +41,12 @@ module.exports = async (bot, reaction, user) => {
 
   if (reaction.emoji.name == "✅") { // Revive a fainted user
     const reviver = message.guild.members.cache.get(user.id);
-    const revivee = bot.getUserFromMention(args[0], message.guild);
+    const revivee = bot.functions.getUserFromMention(args[0], message.guild);
 
     if (reviver.id == revivee.id) {
       message.reactions.cache.find(r => r.emoji.name == "✅").users.remove(reviver);
 
-      const msg = await bot.quickWebhook(message.channel, `${reviver}, you can't revive yourself!`, {
+      const msg = await bot.functions.quickWebhook(message.channel, `${reviver}, you can't revive yourself!`, {
         username: "Madam Pomfrey",
         avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/5/56/Madam_Pomfrey.png/revision/latest/scale-to-width-down/290?cb=20131110073338"
       });
@@ -58,7 +58,7 @@ module.exports = async (bot, reaction, user) => {
       bot.userInfo.get(`${message.guild.id}-${reviver.id}`, "inventory.revivePotion") <= 0) {
 
       message.reactions.cache.find(r => r.emoji.name == "✅").users.remove(reviver);
-      const msg = await bot.quickWebhook(message.channel, `${reviver}, you don't have any revive potions!`, {
+      const msg = await bot.functions.quickWebhook(message.channel, `${reviver}, you don't have any revive potions!`, {
         username: "Madam Pomfrey",
         avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/5/56/Madam_Pomfrey.png/revision/latest/scale-to-width-down/290?cb=20131110073338"
       });
@@ -79,7 +79,7 @@ module.exports = async (bot, reaction, user) => {
     bot.guildInfo.inc(message.guild.id, `housePoints.${house}`);
     bot.userInfo.inc(`${message.guild.id}-${reviver.id}`, "stats.housePoints");
 
-    const msg = await bot.quickWebhook(message.channel, `${reviver}, You have revived ${revivee} and recieved 1 house point!`, {
+    const msg = await bot.functions.quickWebhook(message.channel, `${reviver}, You have revived ${revivee} and recieved 1 house point!`, {
       username: "Madam Pomfrey",
       avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/5/56/Madam_Pomfrey.png/revision/latest/scale-to-width-down/290?cb=20131110073338"
     });
@@ -89,7 +89,7 @@ module.exports = async (bot, reaction, user) => {
 
   } else if (reaction.emoji.name.toLowerCase() == "potion") { // Cure a poisoned user
     const curer = message.guild.members.cache.get(user.id);
-    const curee = bot.getUserFromMention(args[0], message.guild);
+    const curee = bot.functions.getUserFromMention(args[0], message.guild);
 
     if (!bot.userInfo.get(`${message.guild.id}-${curee.id}`, "stats.poisonedObject")) return message.delete();
 
@@ -99,7 +99,7 @@ module.exports = async (bot, reaction, user) => {
 
     if (!bot.userInfo.hasProp(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`) || bot.userInfo.get(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`) <= 0) {
       message.reactions.cache.find(r => r.emoji.name.toLowerCase() == "potion").users.remove(curer);
-      const msg = await bot.quickWebhook(message.channel, `${curer}, you don't have any antidote to ${poisonType} poisons potions!`, {
+      const msg = await bot.functions.quickWebhook(message.channel, `${curer}, you don't have any antidote to ${poisonType} poisons potions!`, {
         username: "Madam Pomfrey",
         avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/5/56/Madam_Pomfrey.png/revision/latest/scale-to-width-down/290?cb=20131110073338"
       });
@@ -126,7 +126,7 @@ module.exports = async (bot, reaction, user) => {
       bot.userInfo.inc(`${message.guild.id}-${curer.id}`, "stats.housePoints");
     }
 
-    const msg = await bot.quickWebhook(message.channel, msgContent, {
+    const msg = await bot.functions.quickWebhook(message.channel, msgContent, {
       username: "Madam Pomfrey",
       avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/5/56/Madam_Pomfrey.png/revision/latest/scale-to-width-down/290?cb=20131110073338"
     });
