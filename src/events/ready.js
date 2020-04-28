@@ -41,7 +41,7 @@ module.exports = async bot => {
 
       const msg = messages.find(m => m.content.includes(user.user) && m.content.toLowerCase().includes("fainted"));
       if (msg) msg.delete();
-    }, bot.timeUntilMidnight());
+    }, bot.functions.timeUntilMidnight());
   });
 
   setInterval(() => {
