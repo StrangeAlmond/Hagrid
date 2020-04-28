@@ -1,3 +1,4 @@
+// TODO: Test command once training session class is updated.
 const beasts = require("../jsonFiles/training_sessions/beasts.json");
 const moment = require("moment-timezone");
 
@@ -6,11 +7,11 @@ module.exports = {
 	description: "Schedule a training session.",
 	aliases: ["schedule-training-session"],
 	async execute(message, args, bot) {
-		if (!["356172624684122113", "137269251361865728"].includes(message.author.id)) return;
+		if (![bot.ownerId, "137269251361865728"].includes(message.author.id)) return;
 
 		if (args[0] == "list") {
 			const list = bot.guildInfo.get(message.guild.id, "scheduledTrainingSessions")
-				.map(ts => `${moment.tz(ts.time, "America/Los_Angeles").format("llll")} - ${ts.filter ? bot.capitalizeFirstLetter(ts.filter) : "No Filter"}`)
+				.map(ts => `${moment.tz(ts.time, "America/Los_Angeles").format("llll")} - ${ts.filter ? bot.functions.capitalizeFirstLetter(ts.filter) : "No Filter"}`)
 				.join("\n");
 
 			message.channel.send(list);
@@ -19,7 +20,9 @@ module.exports = {
 
 		args = args.join(" ").split(/, +/);
 
-		if (!args[0]) return message.channel.send(`Specify when to spawn a training session! Proper Usage: \`${bot.prefix}schedule-training <year-month-date hh:mm:ss>, [spell]\``);
+		if (!args[0]) {
+			return message.channel.send(`Specify when to spawn a training session! Proper Usage: \`${bot.prefix}schedule-training <year-month-date hh:mm:ss>, [spell]\``);
+		}
 
 		const time = args[0];
 		let filter = args[1];
@@ -28,18 +31,24 @@ module.exports = {
 
 		const timeFormat = "YYYY-MM-DD HH:mm:ss";
 
-		if (!moment.tz(time, timeFormat, bot.timezone).isValid()) return message.channel.send(`Invalid time! Proper Usage: \`${bot.prefix}schedule-training <year-month-date hh:mm:ss>, [spell]\``);
+		if (!moment.tz(time, timeFormat, bot.timezone).isValid()) {
+			return message.channel.send(`Invalid time! Proper Usage: \`${bot.prefix}schedule-training <year-month-date hh:mm:ss>, [spell]\``);
+		}
 
 		const timeObject = moment.tz(time, timeFormat, bot.timezone);
 
-		if (Date.now() > timeObject.valueOf()) return message.channel.send(`You must specify a time in the future! Proper Usage: \`${bot.prefix}schedule-training <year-month-date hh:mm:ss>, [spell]\``);
+		if (Date.now() > timeObject.valueOf()) {
+			return message.channel.send(`You must specify a time in the future! Proper Usage: \`${bot.prefix}schedule-training <year-month-date hh:mm:ss>, [spell]\``);
+		}
 
 		const object = {
 			time: timeObject.valueOf(),
 			id: message.id
 		};
 
-		if (filter && beasts.some(b => b.spell.slice(1) === filter || b.name.toLowerCase() == filter)) object.filter = filter;
+		if (filter && beasts.some(b => b.spell.slice(1) == filter || b.name.toLowerCase() == filter)) {
+			object.filter = filter;
+		}
 
 		bot.guildInfo.push(message.guild.id, object, "scheduledTrainingSessions");
 
