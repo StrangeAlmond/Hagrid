@@ -124,8 +124,8 @@ module.exports = {
   },
 
   levelUp(bot, member, channel) {
-    const userData = bot.userInfo.get(`${guild.id}-${member.id}`);
     const guild = member.guild;
+    const userData = bot.userInfo.get(`${guild.id}-${member.id}`);
 
     const lootbox = years[userData.year + 1].lootbox;
 
