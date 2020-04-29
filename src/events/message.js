@@ -102,7 +102,7 @@ module.exports = async (bot, message) => {
       bot.userInfo.set(key, activeEffects, "stats.activeEffects");
     }
 
-    const turboFartsEmoji = bot.emojis.find(e => e.name.toLowerCase() == "turbofarts");
+    const turboFartsEmoji = bot.emojis.cache.find(e => e.name.toLowerCase() == "turbofarts");
     if (turboFartsEmoji) message.react(turboFartsEmoji);
   }
 
@@ -240,7 +240,7 @@ module.exports = async (bot, message) => {
     }
   }
 
-  if (userData.year < 7 && userData.xp > years[userData.year + 1].xp) bot.functions.levelUp(message.member, message.channel);
+  if (userData.year < 7 && userData.xp > years[userData.year + 1].xp) bot.functions.levelUp(bot, message.member, message.channel);
   if (!message.content.startsWith(bot.prefix)) return;
 
   let args = message.content.slice(bot.prefix.length).toLowerCase().split(/ +/);
