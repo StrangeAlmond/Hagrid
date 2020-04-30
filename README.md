@@ -21,7 +21,8 @@ As such, any forks of this repo may require knowledge of programming in order to
         {
             "token": "TOKEN-HERE",
             "prefix": "!",
-            "ownerId": ""
+            "ownerId": "",
+            "timezone": "America/Los_Angeles"
         }
     ```
 6. Start the bot with `npm start`.
