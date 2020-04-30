@@ -9,7 +9,7 @@ module.exports = {
 		const examType = args[0];
 		if (!examType || !["owls"].includes(examType)) return message.channel.send(`Incorrect Usage. Proper Usage: \`${bot.prefix}exams [owls/newts]\``);
 
-		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
+		const userData = bot.userInfo.get(message.author.key);
 		if (examInfo[examType].requiredYear && examInfo[examType].requiredYear != userData.year) return;
 
 		const validWeeks = [12, 13, 25, 26, 38, 39, 51, 52];
@@ -68,11 +68,11 @@ T - Troll (0-${gradeInfo.T} spells/potions learned)`;
 			}
 
 			if (passingGrades.includes(grade)) {
-				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, grade, `stats.${examType}`);
+				bot.userInfo.set(message.author.key, grade, `stats.${examType}`);
 				await message.channel.send(examInfo[examType].passingMessage);
 				if (examType == "owls") bot.levelUp(message.member, message.channel);
 			} else {
-				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, grade, `stats.${examType}`);
+				bot.userInfo.set(message.author.key, grade, `stats.${examType}`);
 				await message.channel.send(examInfo[examType].failingMessage);
 			}
 		});

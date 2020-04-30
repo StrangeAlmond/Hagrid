@@ -6,7 +6,7 @@ module.exports = {
 	description: "Open an item.",
 	async execute(message, args, bot) {
 		if (["chocolate frog"].some(i => i.includes(args.join(" ")))) {
-			const user = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
+			const user = bot.userInfo.get(message.author.key);
 			if (!user.inventory.chocolateFrogs || user.inventory.chocolateFrogs <= 0) return message.channel.send("You don't have any chocolate frogs!");
 			if (!user.collectorsItems) {
 				bot.userInfo.set(`${user.guild}-${user.user}`, {

@@ -6,7 +6,7 @@ module.exports = {
 	description: "View your collectors cards",
 	aliases: ["collectorsCards", "collectorCards"],
 	async execute(message, args, bot) {
-		const user = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
+		const user = bot.userInfo.get(message.author.key);
 		if (!user.collectorsItems || !user.collectorsItems.cards) {
 			return message.channel.send("You don't have any collectors cards! You can find some by buying chocolate frogs in Hogsmeade and opening them.");
 		}

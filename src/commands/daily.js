@@ -5,7 +5,7 @@ module.exports = {
 	description: "Gives you your daily items.",
 	aliases: ["d"],
 	async execute(message, args, bot) {
-		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
+		const userData = bot.userInfo.get(message.author.key);
 		const lastDaily = userData.cooldowns.lastDaily;
 
 		let sickles = 6;
@@ -26,11 +26,11 @@ module.exports = {
 			if (chance <= 30) sickles += 2;
 		}
 
-		bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", sickles, "balance.sickles");
+		bot.userInfo.math(message.author.key, "+", sickles, "balance.sickles");
 
-		if (!userData.inventory.trainingTokens) bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 0, "inventory.trainingTokens");
-		bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "+", trainingTokens, "inventory.trainingTokens");
-		bot.userInfo.set(`${message.guild.id}-${message.author.id}`, moment.tz("America/Los_Angeles").format("l"), "cooldowns.lastDaily");
+		if (!userData.inventory.trainingTokens) bot.userInfo.set(message.author.key, 0, "inventory.trainingTokens");
+		bot.userInfo.math(message.author.key, "+", trainingTokens, "inventory.trainingTokens");
+		bot.userInfo.set(message.author.key, moment.tz("America/Los_Angeles").format("l"), "cooldowns.lastDaily");
 
 		bot.functions.quickWebhook(message.channel, `You have collected your ${sickles} daily sickles and 1 training token.`, {
 			username: "Gringotts Goblin",

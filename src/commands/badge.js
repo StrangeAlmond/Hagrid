@@ -88,7 +88,7 @@ module.exports = {
 				message.channel.send(badgeAddedEmbed);
 			});
 		} else if (args[0] == "profile") {
-			const usersBadges = bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "badges");
+			const usersBadges = bot.userInfo.get(message.author.key, "badges");
 			if (usersBadges.length <= 0) return message.channel.send("You have not earned any badges.");
 
 			let badgesDescription = "You have earned the following badges:\n\n";

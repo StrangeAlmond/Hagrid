@@ -15,7 +15,7 @@ module.exports = {
 			if (!house) return;
 
 			bot.guildInfo.math(message.guild.id, "-", 20, `housePoints.${house}`);
-			bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "-", 20, "stats.housePoints");
+			bot.userInfo.math(message.author.key, "-", 20, "stats.housePoints");
 
 			const channel = message.guild.channels.find(c => c.name == "house-cup");
 			if (!channel) return;

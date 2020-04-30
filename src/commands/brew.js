@@ -14,7 +14,7 @@ module.exports = {
 
 		if (!args[0]) return bot.functions.quickWebhook(message.channel, "Specify a potion to brew.", webhookOptions);
 
-		const userData = bot.userInfo.get(`${message.guild.id}-${message.author.id}`);
+		const userData = bot.userInfo.get(message.author.key);
 
 		const potion = potions.find(p => formatString(p.potion).toLowerCase().includes(args.join(" ")));
 		if (!potion) return bot.functions.quickWebhook(message.channel, "Invalid Potion.", webhookOptions);
@@ -38,12 +38,12 @@ module.exports = {
 			(userData.year - spells.find(s => s.spellName.toLowerCase() == potionName.toLowerCase()).yearRequired) * 2
 		) + (userData.stats.luck);
 
-		if (bot.userInfo.get(`${message.guild.id}-${message.author.id}`, "stats.activeEffects").some(e => e.type == "luck")) brewChance = 100;
+		if (bot.userInfo.get(message.author.key, "stats.activeEffects").some(e => e.type == "luck")) brewChance = 100;
 
 		const chance = Math.floor(Math.random() * 100);
 
 		ingredients.forEach(ingredient => {
-			bot.userInfo.math(`${message.guild.id}-${message.author.id}`, "-", parseInt(ingredient.split(/ +/)[0]), `inventory.${ingredient.split(/ +/)[1]}`);
+			bot.userInfo.math(message.author.key, "-", parseInt(ingredient.split(/ +/)[0]), `inventory.${ingredient.split(/ +/)[1]}`);
 		});
 
 		if (chance <= brewChance) {
@@ -54,37 +54,37 @@ module.exports = {
 
 			bot.functions.quickWebhook(message.channel, successEmbed, webhookOptions);
 
-			if (!bot.userInfo.hasProp(`${message.guild.id}-${message.author.id}`, `inventory.${potion.potion}`)) {
-				bot.userInfo.set(`${message.guild.id}-${message.author.id}`, 0, `inventory.${potion.potion}`);
+			if (!bot.userInfo.hasProp(message.author.key, `inventory.${potion.potion}`)) {
+				bot.userInfo.set(message.author.key, 0, `inventory.${potion.potion}`);
 			}
 
-			bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, `inventory.${potion.potion}`);
-			bot.userInfo.inc(`${message.guild.id}-${message.author.id}`, "stats.potionsMade");
+			bot.userInfo.inc(message.author.key, `inventory.${potion.potion}`);
+			bot.userInfo.inc(message.author.key, "stats.potionsMade");
 			userData.stats.potionsMade++;
 
 			switch (userData.stats.potionsMade) {
 				case 1:
-					bot.userInfo.push(`${message.guild.id}-${message.author.id}`, badges.find(i => i.name.toLowerCase() == "beginners luck badge").credential, "badges");
+					bot.userInfo.push(message.author.key, badges.find(i => i.name.toLowerCase() == "beginners luck badge").credential, "badges");
 					message.channel.send("You've recieved the beginner's luck badge for brewing your first potion!");
 					break;
 
 				case 3:
-					bot.userInfo.push(`${message.guild.id}-${message.author.id}`, badges.find(i => i.name.toLowerCase() == "potions club star badge").credential, "badges");
+					bot.userInfo.push(message.author.key, badges.find(i => i.name.toLowerCase() == "potions club star badge").credential, "badges");
 					message.channel.send("You've recieved the potions club star badge for brewing **3** potions!");
 					break;
 
 				case 50:
-					bot.userInfo.push(`${message.guild.id}-${message.author.id}`, badges.find(i => i.name.toLowerCase() == "master potioneer bronze badge").credential, "badges");
+					bot.userInfo.push(message.author.key, badges.find(i => i.name.toLowerCase() == "master potioneer bronze badge").credential, "badges");
 					message.channel.send("You've recieved the master potioneer bronze badge for brewing **50** potions!");
 					break;
 
 				case 200:
-					bot.userInfo.push(`${message.guild.id}-${message.author.id}`, badges.find(i => i.name.toLowerCase() == "master potioneer silver badge").credential, "badges");
+					bot.userInfo.push(message.author.key, badges.find(i => i.name.toLowerCase() == "master potioneer silver badge").credential, "badges");
 					message.channel.send("You've recieved the master potioneer silver badge for brewing **200** potions!");
 					break;
 
 				case 500:
-					bot.userInfo.push(`${message.guild.id}-${message.author.id}`, badges.find(i => i.name.toLowerCase() == "master potioneer gold badge").credential, "badges");
+					bot.userInfo.push(message.author.key, badges.find(i => i.name.toLowerCase() == "master potioneer gold badge").credential, "badges");
 					message.channel.send("You've recieved the master potioneer gold badge for brewing **500** potions!");
 					break;
 			}
