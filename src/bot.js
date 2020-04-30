@@ -5,6 +5,10 @@ const bot = new Discord.Client({
 }); // Initiates a new discord client
 
 const botconfig = require("./botconfig.json");
+if(!botconfig.token || !botconfig.prefix || !botconfig.ownerId) {
+	throw new Error("Invalid bot config file.");
+}
+
 const Enmap = require("enmap");
 
 bot.userInfo = new Enmap({
