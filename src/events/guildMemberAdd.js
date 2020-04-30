@@ -13,7 +13,7 @@ module.exports = async (bot, member) => {
   ];
 
   roles.forEach(async role => {
-    const roleObject = await member.guild.cache.roles.find(r => r.name === role);
+    const roleObject = await member.guild.cache.roles.find(r => r.name == role);
     member.roles.add(roleObject).catch(e =>
       bot.log(`Error adding roles to new member: ${e.stack}`, "error")
     );

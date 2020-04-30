@@ -66,15 +66,15 @@ module.exports = {
 		});
 
 		reactionCollector.on("collect", async collected => {
-			if (collected.emoji.name === "▶") {
-				if (page === pages.length) return msg.reactions.cache.last().users.remove(message.author);
+			if (collected.emoji.name == "▶") {
+				if (page == pages.length) return msg.reactions.cache.last().users.remove(message.author);
 
 				page++;
 
 				await msg.edit(pages[page - 1]);
 				msg.reactions.cache.last().users.remove(message.author);
-			} else if (collected.emoji.name === "◀") {
-				if (page === 1) return msg.reactions.cache.first().users.remove(message.author);
+			} else if (collected.emoji.name == "◀") {
+				if (page == 1) return msg.reactions.cache.first().users.remove(message.author);
 
 				page--;
 

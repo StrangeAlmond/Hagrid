@@ -550,9 +550,9 @@ class ForbiddenForest {
 				let price = parseInt(buyDetails[0]) * amount;
 
 				// If the currency is sickles the price = (price * 29)
-				if (currency === "sickles") price = price * 29;
+				if (currency == "sickles") price = price * 29;
 				// If the currency is galleons the price = (price * 493)
-				if (currency === "galleons") price = price * 493;
+				if (currency == "galleons") price = price * 493;
 
 				// If they can't afford it then send a message saying they can't
 				if ((userData.balance.sickles * 29) + (userData.balance.galleons * 493) + userData.balance.knuts < price) return this.webhook.send("You can't afford this item.");
@@ -586,7 +586,7 @@ class ForbiddenForest {
 					this.webhook.send("The dark wizard disappears.");
 				}, 1000);
 			}
-		} else if (response.content === "3") { // If they want to sell an item
+		} else if (response.content == "3") { // If they want to sell an item
 			this.bot.log(`${this.member} is selling an item to the dark wizard`, "info");
 
 			// Items object formatted with the selling information
@@ -607,7 +607,7 @@ class ForbiddenForest {
 			const sellResponse = await this.bot.functions.awaitResponse(m => (parseInt(m.content.split(/ +/)[0]) > 0 &&
 				parseInt(m.content.split(/ +/)[0]) <= Object.keys(darkWizardItems).length &&
 				parseInt(m.content.split(/ +/)[1]) > 0) ||
-				m.content === `${this.bot.prefix}nevermind`, 120000, this.channel);
+				m.content == `${this.bot.prefix}nevermind`, 120000, this.channel);
 
 			// If they didn't respond don't do anything
 			if (!sellResponse) return;

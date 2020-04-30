@@ -4,7 +4,7 @@ module.exports = {
 	name: "reload",
 	description: "Reload a command.",
 	async execute(message, args, bot) {
-		if (message.author.id !== bot.ownerId) return;
+		if (message.author.id != bot.ownerId) return;
 		if (!args[0]) return message.channel.send("Specify a command to reload!");
 
 		const commandName = args[0];

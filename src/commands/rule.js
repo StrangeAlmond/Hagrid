@@ -21,7 +21,7 @@ module.exports = {
 		if (!rules.includes(args[0])) return;
 
 		message.channel.send({
-			files: [`../images/rules/rule${rules.find(r => r === args[0])}.jpg`]
+			files: [`../images/rules/rule${rules.find(r => r == args[0])}.jpg`]
 		});
 	},
 };

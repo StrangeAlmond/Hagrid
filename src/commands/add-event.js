@@ -15,7 +15,7 @@ module.exports = {
 			return message.channel.send(`Invalid event! Possible events: ${events.join(", ")}`);
 		}
 
-		const event = events.find(e => e === args[0]);
+		const event = events.find(e => e == args[0]);
 
 		bot.guildInfo.push(message.guild.id, event, "events");
 		message.channel.send(`Got it! I have added the ${event} event!`);

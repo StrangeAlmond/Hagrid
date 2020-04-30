@@ -11,7 +11,7 @@ module.exports = {
 		let sickles = 6;
 		let trainingTokens = 1;
 
-		if (lastDaily === moment.tz("America/Los_Angeles").format("l")) {
+		if (lastDaily == moment.tz("America/Los_Angeles").format("l")) {
 			const timeObj = bot.functions.parseMs(bot.functions.timeUntilMidnight(), true);
 
 			return bot.functions.quickWebhook(message.channel, `${message.member}, You can collect your daily sickles and training token again in ${timeObj.hours} hours, ${timeObj.minutes} minutes, and ${timeObj.seconds} seconds.`, {
