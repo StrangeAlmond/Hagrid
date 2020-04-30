@@ -51,7 +51,7 @@ module.exports = {
 		`;
 
 		const profileEmbed = new Discord.MessageEmbed()
-			.setAuthor(`${user.displayName}'s Profile`, user.user.displayAvatarURL)
+			.setAuthor(`${user.displayName}'s Profile`, user.user.displayAvatarURL())
 			.setThumbnail(thumbnail)
 			.setDescription(profile)
 			.setColor(user.displayHexColor)
