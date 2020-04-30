@@ -5,3 +5,4 @@ package-lock.json
 botconfig.json
 data_backups
 .vscode
+backupData.sh
