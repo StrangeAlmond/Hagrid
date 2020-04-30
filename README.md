@@ -10,3 +10,18 @@ lot more. For more information you can view the wiki [here](https://hagrid.fando
 
 Hagrid is only designed to be used in the [offical discord server](https://discord.gg/PWKYMct). 
 As such, any forks of this repo may require knowledge of programming in order to customize the bot to your discord server.
+
+## Installing
+1. Install Node.js and NPM
+2. Clone this project with git: `git clone https://github.com/StrangeAlmond/Hagrid.git`. This will clone the code into a subdirectory named Hagrid.
+3. Open a terminal in the directory just created and install dependencies: `npm install`
+4. Create a `botconfig.json` file in the src/ directory.
+5. Add the following contents to the botconfig.json file, replacing the values with your preferences:
+    ```
+        {
+            "token": "TOKEN-HERE",
+            "prefix": "!",
+            "ownerId": ""
+        }
+    ```
+6. Start the bot with `npm start`.

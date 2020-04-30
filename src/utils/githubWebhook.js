@@ -9,6 +9,7 @@ const secret = botconfig.githubWebhookSecret;
 const repo = "~/Discord-Bots/Hagrid";
 
 function createServer() {
+	if(!secret) return;
 	http.createServer((req, res) => {
 		req.on("data", chunk => {
 			let sig = "sha1=" + crypto.createHmac("sha1", secret).update(chunk.toString()).digest("hex");
