@@ -21,7 +21,7 @@ As such, any forks of this repo may require knowledge of programming in order to
         {
             "token": "TOKEN-HERE",
             "prefix": "!",
-            "ownerId": "",
+            "ownerId": "356172624684122113",
             "timezone": "America/Los_Angeles"
         }
     ```
