@@ -5,16 +5,13 @@ const logger = require("./utils/logger.js");
 const botconfig = require("./botconfig.json");
 const githubWebook = require("./utils/githubWebhook.js");
 
-const bot = new Discord.Client({
-	disabledEvents: ["TYPING_START"]
-}); // Initiates a new discord client
-
-const botconfig = require("./botconfig.json");
 if(!botconfig.token || !botconfig.prefix || !botconfig.ownerId) {
 	throw new Error("Invalid bot config file.");
 }
 
-const Enmap = require("enmap");
+const bot = new Discord.Client({
+	disabledEvents: ["TYPING_START"]
+}); // Initiates a new discord client
 
 bot.userInfo = new Enmap({
   name: "users"
