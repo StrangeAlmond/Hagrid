@@ -75,7 +75,7 @@ module.exports = async bot => {
             );
 
             bot.guildInfo.set(guild.guild, guild.spawns, "spawns");
-            bot.quickWebhook(channel, "This trivia question has expired.", triviaQuestion.webhookObject);
+            bot.functions.quickWebhook(channel, "This trivia question has expired.", triviaQuestion.webhookObject);
           }
         }
       }
@@ -104,14 +104,16 @@ module.exports = async bot => {
 
         if (role) {
           const u = guild.members.cache.get(user.user);
-          u.removeRole(role);
+          u.roles.remove(role);
 
           bot.userInfo.set(`${user.guild}-${user.user}`, null, "trainingTokenUse");
         }
       }
     });
 
-    const mazeChannels = bot.channels.cache.filter(c => c.type == "text" && c.name.endsWith("-forbidden-forest"));
+    const mazeChannels = bot.channels.cache
+      .filter(c => c.type == "text" && c.name.endsWith("-forbidden-forest"));
+
     mazeChannels.forEach(async channel => { // Deletes inactive maze channels
       let message = await channel.messages.fetch({
         limit: 1
@@ -122,7 +124,8 @@ module.exports = async bot => {
       if (message && (Date.now() - message.createdTimestamp) > 300000) {
         const permissions = channel.permissionsFor(channel.guild.me);
         if (permissions.has("MANAGE_CHANNELS")) {
-          channel.delete().catch(e => bot.log(`Error deleting maze channel: ${e.stack}`, "error"));
+          channel.delete()
+            .catch(e => bot.log(`Error deleting maze channel: ${e.stack}`, "error"));
         }
       }
     });
@@ -144,7 +147,8 @@ module.exports = async bot => {
             const role = guild.roles.cache.find(r => r.name.toLowerCase() == "apparition");
             if (role) {
               const u = guild.members.cache.get(user.user);
-              u.roles.remove(role).catch(e => bot.log(`Error removing apparition role: ${e.stack}`, "error"));
+              u.roles.remove(role)
+                .catch(e => bot.log(`Error removing apparition role: ${e.stack}`, "error"));
 
               bot.log("Removed a user's floo powder role.", "info");
             } else if (effect.type == "luck") {
@@ -178,7 +182,7 @@ module.exports = async bot => {
           if (member) {
             bot.userInfo.dec(`${user.guild}-${user.user}`, "stats.maxHealth");
             bot.userInfo.set(`${user.guild}-${user.user}`, null, "stats.poisonedObject");
-            bot.fainted(member, `${member} has succumbed to the poison and is now unconscious! Can you help me revive them?`);
+            bot.functions.fainted(member, `${member} has succumbed to the poison and is now unconscious! Can you help me revive them?`);
           }
         }
       }
