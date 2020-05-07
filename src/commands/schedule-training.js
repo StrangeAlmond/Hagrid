@@ -1,4 +1,3 @@
-// TODO: Test command once training session class is updated.
 const beasts = require("../jsonFiles/training_sessions/beasts.json");
 const moment = require("moment-timezone");
 
