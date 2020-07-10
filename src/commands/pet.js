@@ -20,13 +20,13 @@ module.exports = {
 		const starveDate = moment.tz(new Date(lastFeed), "America/Los_Angeles");
 		const lastFeedObj = bot.functions.parseMs(Date.now() - starveDate.valueOf(), true);
 
-		if (lastFeed && lastFeedObj.days >= 8) {
+		if (lastFeed && lastFeedObj.days >= 8 && pet.xp < 365) {
 			userData.pets.splice(userData.pets.findIndex(p => p.id == pet.id), 1);
 			bot.userInfo.set(message.author.key, userData.pets, "pets");
 			return message.channel.send(`Sorry ${message.author}, I'm gonna have to take yer ${pet.pet} away. Very disappointin' to see you neglect little ${pet.nickname} like that. When yer ready to care fer a pet again, you can go back to Diagon Alley and buy a new one.`);
 		}
 
-		if (lastFeed && lastFeedObj.days >= 3 && !pet.fainted) {
+		if (lastFeed && lastFeedObj.days >= 3 && !pet.fainted && pet.xp < 365) {
 			message.channel.send("Your pet has fainted after days of neglect!");
 			pet.fainted = true;
 			userData.pets.splice(userData.pets.findIndex(p => p.id == pet.id), 1, pet);
@@ -64,6 +64,7 @@ module.exports = {
 					petHappiness = "Full";
 				}
 
+				if(p.xp >= 365) petHappiness = "Full";
 				if (p.fainted) petHappiness = "Fainted";
 
 				const embed = new Discord.MessageEmbed()
