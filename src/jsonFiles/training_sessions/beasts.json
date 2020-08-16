@@ -1,4 +1,5 @@
-[{
+[
+	{
 		"name": "Doxy",
 		"tier": 1,
 		"class": "XXX",
@@ -154,7 +155,8 @@
 		"image": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a3352183-4d1f-4658-bae3-9f5a1fda1405/daqawmj-745b8c97-c370-47ec-929f-408fd176897a.jpg/v1/fill/w_894,h_894,q_70,strp/erkling_by_szokekissmarton_daqawmj-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTI4MCIsInBhdGgiOiJcL2ZcL2EzMzUyMTgzLTRkMWYtNDY1OC1iYWUzLTlmNWExZmRhMTQwNVwvZGFxYXdtai03NDViOGM5Ny1jMzcwLTQ3ZWMtOTI5Zi00MDhmZDE3Njg5N2EuanBnIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.IkcS0_HVHxkRSbF46C3C2xhpTG9HQr81oNB0UuH189c",
 		"color": "#DFA5D8",
 		"message": "An Erkling is ready in the #training-grounds"
-	}, {
+	},
+	{
 		"name": "Kappa",
 		"tier": 2,
 		"class": "XXXX",
@@ -165,7 +167,8 @@
 		"image": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a3352183-4d1f-4658-bae3-9f5a1fda1405/daqayba-cf4cde28-f398-4449-a730-a3ecb4222797.jpg/v1/fill/w_1280,h_1280,q_75,strp/kappa_by_szokekissmarton_daqayba-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3siaGVpZ2h0IjoiPD0xMjgwIiwicGF0aCI6IlwvZlwvYTMzNTIxODMtNGQxZi00NjU4LWJhZTMtOWY1YTFmZGExNDA1XC9kYXFheWJhLWNmNGNkZTI4LWYzOTgtNDQ0OS1hNzMwLWEzZWNiNDIyMjc5Ny5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.t9876-btHptn2oaRV96urePAeLXHh8CvBmzESv_LfwU",
 		"color": "#e46779",
 		"message": "A Kappa is ready in the #training-grounds!"
-	}, {
+	},
+	{
 		"name": "Re-em",
 		"tier": 3,
 		"class": "XXXX",
