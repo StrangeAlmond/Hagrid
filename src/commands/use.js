@@ -43,9 +43,13 @@ module.exports = {
 			const healthToGive = (userData.stats.health + 48) > userData.stats.maxHealth ? userData.stats.maxHealth - userData.stats.health : 48;
 
 			bot.userInfo.math(message.author.key, "+", healthToGive, "stats.health");
+			userData.stats.health += healthToGive;
 			bot.userInfo.dec(message.author.key, "inventory.wiggenweldPotion");
 
-			message.channel.send(healthToGive == 48 ? "You have recieved 48 health points." : "You have been fully healed.");
+			message.channel.send(healthToGive == 48 ?
+				`+48 HP! You now have ${userData.stats.health}/${userData.stats.maxHealth} HP.` :
+				`You've been fully healed! You now have ${userData.stats.health}/${userData.stats.maxHealth} HP.`);
+
 		} else if (item == "girding potion") {
 			if (!hasItem("girdingPotion")) {
 				return message.channel.send("You don't have any girding potions!");
