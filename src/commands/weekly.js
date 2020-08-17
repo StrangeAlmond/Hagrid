@@ -19,7 +19,10 @@ module.exports = {
 		const nextWeekly = userData.cooldowns.nextWeekly;
 
 		if (nextWeekly && Date.now() < nextWeekly) {
-			return message.channel.send(`You can collect your weekly chest again in ${timeTillSaturdayObject.days} days, ${timeTillSaturdayObject.hours} hours, ${timeTillSaturdayObject.minutes} minutes, and ${timeTillSaturdayObject.seconds} seconds.`);
+			return bot.functions.quickWebhook(message.channel, `You can collect your weekly chest again in ${timeTillSaturdayObject.days} days, ${timeTillSaturdayObject.hours} hours, ${timeTillSaturdayObject.minutes} minutes, and ${timeTillSaturdayObject.seconds} seconds.`, {
+				username: "Gringotts Goblin",
+				avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/e/e3/Gringotts_Head_Goblin.jpg/revision/latest/scale-to-width-down/350?cb=20100214234030"
+			});
 		}
 
 		const galleonsObject = {
@@ -39,6 +42,9 @@ module.exports = {
 		bot.userInfo.inc(message.author.key, "inventory.trainingTokens");
 		bot.userInfo.set(message.author.key, saturdayObject.valueOf(), "cooldowns.nextWeekly");
 
-		message.channel.send(`You have collected your ${galleons} weekly galleons and 1 training token.`);
+		bot.functions.quickWebhook(message.channel, `You have collected your ${galleons} weekly galleons and 1 training token.`, {
+			username: "Gringotts Goblin",
+			avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/e/e3/Gringotts_Head_Goblin.jpg/revision/latest/scale-to-width-down/350?cb=20100214234030"
+		});
 	},
 };
