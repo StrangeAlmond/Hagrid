@@ -9,6 +9,7 @@
   "author": "StrangeAlmond",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/opus": "^0.3.2",
     "@discordjs/uws": "^10.149.0",
     "better-sqlite-pool": "^0.2.2",
     "bufferutil": "^4.0.0",
@@ -16,11 +17,14 @@
     "discord.js": "^12.0.2",
     "enmap": "^5.0.0",
     "erlpack": "github:discordapp/erlpack",
-    "libsodium-wrappers": "^0.7.3",
+    "libsodium-wrappers": "^0.7.8",
     "lodash": "^4.17.15",
     "moment-timezone": "^0.5.26",
     "numeral": "^2.0.6",
-    "string-similarity": "^3.0.0"
+    "sodium": "^3.0.2",
+    "string-similarity": "^3.0.0",
+    "ytdl-core": "^3.2.2",
+    "ytpl": "^0.3.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0"

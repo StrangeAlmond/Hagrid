@@ -2,6 +2,8 @@ const Discord = require("discord.js");
 const moment = require("moment-timezone");
 const quickWebhook = require("./quickWebhook.js");
 const years = require("../jsonFiles/years.json");
+const ytdl = require("ytdl-core");
+const ytpl = require("ytpl");
 
 module.exports = {
   ensureUser(user, bot) { // Ensures the user has an entry in the database.
@@ -363,5 +365,34 @@ module.exports = {
     }
 
     return object;
+  },
+
+  async playOST(channel, bot) {
+    const connection = await channel.join().catch(e => console.error(e.stack));
+
+    const playlist = await ytpl("https://www.youtube.com/playlist?list=PLVdr7xrwRyjY4DGuP-NUFEKYupdow4qGq");
+    const queue = playlist.items.map(i => i.url_simple); // Creates a list of youtube videos that create the hp ost.
+    let index = 1;
+
+    bot.dispatcher = connection.play(ytdl(queue[index - 1],
+      {
+        quality: "highestaudio"
+      })
+    );
+
+    bot.dispatcher.on("finish", () => {
+      index++;
+      if (!queue[index - 1]) index = 1;
+
+      bot.dispatcher = connection.play(ytdl(queue[index - 1],
+        {
+          quality: "highestaudio"
+        })
+      );
+    });
+
+    bot.dispatcher.on("error", console.error);
+
+    return bot.dispatcher;
   }
 };
