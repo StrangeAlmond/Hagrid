@@ -367,14 +367,16 @@ module.exports = {
     return object;
   },
 
-  async playOST(channel, bot) {
+  async playOST(bot, channel) {
     const connection = await channel.join().catch(e => console.error(e.stack));
 
-    const playlist = await ytpl("https://www.youtube.com/playlist?list=PLVdr7xrwRyjY4DGuP-NUFEKYupdow4qGq");
-    const queue = playlist.items.map(i => i.url_simple); // Creates a list of youtube videos that play the hp ost.
-    let index = 1;
+    if (!bot.ost) bot.ost = {};
 
-    bot.ost = { index, queue };
+    const playlist = await ytpl("https://www.youtube.com/playlist?list=PLVdr7xrwRyjY4DGuP-NUFEKYupdow4qGq");
+    const queue = bot.ost.queue || playlist.items.map(i => i.url_simple); // Creates a list of youtube videos that play the hp ost.
+    let index = bot.ost.index || 1;
+
+    if (!bot.ost.index) bot.ost = { index, queue };
 
     bot.dispatcher = connection.play(ytdl(queue[index - 1],
       {
@@ -388,13 +390,7 @@ module.exports = {
       if (!queue[index - 1]) index = 1;
 
       bot.ost.index = index;
-
-      bot.dispatcher = connection.play(ytdl(queue[index - 1],
-        {
-          quality: "highestaudio"
-        }), {
-        highWaterMark: 50
-      });
+      this.playOST(bot, channel);
     });
 
     bot.dispatcher.on("error", console.error);
