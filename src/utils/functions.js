@@ -371,24 +371,30 @@ module.exports = {
     const connection = await channel.join().catch(e => console.error(e.stack));
 
     const playlist = await ytpl("https://www.youtube.com/playlist?list=PLVdr7xrwRyjY4DGuP-NUFEKYupdow4qGq");
-    const queue = playlist.items.map(i => i.url_simple); // Creates a list of youtube videos that create the hp ost.
+    const queue = playlist.items.map(i => i.url_simple); // Creates a list of youtube videos that play the hp ost.
     let index = 1;
+
+    bot.ost = { index, queue };
 
     bot.dispatcher = connection.play(ytdl(queue[index - 1],
       {
         quality: "highestaudio"
-      })
-    );
+      }), {
+      highWaterMark: 50
+    });
 
     bot.dispatcher.on("finish", () => {
       index++;
       if (!queue[index - 1]) index = 1;
 
+      bot.ost.index = index;
+
       bot.dispatcher = connection.play(ytdl(queue[index - 1],
         {
           quality: "highestaudio"
-        })
-      );
+        }), {
+        highWaterMark: 50
+      });
     });
 
     bot.dispatcher.on("error", console.error);
