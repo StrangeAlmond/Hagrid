@@ -138,7 +138,7 @@ module.exports = async bot => {
         "floo powder": 3600000,
         "fire protection": 3600000,
         "luck": 3600000,
-        "strength": 7200000
+        "strength": 5400000
       };
 
       const activeEffects = user.stats.activeEffects.filter(e => (Date.now() - e.time) >= expirationTimes[e.type]);
