@@ -153,19 +153,19 @@ module.exports = async bot => {
                 .catch(e => bot.log(`Error removing apparition role: ${e.stack}`, "error"));
 
               bot.log("Removed a user's floo powder role.", "info");
-            } else if (effect.type == "luck") {
-              bot.userInfo.set(`${user.guild}-${user.user}`, 0, "stats.luck");
-              bot.log("Removed a user's luck.", "info");
-            } else if (effect.type == "strength") {
-              bot.userInfo.math(`${user.guild}-${user.user}`, "-", 2, "stats.defense");
-              bot.log("Removed a users strength effect.", "info");
-            } else if (effect.type == "fire protection") {
-              bot.log("Removed a user's fire protection effect.", "info");
             }
-
-            bot.userInfo.removeFrom(`${user.guild}-${user.user}`, "stats.activeEffects", effect);
           }
+        } else if (effect.type == "luck") {
+          bot.userInfo.set(`${user.guild}-${user.user}`, 0, "stats.luck");
+          bot.log("Removed a user's luck.", "info");
+        } else if (effect.type == "strength") {
+          bot.userInfo.math(`${user.guild}-${user.user}`, "-", 2, "stats.defense");
+          bot.log("Removed a users strength effect.", "info");
+        } else if (effect.type == "fire protection") {
+          bot.log("Removed a user's fire protection effect.", "info");
         }
+
+        bot.userInfo.removeFrom(`${user.guild}-${user.user}`, "stats.activeEffects", effect);
       });
     });
 
