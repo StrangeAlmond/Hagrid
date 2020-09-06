@@ -34,7 +34,7 @@ ${commonCards.length}/${collectorsCards.common.length} Common Cards Collected` :
 ${user.collectorsItems.cards.length}/${collectorsCards.rare.length + collectorsCards.uncommon.length + collectorsCards.common.length} Collected Total.
 `;
 
-		const embed = new Discord.RichEmbed()
+		const embed = new Discord.MessageEmbed()
 			.setAuthor("Your Collectors Cards", message.author.displayAvatarURL())
 			.setDescription(msg)
 			.setColor(message.member.displayHexColor)

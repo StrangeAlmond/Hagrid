@@ -60,7 +60,7 @@ module.exports = {
 			bot.userInfo.set(`${user.guild}-${user.user}`, user.collectorsItems.cards, "collectorsItems.cards");
 			bot.userInfo.dec(`${user.guild}-${user.user}`, "inventory.chocolateFrogs");
 
-			const embed = new Discord.RichEmbed()
+			const embed = new Discord.MessageEmbed()
 				.setTitle(card)
 				.setDescription(`As you open your chocolate frog the frop hops away. Luckily, your collectors card is still there. You got ${card}, which is a ${rarity} find.`)
 				.setThumbnail("attachment://image.png")

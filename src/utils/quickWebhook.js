@@ -1,5 +1,5 @@
 async function quickWebhook(channel, message, options) {
-  if (typeof message != "string" && ["RichEmbed", "MessageEmbed"].includes(message.constructor.name)) {
+  if (typeof message != "string" && ["MessageEmbed", "MessageEmbed"].includes(message.constructor.name)) {
     options.embeds = [message];
     message = null;
   } else if (typeof message != "string" && ["Attachment", "MessageAttachment"].includes(message.constructor.name)) {

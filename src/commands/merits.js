@@ -7,7 +7,7 @@ module.exports = {
 		const user = message.mentions.members.first() || message.guild.members.get(args[0]) || message.member;
 		const uMerits = bot.userInfo.get(`${message.guild.id}-${user.id}`, "stats.merits");
 
-		const meritsEmbed = new Discord.RichEmbed()
+		const meritsEmbed = new Discord.MessageEmbed()
 			.setTitle(`${user.displayName}'s Merits`)
 			.setColor(user.displayHexColor)
 			.setDescription(`${user} has ${uMerits} merits`)
