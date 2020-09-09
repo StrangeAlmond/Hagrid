@@ -165,7 +165,7 @@ module.exports = async bot => {
           bot.log("Removed a user's fire protection effect.", "info");
         }
 
-        bot.userInfo.removeFrom(`${user.guild}-${user.user}`, "stats.activeEffects", effect);
+        bot.userInfo.remove(`${user.guild}-${user.user}`, "stats.activeEffects", (e) => e.time == effect.time);
       });
     });
 
