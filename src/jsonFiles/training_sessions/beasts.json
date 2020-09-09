@@ -160,7 +160,7 @@
 		"name": "Kappa",
 		"tier": 2,
 		"class": "XXXX",
-		"attack": 14,
+		"attack": 15,
 		"defense": 1,
 		"health": 650,
 		"spell": "!depulso",
@@ -172,8 +172,8 @@
 		"name": "Re-em",
 		"tier": 3,
 		"class": "XXXX",
-		"attack": 15,
-		"defense": 2,
+		"attack": 17,
+		"defense": 3,
 		"health": 750,
 		"spell": "!depulso",
 		"image": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a3352183-4d1f-4658-bae3-9f5a1fda1405/darahx3-04b0c99f-9b03-437b-9711-9fa3880b8b1d.jpg/v1/fill/w_1280,h_1280,q_75,strp/re_em_by_szokekissmarton_darahx3-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3siaGVpZ2h0IjoiPD0xMjgwIiwicGF0aCI6IlwvZlwvYTMzNTIxODMtNGQxZi00NjU4LWJhZTMtOWY1YTFmZGExNDA1XC9kYXJhaHgzLTA0YjBjOTlmLTliMDMtNDM3Yi05NzExLTlmYTM4ODBiOGIxZC5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.19tjblgrDdWcn2S86gGa4-yMzs5e5ESfcw6Wv0FN4KQ",
@@ -191,5 +191,17 @@
 		"image": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a3352183-4d1f-4658-bae3-9f5a1fda1405/dbcljl6-47a4673a-cb04-4631-adac-5b91185aca79.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvYTMzNTIxODMtNGQxZi00NjU4LWJhZTMtOWY1YTFmZGExNDA1XC9kYmNsamw2LTQ3YTQ2NzNhLWNiMDQtNDYzMS1hZGFjLTViOTExODVhY2E3OS5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.4z4yzRkvj0IiHcKvYgYiQdRTNo82jwpfsRUL2g9Jmow",
 		"color": "#986aaa",
 		"message": "A Snallygaster is ready in the #training-grounds!"
+	},
+	{
+		"name": "Kelpie",
+		"tier": 5,
+		"class": "XXXX",
+		"attack": 20,
+		"defense": 5,
+		"health": 1500,
+		"spell": "!stupefy",
+		"image": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/a3352183-4d1f-4658-bae3-9f5a1fda1405/daqayev-bae57eaf-6338-46ee-8f99-33689bdac81b.jpg/v1/fill/w_1280,h_1280,q_75,strp/kelpie_by_szokekissmarton_daqayev-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3siaGVpZ2h0IjoiPD0xMjgwIiwicGF0aCI6IlwvZlwvYTMzNTIxODMtNGQxZi00NjU4LWJhZTMtOWY1YTFmZGExNDA1XC9kYXFheWV2LWJhZTU3ZWFmLTYzMzgtNDZlZS04Zjk5LTMzNjg5YmRhYzgxYi5qcGciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.Oc5D1Ra08yOIseDk_2QQe8nVLqP88zxFmMRVH2rO15k",
+		"color": "#4895a9",
+		"message": "The monsterous Kelpie has made its way into the #training-grounds, defeat it before it destroys our training grounds!"
 	}
 ]
