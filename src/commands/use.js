@@ -175,9 +175,7 @@ module.exports = {
 
 			if (mentionedUserData.stats.activeEffects.find(i => i.reactionsLeft > 0)) {
 				object.reactionsLeft += mentionedUserData.stats.activeEffects.find(i => i.reactionsLeft > 0).reactionsLeft;
-				bot.userInfo.removeFrom(`${message.guild.id}-${mentionedUser.id}`,
-					"stats.activeEffects",
-					mentionedUserData.stats.activeEffects.find(i => i.reactionsLeft > 0));
+				bot.userInfo.remove(`${message.guild.id}-${mentionedUser.id}`, (i) => i.reactionsLeft > 0, "stats.activeEffects");
 			}
 
 			bot.userInfo.dec(message.author.key, "inventory.maximumTurboFarts");

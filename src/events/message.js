@@ -136,11 +136,9 @@ module.exports = async (bot, message) => {
     const house = houses.find(h => message.member.roles.some(r => r.name.toLowerCase() == h));
 
     if (house) {
-      const triviaQuestion = guildData.spawns.find(s => s.channel == message.channel.id && s.type == "trivia");
-
       bot.userInfo.inc(key, "stats.housePoints");
       bot.guildInfo.inc(message.guild.id, `housePoints.${house}`);
-      bot.guildInfo.removeFrom(message.guild.id, "spawns", triviaQuestion);
+      bot.guildInfo.remove(message.guild.id, (s) => s.channel == message.channel.id && s.type == "trivia", "spawns");
 
       bot.functions.quickWebhook(message.channel, `Congratulations ${message.member}! You guessed the answer correctly! you and your house have gained 1 point.`, webhookObjects[house]);
     }
@@ -219,7 +217,7 @@ module.exports = async (bot, message) => {
 
     if (!(guildData.spawns.some(s => s.channel == object.channel) && object.type == "trivia")) {
       if (guildData.spawns.some(s => s.channel == object.channel)) {
-        bot.guildInfo.removeFrom(message.guild.id, guildData.spawns.find(s => s.channel == object.channel), "spawns");
+        bot.guildInfo.remove(message.guild.id, (s) => s.channel == object.channel, "spawns");
       }
 
       bot.guildInfo.push(message.guild.id, object, "spawns");

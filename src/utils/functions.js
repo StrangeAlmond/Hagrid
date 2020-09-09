@@ -300,7 +300,7 @@ module.exports = {
     const attachment = new Discord.MessageAttachment("../images/spawns/dementor.jpg", "dementor.jpg");
     channel.send(`A dementor has spawned! Years 5 and up can banish it by using \`${bot.prefix}expecto patronum\`!`, attachment);
 
-    if (guildData.spawns.some(s => s.channel == object.channel)) bot.guildInfo.removeFrom(guild.id, guildData.spawns.find(s => s.channel == object.channel), "spawns");
+    if (guildData.spawns.some(s => s.channel == object.channel)) bot.guildInfo.remove(guild.id, (s) => s.channel == object.channel, "spawns");
     bot.guildInfo.push(guild.id, object, "spawns");
   },
 
@@ -316,7 +316,7 @@ module.exports = {
     const attachment = new Discord.MessageAttachment("../images/spawns/boggart.jpg", "boggart.jpg");
     channel.send(`A boggart has spawned! Years 3 and up can banish it by using \`${bot.prefix}riddikulus\`!`, attachment);
 
-    if (guildData.spawns.some(s => s.channel == object.channel)) bot.guildInfo.removeFrom(guild.id, guildData.spawns.find(s => s.channel == object.channel), "spawns");
+    if (guildData.spawns.some(s => s.channel == object.channel)) bot.guildInfo.remove(guild.id, (s) => s.channel == object.channel, "spawns");
     bot.guildInfo.push(guild.id, object, "spawns");
   },
 
@@ -333,7 +333,7 @@ module.exports = {
     channel.send(`A chest has appeared! open it with \`${bot.prefix}cistem aperio\`!`, attachment);
 
     if (guildData.spawns.some(s => s.channel == object.channel)) {
-      bot.guildInfo.removeFrom(guild.id, guildData.spawns.find(s => s.channel == object.channel), "spawns");
+      bot.guildInfo.remove(guild.id, (s) => s.channel == object.channel, "spawns");
     }
 
     bot.guildInfo.push(guild.id, object, "spawns");
