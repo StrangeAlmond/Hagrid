@@ -196,7 +196,7 @@
 		"name": "Kelpie",
 		"tier": 5,
 		"class": "XXXX",
-		"attack": 20,
+		"attack": 22,
 		"defense": 5,
 		"health": 1500,
 		"spell": "!stupefy",
