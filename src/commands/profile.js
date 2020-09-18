@@ -61,7 +61,7 @@ module.exports = {
 		function findThumbnail() {
 			const thumbnails = {
 				"slytherin": {
-					"headmaster": "https://cdn.discordapp.com/attachments/518865376918896663/521029959003668501/Hogwarts_Crest_Wall_Plaque002.png",
+					"headmaster": "https://wordsandlyricss.files.wordpress.com/2015/09/hogwarts_crest_1.png",
 					"server auror": "https://i.imgur.com/WK95bWB.png",
 					"heads of house": "https://i.imgur.com/5rqHISJ.png",
 					"heads boy": "https://i.imgur.com/hFvsVst.png",
@@ -71,7 +71,7 @@ module.exports = {
 				},
 
 				"gryffindor": {
-					"headmaster": "https://cdn.discordapp.com/attachments/518865376918896663/521029959003668501/Hogwarts_Crest_Wall_Plaque002.png",
+					"headmaster": "https://wordsandlyricss.files.wordpress.com/2015/09/hogwarts_crest_1.png",
 					"server auror": "https://i.imgur.com/WK95bWB.png",
 					"heads of house": "https://i.imgur.com/nGD0usI.png",
 					"heads boy": "https://i.imgur.com/OX6NthT.png",
@@ -81,7 +81,7 @@ module.exports = {
 				},
 
 				"hufflepuff": {
-					"headmaster": "https://cdn.discordapp.com/attachments/518865376918896663/521029959003668501/Hogwarts_Crest_Wall_Plaque002.png",
+					"headmaster": "https://wordsandlyricss.files.wordpress.com/2015/09/hogwarts_crest_1.png",
 					"server auror": "https://i.imgur.com/WK95bWB.png",
 					"heads of house": "https://i.imgur.com/Wcm42XI.png",
 					"heads boy": "https://i.imgur.com/Lzq2NXi.png",
@@ -91,7 +91,7 @@ module.exports = {
 				},
 
 				"ravenclaw": {
-					"headmaster": "https://cdn.discordapp.com/attachments/518865376918896663/521029959003668501/Hogwarts_Crest_Wall_Plaque002.png",
+					"headmaster": "https://wordsandlyricss.files.wordpress.com/2015/09/hogwarts_crest_1.png",
 					"server auror": "https://i.imgur.com/WK95bWB.png",
 					"heads of house": "https://i.imgur.com/1kBX2yh.png",
 					"heads boy": "https://i.imgur.com/9PwBFJk.png",
