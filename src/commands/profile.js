@@ -39,8 +39,7 @@ module.exports = {
 
 		**Attack:** ${userData.stats.attack}
 		**Defense:** ${userData.stats.defense}
-		**Health:** ${userData.stats.health}
-		**Max Health**: ${userData.stats.maxHealth}
+		**Health:** ${userData.stats.health}/${userData.stats.maxHealth}
 		
 		**Active Effects:** ${activeEffects}
 		
