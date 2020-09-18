@@ -21,7 +21,7 @@ module.exports = {
 			.addField("Library", `Discord.js v${Discord.version}`)
 			.addField("Node.js", `${process.version}`)
 			.addField("Credits", `Programmer: **${developer}**\nArtist and Designer: **${designer}**\n\nA special thanks to:\n**${specialThanks.map(u => bot.users.cache.get(u).tag).join("\n")}**`)
-			.setFooter("© 2019 StrangeAlmond#0001", bot.user.displayAvatarURL)
+			.setFooter("© 2019 StrangeAlmond#2475", bot.user.displayAvatarURL)
 			.setTimestamp();
 
 		message.channel.send(statsEmbed);

@@ -296,7 +296,7 @@ module.exports = async (bot, message) => {
 
   command.execute(message, args, bot).catch(e => {
     bot.log(e.stack, "error");
-    return message.channel.send("🚫  There was an error trying to execute that command, please contact StrangeAlmond#0001.");
+    return message.channel.send("🚫  There was an error trying to execute that command, please contact StrangeAlmond#2475.");
   });
 
   const commandLog = `${message.member.displayName} (${message.author.id}) used the ${bot.prefix}${command.name} ${args.join(" ")} command, in channel #${message.channel.name} (${message.channel.id}) at ${moment(message.createdTimestamp).tz("America/Los_Angeles").format("llll")}, in the guild ${message.guild.name} (${message.guild.id}).`;
