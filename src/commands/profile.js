@@ -59,35 +59,55 @@ module.exports = {
 		message.channel.send(profileEmbed);
 
 		function findThumbnail() {
-			if (user.id == "137269251361865728") return "https://cdn.discordapp.com/attachments/518865376918896663/521029959003668501/Hogwarts_Crest_Wall_Plaque002.png";
+			const thumbnails = {
+				"slytherin": {
+					"headmaster": "https://cdn.discordapp.com/attachments/518865376918896663/521029959003668501/Hogwarts_Crest_Wall_Plaque002.png",
+					"server auror": "https://i.imgur.com/WK95bWB.png",
+					"heads of house": "https://i.imgur.com/5rqHISJ.png",
+					"heads boy": "https://i.imgur.com/hFvsVst.png",
+					"heads girl": "https://i.imgur.com/Gvi4WM8.png",
+					"prefect": "https://i.imgur.com/3oz7Gfn.png",
+					"default": "https://vignette.wikia.nocookie.net/harrypotter/images/0/00/Slytherin_ClearBG.png/revision/latest/scale-to-width-down/350?cb=20161020182557"
+				},
 
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "servor auror")) return "https://i.imgur.com/WK95bWB.png";
+				"gryffindor": {
+					"headmaster": "https://cdn.discordapp.com/attachments/518865376918896663/521029959003668501/Hogwarts_Crest_Wall_Plaque002.png",
+					"server auror": "https://i.imgur.com/WK95bWB.png",
+					"heads of house": "https://i.imgur.com/nGD0usI.png",
+					"heads boy": "https://i.imgur.com/OX6NthT.png",
+					"heads girl": "https://i.imgur.com/SCZnQf7.png",
+					"prefect": "https://i.imgur.com/PBuoGbT.png",
+					"default": "https://vignette.wikia.nocookie.net/harrypotter/images/b/b1/Gryffindor_ClearBG.png/revision/latest/scale-to-width-down/350?cb=20190222162949"
+				},
 
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "heads of house") && user.roles.cache.find(r => r.name.toLowerCase() == "slytherin")) return "https://i.imgur.com/5rqHISJ.png";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "heads of house") && user.roles.cache.find(r => r.name.toLowerCase() == "gryffindor")) return "https://i.imgur.com/nGD0usI.png";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "heads of house") && user.roles.cache.find(r => r.name.toLowerCase() == "hufflepuff")) return "https://i.imgur.com/Wcm42XI.png";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "heads of house") && user.roles.cache.find(r => r.name.toLowerCase() == "ravenclaw")) return "https://i.imgur.com/1kBX2yh.png";
+				"hufflepuff": {
+					"headmaster": "https://cdn.discordapp.com/attachments/518865376918896663/521029959003668501/Hogwarts_Crest_Wall_Plaque002.png",
+					"server auror": "https://i.imgur.com/WK95bWB.png",
+					"heads of house": "https://i.imgur.com/Wcm42XI.png",
+					"heads boy": "https://i.imgur.com/Lzq2NXi.png",
+					"heads girl": "https://i.imgur.com/Zsxz9Wa.png",
+					"prefect": "https://i.imgur.com/j9hFSZx.png",
+					"default": "https://vignette.wikia.nocookie.net/harrypotter/images/0/06/Hufflepuff_ClearBG.png/revision/latest/scale-to-width-down/350?cb=20161020182518"
+				},
 
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "heads boy") && user.roles.cache.find(r => r.name.toLowerCase() == "slytherin")) return "https://i.imgur.com/hFvsVst.png";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "heads boy") && user.roles.cache.find(r => r.name.toLowerCase() == "gryffindor")) return "https://i.imgur.com/OX6NthT.png";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "heads boy") && user.roles.cache.find(r => r.name.toLowerCase() == "hufflepuff")) return "https://i.imgur.com/Lzq2NXi.png";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "heads boy") && user.roles.cache.find(r => r.name.toLowerCase() == "ravenclaw")) return "https://i.imgur.com/9PwBFJk.png";
+				"ravenclaw": {
+					"headmaster": "https://cdn.discordapp.com/attachments/518865376918896663/521029959003668501/Hogwarts_Crest_Wall_Plaque002.png",
+					"server auror": "https://i.imgur.com/WK95bWB.png",
+					"heads of house": "https://i.imgur.com/1kBX2yh.png",
+					"heads boy": "https://i.imgur.com/9PwBFJk.png",
+					"heads girl": "https://i.imgur.com/Adz5vDV.png",
+					"prefect": "https://i.imgur.com/KP2pFBT.png",
+					"default": "https://vignette.wikia.nocookie.net/harrypotter/images/4/4e/RavenclawCrest.png/revision/latest/scale-to-width-down/350?cb=20161020182442"
+				}
+			};
 
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "heads girl") && user.roles.cache.find(r => r.name.toLowerCase() == "slytherin")) return "https://i.imgur.com/Gvi4WM8.png";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "heads girl") && user.roles.cache.find(r => r.name.toLowerCase() == "gryffindor")) return "https://i.imgur.com/SCZnQf7.png";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "heads girl") && user.roles.cache.find(r => r.name.toLowerCase() == "hufflepuff")) return "https://i.imgur.com/Zsxz9Wa.png";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "heads girl") && user.roles.cache.find(r => r.name.toLowerCase() == "ravenclaw")) return "https://i.imgur.com/Adz5vDV.png";
+			const teams = ["slytherin", "gryffindor", "hufflepuff", "ravenclaw"];
+			const staffRoles = ["headmaster", "server auror", "heads of house", "heads boy", "heads girl", "prefect"];
 
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "prefect") && user.roles.cache.find(r => r.name.toLowerCase() == "slytherin")) return "https://i.imgur.com/3oz7Gfn.png";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "prefect") && user.roles.cache.find(r => r.name.toLowerCase() == "gryffindor")) return "https://i.imgur.com/PBuoGbT.png";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "prefect") && user.roles.cache.find(r => r.name.toLowerCase() == "hufflepuff")) return "https://i.imgur.com/j9hFSZx.png";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "prefect") && user.roles.cache.find(r => r.name.toLowerCase() == "ravenclaw")) return "https://i.imgur.com/KP2pFBT.png";
+			const team = teams.find(t => user.roles.cache.find(r => t == r.name.toLowerCase()));
+			const staffRole = staffRoles.find(s => user.roles.cache.find(r => s == r.name.toLowerCase())) || "default";
 
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "slytherin")) return "https://vignette.wikia.nocookie.net/harrypotter/images/0/00/Slytherin_ClearBG.png/revision/latest/scale-to-width-down/350?cb=20161020182557";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "gryffindor")) return "https://vignette.wikia.nocookie.net/harrypotter/images/b/b1/Gryffindor_ClearBG.png/revision/latest/scale-to-width-down/350?cb=20190222162949";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "hufflepuff")) return "https://vignette.wikia.nocookie.net/harrypotter/images/0/06/Hufflepuff_ClearBG.png/revision/latest/scale-to-width-down/350?cb=20161020182518";
-			if (user.roles.cache.find(r => r.name.toLowerCase() == "ravenclaw")) return "https://vignette.wikia.nocookie.net/harrypotter/images/4/4e/RavenclawCrest.png/revision/latest/scale-to-width-down/350?cb=20161020182442";
+			return thumbnails[team][staffRole];
 		}
-
 	},
 };
