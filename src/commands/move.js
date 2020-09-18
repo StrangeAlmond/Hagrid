@@ -1,4 +1,3 @@
-// TODO: Test once forbidden forest class is updated.
 const ForbiddenForest = require("../classes/ForbiddenForest.js");
 const mazePositions = require("../jsonFiles/forbidden_forest/mazePositions.json");
 

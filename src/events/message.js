@@ -8,8 +8,8 @@ const xpCooldown = new Set();
 const xpAmount = 4;
 const users = {};
 /*
-	TODO:
-	- Easter eggs
+  TODO:
+  - Easter eggs
 */
 module.exports = async (bot, message) => {
   if (message.author.bot || message.channel.type == "dm") return;

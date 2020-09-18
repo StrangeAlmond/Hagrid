@@ -1,4 +1,3 @@
-// TODO: Test command once move command is updated.
 const items = require("../jsonFiles/forbidden_forest/items.json");
 const fs = require("fs");
 

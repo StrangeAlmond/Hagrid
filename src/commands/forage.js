@@ -1,4 +1,3 @@
-// TODO: Test command once move command is updated.
 const moment = require("moment-timezone");
 const items = require("../jsonFiles/forbidden_forest/forageLocations.json");
 

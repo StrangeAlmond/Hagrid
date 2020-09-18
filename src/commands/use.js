@@ -1,4 +1,3 @@
-// TODO: Test command
 module.exports = {
 	name: "use",
 	description: "Use an item",
