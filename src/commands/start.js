@@ -23,26 +23,28 @@ module.exports = {
 		const usersChannel = await message.guild.channels.create(`${formattedName()}-forbidden-forest`, {
 			type: "text",
 			permissionOverwrites: [{
+				id: message.guild.id,
+				deny: ["VIEW_CHANNEL"]
+			},
+			{
 				id: message.author.id,
 				allow: ["VIEW_CHANNEL", "EMBED_LINKS"]
 			}, {
 				id: mutedRole.id,
 				deny: "SEND_MESSAGES"
 			}, {
-				id: message.guild.id,
-				deny: ["VIEW_CHANNEL"]
-			}, {
 				id: bot.user.id,
 				allow: ["VIEW_CHANNEL", "READ_MESSAGE_HISTORY", "MANAGE_MESSAGES", "MANAGE_WEBHOOKS", "EMBED_LINKS", "ATTACH_FILES"]
 			}]
-
 		});
 
 		// Set the maze channel's category to the forbidden forest
 		const category = message.guild.channels.cache.find(c =>
 			c.name.toLowerCase() == forestCategoryName.toLowerCase() &&
 			c.type == "category");
-		usersChannel.setParent(category);
+		usersChannel.setParent(category, {
+			lockPermissions: false
+		});
 
 		for (let i = 0; i < 5; i++) {
 			usersChannel.createWebhook(bot.user.username, bot.user.displayAvatarURL);
