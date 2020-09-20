@@ -9,7 +9,7 @@ module.exports = {
 	async execute(message, args, bot) {
 		const webhookOptions = {
 			username: "Severus Snape",
-			avatar: "./images/webhook_avatars/severusSnape.jpg"
+			avatar: "../images/webhook_avatars/severusSnape.jpg"
 		};
 
 		if (!args[0]) return bot.functions.quickWebhook(message.channel, "Specify a potion to brew.", webhookOptions);
