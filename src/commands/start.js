@@ -47,11 +47,18 @@ module.exports = {
 		});
 
 		for (let i = 0; i < 5; i++) {
-			usersChannel.createWebhook(bot.user.username, bot.user.displayAvatarURL);
+			usersChannel.createWebhook(bot.user.username, {
+				avatar: bot.user.displayAvatarURL
+			});
 		}
 
-		usersChannel.createWebhook("Dark Wizard", "https://i.imgur.com/oXahnDf.png");
-		usersChannel.createWebhook("Centaur", "https://i.imgur.com/z4n0Jcf.jpg");
+		usersChannel.createWebhook("Dark Wizard", {
+			avatar: "https://i.imgur.com/oXahnDf.png"
+		});
+
+		usersChannel.createWebhook("Centaur", {
+			avatar: "https://i.imgur.com/z4n0Jcf.jpg"
+		});
 
 		// Tell them the channel has been created
 		message.reply(`I have created a channel for you to use the maze commands in ${usersChannel}`);
