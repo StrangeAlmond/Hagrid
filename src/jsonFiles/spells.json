@@ -1,4 +1,5 @@
-[{
+[
+  {
     "name": "Knockback Jinx",
     "spellName": "flipendo",
     "daysToLearn": 1,
@@ -237,7 +238,8 @@
     "daysToLearn": 18,
     "yearRequired": 5,
     "class": "Potions"
-  }, {
+  },
+  {
     "name": "Spider Repelling Charm",
     "spellName": "arania exumai",
     "daysToLearn": 7,
@@ -332,6 +334,13 @@
   {
     "name": "Strength Potion",
     "spellName": "strength potion",
+    "daysToLearn": 18,
+    "yearRequired": 5,
+    "class": "Potions"
+  },
+  {
+    "name": "Exstimulo Potion",
+    "spellName": "exstimulo potion",
     "daysToLearn": 18,
     "yearRequired": 5,
     "class": "Potions"

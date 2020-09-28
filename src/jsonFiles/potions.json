@@ -1,186 +1,182 @@
- [{
- 		"potion": "wiggenweldPotion",
-
- 		"ingredients": [
- 			"1 wiggenweldBark",
- 			"1 bottleOfHorklumpJuice",
- 			"1 vialOfFlobberwormMucus",
- 			"1 chizpurfleFangs",
- 			"1 billywigStingSlime",
- 			"1 sprigOfMint",
- 			"1 boomBerryJuice",
- 			"1 stewedMandrake",
- 			"1 dropsOfHoneywater",
- 			"1 slothBrainMucus",
- 			"1 moondewDrops",
- 			"1 vialOfSalamanderBlood",
- 			"1 lionfishSpines",
- 			"1 pinchOfUnicornHorn",
- 			"1 sprigOfWolfsbane"
- 		],
-
- 		"failResponses": [
- 			"You were able to brew something. What it is I couldn't tell you. Best to pour it out and try again.",
- 			"You brewed a perfect cauldron of bright red wiggenweld potion. Wait a minute... Isn't wiggenweld supposed to be green. Let's pretend this never happened.",
- 			"Just about done, another few stirs and 💥 Well, that's ok, nothing a little wiggenweld cant fix... oh."
- 		],
-
- 		"successResponses": [
- 			"You have successfully brewed 1 wiggenweld potion"
- 		]
- 	}, {
- 		"potion": "antidoteToCommonPoisons",
-
- 		"ingredients": [
- 			"1 bezoar",
- 			"2 standardIngredients",
- 			"1 pinchOfUnicornHorn",
- 			"2 mistletoeBerries"
- 		],
-
- 		"failResponses": [
- 			"You were able to brew something. What it is I couldn't tell you. Best to pour it out and try again.",
- 			"You might want to pay a little more attention so you don't create more of... whatever this is.",
- 			"I'm not sure what you've made here, but I have a feeling you at least got the poison part right."
- 		],
-
- 		"successResponses": [
- 			"You have successfully brewed 1 antidote to common poisons"
- 		]
- 	}, {
- 		"potion": "girdingPotion",
-
- 		"ingredients": [
- 			"3 dragonflyThoraxes",
- 			"3 flyingSeahorses",
- 			"4 doxyEggs",
- 			"2 fairyWings"
- 		],
-
- 		"failResponses": [
- 			"No no no, it's dragonfly thoraxes, then doxy eggs, then more thoraxes. Try it again.",
- 			"I hope you don't have to endure another failure like that again.",
- 			"Whatever you just brewed stinks, and not the way it's supposed to."
- 		],
-
- 		"successResponses": [
- 			"You have successfully brewed 1 girding potion."
- 		]
- 	}, {
- 		"potion": "wideyePotion",
-
- 		"ingredients": [
- 			"6 snakeFangs",
- 			"4 standardIngredients",
- 			"6 driedBillywigStings",
- 			"2 sprigOfWolfsbane"
- 		],
-
- 		"failResponses": [
- 			"Quite unfortunate results indeed. We call that the weldeye potion. You won't be able to open your eyes for a week.",
- 			"Let me guess, you stirred it clockwise didn't you. Try not to make that mistake again.",
- 			"Seems your fire was too hot that time. Turning it down to medium should help."
- 		],
-
- 		"successResponses": [
- 			"You have successfully brewed 1 wideye potion."
- 		]
- 	}, {
- 		"potion": "fireProtectionPotion",
-
- 		"ingredients": [
- 			"1 burstingMushrooms",
- 			"1 vialOfSalamanderBlood",
- 			"1 wartcapPowder"
- 		],
-
- 		"failResponses": [
- 			"Your fire protection brew failed. Don't worry, your eyebrows will grow back.",
- 			"A failed fire protection potion is great motivation to stay away from fire, so I guess it kinda worked?",
- 			"Not quite the result we were hoping for. Better try again."
- 		],
-
- 		"successResponses": [
- 			"You have successfully brewed 1 fire protection potion."
- 		]
- 	},
- 	{
- 		"potion": "wit-sharpeningPotion",
-
- 		"ingredients": [
- 			"3 gingerRoot",
- 			"3 armadilloBile",
- 			"1 groundScarabBeetles"
- 		],
-
- 		"failResponses": [
- 			"You've spilled Armadillo Bile all over and ruined your potion. You'll need to stay after class to clean up.",
- 			"You're supposed to stir clockwise, not counter clockwise. You won't have much luck curing a confundus charm this way.",
- 			"Your brew has failed. You'll have to try again."
- 		],
-
- 		"successResponses": [
- 			"You have successfully brewed 1 Wit-sharpening potion."
- 		]
- 	},
- 	{
- 		"potion": "strengthPotion",
-
- 		"ingredients": [
- 			"1 purpleThornBlossoms",
- 			"3 armBone",
- 			"2 snakeFangs"
- 		],
-
- 		"failResponses": [
- 			"Only a buffoon couldn't tell the difference between an arm and leg bone. You may want to check an anatomy book next time.",
- 			"Do not use that potion. You used poisonous snake fangs and might not enjoy the results.",
- 			"Your brew has failed. You'll have to try again."
- 		],
-
- 		"successResponses": [
- 			"You have successfully brewed 1 strength potion."
- 		]
- 	}, {
- 		"potion": "felixFelicis",
-
- 		"ingredients": [
- 			"1 ashwinderEggs",
- 			"1 squillBulb",
- 			"1 occamyEggshell",
- 			"1 murtlapTentacle",
- 			"1 tinctureOfThyme",
- 			"1 powderedCommonRue"
- 		],
-
- 		"failResponses": [
- 			"It seems your luck ran out. Either that or you're just terrible at Potions. I think we both know which it is.",
- 			"Of course it failed, you used a Doxy egg instead of an Ashwinder egg. You'd think one would know the difference by now.",
- 			"Of course it failed, you didn't even light the fire under your cauldron first. You never cease to impress me with your lack of aptitude."
- 		],
-
- 		"successResponses": [
- 			"You've somehow managed to do something right for a change, or you just got lucky."
- 		]
- 	}, {
- 		"potion": "antidoteToUncommonPoisons",
-
- 		"ingredients": [
- 			"2 driedBillywigStings",
- 			"2 chizpurfleCarapaces",
- 			"3 fireSeeds",
- 			"1 powderedGraphornHorn"
- 		],
-
- 		"failResponses": [
- 			"You failed to brew 1 Antidote to Uncommon Poisons",
- 			"You were able to brew something. What it is I couldn't tell you. Best to pour it out and try again.",
- 			"You might want to pay a little more attention so you don't create more of... whatever this is.",
- 			"I'm not sure what you've made here, but I have a feeling you at least got the poison part right."
- 		],
-
- 		"successResponses": [
- 			"You have successfully brewed 1 Antidote to Uncommon Poisons potion."
- 		]
- 	}
- ]
+[
+	{
+		"potion": "wiggenweldPotion",
+		"ingredients": [
+			"1 wiggenweldBark",
+			"1 bottleOfHorklumpJuice",
+			"1 vialOfFlobberwormMucus",
+			"1 chizpurfleFangs",
+			"1 billywigStingSlime",
+			"1 sprigOfMint",
+			"1 boomBerryJuice",
+			"1 stewedMandrake",
+			"1 dropsOfHoneywater",
+			"1 slothBrainMucus",
+			"1 moondewDrops",
+			"1 vialOfSalamanderBlood",
+			"1 lionfishSpines",
+			"1 pinchOfUnicornHorn",
+			"1 sprigOfWolfsbane"
+		],
+		"failResponses": [
+			"You were able to brew something. What it is I couldn't tell you. Best to pour it out and try again.",
+			"You brewed a perfect cauldron of bright red wiggenweld potion. Wait a minute... Isn't wiggenweld supposed to be green. Let's pretend this never happened.",
+			"Just about done, another few stirs and 💥 Well, that's ok, nothing a little wiggenweld cant fix... oh."
+		],
+		"successResponses": [
+			"You have successfully brewed 1 wiggenweld potion"
+		]
+	},
+	{
+		"potion": "antidoteToCommonPoisons",
+		"ingredients": [
+			"1 bezoar",
+			"2 standardIngredients",
+			"1 pinchOfUnicornHorn",
+			"2 mistletoeBerries"
+		],
+		"failResponses": [
+			"You were able to brew something. What it is I couldn't tell you. Best to pour it out and try again.",
+			"You might want to pay a little more attention so you don't create more of... whatever this is.",
+			"I'm not sure what you've made here, but I have a feeling you at least got the poison part right."
+		],
+		"successResponses": [
+			"You have successfully brewed 1 antidote to common poisons"
+		]
+	},
+	{
+		"potion": "girdingPotion",
+		"ingredients": [
+			"3 dragonflyThoraxes",
+			"3 flyingSeahorses",
+			"4 doxyEggs",
+			"2 fairyWings"
+		],
+		"failResponses": [
+			"No no no, it's dragonfly thoraxes, then doxy eggs, then more thoraxes. Try it again.",
+			"I hope you don't have to endure another failure like that again.",
+			"Whatever you just brewed stinks, and not the way it's supposed to."
+		],
+		"successResponses": [
+			"You have successfully brewed 1 girding potion."
+		]
+	},
+	{
+		"potion": "wideyePotion",
+		"ingredients": [
+			"6 snakeFangs",
+			"4 standardIngredients",
+			"6 driedBillywigStings",
+			"2 sprigOfWolfsbane"
+		],
+		"failResponses": [
+			"Quite unfortunate results indeed. We call that the weldeye potion. You won't be able to open your eyes for a week.",
+			"Let me guess, you stirred it clockwise didn't you. Try not to make that mistake again.",
+			"Seems your fire was too hot that time. Turning it down to medium should help."
+		],
+		"successResponses": [
+			"You have successfully brewed 1 wideye potion."
+		]
+	},
+	{
+		"potion": "fireProtectionPotion",
+		"ingredients": [
+			"1 burstingMushrooms",
+			"1 vialOfSalamanderBlood",
+			"1 wartcapPowder"
+		],
+		"failResponses": [
+			"Your fire protection brew failed. Don't worry, your eyebrows will grow back.",
+			"A failed fire protection potion is great motivation to stay away from fire, so I guess it kinda worked?",
+			"Not quite the result we were hoping for. Better try again."
+		],
+		"successResponses": [
+			"You have successfully brewed 1 fire protection potion."
+		]
+	},
+	{
+		"potion": "wit-sharpeningPotion",
+		"ingredients": [
+			"3 gingerRoot",
+			"3 armadilloBile",
+			"1 groundScarabBeetles"
+		],
+		"failResponses": [
+			"You've spilled Armadillo Bile all over and ruined your potion. You'll need to stay after class to clean up.",
+			"You're supposed to stir clockwise, not counter clockwise. You won't have much luck curing a confundus charm this way.",
+			"Your brew has failed. You'll have to try again."
+		],
+		"successResponses": [
+			"You have successfully brewed 1 Wit-sharpening potion."
+		]
+	},
+	{
+		"potion": "strengthPotion",
+		"ingredients": [
+			"1 purpleThornBlossoms",
+			"3 armBone",
+			"2 snakeFangs"
+		],
+		"failResponses": [
+			"Only a buffoon couldn't tell the difference between an arm and leg bone. You may want to check an anatomy book next time.",
+			"Do not use that potion. You used poisonous snake fangs and might not enjoy the results.",
+			"Your brew has failed. You'll have to try again."
+		],
+		"successResponses": [
+			"You have successfully brewed 1 strength potion."
+		]
+	},
+	{
+		"potion": "felixFelicis",
+		"ingredients": [
+			"1 ashwinderEggs",
+			"1 squillBulb",
+			"1 occamyEggshell",
+			"1 murtlapTentacle",
+			"1 tinctureOfThyme",
+			"1 powderedCommonRue"
+		],
+		"failResponses": [
+			"It seems your luck ran out. Either that or you're just terrible at Potions. I think we both know which it is.",
+			"Of course it failed, you used a Doxy egg instead of an Ashwinder egg. You'd think one would know the difference by now.",
+			"Of course it failed, you didn't even light the fire under your cauldron first. You never cease to impress me with your lack of aptitude."
+		],
+		"successResponses": [
+			"You've somehow managed to do something right for a change, or you just got lucky."
+		]
+	},
+	{
+		"potion": "antidoteToUncommonPoisons",
+		"ingredients": [
+			"2 driedBillywigStings",
+			"2 chizpurfleCarapaces",
+			"3 fireSeeds",
+			"1 powderedGraphornHorn"
+		],
+		"failResponses": [
+			"You failed to brew 1 Antidote to Uncommon Poisons",
+			"You were able to brew something. What it is I couldn't tell you. Best to pour it out and try again.",
+			"You might want to pay a little more attention so you don't create more of... whatever this is.",
+			"I'm not sure what you've made here, but I have a feeling you at least got the poison part right."
+		],
+		"successResponses": [
+			"You have successfully brewed 1 Antidote to Uncommon Poisons potion."
+		]
+	},
+	{
+		"potion": "exstimuloPotion",
+		"ingredients": [
+			"6 burstingMushrooms",
+			"3 stewedMandrake",
+			"4 dropsOfHoneywater",
+			"6 squillBulb"
+		],
+		"failResponses": [
+			"You failed to brew 1 Exstimulo Potion.",
+			"You managed to brew a concoction. What it is I couldn't tell you. Best to pour it out and try again."
+		],
+		"successResponses": [
+			"You have successfully brewed 1 Exstimulo Potion."
+		]
+	}
+]
