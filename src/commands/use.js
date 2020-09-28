@@ -13,6 +13,7 @@ module.exports = {
 			"wideye potion",
 			"fire protection potion",
 			"strength potion",
+			"exstimulo potion",
 			"felix felicis",
 			"wit-sharpening potion",
 			"training token",
@@ -104,6 +105,25 @@ module.exports = {
 			bot.userInfo.push(message.author.key, object, "stats.activeEffects");
 
 			message.channel.send("You have used one strength potion. This will expire in two hours!");
+		} else if (item == "exstimulo potion") {
+			if (!hasItem("strengthPotion")) {
+				return message.channel.send("You don't have any strength potions!");
+			}
+
+			if (userData.stats.activeEffects.some(e => e.type == "exstimulo")) {
+				return message.channel.send("You have already used an exstimulo potion!");
+			}
+
+			const object = {
+				time: Date.now(),
+				type: "exstimulo"
+			};
+
+			bot.userInfo.dec(message.author.key, "inventory.strengthPotion");
+			bot.userInfo.math(message.author.key, "+", 2, "stats.attack");
+			bot.userInfo.push(message.author.key, object, "stats.activeEffects");
+
+			message.channel.send("You have used one exstimulo potion. This will expire in two hours!");
 		} else if (item == "felix felicis") {
 			if (!hasItem("felixFelicis")) {
 				return message.channel.send("You don't have any felix felicis potions!");

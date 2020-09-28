@@ -138,7 +138,8 @@ module.exports = async bot => {
         "floo powder": 3600000,
         "fire protection": 3600000,
         "luck": 3600000,
-        "strength": 5400000
+        "strength": 5400000,
+        "exstimulo": 5400000
       };
 
       const activeEffects = user.stats.activeEffects.filter(e => (Date.now() - e.time) >= expirationTimes[e.type]);
@@ -161,6 +162,9 @@ module.exports = async bot => {
         } else if (effect.type == "strength") {
           bot.userInfo.math(`${user.guild}-${user.user}`, "-", 2, "stats.defense");
           bot.log("Removed a users strength effect.", "info");
+        } else if (effect.type == "exstimulo") {
+          bot.userInfo.math(`${user.guild}-${user.user}`, "-", 2, "stats.attack");
+          bot.log("Removed a user's exstimulo potion effect.", "info");
         } else if (effect.type == "fire protection") {
           bot.log("Removed a user's fire protection effect.", "info");
         }
