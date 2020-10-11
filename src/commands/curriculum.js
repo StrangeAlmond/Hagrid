@@ -86,6 +86,7 @@ module.exports = {
 		reactionCollector.on("end", async () => {
 			pages[page - 1].setFooter("This reaction menu has expired.");
 			msg.edit(pages[page - 1]);
+			msg.reactions.removeAll().catch(console.error);
 		});
 	},
 };
