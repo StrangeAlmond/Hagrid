@@ -21,8 +21,10 @@ module.exports = async bot => {
 
   functions.playOST(bot, bot.channels.cache.get(botconfig.ostChannel));
 
-  setTimeout(async () => {
-    bot.user.setActivity(`!help | Version ${botconfig.version}`);
+  const statuses = ["I am what I am, an’ I’m not ashamed", "Playing quidditch", "Grooming my beard", "What's coming will come, and we'll meet it when it does", "Ah, go boil yer heads, both of yeh", "Mad and hairy? You wouldn't be taking about me, now, would you?", ""];
+
+  setInterval(async () => {
+    bot.user.setActivity(statuses[Math.floor(Math.random() * statuses.length)]);
   }, 300000);
 
   const usersInFight = bot.userInfo.array().filter(u => u.mazeInfo.inFight);
