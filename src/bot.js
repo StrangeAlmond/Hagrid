@@ -13,6 +13,8 @@ const bot = new Discord.Client({
   disabledEvents: ["TYPING_START"]
 }); // Initiates a new discord client
 
+bot.blacklistedWords = require("./jsonFiles/blacklistedWords.json");
+
 bot.userInfo = new Enmap({
   name: "users"
 });
