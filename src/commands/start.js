@@ -48,7 +48,7 @@ module.exports = {
 
 		for (let i = 0; i < 5; i++) {
 			usersChannel.createWebhook(bot.user.username, {
-				avatar: bot.user.displayAvatarURL
+				avatar: bot.user.avatarURL()
 			});
 		}
 
