@@ -47,7 +47,7 @@ module.exports = {
 		});
 
 		usersChannel.createWebhook("Dark Wizard", {
-			avatar: "https://i.imgur.com/oXahnDf.png"
+			avatar: "../images/forbidden_forest/darkWizard.png"
 		});
 
 		usersChannel.createWebhook("Centaur", {
