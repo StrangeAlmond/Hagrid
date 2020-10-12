@@ -18,7 +18,8 @@ module.exports = {
 			"wit-sharpening potion",
 			"training token",
 			"maximum turbo farts",
-			"stinksap"
+			"stinksap",
+			"floo powder"
 		];
 
 		const item = items.find(i => i.includes(args.join(" ")) || args.join(" ").includes(i));
@@ -227,6 +228,22 @@ module.exports = {
 			bot.userInfo.set(`${message.guild.id}-${user.id}`, userObject.pets, "pets");
 
 			message.channel.send(`You have revived ${user.id == message.author.id ? "your pet" : `${user.displayName}'s pet`}.`);
+		} else if (item == "floo powder") {
+			if (!hasItem("flooPowder")) return message.channel.send("You don't have any floo powder!");
+			const role = message.guild.roles.cache.find(r => r.name.toLowerCase() == "apparition");
+			if (!role) return;
+			if (message.member.roles.cache.get(role.id)) return message.channel.send("You have already used floo powder!");
+
+			message.member.roles.add(role).catch(console.error);
+
+			const object = {
+				time: Date.now(),
+				type: "floo powder"
+			};
+
+			bot.userInfo.dec(message.author.key, "inventory.flooPowder");
+			bot.userInfo.push(message.author.key, object, "stats.activeEffects");
+			message.channel.send("You have used floo powder and now have access to Knockturn Alley. Your access will expire in one hour.");
 		}
 
 		function hasItem(i) {

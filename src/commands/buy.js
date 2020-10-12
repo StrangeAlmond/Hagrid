@@ -71,32 +71,6 @@ module.exports = {
 
 			bot.functions.quickWebhook(message.channel, webhookMessage, webhookOption);
 			message.member.roles.remove(shopRole).catch(e => console.error(e));
-		} else if (args[0] == "900") {
-			const userData = bot.userInfo.get(message.author.key);
-
-			const role = message.guild.roles.cache.find(r => r.name.toLowerCase() == "apparition");
-			if (!role) return;
-
-			const sickles = userData.balance.sickles;
-			const galleons = userData.balance.galleons;
-
-			if (sickles < 2 && galleons > 0) {
-				bot.userInfo.dec(message.author.key, "balance.galleons");
-				bot.userInfo.math(message.author.key, "+", 17, "balance.sickles");
-			} else if (sickles < 2 && galleons <= 0) {
-				return message.channel.send("You can't afford floo powder!");
-			}
-
-			bot.userInfo.math(message.author.key, "-", 2, "balance.sickles");
-			message.member.roles.add(role);
-
-			const object = {
-				time: Date.now(),
-				type: "floo powder"
-			};
-
-			bot.userInfo.push(message.author.key, object, "stats.activeEffects");
-			message.channel.send("You have purchased floo powder.");
 		} else if ("apparition lessons".includes(args.join(" "))) {
 			const user = bot.userInfo.get(message.author.key);
 			if (user.year < 6) return;
