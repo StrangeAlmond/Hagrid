@@ -26,7 +26,7 @@ const movements = {
 };
 
 class ForbiddenForest {
-	constructor(bot, channel, curPos, lastPos, level, encounterLocations, ambushLocations, itemLocations, guildId, userId, member, webhook) {
+	constructor(bot, channel, curPos, lastPos, level, encounterLocations, ambushLocations, itemLocations, guildId, userId, member) {
 		this.bot = bot;
 		this.channel = channel;
 		this.curPos = curPos;
@@ -38,7 +38,6 @@ class ForbiddenForest {
 		this.guildId = guildId;
 		this.userId = userId;
 		this.member = member;
-		this.webhook = webhook;
 
 		this.activeTilesFormat = `../images/forbidden_forest/${this.level}/Active/`;
 		this.inactiveTilesFormat = `../images/forbidden_forest/${this.level}/Inactive/`;
@@ -62,7 +61,7 @@ class ForbiddenForest {
 			attachment = new Discord.MessageAttachment(`../images/forbidden_forest/${this.level}/Active/Forest_${this.curPos}.png`, "map.png");
 		}
 
-		this.webhook.send(attachment);
+		this.channel.send(attachment);
 	}
 
 	setLevelOne() {
@@ -155,7 +154,7 @@ class ForbiddenForest {
 		}
 	}
 
-	async	spawnAmbush() {
+	async spawnAmbush() {
 		const ambushInfo = ambushesFile.find(a => a.tiles.includes(this.curPos)); // Gets the ambush info from the ambush file
 		if (!ambushInfo) return this.sendCurPosition(); // Invalid ambush location
 
@@ -169,8 +168,8 @@ class ForbiddenForest {
 
 			// Send the forest image with the creature on it
 			const ambushAttachment = new Discord.MessageAttachment(this.activeTilesFormat + `Forest_${this.curPos}.png`, "map.png");
-			await this.webhook.send(ambushAttachment);
-			this.webhook.send("You were ambushed by an Acromantula. You stumble around, feeling weak as the poison courses through your veins. You'll need to find an antidote soon.");
+			await this.channel.send(ambushAttachment);
+			this.channel.send("You were ambushed by an Acromantula. You stumble around, feeling weak as the poison courses through your veins. You'll need to find an antidote soon.");
 
 
 			// Run the poisoned function on the user
@@ -205,8 +204,8 @@ class ForbiddenForest {
 		let userData = this.bot.userInfo.get(this.dbKey);
 
 		const attachment = new Discord.MessageAttachment(this.activeTilesFormat + `Forest_${this.curPos}.png`, "map.png");
-		await this.webhook.send(attachment);
-		this.webhook.send(encounterInfo.spawnMessage);
+		await this.channel.send(attachment);
+		this.channel.send(encounterInfo.spawnMessage);
 
 		const filter = m => (m.content.toLowerCase().trim() == `${this.bot.prefix}${encounterInfo.spell}` && userData.studiedSpells.includes(encounterInfo.spell) ||
 			m.content.toLowerCase() == `${this.bot.prefix}flee`);
@@ -236,15 +235,15 @@ class ForbiddenForest {
 						return this.bot.useResurrectionStone(this.webhook, this.bot.guilds.get(this.guildId), this.member);
 					}
 
-					this.webhook.send("You have fainted!");
+					this.channel.send("You have fainted!");
 					return this.bot.functions.fainted(this.member,
 						`${this.member} has fainted from a ${encounterInfo.name} attack! Would you like to use a revive potion to heal them faster?`,
 						this.bot);
 				}
 
-				this.webhook.send(`The ${encounterInfo.name} attacked you!\n${damageByEncounter == 0 ? "It dealt no damage to you." : `You have ${userData.stats.health} health left`}`);
+				this.channel.send(`The ${encounterInfo.name} attacked you!\n${damageByEncounter == 0 ? "It dealt no damage to you." : `You have ${userData.stats.health} health left`}`);
 
-				return this.webhook.send("You have retreated back to your original position.");
+				return this.channel.send("You have retreated back to your original position.");
 			}
 
 			userData = this.bot.userInfo.get(this.dbKey);
@@ -265,14 +264,14 @@ class ForbiddenForest {
 						return this.bot.useResurrectionStone(this.webhook, this.bot.guilds.get(this.guildId), this.member);
 					}
 
-					this.webhook.send("You have fainted!");
+					this.channel.send("You have fainted!");
 					this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 					return this.bot.functions.fainted(this.member,
 						`${this.member} has fainted from a ${encounterInfo.name} attack! Would you like to use a revive potion to heal them faster?`,
 						this.bot);
 				}
 
-				this.webhook.send(`The ${encounterInfo.name} attacked you!\n${damageByEncounter == 0 ? "It dealt no damage to you." : `You have ${userData.stats.health} health left`}`);
+				this.channel.send(`The ${encounterInfo.name} attacked you!\n${damageByEncounter == 0 ? "It dealt no damage to you." : `You have ${userData.stats.health} health left`}`);
 			}
 
 			const damageByUser = encounterInfo.defense < userData.stats.attack ? userData.stats.attack - encounterInfo.defense : 0;
@@ -287,7 +286,7 @@ class ForbiddenForest {
 				this.bot.userInfo.math(this.dbKey, "+", encounterInfo.health, "xp");
 				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
-				this.webhook.send(`You scared off the ${encounterInfo.name} and got ${encounterInfo.health} XP!`);
+				this.channel.send(`You scared off the ${encounterInfo.name} and got ${encounterInfo.health} XP!`);
 
 				const encounterTiles = encounterInfo.tiles.filter(t => this.possibleActiveTiles().some(p => p.toLowerCase().includes(t)));
 				const newTile = encounterTiles[Math.floor(Math.random() * encounterTiles.length)];
@@ -300,7 +299,7 @@ class ForbiddenForest {
 			}
 
 			this.bot.log(`${this.member.displayName} attacked their encounter`, "info");
-			this.webhook.send(`You cast ${encounterInfo.spell} for ${damageByUser} damage!\nThe ${encounterInfo.name} has/have ${health} health left.`);
+			this.channel.send(`You cast ${encounterInfo.spell} for ${damageByUser} damage!\nThe ${encounterInfo.name} has/have ${health} health left.`);
 
 		});
 	}
@@ -310,7 +309,7 @@ class ForbiddenForest {
 		const levelTwoUnlockedMessage = "Level two unlocked.";
 
 		if (userData.inventory.invisibilityCloak > 0) {
-			await this.webhook.send(levelTwoUnlockedMessage);
+			await this.channel.send(levelTwoUnlockedMessage);
 
 			this.moveUp();
 			this.setLevelTwo();
@@ -323,10 +322,10 @@ class ForbiddenForest {
 		await this.bot.functions.quickWebhook(this.channel, "Halt! What makes you think you can wander around my forest?", centaurWebhookInfo);
 
 		setTimeout(async () => {
-			await this.webhook.send("Your path is blocked by a centaur.");
+			await this.channel.send("Your path is blocked by a centaur.");
 
 			setTimeout(async () => {
-				await this.webhook.send("What would you like to do?\n1. Ask for passage.\n2. Attack him.\n3. Turn around.");
+				await this.channel.send("What would you like to do?\n1. Ask for passage.\n2. Attack him.\n3. Turn around.");
 			}, 600);
 
 		}, 1200);
@@ -338,7 +337,7 @@ class ForbiddenForest {
 			await this.bot.functions.quickWebhook(this.channel, "I suppose I could let you pass, but I want something in return. I'm low on mallowsweet and the sky promises to be clear tonight. Bring me mallowsweet and you may continue on.", centaurWebhookInfo);
 
 			setTimeout(async () => {
-				await this.webhook.send("What would you like to do?\n1. Give Mallowsweet\n2. Go back the way you came.");
+				await this.channel.send("What would you like to do?\n1. Give Mallowsweet\n2. Go back the way you came.");
 			}, 700);
 
 			const secondResponse = await this.bot.functions.awaitResponse(m => ["1", "2"].includes(m.content), 120000, this.channel, true);
@@ -366,7 +365,7 @@ class ForbiddenForest {
 
 				// Hagrid says
 				setTimeout(() => {
-					this.webhook.send(levelTwoUnlockedMessage);
+					this.channel.send(levelTwoUnlockedMessage);
 				}, 500);
 
 				this.moveUp();
@@ -386,7 +385,7 @@ class ForbiddenForest {
 		} else if (firstResponse.content == "2") {
 			this.bot.log(`${this.member.displayName} attacked the centaur.`);
 
-			await this.webhook.send("You pull out your wand but before you can do anything you find yourself knocked backwards. The centaur attacks you, dealing 20 damage.");
+			await this.channel.send("You pull out your wand but before you can do anything you find yourself knocked backwards. The centaur attacks you, dealing 20 damage.");
 			await this.bot.functions.quickWebhook(this.channel, "Silly little human. Don't try that again.", centaurWebhookInfo);
 
 			userData.stats.health -= 20;
@@ -401,7 +400,7 @@ class ForbiddenForest {
 				}
 
 				// Send a message saying they fainted
-				this.webhook.send("You have fainted!");
+				this.channel.send("You have fainted!");
 				// Execute the fainted function
 				this.bot.functions.fainted(this.member,
 					`${this.member} has fainted from a centaur attack! Would you like to use a revive potion to heal them faster?`,
@@ -426,12 +425,12 @@ class ForbiddenForest {
 		const userData = this.bot.userInfo.get(this.dbKey);
 
 		const darkWizardAttachment = new Discord.MessageAttachment(`../images/forbidden_forest/${this.level}/Active/Forest_${this.curPos}.png`, "map.png");
-		await this.webhook.send(darkWizardAttachment);
+		await this.channel.send(darkWizardAttachment);
 
 		await this.bot.functions.quickWebhook(this.channel, "Kinda risky fer a young student like yourself to be wand'rin the forest all alone ain't it. You never know what kinda questionable characters you might find round these parts.", darkWizardWebhookInfo);
 
 		setTimeout(async () => {
-			await this.webhook.send("1. Ignore him\n2. Ask for help\n3. Offer to sell something");
+			await this.channel.send("1. Ignore him\n2. Ask for help\n3. Offer to sell something");
 		}, 1000);
 
 		const response = await this.bot.functions.awaitResponse(m => ["1", "2", "3"].includes(m.content), 120000, this.channel, true);
@@ -445,14 +444,14 @@ class ForbiddenForest {
 			const chance = Math.random() * 100;
 
 			if (chance > 50) {
-				await this.webhook.send("You ignore the dark wizard. He gets angry and leaves.");
+				await this.channel.send("You ignore the dark wizard. He gets angry and leaves.");
 
 				setTimeout(() => {
 					this.sendCurPosition();
 				}, 1000);
 			} else { // Attacks the user, taking an item from their inventory
 				// Hagrid says
-				this.webhook.send("You ignore the dark wizard. He attacks you and takes an item from your bag.");
+				this.channel.send("You ignore the dark wizard. He attacks you and takes an item from your bag.");
 
 				// Possible items that could be taken away
 				const possibleItems = Object.keys(darkWizardItems).filter(i => this.bot.userInfo.get(this.dbKey, `inventory.${i}`) >= 0);
@@ -476,7 +475,7 @@ class ForbiddenForest {
 				// Create an attachment for that area
 				const attachment = new Discord.MessageAttachment(`../images/forbidden_forest/${this.level}/Active/Forest_${this.curPos}.png`, "map.png");
 				// Send the attachment
-				this.webhook.send(attachment);
+				this.channel.send(attachment);
 			}, 2000);
 
 			setTimeout(() => {
@@ -484,7 +483,7 @@ class ForbiddenForest {
 			}, 2750);
 
 			setTimeout(() => {
-				this.webhook.send(`To buy an item use \`<item number> <amount>\`\nTo leave, use \`${this.bot.prefix}nevermind\``);
+				this.channel.send(`To buy an item use \`<item number> <amount>\`\nTo leave, use \`${this.bot.prefix}nevermind\``);
 			}, 3750);
 
 			const buyResponse = await this.bot.functions.awaitResponse(m =>
@@ -555,7 +554,7 @@ class ForbiddenForest {
 				if (currency == "galleons") price = price * 493;
 
 				// If they can't afford it then send a message saying they can't
-				if ((userData.balance.sickles * 29) + (userData.balance.galleons * 493) + userData.balance.knuts < price) return this.webhook.send("You can't afford this item.");
+				if ((userData.balance.sickles * 29) + (userData.balance.galleons * 493) + userData.balance.knuts < price) return this.channel.send("You can't afford this item.");
 
 				// Ensure they have the item key in their inventory object
 				if (!this.bot.userInfo.hasProp(this.dbKey, `inventory.${item}`)) this.bot.userInfo.set(this.dbKey, 0, `inventory.${item}`);
@@ -583,7 +582,7 @@ class ForbiddenForest {
 
 				// Hagrid says
 				setTimeout(() => {
-					this.webhook.send("The dark wizard disappears.");
+					this.channel.send("The dark wizard disappears.");
 				}, 1000);
 			}
 		} else if (response.content == "3") { // If they want to sell an item
@@ -600,7 +599,7 @@ class ForbiddenForest {
 
 			// Hagrid says
 			setTimeout(() => {
-				this.webhook.send(`To sell an item use \`<item number> <amount>\`\nTo leave, use \`${this.bot.prefix}nevermind\``);
+				this.channel.send(`To sell an item use \`<item number> <amount>\`\nTo leave, use \`${this.bot.prefix}nevermind\``);
 			}, 1000);
 
 			// Await a response with what they'd like to buy and how much
@@ -632,7 +631,7 @@ class ForbiddenForest {
 
 					// Hagrid says
 					setTimeout(() => {
-						this.webhook.send("You ignore the dark wizard. He attacks you and takes an item from your bag.");
+						this.channel.send("You ignore the dark wizard. He attacks you and takes an item from your bag.");
 					}, 900);
 
 					// Possible items that could be decreased
@@ -672,7 +671,7 @@ class ForbiddenForest {
 				// Ensure they have the item's key in their inventory object
 				if (!this.bot.userInfo.hasProp(this.dbKey, `inventory.${item}`)) this.bot.userInfo.set(this.dbKey, `inventory.${item}`);
 				// If they don't have <amount> of the item then send a message saying they don't have enough
-				if (this.bot.userInfo.get(this.dbKey, `inventory.${item}`) < amount) return this.webhook.send("You don't have enough to sell!");
+				if (this.bot.userInfo.get(this.dbKey, `inventory.${item}`) < amount) return this.channel.send("You don't have enough to sell!");
 
 				// Take away <amount> <item>
 				this.bot.userInfo.math(this.dbKey, "-", amount, `inventory.${item}`);
@@ -686,7 +685,7 @@ class ForbiddenForest {
 
 				// Hagrid says
 				setTimeout(() => {
-					this.webhook.send("The dark wizard disappears.");
+					this.channel.send("The dark wizard disappears.");
 				}, 1000);
 			}
 		}

@@ -46,12 +46,6 @@ module.exports = {
 			lockPermissions: false
 		});
 
-		for (let i = 0; i < 5; i++) {
-			usersChannel.createWebhook(bot.user.username, {
-				avatar: bot.user.avatarURL()
-			});
-		}
-
 		usersChannel.createWebhook("Dark Wizard", {
 			avatar: "https://i.imgur.com/oXahnDf.png"
 		});

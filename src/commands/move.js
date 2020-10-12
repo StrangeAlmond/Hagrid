@@ -15,20 +15,6 @@ module.exports = {
 
 		const curPos = parseFloat(user.mazeInfo.curPos).toFixed(2);
 
-		let channelWebhooks = await message.channel.fetchWebhooks();
-		channelWebhooks = channelWebhooks.array()
-			.filter(w => w.name.toLowerCase() == bot.user.username.toLowerCase());
-
-		if (channelWebhooks.length < 5) {
-			for (let i = channelWebhooks.length; i < 5; i++) {
-				await message.channel
-					.createWebhook(bot.user.username, bot.user.displayAvatarURL())
-					.then(w => channelWebhooks.push(w));
-			}
-		}
-
-		const webhook = channelWebhooks[Math.floor(Math.random() * channelWebhooks.length)];
-
 		const forbiddenForest = new ForbiddenForest(bot,
 			message.channel,
 			curPos,
@@ -39,12 +25,11 @@ module.exports = {
 			user.mazeInfo.itemPositions,
 			message.guild.id,
 			message.author.id,
-			message.member,
-			webhook);
+			message.member);
 
 		if (!args[0]) return forbiddenForest.sendCurPosition(message.channel);
 		if (!mazePositions[forbiddenForest.curPos].validMoves.includes(args[0])) {
-			return webhook.send("The trees look a little too thick that direction, better try a different way.");
+			return message.channel.send("The trees look a little too thick that direction, better try a different way.");
 		}
 
 		forbiddenForest.syncLocations(message.guild.id, message.author.id);
