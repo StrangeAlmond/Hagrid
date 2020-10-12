@@ -472,5 +472,13 @@
 		"key": "maximumTurboFarts",
 		"price": "6 sickles",
 		"type": "item"
+	},
+	"2000": {
+		"id": "2000",
+		"name": "Arm Bone",
+		"shop": "Borgin and Burkes",
+		"key": "armBone",
+		"price": "15 sickles",
+		"type": "item"
 	}
 }

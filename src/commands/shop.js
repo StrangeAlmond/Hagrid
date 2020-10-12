@@ -42,6 +42,14 @@ module.exports = {
 					name: "Zonko's Joke Shop"
 				},
 				]
+			},
+
+			"Knockturn Alley": {
+				"categories": ["knockturn alley"],
+				"shops": [{
+					id: 20,
+					name: "Borgin and Burkes"
+				}]
 			}
 		};
 
