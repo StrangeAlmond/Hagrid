@@ -48,51 +48,60 @@ module.exports = {
 
 		if (chance <= brewChance) {
 			const successResponses = potion.successResponses;
-			const successEmbed = new Discord.MessageEmbed()
-				.setColor("#4BB543")
-				.setDescription(successResponses[Math.floor(Math.random() * successResponses.length)]);
+			const successResponse = successResponses[Math.floor(Math.random() * successResponses.length)].replace(/{user}/g, message.member.displayName);
 
-			bot.functions.quickWebhook(message.channel, successEmbed, webhookOptions);
+			bot.functions.quickWebhook(message.channel, successResponse, webhookOptions);
 
 			if (!bot.userInfo.hasProp(message.author.key, `inventory.${potion.potion}`)) {
 				bot.userInfo.set(message.author.key, 0, `inventory.${potion.potion}`);
 			}
 
+			userData.stats.potionsMade++;
 			bot.userInfo.inc(message.author.key, `inventory.${potion.potion}`);
 			bot.userInfo.inc(message.author.key, "stats.potionsMade");
-			userData.stats.potionsMade++;
 
 			switch (userData.stats.potionsMade) {
 				case 1:
 					bot.userInfo.push(message.author.key, badges.find(i => i.name.toLowerCase() == "beginners luck badge").credential, "badges");
-					message.channel.send("You've recieved the beginner's luck badge for brewing your first potion!");
+					setTimeout(() => {
+						message.channel.send("You've recieved the beginner's luck badge for brewing your first potion!");
+					}, 1000);
 					break;
 
 				case 3:
 					bot.userInfo.push(message.author.key, badges.find(i => i.name.toLowerCase() == "potions club star badge").credential, "badges");
-					message.channel.send("You've recieved the potions club star badge for brewing **3** potions!");
+					setTimeout(() => {
+						message.channel.send("You've recieved the potions club star badge for brewing **3** potions!");
+					}, 1000);
 					break;
 
 				case 50:
 					bot.userInfo.push(message.author.key, badges.find(i => i.name.toLowerCase() == "master potioneer bronze badge").credential, "badges");
-					message.channel.send("You've recieved the master potioneer bronze badge for brewing **50** potions!");
+					setTimeout(() => {
+						message.channel.send("You've recieved the master potioneer bronze badge for brewing **50** potions!");
+					}, 1000);
 					break;
 
 				case 200:
 					bot.userInfo.push(message.author.key, badges.find(i => i.name.toLowerCase() == "master potioneer silver badge").credential, "badges");
-					message.channel.send("You've recieved the master potioneer silver badge for brewing **200** potions!");
+					setTimeout(() => {
+						message.channel.send("You've recieved the master potioneer silver badge for brewing **200** potions!");
+					}, 1000);
 					break;
 
 				case 500:
 					bot.userInfo.push(message.author.key, badges.find(i => i.name.toLowerCase() == "master potioneer gold badge").credential, "badges");
-					message.channel.send("You've recieved the master potioneer gold badge for brewing **500** potions!");
+					setTimeout(() => {
+						message.channel.send("You've recieved the master potioneer gold badge for brewing **500** potions!");
+					}, 1000);
 					break;
 			}
 			return;
 		}
 
 		const failResponses = potion.failResponses;
-		bot.functions.quickWebhook(message.channel, failResponses[Math.floor(Math.random() * failResponses.length)], webhookOptions);
+		const failResponse = failResponses[Math.floor(Math.random() * failResponses.length)].replace(/{user}/g, message.member.displayName);
+		bot.functions.quickWebhook(message.channel, failResponse, webhookOptions);
 
 		// Formats an ingredient name into a human-readable string
 		function formatString(string) {
