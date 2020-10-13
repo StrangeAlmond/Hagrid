@@ -17,7 +17,7 @@ module.exports = {
 		const oneTimeSpells = ["herbology", "care of magical creatures"]; // These spells automatically reset when studied and can't be permanently learned.
 
 		const spellsEmbed = new Discord.MessageEmbed()
-			.setAuthor(`${user.displayName}'s Learned Spells/Potions`, user.user.displayAvatarURL())
+			.setAuthor(`${user.displayName}'s Studied Spells/Potions`, user.user.displayAvatarURL())
 			.setColor(user.displayHexColor)
 			.setDescription(spells)
 			.setFooter(`${learnedSpells.length}/${spellsFile.filter(s => !oneTimeSpells.includes(s.class.toLowerCase())).length} spells learned`)
