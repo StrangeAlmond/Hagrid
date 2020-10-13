@@ -91,23 +91,14 @@ bot.userInfo.changed((key, oldValue, newValue) => {
 
   if (newValue.xp > oldValue.xp) {
     // If they've been given xp
-    newValue.stats.lifetimeXp += newValue.xp - oldValue.xp; // Update their lifetime XP
+    bot.userInfo.math(`${newValue.guild}-${newValue.user}`, "+", newValue.xp - oldValue.xp, "stats.lifetimeXp"); // Update their lifetime XP
 
     if (bot.guildInfo.get(newValue.guild, "events").includes("double-xp")) {
       // If theres a double xp event then double the xp they've been given
-      newValue.stats.lifetimeXp += newValue.xp - oldValue.xp;
-      newValue.xp += newValue.xp - oldValue.xp;
-
+      bot.userInfo.math(`${newValue.guild}-${newValue.user}`, "+", newValue.xp - oldValue.xp, "stats.lifetimeXp");
+      bot.userInfo.math(`${newValue.guild}-${newValue.user}`, "+", newValue.xp - oldValue.xp, "xp");
       xpAlreadyUpdated = true;
-      bot.userInfo.set(`${newValue.guild}-${newValue.user}`, newValue.xp, "xp");
     }
-
-    // Set their new XP
-    bot.userInfo.set(
-      `${newValue.guild}-${newValue.user}`,
-      newValue.stats.lifetimeXp,
-      "stats.lifetimeXp"
-    );
   }
 });
 
