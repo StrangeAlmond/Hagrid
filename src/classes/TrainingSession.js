@@ -85,8 +85,11 @@ class TrainingSession {
 				id: member.id,
 				damageDealt: 0
 			});
+		}
 
-			const newRateLimit = 2 * object.users.length;
+		const activeUsers = this.channel.guild.members.cache.filter(m => m.roles.cache.some(r => r.name.toLowerCase() == "training"));
+		const newRateLimit = 2 * activeUsers.size;
+		if (newRateLimit != this.channel.rateLimitPerUser) {
 			this.channel.setRateLimitPerUser(newRateLimit, "Dynamic slow mode.");
 		}
 
