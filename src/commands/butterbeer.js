@@ -13,7 +13,7 @@ module.exports = {
 			const butterbeerEmbed = new Discord.MessageEmbed()
 				.setTitle(`${message.member.displayName}'s Butterbeer`)
 				.setColor(message.member.displayHexColor)
-				.setDescription(`${message.member} has ${userData.stats.butterbeer} butterbeer`)
+				.setDescription(`${message.member} has ${userData.stats.butterbeer} butterbeers`)
 				.setFooter(`${message.member.displayName}'s Butterbeer`)
 				.setTimestamp();
 			return message.channel.send(butterbeerEmbed);
