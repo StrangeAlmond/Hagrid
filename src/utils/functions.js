@@ -51,7 +51,7 @@ module.exports = {
 
       cooldowns: {
         lastDaily: null,
-        lastMerit: null,
+        lastButterbeer: null,
         lastResurrectionStoneUse: null,
         lastStudy: null,
         nextWeekly: null
@@ -102,7 +102,7 @@ module.exports = {
         potionsUsed: 0,
         forages: 0,
         purchases: 0,
-        merits: 0,
+        butterbeer: 0,
         housePoints: 0,
         lifetimeXp: 0,
         lastSpell: "N/A",

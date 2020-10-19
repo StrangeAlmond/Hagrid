@@ -50,7 +50,7 @@ module.exports = {
 			"balance.sickles": 0,
 			"balance.knuts": 0,
 			"cooldowns.lastDaily": null,
-			"cooldowns.lastMerit": null,
+			"cooldowns.lastButterbeer": null,
 			"cooldowns.lastStudy": null,
 			"cooldowns.lastResurrectionStoneUser": null,
 			"mazeInfo.dailyForagesLeft": 100,

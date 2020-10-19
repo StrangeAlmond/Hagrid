@@ -17,7 +17,7 @@ module.exports = {
 		}
 
 		let commands = "";
-		const statsCommands = "**!profile** - View your profile.\n**!stats** - View your stats.\n**!xp** - View your xp.\n**!inventory [item]** - View your inventory, alternatively search for a specific item.\n**!curriculum** - View Hogwarts' current curriculum\n**!houses** - View how many members are in each house.\n**!merits** - View your merits.\n**!badges profile** - View your badges.\n**!leaderboard [leaderboard type]** - View the leaderboard.";
+		const statsCommands = "**!profile** - View your profile.\n**!stats** - View your stats.\n**!xp** - View your xp.\n**!inventory [item]** - View your inventory, alternatively search for a specific item.\n**!curriculum** - View Hogwarts' current curriculum\n**!houses** - View how many members are in each house.\n**!butterbeers [@user]** - View your butterbeer/Give a user a butterbeer.\n**!badges profile** - View your badges.\n**!leaderboard [leaderboard type]** - View the leaderboard.";
 		const mazeCommands = "**!start** - Create a maze channel for you to use the maze commands in.\n**!leave** - Delete your maze channel.\n**!move <left, right, up, or down>** - Move the direction specified in the maze.\n**!forage** - Forage for an item.\n**!explore** - Explore the maze for any items that may be lying around.";
 		const moneyCommands = "**!daily** - Collect your daily sickles.\n**!weekly** - Collect your weekly galleons (requires cistem aperio).\n**!balance** - View your balance.\n**!shop [shop id]** - View a shop's items.\n**!buy <item id>** - Buy an item from the shop.";
 
@@ -31,7 +31,7 @@ module.exports = {
 			commands += "**!ping** - ping the bot\n**!about** - about the bot\n**!uptime** - check the uptime of the bot\n";
 		}
 
-		commands += "**!wiki** - View Hagrid's wiki.\n**!merit <@member>** - Merit a member.\n**!badges** - View the available badges.\n**!rule <rule number>** - View the information on a rule.\n**!schedule** - View the training schedule.\n**!duel <@member>** - Send a duel request to a member.\n**!use <item>** - Use an item.\n**!optout** - Opt out of notifications when you can train.\n**!optin** - Opt in to notification when you can train.";
+		commands += "**!wiki** - View Hagrid's wiki.\n**!badges** - View the available badges.\n**!rule <rule number>** - View the information on a rule.\n**!schedule** - View the training schedule.\n**!duel <@member>** - Send a duel request to a member.\n**!use <item>** - Use an item.\n**!optout** - Opt out of notifications when you can train.\n**!optin** - Opt in to notification when you can train.";
 
 		createCommandsEmbed("General Commands", commands);
 		createCommandsEmbed("Statistics Commands", statsCommands);

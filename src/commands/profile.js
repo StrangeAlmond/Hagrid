@@ -34,7 +34,7 @@ module.exports = {
 
 		**O.W.L Grade:** ${userData.stats.owls ? userData.stats.owls : "Unknown"}
 		**House Points:** ${userData.stats.housePoints}
-		**Merits:** ${userData.stats.merits}
+		**Butterbeer:** ${userData.stats.butterbeer}
 		**Cauldron:** ${userData.cauldron.charAt(0).toUpperCase() + userData.cauldron.slice(1)}
 
 		**Attack:** ${userData.stats.attack}

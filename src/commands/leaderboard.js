@@ -24,7 +24,7 @@ module.exports = {
 		const leaderboards = {
 			"house points": "stats.housePoints",
 			"xp": "stats.lifetimeXp",
-			"merits": "stats.merits",
+			"butterbeer": "stats.butterbeer",
 			"purchases": "stats.purchases",
 			"forages": "stats.forages",
 			"potions made": "stats.potionsMade",

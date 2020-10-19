@@ -1,5 +1,5 @@
 const sm = require("string-similarity");
-const otherItems = ["balance.knuts", "balance.sickles", "balance.galleons", "stats.merits", "xp"];
+const otherItems = ["balance.knuts", "balance.sickles", "balance.galleons", "stats.butterbeer", "xp"];
 const inventoryItems = require("../jsonFiles/inventoryItems.json").map(i => `inventory.${i}`);
 
 
