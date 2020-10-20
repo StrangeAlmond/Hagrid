@@ -48,9 +48,9 @@ module.exports = {
 				"amount": 0
 			};
 
-			if (user.collectorsItems.cards.some(c => bot.fromCamelCase(c.name).toLowerCase() == card.toLowerCase())) {
-				object = user.collectorsItems.cards.find(c => bot.fromCamelCase(c.name).toLowerCase() == card.toLowerCase());
-				user.collectorsItems.cards.splice(user.collectorsItems.cards.findIndex(c => bot.fromCamelCase(c.name).toLowerCase() == card.toLowerCase()), 1);
+			if (user.collectorsItems.cards.some(c => bot.functions.fromCamelCase(c.name).toLowerCase() == card.toLowerCase())) {
+				object = user.collectorsItems.cards.find(c => bot.functions.fromCamelCase(c.name).toLowerCase() == card.toLowerCase());
+				user.collectorsItems.cards.splice(user.collectorsItems.cards.findIndex(c => bot.functions.fromCamelCase(c.name).toLowerCase() == card.toLowerCase()), 1);
 			}
 
 			object.amount++;
