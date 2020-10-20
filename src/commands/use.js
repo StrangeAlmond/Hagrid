@@ -149,6 +149,7 @@ module.exports = {
 			}
 
 			bot.userInfo.math(message.author.key, "+", 1000, "xp");
+			bot.userInfo.dec(message.author.key, "inventory.wit-sharpeningPotion");
 
 			message.channel.send("You have used one wit-sharpening potion.");
 		} else if (item == "training token") {
