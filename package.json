@@ -24,7 +24,7 @@
     "sodium": "^3.0.2",
     "string-similarity": "^3.0.0",
     "ytdl-core": "^3.2.2",
-    "ytpl": "^0.3.0"
+    "ytpl": "^1.0.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0"

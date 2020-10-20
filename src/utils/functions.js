@@ -372,7 +372,10 @@ module.exports = {
 
     if (!bot.ost) bot.ost = {};
 
-    const playlist = await ytpl("https://www.youtube.com/playlist?list=PLVdr7xrwRyjY4DGuP-NUFEKYupdow4qGq");
+    const playlist = await ytpl("https://www.youtube.com/playlist?list=PLVdr7xrwRyjY4DGuP-NUFEKYupdow4qGq", {
+      limit: Infinity
+    });
+
     const queue = bot.ost.queue || playlist.items.map(i => i.url_simple); // Creates a list of youtube videos that play the hp ost.
     let index = bot.ost.index || 1;
 
