@@ -165,15 +165,15 @@ module.exports = async (bot, message) => {
 
     if (spawn == "dementor") {
       object.type = "dementor";
-      const attachment = new Discord.Attachment("../images/spawns/dementor.jpg", "dementor.jpg");
+      const attachment = new Discord.MessageAttachment("../images/spawns/dementor.jpg", "dementor.jpg");
       message.channel.send(`A dementor has spawned! Years 5 and up can banish it by using \`${bot.prefix}expecto patronum\`!`, attachment);
     } else if (spawn == "boggart") {
       object.type = "boggart";
-      const attachment = new Discord.Attachment("../images/spawns/boggart.jpg", "boggart.jpg");
+      const attachment = new Discord.MessageAttachment("../images/spawns/boggart.jpg", "boggart.jpg");
       message.channel.send(`A boggart has spawned! Years 3 and up can banish it by using \`${bot.prefix}riddikulus\`!`, attachment);
     } else if (spawn == "chest") {
       object.type = "chest";
-      const attachment = new Discord.Attachment("../images/spawns/chest.png", "chest.png");
+      const attachment = new Discord.MessageAttachment("../images/spawns/chest.png", "chest.png");
       message.channel.send(`A chest has appeared! open it with \`${bot.prefix}cistem aperio\`!`, attachment);
     } else if (spawn == "trivia") {
       object.type = "trivia";
