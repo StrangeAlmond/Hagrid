@@ -49,7 +49,7 @@ module.exports = {
 		const leaderboardName = leaderboardDetails[0];
 		const leaderboardKey = leaderboardDetails[1];
 
-		const users = bot.userInfo.array().filter(u => bot.userInfo.get(`${u.guild}-${u.user}`, leaderboardKey) != 0 && u.guild == message.guild.id);
+		const users = bot.userInfo.array().filter(u => bot.userInfo.get(`${u.guild}-${u.user}`, leaderboardKey) != 0 && message.guild.members.cache.get(u.user));
 		const sortedUsers = users.sort((a, b) => bot.userInfo.get(`${b.guild}-${b.user}`, leaderboardKey) - bot.userInfo.get(`${a.guild}-${a.user}`, leaderboardKey));
 		const leaderboard = sortedUsers.splice(0, 10);
 
