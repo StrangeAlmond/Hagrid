@@ -43,7 +43,7 @@ module.exports = {
 			}
 
 			let object = {
-				"name": bot.toCamelCase(card.toLowerCase()),
+				"name": bot.functions.toCamelCase(card.toLowerCase()),
 				"rarity": rarity,
 				"amount": 0
 			};
@@ -70,7 +70,7 @@ module.exports = {
 			message.channel.send({
 				embed,
 				files: [{
-					attachment: `../images/collectibles/${rarity}/${bot.toCamelCase(card)}.png`,
+					attachment: `../images/collectibles/${rarity}/${bot.function.toCamelCase(card)}.png`,
 					name: "image.png"
 				}]
 			});
