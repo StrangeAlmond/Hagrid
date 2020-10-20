@@ -179,7 +179,7 @@ module.exports = async (bot, message) => {
       object.type = "trivia";
 
       const houses = ["slytherin", "gryffindor", "hufflepuff", "ravenclaw"];
-      const house = houses.find(h => message.member.roles.some(r => r.name.toLowerCase() == h));
+      const house = houses.find(h => message.member.roles.cache.some(r => r.name.toLowerCase() == h));
 
       if (house) {
         const channel = message.guild.channels.find(c => c.name.includes(house));
