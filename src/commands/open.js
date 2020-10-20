@@ -70,7 +70,7 @@ module.exports = {
 			message.channel.send({
 				embed,
 				files: [{
-					attachment: `../images/collectibles/${rarity}/${bot.function.toCamelCase(card)}.png`,
+					attachment: `../images/collectibles/${rarity}/${bot.functions.toCamelCase(card)}.png`,
 					name: "image.png"
 				}]
 			});
