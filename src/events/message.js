@@ -46,7 +46,7 @@ module.exports = async (bot, message) => {
     users[key].push(Date.now());
 
     if (users[key].length > 4) {
-      const silencedRole = message.guild.roles.find(r => r.name.toLowerCase() == "silenced");
+      const silencedRole = message.guild.roles.cache.find(r => r.name.toLowerCase() == "silenced");
 
       if (silencedRole) {
         message.member.addRole(silencedRole);
