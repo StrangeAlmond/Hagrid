@@ -20,7 +20,7 @@ module.exports = async bot => {
 
   functions.playOST(bot, bot.channels.cache.get(botconfig.ostChannel));
 
-  const statuses = ["I am what I am, an’ I’m not ashamed", "Playing quidditch", "Grooming my beard", "What's coming will come, and we'll meet it when it does", "Ah, go boil yer heads, both of yeh", "Mad and hairy? You wouldn't be taking about me, now, would you?", ""];
+  const statuses = ["I am what I am, an’ I’m not ashamed", "Playing quidditch", "Grooming my beard", "What's coming will come, and we'll meet it when it does", "Ah, go boil yer heads, both of yeh", "Mad and hairy? You wouldn't be talking about me, now, would you?", ""];
 
   setInterval(async () => {
     bot.user.setActivity(statuses[Math.floor(Math.random() * statuses.length)]);
@@ -39,11 +39,11 @@ module.exports = async bot => {
       bot.userInfo.set(`${user.guild}-${user.user}`, false, "stats.fainted");
       bot.userInfo.set(`${user.guild}-${user.user}`, 1, "stats.health");
 
-      const hospitalChannel = await bot.guilds.cache.get(user.guild).channels.cache.find(c => c.name.includes("hospital"));
+      const hospitalChannel = await bot.guilds.cache.get(user.guild).channels.cache.find(c => c.name.includes("hospital-wing"));
       const messages = await hospitalChannel.messages.fetch();
 
       const msg = messages.find(m => m.content.includes(user.user) && m.content.toLowerCase().includes("fainted"));
-      if (msg) msg.delete();
+      if (msg) msg.delete().catch(console.error);
     }, bot.functions.timeUntilMidnight());
   });
 
