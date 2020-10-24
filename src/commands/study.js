@@ -163,7 +163,7 @@ module.exports = {
 		}
 
 		function spellEntry(s) {
-			return `**${findType(s)}:** ${userData.spellInfo[s.spellName] ? `**__${s.name}__**` : s.name} (${bot.functions.capitalizeFirstLetter(s.spellName)})
+			return `**${findType(s)}:** ${userData.spellInfo[s.spellName] ? `**__${s.name}__**` : s.name} ${s.spellName.toLowerCase() != s.name.toLowerCase() ? `(${bot.functions.capitalizeFirstLetter(s.spellName)})` : ""}
 			**ID:** ${s.id}
 			**Days to Learn:** ${userData.spellInfo[s.spellName] ? userData.spellInfo[s.spellName].daysToLearn : s.daysToLearn}`;
 		}
