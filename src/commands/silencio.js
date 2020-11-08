@@ -9,12 +9,9 @@ module.exports = {
 		if (!message.member.hasPermission("MANAGE_MESSAGES")) return;
 
 		const userToMute = bot.functions.getUserFromMention(args[0], message.guild) || message.guild.members.cache.get(args[0]);
-		if (!userToMute) {
-			return message.channel.send(`Specify a user to mute! Proper Usage: \`${bot.prefix}silencio <@member> <hours:minutes:seconds> <reason>\``);
-		}
 
-		// if (userToMute.user.bot) return message.channel.send("You can't mute a bot!");
-
+		if (!userToMute) return message.channel.send(`Specify a user to mute! Proper Usage: \`${bot.prefix}silencio <@member> <hours:minutes:seconds> <reason>\``);
+		if (userToMute.id == bot.user.id) return message.channel.send("After all my good work *this* is how you repay me? What a disgrace.");
 		if (userToMute.hasPermission("MANAGE_MESSAGES")) return;
 		if (userToMute.roles.cache.find(r => r.name.toLowerCase() == "silenced")) {
 			return message.channel.send(`${userToMute.displayName} has already been muted!`);
