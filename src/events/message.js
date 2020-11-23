@@ -182,7 +182,7 @@ module.exports = async (bot, message) => {
       const house = houses.find(h => message.member.roles.cache.some(r => r.name.toLowerCase() == h));
 
       if (house) {
-        const channel = message.guild.channels.find(c => c.name.includes(house));
+        const channel = message.guild.channels.cache.find(c => c.name.includes(house));
 
         if (channel && !guildData.spawns.some(s => s.channel == channel.id)) {
           object.channel = channel.id;
