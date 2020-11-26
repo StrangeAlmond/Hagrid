@@ -1,762 +1,1251 @@
-[{
+[
+	{
 		"question": "Where did Harry Potter first talk to a snake?",
-		"answers": ["At the zoo", "the zoo", "zoo"]
+		"answers": [
+			"At the zoo",
+			"the zoo",
+			"zoo"
+		]
 	},
 	{
 		"question": "Who was flying with Mad Eye when he died?",
-		"answers": ["mundungus", "mundungus fletcher"]
+		"answers": [
+			"mundungus",
+			"mundungus fletcher"
+		]
 	},
 	{
 		"question": "Which person took Fleur to the Yule Ball?",
-		"answers": ["roger davies"]
+		"answers": [
+			"roger davies"
+		]
 	},
 	{
 		"question": "How did Harry and Ron get to Hogwarts their second year?",
-		"answers": ["a flying car", "flying car", "the flying car"]
+		"answers": [
+			"a flying car",
+			"flying car",
+			"the flying car"
+		]
 	},
 	{
 		"question": "What is the name of Hagrid’s big dog?",
-		"answers": ["fang"]
+		"answers": [
+			"fang"
+		]
 	},
 	{
 		"question": "Which person leads the flying classes at Hogwarts?",
-		"answers": ["rolanda hooch", "rolanda", "madam rolanda hooch", "hooch", "madam hooch", "madam rolanda"]
+		"answers": [
+			"rolanda hooch",
+			"rolanda",
+			"madam rolanda hooch",
+			"hooch",
+			"madam hooch",
+			"madam rolanda"
+		]
 	},
 	{
 		"question": "What was the name of the house that the sorting hat wanted to place Harry in?",
-		"answers": ["slytherin"]
+		"answers": [
+			"slytherin"
+		]
 	},
 	{
 		"question": "Are Harry and Ron related?",
-		"answers": ["no", "nope", "nah"]
+		"answers": [
+			"no",
+			"nope",
+			"nah"
+		]
 	},
 	{
 		"question": "What is Harry’s Father’s name?",
-		"answers": ["james potter", "james"]
+		"answers": [
+			"james potter",
+			"james"
+		]
 	},
 	{
 		"question": "What was the name of the owl Percy got for becoming a prefect?",
-		"answers": ["hermes"]
+		"answers": [
+			"hermes"
+		]
 	},
 	{
 		"question": "What was Harry’s first broom?",
-		"answers": ["nimbus 2000", "the nimbus 2000"]
+		"answers": [
+			"nimbus 2000",
+			"the nimbus 2000"
+		]
 	},
 	{
 		"question": "What school would Harry have attended if he was not a wizard?",
-		"answers": ["stonewall high"]
+		"answers": [
+			"stonewall high"
+		]
 	},
 	{
 		"question": "Who was Harry’s first quidditch match was against?",
-		"answers": ["slytherin"]
+		"answers": [
+			"slytherin"
+		]
 	},
 	{
 		"question": "What did Neville’s grandmother give him as a present in his first year at Hogwarts?",
-		"answers": ["a remembrall", "remembrall"]
+		"answers": [
+			"a remembrall",
+			"remembrall"
+		]
 	},
 	{
 		"question": "Who is the Gringotts head goblin?",
-		"answers": ["bogrod"]
+		"answers": [
+			"bogrod"
+		]
 	},
 	{
 		"question": "What symbol is on the Hufflepuff Crest?",
-		"answers": ["badger"]
+		"answers": [
+			"badger"
+		]
 	},
 	{
 		"question": "What monster lives in the Chamber of Secrets?",
-		"answers": ["basilisk"]
+		"answers": [
+			"basilisk"
+		]
 	},
 	{
 		"question": "Who did the Basilisk kill?",
-		"answers": ["moaning myrtle"]
+		"answers": [
+			"moaning myrtle"
+		]
 	},
 	{
 		"question": "Who are the corpses that do a Dark wizard’s bidding?",
-		"answers": ["inferi"]
+		"answers": [
+			"inferi"
+		]
 	},
 	{
 		"question": "What does Harry see attacking Ron’s father in his dream?",
-		"answers": ["a snake", "snake"]
+		"answers": [
+			"a snake",
+			"snake"
+		]
 	},
 	{
 		"question": "What does Fawkes give to Harry to save his life after being poisoned by the Basilisks fang?",
-		"answers": ["phoenix tear"]
+		"answers": [
+			"phoenix tear"
+		]
 	},
 	{
 		"question": "What is the name of Dumbledore’s phoenix?",
-		"answers": ["fawkes"]
+		"answers": [
+			"fawkes"
+		]
 	},
 	{
 		"question": "Which type of insect is Ronald Weasley most afraid of?",
-		"answers": ["spider", "spiders"]
+		"answers": [
+			"spider",
+			"spiders"
+		]
 	},
 	{
 		"question": "What is the newspaper that appears in all 8 books",
-		"answers": ["daily prophet", "the daily prophet"]
+		"answers": [
+			"daily prophet",
+			"the daily prophet"
+		]
 	},
 	{
 		"question": "Who takes over as ‘Defence Against the Dark Arts’ teacher in the Chamber of Secrets?",
-		"answers": ["gilderoy lockhart"]
+		"answers": [
+			"gilderoy lockhart"
+		]
 	},
 	{
 		"question": "Who was the Slytherin Quidditch captain in Harry’s first match?",
-		"answers": ["marcus flint"]
+		"answers": [
+			"marcus flint"
+		]
 	},
 	{
 		"question": "Who was Scabbers in his Animagus form?",
-		"answers": ["peter pettigrew"]
+		"answers": [
+			"peter pettigrew"
+		]
 	},
 	{
 		"question": "What is the full name of Dumbledore, the headmaster of Hogwarts School of Witchcraft and Wizardry (mentioned in the books)?",
-		"answers": ["albus percival wulfric brian dumbledore"]
+		"answers": [
+			"albus percival wulfric brian dumbledore"
+		]
 	},
 	{
 		"question": "Which character kissed Harry after a lesson of DA in ‘Harry Potter and the Order of the Phoenix’?",
-		"answers": ["cho chang"]
+		"answers": [
+			"cho chang"
+		]
 	},
-
 	{
 		"question": "What magical plant does Harry use to breathe underwater in the books?",
-		"answers": ["gillyweed"]
+		"answers": [
+			"gillyweed"
+		]
 	},
-
 	{
 		"question": "What ice cream did Harry Get at the zoo in the 1st book?",
-		"answers": ["lemon ice pop"]
+		"answers": [
+			"lemon ice pop"
+		]
 	},
 	{
 		"question": "What charm was placed over the Potter’s house to protect them from Lord Voldemort?",
-		"answers": ["fidelius", "fidelius charm"]
+		"answers": [
+			"fidelius",
+			"fidelius charm"
+		]
 	},
 	{
 		"question": "Who was the Potter’s secret keeper?",
-		"answers": ["peter pettigrew"]
+		"answers": [
+			"peter pettigrew"
+		]
 	},
 	{
 		"question": "Who was Harry’s first kiss was with?",
-		"answers": ["cho chang"]
+		"answers": [
+			"cho chang"
+		]
 	},
 	{
 		"question": "What does Harry’s boggart turns into?",
-		"answers": ["dementor"]
+		"answers": [
+			"dementor"
+		]
 	},
 	{
 		"question": "Which person created the philosopher’s stone?",
-		"answers": ["nicolas flamel", "nicolas", "flamel"]
+		"answers": [
+			"nicolas flamel",
+			"nicolas",
+			"flamel"
+		]
 	},
 	{
 		"question": "Which Gringotts vault had the philosophers stone in it?",
-		"answers": ["713", "vault 713"]
+		"answers": [
+			"713",
+			"vault 713"
+		]
 	},
 	{
 		"question": "Harry was helped to break into Gringotts by which Goblin?",
-		"answers": ["griphook"]
+		"answers": [
+			"griphook"
+		]
 	},
 	{
 		"question": "Who heard half of the prophecy about Harry and the Dark Lord?",
-		"answers": ["severus snape", "snape", "severus"]
+		"answers": [
+			"severus snape",
+			"snape",
+			"severus"
+		]
 	},
 	{
 		"question": "What is the name of the drill company owned by Vernon?",
-		"answers": ["grunnings"]
+		"answers": [
+			"grunnings"
+		]
 	},
 	{
 		"question": "Who was the person who made a prophecy about Harry and the Dark Lord?",
-		"answers": ["sybill trelawney"]
+		"answers": [
+			"sybill trelawney"
+		]
 	},
 	{
 		"question": "What did the Basilisk kill?",
-		"answers": ["moaning myrtle"]
+		"answers": [
+			"moaning myrtle"
+		]
 	},
 	{
 		"question": "What is the name of the device that Dumbledore uses when putting out the street lights on Privet Drive?",
-		"answers": ["deluminator"]
+		"answers": [
+			"deluminator"
+		]
 	},
 	{
 		"question": "What position does Harry play on the Quidditch team?",
-		"answers": ["seeker"]
+		"answers": [
+			"seeker"
+		]
 	},
 	{
 		"question": "What dark wizard did Albus Dumbledore defeat in 1945?",
-		"answers": ["grindelwald"]
+		"answers": [
+			"grindelwald"
+		]
 	},
 	{
 		"question": "What did Dobby catch that set him free from Mr. Malfoy?",
-		"answers": ["sock"]
+		"answers": [
+			"sock"
+		]
 	},
 	{
 		"question": "What do you destroy a Horcrux with?",
-		"answers": ["basilisk venom", "basilisk tooth", "basilisk fang", "sword of gryffindor"]
+		"answers": [
+			"basilisk venom",
+			"basilisk tooth",
+			"basilisk fang",
+			"sword of gryffindor"
+		]
 	},
 	{
 		"question": "What breed of dragon is Hagrid’s pet?",
-		"answers": ["norwegian ridgeback"]
+		"answers": [
+			"norwegian ridgeback"
+		]
 	},
 	{
 		"question": "What is Snape’s Patronus?",
-		"answers": ["doe"]
+		"answers": [
+			"doe"
+		]
 	},
 	{
 		"question": "In which London station do you stand between platform 9 and 10 to catch the train to Hogwarts?",
-		"answers": ["kings cross", "king's cross"]
+		"answers": [
+			"kings cross",
+			"king's cross"
+		]
 	},
 	{
 		"question": "What is the name of the book Hermione gives to Harry before his first ever Quidditch match?",
-		"answers": ["quidditch through the ages"]
+		"answers": [
+			"quidditch through the ages"
+		]
 	},
 	{
 		"question": "What is Death Eater Macnair’s first name?",
-		"answers": ["walden"]
+		"answers": [
+			"walden"
+		]
 	},
 	{
 		"question": "Many know that Gryffindor's ghost is Nearly Headless Nick. But what is his full name?",
-		"answers": ["sir nicholas de mimsy-porpington", "sir nicholas de mimsy porpington"]
+		"answers": [
+			"sir nicholas de mimsy-porpington",
+			"sir nicholas de mimsy porpington"
+		]
 	},
 	{
 		"question": "New students need to learn the secrets of the castle. How many staircases does Hogwarts have?",
-		"answers": ["142"]
+		"answers": [
+			"142"
+		]
 	},
 	{
 		"question": "Quidditch players are constantly at risk of injury throughout the game. How many possible Quidditch fouls are there?",
-		"answers": ["700"]
+		"answers": [
+			"700"
+		]
 	},
 	{
 		"question": "Harry is known for his talents in Quidditch. What is the max speed for a Firebolt broomstick?",
-		"answers": ["150 mph"]
+		"answers": [
+			"150 mph"
+		]
 	},
 	{
 		"question": "Harry first took the Knight Bus in The Prisoner of Azkaban. How much does a ticket cost if it includes hot chocolate?",
-		"answers": ["13 sickles", "13 sickle's", "thirteen sickles", "thirteen sickle's"]
+		"answers": [
+			"13 sickles",
+			"13 sickle's",
+			"thirteen sickles",
+			"thirteen sickle's"
+		]
 	},
 	{
 		"question": "In the Hall of Prophecy there are rows and rows of glowing orbs. Which row contains the prophecy about Harry and Voldemort?",
-		"answers": ["row 97", "97"]
+		"answers": [
+			"row 97",
+			"97"
+		]
 	},
 	{
 		"question": "In the Quidditch World Cup, Ireland's team had three main chasers: Mullet, Troy, and Moran. Which one scored the first goal?",
-		"answers": ["troy"]
+		"answers": [
+			"troy"
+		]
 	},
 	{
 		"question": "Voldemort stole Helga Hufflepuff's cup from an old woman named Hepzibah Smith. What was the name of her house-elf?",
-		"answers": ["hokey"]
+		"answers": [
+			"hokey"
+		]
 	},
 	{
 		"question": "What is the name of the Apparition instructor who comes to Hogwarts in Harry’s sixth year?",
-		"answers": ["wilkie twycross"]
+		"answers": [
+			"wilkie twycross"
+		]
 	},
 	{
 		"question": "For Harry's 17th birthday, what colour did Hermione turn the leaves of the Weasley’s crabapple tree?",
-		"answers": ["gold"]
+		"answers": [
+			"gold"
+		]
 	},
 	{
 		"question": "“You're a little scary sometimes, you know that? Brilliant... but scary.“ Who is Ron giving this awkward compliment to?",
-		"answers": ["hermione"]
+		"answers": [
+			"hermione"
+		]
 	},
 	{
 		"question": "What object must be caught in order to end a Quidditch match?",
-		"answers": ["snitch"]
+		"answers": [
+			"snitch"
+		]
 	},
 	{
 		"question": "When Oliver Wood (the Captain of the Gryffindor Quidditch team) is explaining the rules to Harry, what is the first ball he shows Harry?",
-		"answers": ["quaffle"]
+		"answers": [
+			"quaffle"
+		]
 	},
 	{
 		"question": "In “The Prisoner of Azkaban“ Professor Lupin played music in his class. What did he play the music on?",
-		"answers": ["record player"]
+		"answers": [
+			"record player"
+		]
 	},
 	{
 		"question": "To begin filming, a script is required. The task of adapting the immensely popular book series by J.K. Rowling for the big screen went to screenwriter Steve Kloves. He wrote the scripts for seven out of the eight films. However, for one of the installments he wasn't available, so Michael Goldenberg stepped in. He gave voice to new characters such as the horrible Dolores Umbridge and the quirky Luna Lovegood. Which film did he write the screenplay for?",
-		"answers": ["order of the phoenix", "harry potter and the order of the phoenix"]
+		"answers": [
+			"order of the phoenix",
+			"harry potter and the order of the phoenix"
+		]
 	},
 	{
 		"question": " In 'Harry Potter and the Chamber of Secrets' Professor McGonagall teaches the second years a spell to turn animals into water goblets. What is the incantation?",
-		"answers": ["fera verto"]
+		"answers": [
+			"fera verto"
+		]
 	},
 	{
 		"question": "Who is the Defence Against the Dark Arts teacher in “Harry Potter and the Prisoner of Azakaban“?",
-		"answers": ["remus lupin"]
+		"answers": [
+			"remus lupin"
+		]
 	},
 	{
 		"question": "Who delivers baby Harry to Dumbledore in Privet Drive at the start of 'Harry Potter and the Sorcerers Stone",
-		"answers": ["hagrid"]
+		"answers": [
+			"hagrid"
+		]
 	},
 	{
 		"question": "“You both realize, of course, that in the past few hours you have broken perhaps a dozen school rules.“ Which two characters have astonishingly broken a dozen school rules?",
-		"answers": ["harry, ron", "ron, harry", "ron and harry", "harry and ron", "harry potter and ron weasley"]
+		"answers": [
+			"harry, ron",
+			"ron, harry",
+			"ron and harry",
+			"harry and ron",
+			"harry potter and ron weasley"
+		]
 	},
 	{
 		"question": "This spell is used to send red sparks into the air and is first seen in 'Harry Potter and the Goblet of Fire.' What is it?",
-		"answers": ["periculum"]
+		"answers": [
+			"periculum"
+		]
 	},
 	{
 		"question": "In 'Harry Potter and the Chamber of Secrets', what is the name of Harry's elf friend?",
-		"answers": ["dobby"]
+		"answers": [
+			"dobby"
+		]
 	},
 	{
 		"question": "“Enough talk, Remus! C'mon, let's kill him!“ Who does Sirius Black want to kill?",
-		"answers": ["peter pettigrew", "pettigrew"]
+		"answers": [
+			"peter pettigrew",
+			"pettigrew"
+		]
 	},
 	{
 		"question": "What position does Ron Weasley play for the Gryffindor Quidditch team?",
-		"answers": ["keeper"]
+		"answers": [
+			"keeper"
+		]
 	},
 	{
 		"question": "What animal does Professor Moody change Draco Malfoy into?",
-		"answers": ["ferret"]
+		"answers": [
+			"ferret"
+		]
 	},
 	{
 		"question": "In “The Prisoner of Azkaban“ who did Harry hear screaming before he passed out?",
-		"answers": ["mom", "his mom", "mother", "his mother"]
+		"answers": [
+			"mom",
+			"his mom",
+			"mother",
+			"his mother"
+		]
 	},
 	{
 		"question": "This spell was created by 'The Half Blood Prince'. Harry finds the spell in his potions book. It is labeled 'For Enemies'. What is the spell?",
-		"answers": ["sectumsempra"]
+		"answers": [
+			"sectumsempra"
+		]
 	},
 	{
 		"question": "What is the name of Harry's owl?",
-		"answers": ["hedwig"]
+		"answers": [
+			"hedwig"
+		]
 	},
 	{
 		"question": "“Nice one, James!“ Who mistakenly says this to Harry in the midst of a battle?",
-		"answers": ["sirius black"]
+		"answers": [
+			"sirius black"
+		]
 	},
 	{
 		"question": "Harry's arm was broken when he was hit by a rogue bludger in “Harry Potter and the Chamber of Secrets“. Professor Lockhart tried to help him. Who charmed the bludger?",
-		"answers": ["dobby"]
+		"answers": [
+			"dobby"
+		]
 	},
 	{
 		"question": "Not all locations that the story takes Harry to can be recreated in the real world. In “Harry Potter and the Order of the Phoenix“, for a huge room filled with glass orbs, the filmmakers decided to use a completely computer-generated set. The actors played in front of a green screen and the surrounding “set“ was inserted digitally in post-production. What was this place?",
-		"answers": ["hall of prophecy", "the hall of prophecy"]
+		"answers": [
+			"hall of prophecy",
+			"the hall of prophecy"
+		]
 	},
 	{
 		"question": "What spell is used to protect yourself from spells that are dangerous?",
-		"answers": ["protego"]
+		"answers": [
+			"protego"
+		]
 	},
 	{
 		"question": "Who was the LAST person to be petrified?",
-		"answers": ["hermione"]
+		"answers": [
+			"hermione"
+		]
 	},
 	{
 		"question": "What kind of car did the boys (Harry and Ron) drive to Hogwarts during their second year?",
-		"answers": ["ford anglia"]
+		"answers": [
+			"ford anglia"
+		]
 	},
 	{
 		"question": "What does the Hogwarts motto “Draco dormiens nunquam titillandus“ mean in English?",
-		"answers": ["never tickle a sleeping dragon"]
+		"answers": [
+			"never tickle a sleeping dragon"
+		]
 	},
 	{
 		"question": "What spell does Harry Describe as 'The Wizard's bread and butter'?",
-		"answers": ["stupefy"]
+		"answers": [
+			"stupefy"
+		]
 	},
 	{
 		"question": "In “Harry Potter and the Philosopher's Stone“, what is Ron's last move on the giant Wizard Chess board?",
-		"answers": ["knight to h3"]
+		"answers": [
+			"knight to h3"
+		]
 	},
 	{
 		"question": "“Fight back, you coward! Fight back!“ Who is Harry yelling this to?",
-		"answers": ["snape"]
+		"answers": [
+			"snape"
+		]
 	},
 	{
 		"question": "In all the books and movies, Harry was as good as Voldemort was bad. What did Harry have that Voldemort lacked and disdaine",
-		"answers": ["love", "nose"]
+		"answers": [
+			"love",
+			"nose"
+		]
 	},
 	{
 		"question": "When Remus Lupin teaches D.A.D.A, the Professor teaches his students to repel a boggart. What is the name of the incantation?",
-		"answers": ["riddikulus"]
+		"answers": [
+			"riddikulus"
+		]
 	},
 	{
 		"question": "What is the name of the bank in Diagon Alley?",
-		"answers": ["gringotts"]
+		"answers": [
+			"gringotts"
+		]
 	},
 	{
 		"question": "What is the name of Harry's first broom?",
-		"answers": ["nimbus 2000"]
+		"answers": [
+			"nimbus 2000"
+		]
 	},
 	{
 		"question": "In “Harry Potter and the Sorceror's Stone“, Harry received an invisibility cloak for Christmas. Who gave him the cloak on Christmas morning?",
-		"answers": ["dumbledore"]
+		"answers": [
+			"dumbledore"
+		]
 	},
 	{
 		"question": "In “Harry Potter and the Prisoner of Azkaban“, what is the name of the Minister of Magic?",
-		"answers": ["cornelius fudge"]
+		"answers": [
+			"cornelius fudge"
+		]
 	},
 	{
 		"question": "Who does Ron try to curse with the spell, “Eat slugs“?",
-		"answers": ["malfoy"]
+		"answers": [
+			"malfoy"
+		]
 	},
 	{
 		"question": "Who plays Ron's mother?",
-		"answers": ["julie walters"]
+		"answers": [
+			"julie walters"
+		]
 	},
 	{
 		"question": "During the Quidditch match in “Harry Potter and the Prisoner of Azkaban“, Harry chases the Golden Snitch high up into the clouds. He falls off his broom. What causes him to fall?",
-		"answers": ["dementors"]
+		"answers": [
+			"dementors"
+		]
 	},
 	{
 		"question": "The first two words in the film 'Harry Potter and the Prisoner of Azkaban' are a spell. What is the spell?",
-		"answers": ["lumos maxima"]
+		"answers": [
+			"lumos maxima"
+		]
 	},
 	{
 		"question": "What is the name of the train that transports the students to the school?",
-		"answers": ["hogwarts express"]
+		"answers": [
+			"hogwarts express"
+		]
 	},
 	{
 		"question": "During the Quidditch World Cup the Ireland team fly into the stadium and set off a load of fireworks. What do these fireworks become?",
-		"answers": ["dancing leprechaun", "leprechaun"]
+		"answers": [
+			"dancing leprechaun",
+			"leprechaun"
+		]
 	},
 	{
 		"question": "Where does Mr. Weasley work?",
-		"answers": ["ministry of magic"]
+		"answers": [
+			"ministry of magic"
+		]
 	},
 	{
 		"question": "Where does Mr. Weasley work?",
-		"answers": ["ministry of magic"]
+		"answers": [
+			"ministry of magic"
+		]
 	},
 	{
 		"question": "Who claims the last needed points to win the House Cup for Gryffindor in “The Sorcerer's Stone“?",
-		"answers": ["neville"]
+		"answers": [
+			"neville"
+		]
 	},
 	{
 		"question": "Who is the director of the first two 'Harry Potter' movies?",
-		"answers": ["chris columbus"]
+		"answers": [
+			"chris columbus"
+		]
 	},
 	{
 		"question": "What animal can Professor McGonagall transform into?",
-		"answers": ["cat"]
+		"answers": [
+			"cat"
+		]
 	},
 	{
 		"question": "“Dark and difficult times lie ahead. Soon we must all face the choice between what is right and what is easy.“ Who said this",
-		"answers": ["dumbledore"]
+		"answers": [
+			"dumbledore"
+		]
 	},
 	{
 		"question": "Who guards the entrance to the Gryffindor common room?",
-		"answers": ["the fat lady"]
+		"answers": [
+			"the fat lady"
+		]
 	},
 	{
 		"question": "Who is the original owner of the diary Harry finds in 'Chamber of Secrets'?",
-		"answers": ["tom riddle"]
+		"answers": [
+			"tom riddle"
+		]
 	},
 	{
 		"question": "“Do not pity the dead, Harry. Pity the living and above all, those who live without _______.“ Finish the quote.",
-		"answers": ["love"]
+		"answers": [
+			"love"
+		]
 	},
 	{
 		"question": "What breed of dragon was Hagrid’s pet?",
-		"answers": ["norwegian ridgeback"]
+		"answers": [
+			"norwegian ridgeback"
+		]
 	},
 	{
 		"question": "What is Harry’s mothers maiden name?",
-		"answers": ["evans"]
+		"answers": [
+			"evans"
+		]
 	},
 	{
 		"question": "What is Harry’s Blood Status?",
-		"answers": ["half-blood", "half blood"]
+		"answers": [
+			"half-blood",
+			"half blood"
+		]
 	},
 	{
 		"question": "What colour are Harry’s eyes?",
-		"answers": ["green"]
+		"answers": [
+			"green"
+		]
 	},
 	{
 		"question": "What is Harry’s patronus form?",
-		"answers": ["stag"]
+		"answers": [
+			"stag"
+		]
 	},
 	{
 		"question": "What class did Neville end up teaching at Hogwarts?",
-		"answers": ["herbology"]
+		"answers": [
+			"herbology"
+		]
 	},
 	{
 		"question": "Which newspaper does Rita Skeeter work for?",
-		"answers": ["the daily prophet", "daily prophet"]
+		"answers": [
+			"the daily prophet",
+			"daily prophet"
+		]
 	},
 	{
 		"question": "Which class did Severus Snape always want to teach?",
-		"answers": ["defense against the dark arts"]
+		"answers": [
+			"defense against the dark arts"
+		]
 	},
 	{
 		"question": "What's the name of Ron Weasley's great-aunt?",
-		"answers": ["muriel"]
+		"answers": [
+			"muriel"
+		]
 	},
 	{
 		"question": "Which Hogwarts house did Moaning Myrtle belong in?",
-		"answers": ["ravenclaw"]
+		"answers": [
+			"ravenclaw"
+		]
 	},
 	{
 		"question": "How many brothers does Ron Weasley have?",
-		"answers": ["5"]
+		"answers": [
+			"5"
+		]
 	},
 	{
 		"question": "What do Hermione Granger's parents do for a living?",
-		"answers": ["dentist"]
+		"answers": [
+			"dentist"
+		]
 	},
 	{
 		"question": "What does O.W.L. stand for?",
-		"answers": ["ordinary wizarding level"]
+		"answers": [
+			"ordinary wizarding level"
+		]
 	},
 	{
 		"question": "Which Weasley boy dies?",
-		"answers": ["fred weasley"]
+		"answers": [
+			"fred weasley"
+		]
 	},
 	{
 		"question": "What's Hermione's middle name?",
-		"answers": ["jean"]
+		"answers": [
+			"jean"
+		]
 	},
 	{
 		"question": "What plant does Harry eat to breathe underwater in the Triwizard Tournament?",
-		"answers": ["gillyweed"]
+		"answers": [
+			"gillyweed"
+		]
 	},
 	{
 		"question": "Who guards the Gryffindor common room?",
-		"answers": ["fat lady"]
+		"answers": [
+			"fat lady"
+		]
 	},
 	{
 		"question": "What does Harry see in the Mirror of Erised?",
-		"answers": ["his parents"]
+		"answers": [
+			"his parents"
+		]
 	},
 	{
 		"question": "Which position does Harry play in Quidditch?",
-		"answers": ["seeker"]
+		"answers": [
+			"seeker"
+		]
 	},
 	{
 		"question": "What did Hagrid name his dragon?",
-		"answers": ["norbert"]
+		"answers": [
+			"norbert"
+		]
 	},
 	{
 		"question": "What Animagus form does Sirius Black take?",
-		"answers": ["dog"]
+		"answers": [
+			"dog"
+		]
 	},
 	{
 		"question": "Who is Harry Potter's godfather?",
-		"answers": ["sirius black", "sirius"]
+		"answers": [
+			"sirius black",
+			"sirius"
+		]
 	},
 	{
 		"question": "What's Voldemort's real name?",
-		"answers": ["tom riddle"]
+		"answers": [
+			"tom riddle"
+		]
 	},
 	{
 		"question": "What country did Viktor Krum play for in Quidditch?",
-		"answers": ["bulgaria"]
+		"answers": [
+			"bulgaria"
+		]
 	},
 	{
 		"question": "What's the name of the store the Weasley twins open up?",
-		"answers": ["weasleys wizard wheezes", "weasley's wizard wheezes"]
+		"answers": [
+			"weasleys wizard wheezes",
+			"weasley's wizard wheezes"
+		]
 	},
 	{
 		"question": "What is the name of the Weasley's home?",
-		"answers": ["burrow"]
+		"answers": [
+			"burrow"
+		]
 	},
 	{
 		"question": "What platform at King's Cross takes you to Hogwarts?",
-		"answers": ["9 3/4", "nine and three quarters", "9 and three quarters"]
+		"answers": [
+			"9 3/4",
+			"nine and three quarters",
+			"9 and three quarters"
+		]
 	},
 	{
 		"question": "What does Hagrid give Harry the first time they meet?",
-		"answers": ["cake"]
+		"answers": [
+			"cake"
+		]
 	},
 	{
 		"question": "How many Deathly Hallows are there?",
-		"answers": ["3"]
+		"answers": [
+			"3"
+		]
 	},
 	{
 		"question": "Who did Harry take to the Yule Ball?",
-		"answers": ["parvati patil"]
+		"answers": [
+			"parvati patil"
+		]
 	},
 	{
 		"question": "What should you eat if attacked by a Dementor?",
-		"answers": ["chocolate"]
+		"answers": [
+			"chocolate"
+		]
 	},
 	{
 		"question": "Which ear did George Weasley lose?",
-		"answers": ["left"]
+		"answers": [
+			"left"
+		]
 	},
 	{
 		"question": "What does NEWTs stand for?",
-		"answers": ["nastily exhausting wizarding test"]
+		"answers": [
+			"nastily exhausting wizarding test"
+		]
 	},
 	{
 		"question": "What number is Harry's vault at Gringotts?",
-		"answers": ["687"]
+		"answers": [
+			"687"
+		]
 	},
 	{
 		"question": "What tales tell the stories of The Deathly Hallows?",
-		"answers": ["the tales of beedle the bard"]
+		"answers": [
+			"the tales of beedle the bard"
+		]
 	},
 	{
 		"question": "Which of the Hogwarts founders created the Chamber of Secrets? ",
-		"answers": ["salazar slytherin"]
+		"answers": [
+			"salazar slytherin"
+		]
 	},
-
 	{
 		"question": "Who gave Hermoine her Time-Turner?",
-		"answers": ["minerva mcgonagall"]
+		"answers": [
+			"minerva mcgonagall"
+		]
 	},
 	{
 		"question": "Which shop sells candy?",
-		"answers": ["honeydukes"]
+		"answers": [
+			"honeydukes"
+		]
 	},
 	{
 		"question": "Who is the only person to survive a Death Curse?",
-		"answers": ["harry potter"]
+		"answers": [
+			"harry potter"
+		]
 	},
 	{
 		"question": "Which Potion is Known as Liquid Luck?",
-		"answers": ["felix felicis"]
+		"answers": [
+			"felix felicis"
+		]
 	},
 	{
 		"question": "What was the name of the Weasleys' owl?",
-		"answers": ["errol"]
+		"answers": [
+			"errol"
+		]
 	},
 	{
 		"question": "What material is inside of Harry Potter's wand?",
-		"answers": ["phoenix tailfeathers", "phoenix feather", "phoenix feathers"]
+		"answers": [
+			"phoenix tailfeathers",
+			"phoenix feather",
+			"phoenix feathers"
+		]
 	},
 	{
 		"question": "What was James Potter's nickname?",
-		"answers": ["prongs"]
+		"answers": [
+			"prongs"
+		]
 	},
 	{
 		"question": "After all this time?",
-		"answers": ["always"]
+		"answers": [
+			"always"
+		]
 	},
 	{
 		"question": "Finish this quote: “I must not tell...“",
-		"answers": ["lies"]
+		"answers": [
+			"lies"
+		]
 	},
 	{
 		"question": "What was Dumbledore's sisters name?",
-		"answers": ["Ariana"]
+		"answers": [
+			"Ariana"
+		]
 	},
 	{
 		"question": "Who was Draco Malfoy's Wife?",
-		"answers": ["astoria greengrass", "astoria"]
+		"answers": [
+			"astoria greengrass",
+			"astoria"
+		]
 	},
 	{
 		"question": "Finish This Quote: “I open at the...“",
-		"answers": ["close"]
+		"answers": [
+			"close"
+		]
 	},
 	{
 		"question": "In harry potter, how many points is the golden snitch worth?",
-		"answers": ["150"]
+		"answers": [
+			"150"
+		]
 	},
 	{
 		"question": "Who played the role of Lord Voldemort in the fourth Harry Potter film?",
-		"answers": ["ralph fiennes"]
+		"answers": [
+			"ralph fiennes"
+		]
 	},
 	{
 		"question": "What is Hagrid’s first name?",
-		"answers": ["rubeus"]
+		"answers": [
+			"rubeus"
+		]
 	},
 	{
 		"question": "Which English actor played the role of ‘Nearly Headless Nick’ in the first two Harry Potter movies?",
-		"answers": ["john cleese"]
+		"answers": [
+			"john cleese"
+		]
 	},
 	{
 		"question": "What species of owl is Hedwig in the Harry Potter books?",
-		"answers": ["snowy owl"]
+		"answers": [
+			"snowy owl"
+		]
 	},
 	{
 		"question": "Who played the role of Professor Lockhart in the films?",
-		"answers": ["kenneth branagh"]
+		"answers": [
+			"kenneth branagh"
+		]
 	},
 	{
 		"question": "What is the name of Hermione’s cat?",
-		"answers": ["crookshanks"]
+		"answers": [
+			"crookshanks"
+		]
 	},
 	{
 		"question": "What does the J stand for in JK Rowling?",
-		"answers": ["joanne"]
+		"answers": [
+			"joanne"
+		]
 	},
 	{
 		"question": "Who was Dumbledore's predecessor as Headmaster of Hogwarts?",
-		"answers": ["armando dippet", "armando", "dippet"]
+		"answers": [
+			"armando dippet",
+			"armando",
+			"dippet"
+		]
 	},
 	{
 		"question": "What did Dumbledore teach before he was Headmaster?",
-		"answers": ["transfiguration"]
+		"answers": [
+			"transfiguration"
+		]
 	},
 	{
 		"question": "The Ice-Cream Parlour in Diagon Alley was owned by who?",
-		"answers": ["florean fortescue"]
+		"answers": [
+			"florean fortescue"
+		]
 	},
 	{
 		"question": "A bezoar is a stone taken from the stomach of a ...?",
-		"answers": ["goat"]
+		"answers": [
+			"goat"
+		]
 	},
 	{
 		"question": "What is the incantation of the Full-Body Bind spell?",
-		"answers": ["petrificus totalus"]
+		"answers": [
+			"petrificus totalus"
+		]
 	},
 	{
 		"question": "What house was Tonks in?",
-		"answers": ["hufflepuff"]
+		"answers": [
+			"hufflepuff"
+		]
 	},
 	{
 		"question": "The three words 6th year students memorize to learn Apparition is Destination, Determination, and...?",
-		"answers": ["deliberation"]
+		"answers": [
+			"deliberation"
+		]
 	},
 	{
 		"question": "What creature is known to become violent when insulted?",
-		"answers": ["hippogriff"]
+		"answers": [
+			"hippogriff"
+		]
 	},
 	{
 		"question": "What book did Hermione insist Ron and Harry read?",
-		"answers": ["hogwarts, a history"]
+		"answers": [
+			"hogwarts, a history"
+		]
 	},
 	{
 		"question": "How many Chocolate Frog cards did Ron estimate he had in Harry Potter and the Philosopher's Stone?",
-		"answers": ["500"]
+		"answers": [
+			"500"
+		]
 	},
 	{
 		"question": "What insulting nickname did some people call Luna Lovegood?",
-		"answers": ["loony"]
+		"answers": [
+			"loony"
+		]
 	},
 	{
 		"question": "In which month is Luna Lovegood's birthday?",
-		"answers": ["february"]
+		"answers": [
+			"february"
+		]
 	},
 	{
 		"question": "Which spell caused Gilderoy Lockhart to become a permanent resident at St. Mungo's Hospital?",
-		"answers": ["obliviate"]
-	}, {
+		"answers": [
+			"obliviate"
+		]
+	},
+	{
 		"question": "From who does Hagrid borrow the flying motorbike he uses to deliver Harry to the Dursleys?",
-		"answers": ["sirius black"]
+		"answers": [
+			"sirius black"
+		]
 	},
 	{
 		"question": "This household pest is often mistaken for a fairy. They especially prefer to take residence in your draperies!",
-		"answers": ["doxy"]
+		"answers": [
+			"doxy"
+		]
 	},
 	{
 		"question": "In the epilogue of 'Harry Potter and the Deathly Hallows', what job does Harry have?",
-		"answers": ["auror"]
+		"answers": [
+			"auror"
+		]
 	},
 	{
 		"question": "Into how many pieces did Ron tear Percy's letter of congratulations on becoming a Prefect before throwing it into the fire?",
-		"answers": ["8"]
+		"answers": [
+			"8"
+		]
 	},
 	{
-		"question": ["What creature is hatched by putting a toad over a chicken's egg?"],
-		"answers": ["basilisk"]
+		"question": [
+			"What creature is hatched by putting a toad over a chicken's egg?"
+		],
+		"answers": [
+			"basilisk"
+		]
 	},
 	{
 		"question": "Sirius Black sends Harry what type of broom?",
-		"answers": ["firebolt"]
+		"answers": [
+			"firebolt"
+		]
 	},
 	{
 		"question": "What is the name of Hepzibah Smith's house elf?",
-		"answers": ["hokey"]
-	}, {
+		"answers": [
+			"hokey"
+		]
+	},
+	{
 		"question": "Who was the Deputy Headmistress of Hogwarts?",
-		"answers": ["mcgonagall"]
+		"answers": [
+			"mcgonagall"
+		]
 	},
 	{
 		"question": "Who said it: “The Cruciatus Curse might loosen your tongue.”?",
-		"answers": ["dolores umbridge"]
+		"answers": [
+			"dolores umbridge"
+		]
 	},
 	{
 		"question": "How many secret passageways lead from Hogwarts to Hogsmeade?",
-		"answers": ["7"]
+		"answers": [
+			"7"
+		]
 	},
 	{
 		"question": "Which Unforgivable Curse is used to control people?",
-		"answers": ["imperio"]
+		"answers": [
+			"imperio"
+		]
+	},
+	{
+		"question": "For homework, lockhart assigned the students to write a peom about his defeat of what?",
+		"answers": [
+			"wagga wagga werewolf",
+			"the wagga wagga werewolf"
+		]
+	},
+	{
+		"question": "What 2 words did Dumbledore have to say to his students before the 1994 welcome feast at Hogwarts?",
+		"answers": [
+			"tuck in",
+			"\"tuck in\""
+		]
+	},
+	{
+		"question": "What spell did Harry use to crack the ice of the pool in the forest, so he could swim down and retrieve gryffindor's sword?",
+		"answers": [
+			"diffindo"
+		]
+	},
+	{
+		"question": "Which of his birthday presents was Dudley playing with when he managed to knock the poor Mrs. Figgs down while she was corssing the street with her crutches after previously breaking her leg?",
+		"answers": [
+			"racing bike",
+			"his racing bike"
+		]
+	},
+	{
+		"question": "During her first time shopping at hogsmeade for Christmas, what did Hermione buy for her parents?",
+		"answers": [
+			"toothflossing stringmints"
+		]
+	},
+	{
+		"question": "What breed is Hagrid's dog, Fang?",
+		"answers": [
+			"boarhound"
+		]
+	},
+	{
+		"question": "What class did professor Mcgonagall interrupt to bring Oliver Wood a new seeker?",
+		"answers": [
+			"charms"
+		]
+	},
+	{
+		"question": "How much did a new copy of advanced potion making cost Harry in his 6th year?",
+		"answers": [
+			"9 galleons"
+		]
 	}
 ]
