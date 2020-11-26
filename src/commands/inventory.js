@@ -4,7 +4,7 @@ const sm = require("string-similarity");
 module.exports = {
 	name: "inventory",
 	description: "View your inventory.",
-	aliases: ["inv", "bag", "items", "things", "stuff", "mystuff"],
+	aliases: ["i", "inv", "bag", "items", "things", "stuff", "mystuff"],
 	async execute(message, args, bot) {
 		if (args[0] && !message.mentions.members.first()) {
 			let item = bot.functions.toCamelCase(args.join(" "));
