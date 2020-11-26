@@ -49,9 +49,9 @@ module.exports = async (bot, message) => {
       const silencedRole = message.guild.roles.cache.find(r => r.name.toLowerCase() == "silenced");
 
       if (silencedRole) {
-        message.member.addRole(silencedRole);
+        message.member.roles.add(silencedRole);
         setTimeout(() => {
-          message.member.removeRole(silencedRole);
+          message.member.roles.remove(silencedRole);
         }, 5000);
       }
     }
