@@ -3,7 +3,7 @@ module.exports = {
 	description: "Get/collect a flavored jelly bean from Bertie Bott's Beans.",
 	aliases: ["jellybean"],
 	async execute(message, args, bot) {
-		if (!bot.userInfo.hasProp(message.author.key, "inventory.beans")) {
+		if (!bot.userInfo.has(message.author.key, "inventory.beans")) {
 			bot.userInfo.set(message.author.key, 0, "inventory.beans");
 			bot.userInfo.set(message.author.key, [], "stats.uniqueBeansEaten");
 		}

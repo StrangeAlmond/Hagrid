@@ -65,7 +65,7 @@ module.exports = {
 		}
 
 		if (chanceNumber <= 10 || user.stats.activeEffects.some(e => e.type == "luck")) {
-			if (!bot.userInfo.hasProp(message.author.key, `inventory.${forageItem.key}`)) {
+			if (!bot.userInfo.has(message.author.key, `inventory.${forageItem.key}`)) {
 				bot.userInfo.set(message.author.key, 0, `inventory.${forageItem.key}`);
 			}
 

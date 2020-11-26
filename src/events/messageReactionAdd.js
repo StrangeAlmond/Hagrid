@@ -54,7 +54,7 @@ module.exports = async (bot, reaction, user) => {
       return msg.delete({ timeout: 5000 });
     }
 
-    if (!bot.userInfo.hasProp(`${message.guild.id}-${reviver.id}`, "inventory.revivePotion") ||
+    if (!bot.userInfo.has(`${message.guild.id}-${reviver.id}`, "inventory.revivePotion") ||
       bot.userInfo.get(`${message.guild.id}-${reviver.id}`, "inventory.revivePotion") <= 0) {
 
       message.reactions.cache.find(r => r.emoji.name == "✅").users.remove(reviver);
@@ -97,7 +97,7 @@ module.exports = async (bot, reaction, user) => {
 
     const requiredPotion = `antidoteTo${poisonType.charAt(0).toUpperCase() + poisonType.slice(1)}Poisons`;
 
-    if (!bot.userInfo.hasProp(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`) || bot.userInfo.get(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`) <= 0) {
+    if (!bot.userInfo.has(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`) || bot.userInfo.get(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`) <= 0) {
       message.reactions.cache.find(r => r.emoji.name.toLowerCase() == "potion").users.remove(curer);
       const msg = await bot.functions.quickWebhook(message.channel, `${curer}, you don't have any antidote to ${poisonType} poisons potions!`, {
         username: "Madam Pomfrey",

@@ -144,7 +144,7 @@ module.exports = {
 					bot.userInfo.math(message.author.key, "+", 29, "balance.knuts");
 				}
 
-				if (!bot.userInfo.hasProp(message.author.key, `inventory.${items[args[0]].key}`)) {
+				if (!bot.userInfo.has(message.author.key, `inventory.${items[args[0]].key}`)) {
 					bot.userInfo.set(message.author.key, 0, `inventory.${items[args[0]].key}`);
 				}
 

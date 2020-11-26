@@ -217,7 +217,7 @@ ${object.users.map(u => `${this.guild.members.cache.get(u.id).displayName}, you 
 				const item = reward[1];
 				const amount = parseInt(reward[0]);
 
-				if (!this.bot.userInfo.hasProp(`${this.guild.id}-${member.id}`, item)) {
+				if (!this.bot.userInfo.has(`${this.guild.id}-${member.id}`, item)) {
 					this.bot.userInfo.set(`${this.guild.id}-${member.id}`, 0, item);
 				}
 

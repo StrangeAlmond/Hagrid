@@ -52,7 +52,7 @@ module.exports = {
 
 			bot.functions.quickWebhook(message.channel, successResponse, webhookOptions);
 
-			if (!bot.userInfo.hasProp(message.author.key, `inventory.${potion.potion}`)) {
+			if (!bot.userInfo.has(message.author.key, `inventory.${potion.potion}`)) {
 				bot.userInfo.set(message.author.key, 0, `inventory.${potion.potion}`);
 			}
 

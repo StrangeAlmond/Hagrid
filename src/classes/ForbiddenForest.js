@@ -517,7 +517,7 @@ class ForbiddenForest {
 
 					// Possible items that can decreased
 					const possibleItems = Object.keys(darkWizardItems)
-						.filter(i => this.bot.userInfo.hasProp(this.member.id, `inventory.${i}`) && this.bot.userInfo.get(this.member.id, `inventory.${i}`) > 0);
+						.filter(i => this.bot.userInfo.has(this.member.id, `inventory.${i}`) && this.bot.userInfo.get(this.member.id, `inventory.${i}`) > 0);
 
 					// Item that will be taken away
 					const item = possibleItems[Math.floor(Math.random() * possibleItems.length)];
@@ -557,7 +557,7 @@ class ForbiddenForest {
 				if ((userData.balance.sickles * 29) + (userData.balance.galleons * 493) + userData.balance.knuts < price) return this.channel.send("You can't afford this item.");
 
 				// Ensure they have the item key in their inventory object
-				if (!this.bot.userInfo.hasProp(this.dbKey, `inventory.${item}`)) this.bot.userInfo.set(this.dbKey, 0, `inventory.${item}`);
+				if (!this.bot.userInfo.has(this.dbKey, `inventory.${item}`)) this.bot.userInfo.set(this.dbKey, 0, `inventory.${item}`);
 
 				// Convert their money to knuts until they have enough to cover the cost of the item
 				for (let i = 0; this.bot.userInfo.get(this.dbKey, "balance.knuts") < price; i++) {
@@ -636,7 +636,7 @@ class ForbiddenForest {
 
 					// Possible items that could be decreased
 					const possibleItems = Object.keys(darkWizardItems)
-						.filter(i => this.bot.userInfo.hasProp(this.member.id, `inventory.${i}`) && this.bot.userInfo.get(this.member.id, `inventory.${i}`) > 0);
+						.filter(i => this.bot.userInfo.has(this.member.id, `inventory.${i}`) && this.bot.userInfo.get(this.member.id, `inventory.${i}`) > 0);
 
 					// Item that will be decreased
 					const item = possibleItems[Math.floor(Math.random() * possibleItems.length)];
@@ -669,7 +669,7 @@ class ForbiddenForest {
 				let price = parseInt(buyDetails[0]) * amount;
 
 				// Ensure they have the item's key in their inventory object
-				if (!this.bot.userInfo.hasProp(this.dbKey, `inventory.${item}`)) this.bot.userInfo.set(this.dbKey, `inventory.${item}`);
+				if (!this.bot.userInfo.has(this.dbKey, `inventory.${item}`)) this.bot.userInfo.set(this.dbKey, `inventory.${item}`);
 				// If they don't have <amount> of the item then send a message saying they don't have enough
 				if (this.bot.userInfo.get(this.dbKey, `inventory.${item}`) < amount) return this.channel.send("You don't have enough to sell!");
 

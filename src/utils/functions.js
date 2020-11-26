@@ -132,7 +132,7 @@ module.exports = {
     const lootbox = years[userData.year + 1].lootbox;
 
     for (const [key, value] of Object.entries(lootbox)) {
-      if (!bot.userInfo.hasProp(`${guild.id}-${member.id}`, `inventory.${key}`)) bot.userInfo.set(`${guild.id}-${member.id}`, 0, `inventory.${key}`);
+      if (!bot.userInfo.has(`${guild.id}-${member.id}`, `inventory.${key}`)) bot.userInfo.set(`${guild.id}-${member.id}`, 0, `inventory.${key}`);
       bot.userInfo.math(`${guild.id}-${member.id}`, "+", value, `inventory.${key}`);
     }
 

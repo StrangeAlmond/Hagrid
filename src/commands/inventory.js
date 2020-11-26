@@ -9,7 +9,7 @@ module.exports = {
 		if (args[0] && !message.mentions.members.first()) {
 			let item = bot.functions.toCamelCase(args.join(" "));
 
-			if (!bot.userInfo.hasProp(message.author.key, `inventory.${item}`)) {
+			if (!bot.userInfo.has(message.author.key, `inventory.${item}`)) {
 				const possibleItems = Object.keys(bot.userInfo.get(message.author.key, "inventory"));
 				item = sm.findBestMatch(bot.functions.toCamelCase(args.join(" ")), possibleItems).bestMatch.target;
 			}

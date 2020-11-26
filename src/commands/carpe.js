@@ -35,7 +35,7 @@ module.exports = {
 		if (chanceNumber <= 10) {
 			message.reply(successResponses[Math.floor(Math.random() * successResponses.length)]);
 
-			if (!bot.userInfo.hasProp(message.author.key, "inventory.flyingSeahorses")) bot.userInfo.set(message.author.key, 0, "inventory.flyingSeahorses");
+			if (!bot.userInfo.has(message.author.key, "inventory.flyingSeahorses")) bot.userInfo.set(message.author.key, 0, "inventory.flyingSeahorses");
 			bot.userInfo.inc(message.author.key, "inventory.flyingSeahorses");
 		} else {
 			message.channel.send(failResponses[Math.floor(Math.random() * failResponses.length)]);

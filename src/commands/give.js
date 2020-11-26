@@ -34,7 +34,7 @@ module.exports = {
 
 		mentionedUsers.forEach(mentionedUser => {
 			bot.functions.ensureUser(mentionedUser, bot);
-			if (!bot.userInfo.hasProp(`${message.guild.id}-${mentionedUser.id}`, item)) {
+			if (!bot.userInfo.has(`${message.guild.id}-${mentionedUser.id}`, item)) {
 				bot.userInfo.set(`${message.guild.id}-${mentionedUser.id}`, 0, item);
 			}
 
