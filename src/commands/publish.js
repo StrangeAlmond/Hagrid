@@ -11,7 +11,7 @@ module.exports = {
 		if (!args[0]) {
 			return bot.functions.quickWebhook(message.channel, "Specify something to publish!", {
 				username: "Rita Skeeter",
-				avatar: "./images/ritaSkeeter.png"
+				avatar: "../images/ritaSkeeter.png"
 			});
 		}
 
@@ -19,12 +19,12 @@ module.exports = {
 
 		bot.functions.quickWebhook(message.channel, "Your message has been published.", {
 			username: "Rita Skeeter",
-			avatar: "./images/webhook_avatars/ritaSkeeter.jpg"
+			avatar: "../images/webhook_avatars/ritaSkeeter.jpg"
 		});
 
 		bot.functions.quickWebhook(publishChannel, messageContent, {
 			username: "Rita Skeeter",
-			avatar: "./images/webhook_avatars/ritaSkeeter.jpg"
+			avatar: "../images/webhook_avatars/ritaSkeeter.jpg"
 		});
 	}
 };
