@@ -3,7 +3,7 @@ module.exports = {
 	description: "Publish a newspaper.",
 	async execute(message, args, bot) {
 		const permittedRoles = ["headmaster", "deputy headmaster"];
-		if (!message.member.roles.cache.some(r => permittedRoles.includes(r.name.toLowerCase()))) return;
+		if (message.author.id != bot.ownerId && !message.member.roles.cache.some(r => permittedRoles.includes(r.name.toLowerCase()))) return;
 
 		const publishChannel = message.guild.channels.cache.find(c => c.name.includes("daily") && c.name.includes("prophet"));
 		if (!publishChannel) return;
