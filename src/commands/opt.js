@@ -29,7 +29,7 @@ module.exports = {
 			message.channel.send("You have opted in to training session pings.");
 
 			const usersStudiedSpells = user.studiedSpells.filter(s => !message.member.roles.cache.find(r => r.name.toLowerCase() == s) &&
-				message.guild.roles.find(r => r.name.toLowerCase() == s));
+				message.guild.roles.cache.find(r => r.name.toLowerCase() == s));
 
 			usersStudiedSpells.forEach(spell => {
 				setTimeout(() => {
