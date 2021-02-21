@@ -372,11 +372,11 @@ module.exports = {
 
     if (!bot.ost) bot.ost = {};
 
-    const playlist = await ytpl("https://www.youtube.com/playlist?list=PLVdr7xrwRyjY4DGuP-NUFEKYupdow4qGq", {
+    const playlist = await ytpl("https://www.youtube.com/playlist?list=PLYXfr3Na3Iuf8Kg__C6Fll5bapkVOXp9b", {
       limit: Infinity
     });
 
-    const queue = bot.ost.queue || playlist.items.map(i => i.url_simple); // Creates a list of youtube videos that play the hp ost.
+    const queue = bot.ost.queue || playlist.items.map(i => i.shortUrl); // Creates a list of youtube videos that play the hp ost.
     let index = bot.ost.index || 1;
 
     if (!bot.ost.index) bot.ost = { index, queue };
