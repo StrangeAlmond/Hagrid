@@ -15,13 +15,9 @@ const bot = new Discord.Client({
 
 bot.blacklistedWords = require("./jsonFiles/blacklistedWords.json");
 
-bot.userInfo = new Enmap({
-  name: "users"
-});
+bot.userInfo = new Enmap("users");
 
-bot.guildInfo = new Enmap({
-  name: "guilds"
-});
+bot.guildInfo = new Enmap("guilds");
 
 bot.commands = new Discord.Collection();
 
