@@ -292,7 +292,7 @@ module.exports = async (bot, message) => {
 
   command.args = args;
   message.author.key = `${message.guild.id}-${message.author.id}`;
-  bot.userInfo.set(key, command, "stats.lastSpell");
+  bot.userInfo.set(key, { name: command.name, description: command.description }, "stats.lastSpell");
 
   command.execute(message, args, bot).catch(e => {
     bot.log(e.stack, "error");
