@@ -126,7 +126,7 @@ class TrainingSession {
 
 			object.beast.health -= damageDealt;
 
-			guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel == object.channel), 1, object);
+			guildData.spawns[guildData.spawns.findIndex(s => s.channel == object.channel)] = object;
 			this.bot.guildInfo.set(this.guild.id, guildData.spawns, "spawns");
 
 			this.bot.userInfo.math(`${this.guild.id}-${member.id}`, "+", damageDealt, "xp");
