@@ -17,38 +17,27 @@ module.exports = {
       name: user.displayName,
       guild: user.guild.id,
       lastMsg: null,
-
       year: 1,
       xp: 0,
-
       quests: [],
-
       studiedSpells: [],
-
       cauldron: "pewter",
-
       badges: [],
       pets: [],
-
       flooPowderInfo: null,
-
       trainingTokenUse: null,
-
       reminders: [],
-
       balance: {
         knuts: 0,
         sickles: 0,
         galleons: 0,
       },
-
       wand: {
         wood: woodTypes[Math.floor(Math.random() * woodTypes.length)],
         core: cores[Math.floor(Math.random() * cores.length)],
         length: lengths[Math.floor(Math.random() * lengths.length)],
         flexibility: flexibilities[Math.floor(Math.random() * flexibilities.length)]
       },
-
       cooldowns: {
         lastDaily: null,
         lastButterbeer: null,
@@ -56,19 +45,14 @@ module.exports = {
         lastStudy: null,
         nextWeekly: null
       },
-
       lifetimeEarnings: {
         knuts: 0,
         sickles: 0,
         galleons: 0
       },
-
       collectorsItems: {},
-
       spellInfo: {},
-
       inventory: {},
-
       mazeInfo: {
         curPos: 42.12,
         lastPos: 42.12,
@@ -81,7 +65,6 @@ module.exports = {
         itemPositions: [],
         inFight: false
       },
-
       stats: {
         mutes: 0,
         profanityWarns: 0,
@@ -107,7 +90,6 @@ module.exports = {
         lifetimeXp: 0,
         lastSpell: "N/A",
         owls: null,
-
         attack: 1,
         defense: 1,
         health: 48,
@@ -115,10 +97,8 @@ module.exports = {
         luck: 0,
         fainted: false,
         poisonedObject: null,
-
         activeEffects: [],
       },
-
       settings: {
         trainingSessionAlerts: true,
       }
