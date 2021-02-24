@@ -9,7 +9,7 @@ module.exports = {
 	async execute(message, args, bot) {
 		const user = db.userInfo.get(message.author.key);
 		if (!user.collectorsItems || !user.collectorsItems.cards) {
-			return message.channel.send("You don't have any collectors cards! You can find some by buying chocolate frogs in Hogsmeade and opening them.");
+			return message.channel.send("You don't have any collectors cards! You can find some by purchasing chocolate frogs in Hogsmeade and opening them.");
 		}
 
 		const rareCards = user.collectorsItems.cards.filter(c => c.rarity == "rare");
