@@ -11,7 +11,7 @@ module.exports = {
 		}
 
 		if (db.userInfo.get(message.author.key, "inventory.beans") <= 0) {
-			return bot.functions.quickWebhook(message.channel, "You don't have any beans! buy some with !buy 1002", {
+			return bot.functions.quickWebhook(message.channel, "You don't have any beans! You can purchase some with the `!buy 1002` command.", {
 				username: "Bertie Bott",
 				avatar: "https://vignette.wikia.nocookie.net/harrypotter/images/2/27/Bertie_Bott_Portrait.jpg/revision/latest/scale-to-width-down/220?cb=20150611184208&path-prefix=sv",
 				deleteAfterUse: true
