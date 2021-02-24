@@ -1,4 +1,3 @@
-const Discord = require("discord.js");
 const db = require("../utils/db.js");
 
 module.exports = {
@@ -7,7 +6,9 @@ module.exports = {
 	async execute(message, args, bot) {
 		if (![bot.ownerId, "137269251361865728"].includes(message.author.id)) return;
 
-		const events = ["double-xp"];
+		const events = db.guildInfo.get(message.guild.id, "events");
+
+		if (events.length < 1) return message.channel.send("Your guild does not have any events active at this time.");
 
 		if (!args[0]) {
 			return message.channel.send(`Specify an event to remove! Possible events are: ${events.join(", ")}`);
