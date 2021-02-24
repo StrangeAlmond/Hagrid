@@ -123,7 +123,8 @@ module.exports = {
 			reactionCollector.on("end", async () => {
 				embed = pages[page - 1];
 				embed.setFooter("This reaction menu has expired.");
-				await msg.edit(embed);
+				msg.edit(embed);
+				msg.reactions.removeAll().catch(console.error);
 			});
 
 		} else if (args[0] == "feed") {
