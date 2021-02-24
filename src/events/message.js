@@ -134,7 +134,7 @@ module.exports = async (bot, message) => {
     };
 
     const houses = ["slytherin", "gryffindor", "hufflepuff", "ravenclaw"];
-    const house = houses.find(h => message.member.roles.some(r => r.name.toLowerCase() == h));
+    const house = houses.find(h => message.member.roles.cache.some(r => r.name.toLowerCase() == h));
 
     if (house) {
       db.userInfo.inc(key, "stats.housePoints");
