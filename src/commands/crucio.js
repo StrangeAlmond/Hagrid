@@ -29,7 +29,7 @@ module.exports = {
 
 		return bot.functions.quickWebhook(channel, memberEmbed, {
 			username: "House Cup",
-			avatar: "./images/webhook_avatars/houseCup.png",
+			avatar: "../images/webhook_avatars/houseCup.png",
 			deleteAfterUse: true
 		});
 	},
