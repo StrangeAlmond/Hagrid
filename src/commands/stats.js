@@ -1,11 +1,12 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "stats",
 	description: "View your statistics.",
 	async execute(message, args, bot) {
 		const user = bot.functions.getUserFromMention(args[0], message.guild) || message.guild.members.cache.get(args[0]) || message.member;
-		const usersData = bot.userInfo.get(`${message.guild.id}-${user.id}`);
+		const usersData = db.userInfo.get(`${message.guild.id}-${user.id}`);
 
 		const stats = {
 			"Beans Eaten": "beansEaten",

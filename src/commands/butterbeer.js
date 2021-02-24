@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const moment = require("moment-timezone");
 
 module.exports = {
@@ -6,7 +7,7 @@ module.exports = {
 	description: "Give your fellow wizards a butterbeer.",
 	aliases: ["m"],
 	async execute(message, args, bot) {
-		const userData = bot.userInfo.get(message.author.key);
+		const userData = db.userInfo.get(message.author.key);
 		const lastButterbeer = userData.cooldowns.lastButterbeer;
 
 		if (!args[0]) {
@@ -31,8 +32,8 @@ module.exports = {
 		}
 
 		bot.functions.ensureUser(mUser, bot);
-		bot.userInfo.inc(`${message.guild.id}-${mUser.id}`, "stats.butterbeer");
-		bot.userInfo.set(message.author.key, moment.tz("America/Los_Angeles").format("l"), "cooldowns.lastButterbeer");
+		db.userInfo.inc(`${message.guild.id}-${mUser.id}`, "stats.butterbeer");
+		db.userInfo.set(message.author.key, moment.tz("America/Los_Angeles").format("l"), "cooldowns.lastButterbeer");
 
 		message.channel.send(`Congratulations ${mUser.displayName}! You have received a butterbeer from ${message.member.displayName}.`);
 	},

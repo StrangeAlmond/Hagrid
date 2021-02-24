@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const moment = require("moment-timezone");
 
 module.exports = {
@@ -43,12 +44,12 @@ module.exports = {
 				reason: reason
 			};
 
-			bot.userInfo.set(`${message.guild.id}-${userToMute.id}`, muteObject, "muteObject");
+			db.userInfo.set(`${message.guild.id}-${userToMute.id}`, muteObject, "muteObject");
 		}
 
-		bot.userInfo.inc(`${message.guild.id}-${userToMute.id}`, "stats.mutes");
+		db.userInfo.inc(`${message.guild.id}-${userToMute.id}`, "stats.mutes");
 
-		const timeObject = bot.functions.parseMs(bot.userInfo.get(`${message.guild.id}-${userToMute.id}`, "muteObject.unmuteTime") - Date.now(), true);
+		const timeObject = bot.functions.parseMs(db.userInfo.get(`${message.guild.id}-${userToMute.id}`, "muteObject.unmuteTime") - Date.now(), true);
 
 		const silencedRole = message.guild.roles.cache.find(r => r.name.toLowerCase() == "silenced");
 		userToMute.roles.add(silencedRole);

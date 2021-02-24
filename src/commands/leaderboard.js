@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "leaderboard",
@@ -6,7 +7,7 @@ module.exports = {
 	description: "View your server's leaderboard.",
 	async execute(message, args, bot) {
 		if (!args[0]) {
-			const guildInfo = bot.guildInfo.get(message.guild.id);
+			const guildInfo = db.guildInfo.get(message.guild.id);
 			const houses = Object.entries(guildInfo.housePoints).sort((a, b) => b[1] - a[1]);
 
 			const leaderboardEmbed = new Discord.MessageEmbed()
@@ -49,8 +50,8 @@ module.exports = {
 		const leaderboardName = leaderboardDetails[0];
 		const leaderboardKey = leaderboardDetails[1];
 
-		const users = bot.userInfo.array().filter(u => bot.userInfo.get(`${u.guild}-${u.user}`, leaderboardKey) != 0 && message.guild.members.cache.get(u.user));
-		const sortedUsers = users.sort((a, b) => bot.userInfo.get(`${b.guild}-${b.user}`, leaderboardKey) - bot.userInfo.get(`${a.guild}-${a.user}`, leaderboardKey));
+		const users = db.userInfo.array().filter(u => db.userInfo.get(`${u.guild}-${u.user}`, leaderboardKey) != 0 && message.guild.members.cache.get(u.user));
+		const sortedUsers = users.sort((a, b) => db.userInfo.get(`${b.guild}-${b.user}`, leaderboardKey) - db.userInfo.get(`${a.guild}-${a.user}`, leaderboardKey));
 		const leaderboard = sortedUsers.splice(0, 10);
 
 		const leaderboardEmbed = new Discord.MessageEmbed()
@@ -60,7 +61,7 @@ module.exports = {
 
 		for (const user of leaderboard) {
 			leaderboardEmbed.addField(message.guild.members.cache.get(user.user).displayName,
-				`${bot.userInfo.get(`${user.guild}-${user.user}`, leaderboardKey)} ${formatLeaderboardName(leaderboardName)}`);
+				`${db.userInfo.get(`${user.guild}-${user.user}`, leaderboardKey)} ${formatLeaderboardName(leaderboardName)}`);
 		}
 
 		message.channel.send(leaderboardEmbed);

@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "balance",
@@ -6,7 +7,7 @@ module.exports = {
 	aliases: ["bal"],
 	async execute(message, args, bot) {
 		const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
-		const memberData = bot.userInfo.get(`${message.guild.id}-${member.id}`);
+		const memberData = db.userInfo.get(`${message.guild.id}-${member.id}`);
 
 		const knuts = memberData.balance.knuts;
 		const sickles = memberData.balance.sickles;

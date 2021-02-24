@@ -1,3 +1,5 @@
+const db = require("../utils/db.js");
+
 module.exports = {
 	name: "add-event",
 	description: "Add an event to your server's list of active events.",
@@ -17,7 +19,7 @@ module.exports = {
 
 		const event = events.find(e => e == args[0]);
 
-		bot.guildInfo.push(message.guild.id, event, "events");
+		db.guildInfo.push(message.guild.id, event, "events");
 		message.channel.send(`Got it! I have added the ${event} event!`);
 	},
 };

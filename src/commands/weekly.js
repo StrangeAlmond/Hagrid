@@ -1,3 +1,4 @@
+const db = require("../utils/db.js");
 const moment = require("moment-timezone");
 
 module.exports = {
@@ -5,7 +6,7 @@ module.exports = {
 	description: "Claim your weekly chest.",
 	aliases: ["weeklychest"],
 	async execute(message, args, bot) {
-		const userData = bot.userInfo.get(message.author.key);
+		const userData = db.userInfo.get(message.author.key);
 
 		if (!userData.studiedSpells.includes("cistem aperio")) return;
 
@@ -35,12 +36,12 @@ module.exports = {
 		const galleons = galleonsObject[userData.year] || 0;
 
 		if (!userData.inventory.trainingTokens) {
-			bot.userInfo.set(message.author.key, 0, "inventory.trainingTokens");
+			db.userInfo.set(message.author.key, 0, "inventory.trainingTokens");
 		}
 
-		bot.userInfo.math(message.author.key, "+", galleons, "balance.galleons");
-		bot.userInfo.inc(message.author.key, "inventory.trainingTokens");
-		bot.userInfo.set(message.author.key, saturdayObject.valueOf(), "cooldowns.nextWeekly");
+		db.userInfo.math(message.author.key, "+", galleons, "balance.galleons");
+		db.userInfo.inc(message.author.key, "inventory.trainingTokens");
+		db.userInfo.set(message.author.key, saturdayObject.valueOf(), "cooldowns.nextWeekly");
 
 		bot.functions.quickWebhook(message.channel, `You have collected your ${galleons} weekly galleons and 1 training token.`, {
 			username: "Gringotts Goblin",

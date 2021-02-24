@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const badgesFile = require("../jsonFiles/badges.json");
 
 let authorMessageCollector;
@@ -67,8 +68,8 @@ module.exports = {
 			let authorDodgeChance = 0;
 			let toDuelDodgeChance = 0;
 
-			const authorYear = bot.userInfo.get(message.author.key, "year");
-			const toDuelYear = bot.userInfo.get(`${message.guild.id}-${toDuel.id}`, "year");
+			const authorYear = db.userInfo.get(message.author.key, "year");
+			const toDuelYear = db.userInfo.get(`${message.guild.id}-${toDuel.id}`, "year");
 
 			let authorDodged = false;
 			let toDuelDodged = false;
@@ -83,11 +84,11 @@ module.exports = {
 				authorDodgeChance = 0;
 			}
 
-			if (bot.userInfo.get(message.author.key, "stats.activeEffects").some(e => e.type == "luck")) {
+			if (db.userInfo.get(message.author.key, "stats.activeEffects").some(e => e.type == "luck")) {
 				authorDodgeChance = 100;
 			}
 
-			if (bot.userInfo.get(`${message.guild.id}-${toDuel.id}`, "stats.activeEffects").some(e => e.type == "luck")) {
+			if (db.userInfo.get(`${message.guild.id}-${toDuel.id}`, "stats.activeEffects").some(e => e.type == "luck")) {
 				toDuelDodgeChance = 100;
 			}
 
@@ -358,9 +359,9 @@ module.exports = {
 		async function giveBadge(user, badge) {
 			badge = badgesFile.find(b => b.name.toLowerCase() == badge).credential;
 
-			if (bot.userInfo.get(`${message.guild.id}-${user.id}`, "badges").includes(badge)) return;
+			if (db.userInfo.get(`${message.guild.id}-${user.id}`, "badges").includes(badge)) return;
 
-			bot.userInfo.push(`${message.guild.id}-${user.id}`, badge, "badges");
+			db.userInfo.push(`${message.guild.id}-${user.id}`, badge, "badges");
 			message.channel.send(`Congratulations ${user}, You've been awarded the ${badgesFile.find(b => b.credential == badge).name}`);
 		}
 
@@ -408,28 +409,28 @@ module.exports = {
 			authorMessageCollector.stop();
 			toDuelMessageCollector.stop();
 
-			bot.userInfo.inc(`${message.guild.id}-${duelWinner.id}`, "stats.duelsWon");
-			bot.userInfo.inc(`${message.guild.id}-${duelLoser.id}`, "stats.duelsLost");
+			db.userInfo.inc(`${message.guild.id}-${duelWinner.id}`, "stats.duelsWon");
+			db.userInfo.inc(`${message.guild.id}-${duelLoser.id}`, "stats.duelsLost");
 
-			bot.userInfo.math(`${message.guild.id}-${duelWinner.id}`, "+", 5, "xp");
+			db.userInfo.math(`${message.guild.id}-${duelWinner.id}`, "+", 5, "xp");
 
-			bot.userInfo.math(`${message.guild.id}-${duelLoser.id}`, "+", 3, "xp");
-			bot.userInfo.math(`${message.guild.id}-${duelLoser.id}`, "+", 3, "stats.lifetimeXp");
+			db.userInfo.math(`${message.guild.id}-${duelLoser.id}`, "+", 3, "xp");
+			db.userInfo.math(`${message.guild.id}-${duelLoser.id}`, "+", 3, "stats.lifetimeXp");
 
-			if (loserPoints <= 0 && !bot.userInfo.get(`${message.guild.id}-${duelWinner.id}`, "badges")
+			if (loserPoints <= 0 && !db.userInfo.get(`${message.guild.id}-${duelWinner.id}`, "badges")
 				.includes(badgesFile.find(b => b.name.toLowerCase() == "reflex badge").credential)) {
 				giveBadge(duelWinner, "reflex badge");
 			}
 
-			if (bot.userInfo.get(`${message.guild.id}-${duelWinner.id}`, "stats.duelsWon") == 50) {
+			if (db.userInfo.get(`${message.guild.id}-${duelWinner.id}`, "stats.duelsWon") == 50) {
 				giveBadge(duelWinner, "dueling veteran bronze badge");
 			}
 
-			if (bot.userInfo.get(`${message.guild.id}-${duelWinner.id}`, "stats.duelsWon") == 200) {
+			if (db.userInfo.get(`${message.guild.id}-${duelWinner.id}`, "stats.duelsWon") == 200) {
 				giveBadge(duelWinner, "dueling veteran silver badge");
 			}
 
-			if (bot.userInfo.get(`${message.guild.id}-${duelWinner.id}`, "stats.duelsWon") == 500) {
+			if (db.userInfo.get(`${message.guild.id}-${duelWinner.id}`, "stats.duelsWon") == 500) {
 				giveBadge(duelWinner, "dueling veteran gold badge");
 			}
 		}

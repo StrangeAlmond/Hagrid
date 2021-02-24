@@ -1,3 +1,4 @@
+const db = require("../utils/db.js");
 const functions = require("../utils/functions.js");
 const quickWebhook = require("../utils/quickWebhook.js");
 const botconfig = require("../botconfig.json");
@@ -26,18 +27,18 @@ module.exports = async bot => {
     bot.user.setActivity(statuses[Math.floor(Math.random() * statuses.length)]);
   }, 300000);
 
-  const usersInFight = bot.userInfo.array().filter(u => u.mazeInfo.inFight);
+  const usersInFight = db.userInfo.array().filter(u => u.mazeInfo.inFight);
   usersInFight.forEach(user => { // Takes users out of their fights from before the bot restarted
-    bot.userInfo.set(`${user.guild}-${user.user}`, false, "mazeInfo.inFight");
+    db.userInfo.set(`${user.guild}-${user.user}`, false, "mazeInfo.inFight");
   });
 
-  const faintedUsers = bot.userInfo.array().filter(u => u.stats.fainted);
+  const faintedUsers = db.userInfo.array().filter(u => u.stats.fainted);
   faintedUsers.forEach(user => { // Revives fainted users at midnight
     setTimeout(async () => {
-      if (!bot.userInfo.get(`${user.guild}-${user.user}`, "stats.fainted")) return;
+      if (!db.userInfo.get(`${user.guild}-${user.user}`, "stats.fainted")) return;
 
-      bot.userInfo.set(`${user.guild}-${user.user}`, false, "stats.fainted");
-      bot.userInfo.set(`${user.guild}-${user.user}`, 1, "stats.health");
+      db.userInfo.set(`${user.guild}-${user.user}`, false, "stats.fainted");
+      db.userInfo.set(`${user.guild}-${user.user}`, 1, "stats.health");
 
       const hospitalChannel = await bot.guilds.cache.get(user.guild).channels.cache.find(c => c.name.includes("hospital-wing"));
       const messages = await hospitalChannel.messages.fetch();
@@ -48,8 +49,8 @@ module.exports = async bot => {
   });
 
   setInterval(() => {
-    const guilds = bot.guildInfo.array();
-    const users = bot.userInfo.array();
+    const guilds = db.guildInfo.array();
+    const users = db.userInfo.array();
 
     guilds.forEach(guild => {
 
@@ -58,7 +59,7 @@ module.exports = async bot => {
 
         guild.scheduledTrainingSessions.splice(guild.scheduledTrainingSessions.findIndex(s =>
           s.id == trainingSession.id), 1);
-        bot.guildInfo.set(guild.guild, guild.scheduledTrainingSessions, "scheduledTrainingSessions");
+        db.guildInfo.set(guild.guild, guild.scheduledTrainingSessions, "scheduledTrainingSessions");
 
         const trainingChannel = bot.guilds.cache.get(guild.guild).channels.cache.find(c => c.name == "training-grounds");
         if (trainingChannel) {
@@ -77,7 +78,7 @@ module.exports = async bot => {
                 s.channel == triviaQuestion.channel && s.type == triviaQuestion.type), 1
             );
 
-            bot.guildInfo.set(guild.guild, guild.spawns, "spawns");
+            db.guildInfo.set(guild.guild, guild.spawns, "spawns");
             bot.functions.quickWebhook(channel, "This trivia question has expired.", triviaQuestion.webhookObject);
           }
         }
@@ -94,7 +95,7 @@ module.exports = async bot => {
           u.reminders.findIndex(r => r.reminder == reminder.reminder && r.time == reminder.time), 1
         );
 
-        bot.userInfo.set(`${u.guild}-${u.user}`, u.reminders, "reminders");
+        db.userInfo.set(`${u.guild}-${u.user}`, u.reminders, "reminders");
         user.send(reminder.reminder);
       }
     });
@@ -109,7 +110,7 @@ module.exports = async bot => {
           const u = guild.members.cache.get(user.user);
           u.roles.remove(role);
 
-          bot.userInfo.set(`${user.guild}-${user.user}`, null, "trainingTokenUse");
+          db.userInfo.set(`${user.guild}-${user.user}`, null, "trainingTokenUse");
         }
       }
     });
@@ -158,19 +159,19 @@ module.exports = async bot => {
             }
           }
         } else if (effect.type == "luck") {
-          bot.userInfo.set(`${user.guild}-${user.user}`, 0, "stats.luck");
+          db.userInfo.set(`${user.guild}-${user.user}`, 0, "stats.luck");
           bot.log("Removed a user's luck.", "info");
         } else if (effect.type == "strength") {
-          bot.userInfo.math(`${user.guild}-${user.user}`, "-", 2, "stats.defense");
+          db.userInfo.math(`${user.guild}-${user.user}`, "-", 2, "stats.defense");
           bot.log("Removed a users strength effect.", "info");
         } else if (effect.type == "exstimulo") {
-          bot.userInfo.math(`${user.guild}-${user.user}`, "-", 2, "stats.attack");
+          db.userInfo.math(`${user.guild}-${user.user}`, "-", 2, "stats.attack");
           bot.log("Removed a user's exstimulo potion effect.", "info");
         } else if (effect.type == "fire protection") {
           bot.log("Removed a user's fire protection effect.", "info");
         }
 
-        bot.userInfo.remove(`${user.guild}-${user.user}`, (e) => e.time == effect.time, "stats.activeEffects");
+        db.userInfo.remove(`${user.guild}-${user.user}`, (e) => e.time == effect.time, "stats.activeEffects");
       });
     });
 
@@ -187,8 +188,8 @@ module.exports = async bot => {
         if (guild) {
           const member = guild.members.cache.get(user.user);
           if (member) {
-            bot.userInfo.dec(`${user.guild}-${user.user}`, "stats.maxHealth");
-            bot.userInfo.set(`${user.guild}-${user.user}`, null, "stats.poisonedObject");
+            db.userInfo.dec(`${user.guild}-${user.user}`, "stats.maxHealth");
+            db.userInfo.set(`${user.guild}-${user.user}`, null, "stats.poisonedObject");
             bot.functions.fainted(member, `${member} has succumbed to the poison and is now unconscious! Can you help me revive them?`);
           }
         }

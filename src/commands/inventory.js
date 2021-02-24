@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const sm = require("string-similarity");
 
 module.exports = {
@@ -9,20 +10,20 @@ module.exports = {
 		if (args[0] && !message.mentions.members.first()) {
 			let item = bot.functions.toCamelCase(args.join(" "));
 
-			if (!bot.userInfo.has(message.author.key, `inventory.${item}`)) {
-				const possibleItems = Object.keys(bot.userInfo.get(message.author.key, "inventory"));
+			if (!db.userInfo.has(message.author.key, `inventory.${item}`)) {
+				const possibleItems = Object.keys(db.userInfo.get(message.author.key, "inventory"));
 				item = sm.findBestMatch(bot.functions.toCamelCase(args.join(" ")), possibleItems).bestMatch.target;
 			}
 
 			const itemEmbed = new Discord.MessageEmbed()
 				.setAuthor("Inventory Search", message.author.displayAvatarURL())
 				.setColor(message.member.displayHexColor)
-				.setDescription(`**${item.replace(/([A-Z])/g, " $1").replace(/^./, str => str.toUpperCase())}:** ${bot.userInfo.get(message.author.key, `inventory.${item}`)}`)
+				.setDescription(`**${item.replace(/([A-Z])/g, " $1").replace(/^./, str => str.toUpperCase())}:** ${db.userInfo.get(message.author.key, `inventory.${item}`)}`)
 				.setTimestamp();
 			message.channel.send(itemEmbed);
 		} else {
 			const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
-			const memberData = bot.userInfo.get(`${message.guild.id}-${member.id}`);
+			const memberData = db.userInfo.get(`${message.guild.id}-${member.id}`);
 
 			let usersInventoryMessage = Object
 				.entries(memberData.inventory) // Get all the entries from their inventory in a [key, value] format

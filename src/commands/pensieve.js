@@ -1,4 +1,5 @@
 const moment = require("moment-timezone");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "pensieve",
@@ -30,7 +31,7 @@ module.exports = {
 			time: timeObject.valueOf()
 		};
 
-		bot.userInfo.push(message.author.key, object, "reminders");
+		db.userInfo.push(message.author.key, object, "reminders");
 		message.channel.send(`Got it! I will remind you in **${time[0]} days, ${time[1]} hours, and ${time[2]} minutes** to **${reminder}**`);
 	},
 };

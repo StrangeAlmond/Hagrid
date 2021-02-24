@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "reset",
@@ -20,7 +21,7 @@ module.exports = {
 		}
 
 		const cooldownKey = `cooldowns.last${args[0].charAt(0).toUpperCase() + args[0].slice(1)}`;
-		bot.userInfo.set(`${message.guild.id}-${user.id}`, null, cooldownKey);
+		db.userInfo.set(`${message.guild.id}-${user.id}`, null, cooldownKey);
 		message.channel.send(`I have reset ${user.displayName}'s !${args[0]} cooldown!`)
 			.then(msg => msg.delete({ timeout: 5000 }) && message.delete({ timeout: 5000 }));
 	},

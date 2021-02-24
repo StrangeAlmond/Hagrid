@@ -1,3 +1,5 @@
+const db = require("../utils/db.js");
+
 module.exports = {
 	name: "priori",
 	description: "Display's the user's last spell.",
@@ -11,6 +13,6 @@ module.exports = {
 		if (!args[1]) return message.channel.send("❌ | Specify who you'd like to user this spell on!");
 		if (!spellUser) return message.channel.send("❌ | I couldn't find that user");
 
-		message.channel.send(`${spellUser}'s last spell was \`${bot.prefix}${bot.userInfo.get(`${message.guild.id}-${spellUser.id}`, "stats.lastSpell.name")} ${bot.userInfo.get(`${message.guild.id}-${spellUser.id}`, "stats.lastSpell.args").join(" ")}\``);
+		message.channel.send(`${spellUser}'s last spell was \`${bot.prefix}${db.userInfo.get(`${message.guild.id}-${spellUser.id}`, "stats.lastSpell.name")} ${db.userInfo.get(`${message.guild.id}-${spellUser.id}`, "stats.lastSpell.args").join(" ")}\``);
 	},
 };

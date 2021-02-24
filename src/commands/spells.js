@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const spellsFile = require("../jsonFiles/spells.json");
 
 module.exports = {
@@ -8,7 +9,7 @@ module.exports = {
 	async execute(message, args, bot) {
 		const user = bot.functions.getUserFromMention(args[0], message.guild) || message.guild.members.cache.get(args[0]) || message.member;
 
-		const learnedSpells = bot.userInfo.get(`${message.guild.id}-${user.id}`, "studiedSpells");
+		const learnedSpells = db.userInfo.get(`${message.guild.id}-${user.id}`, "studiedSpells");
 		const spells = learnedSpells
 			.sort()
 			.map(s => `**${bot.functions.capitalizeFirstLetter(s)}** (${spellsFile.find(spell => spell.spellName == s).name})`)

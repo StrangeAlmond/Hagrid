@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "remove-event",
@@ -17,7 +18,7 @@ module.exports = {
 		}
 
 		const event = events.find(e => e == args[0]);
-		bot.guildInfo.remove(message.guild.id, event, "events");
+		db.guildInfo.remove(message.guild.id, event, "events");
 		message.channel.send(`Got it! I have removed the ${event} event!`);
 	},
 };

@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const Enmap = require("enmap");
 const fs = require("fs");
 const logger = require("./utils/logger.js");
 const botconfig = require("./botconfig.json");
@@ -14,9 +13,6 @@ const bot = new Discord.Client({
 }); // Initiates a new discord client
 
 bot.blacklistedWords = require("./jsonFiles/blacklistedWords.json");
-
-bot.userInfo = new Enmap("users");
-bot.guildInfo = new Enmap("guilds");
 bot.commands = new Discord.Collection();
 
 githubWebook();
@@ -51,15 +47,17 @@ process.on("unhandledRejection", error =>
 
 let xpAlreadyUpdated = false;
 
+const db = require("./utils/db.js");
+
 // When a value is changed in the users database
-bot.userInfo.changed((key, oldValue, newValue) => {
+db.userInfo.changed((key, oldValue, newValue) => {
   if (!oldValue) return; // If there is no oldValue don't do anything
   if (newValue.stats.lastSpell.name == "buy") return; // If they're buying something ignore it
   if (xpAlreadyUpdated) return (xpAlreadyUpdated = false);
 
   if (newValue.balance.knuts > oldValue.balance.knuts) {
     // if they've been given knuts then add to their lifetime earnings
-    bot.userInfo.math(
+    db.userInfo.math(
       key,
       "+",
       newValue.balance.knuts - oldValue.balance.knuts,
@@ -67,7 +65,7 @@ bot.userInfo.changed((key, oldValue, newValue) => {
     );
   } else if (newValue.balance.sickles > oldValue.balance.sickles) {
     // Same but for sickles
-    bot.userInfo.math(
+    db.userInfo.math(
       key,
       "+",
       newValue.balance.sickles - oldValue.balance.sickles,
@@ -75,7 +73,7 @@ bot.userInfo.changed((key, oldValue, newValue) => {
     );
   } else if (newValue.balance.galleons > oldValue.balance.galleons) {
     // Same but for galleons
-    bot.userInfo.math(
+    db.userInfo.math(
       key,
       "+",
       newValue.balance.galleons - oldValue.balance.galleons,
@@ -87,17 +85,17 @@ bot.userInfo.changed((key, oldValue, newValue) => {
     // If they've been given xp
     newValue.stats.lifetimeXp += newValue.xp - oldValue.xp; // Update their lifetime XP
 
-    if (bot.guildInfo.get(newValue.guild, "events").includes("double-xp")) {
+    if (db.guildInfo.get(newValue.guild, "events").includes("double-xp")) {
       // If theres a double xp event then double the xp they've been given
       newValue.stats.lifetimeXp += newValue.xp - oldValue.xp;
       newValue.xp += newValue.xp - oldValue.xp;
 
       xpAlreadyUpdated = true;
-      bot.userInfo.set(`${newValue.guild}-${newValue.user}`, newValue.xp, "xp");
+      db.userInfo.set(`${newValue.guild}-${newValue.user}`, newValue.xp, "xp");
     }
 
     // Set their new XP
-    bot.userInfo.set(
+    db.userInfo.set(
       `${newValue.guild}-${newValue.user}`,
       newValue.stats.lifetimeXp,
       "stats.lifetimeXp"

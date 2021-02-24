@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const moment = require("moment-timezone");
 const TrainingSession = require("../classes/TrainingSession.js");
 const triviaQuestions = require("../jsonFiles/triviaQuestions.json");
@@ -21,7 +22,7 @@ module.exports = async (bot, message) => {
   const plainArgs = message.content.toLowerCase().split(/ +/);
 
   // Ensure the guild this message was sent in has an entry in the database
-  const guildData = bot.guildInfo.ensure(message.guild.id, {
+  const guildData = db.guildInfo.ensure(message.guild.id, {
     guild: message.guild.id,
     scheduledTrainingSessions: [],
     spawns: [],
@@ -37,7 +38,7 @@ module.exports = async (bot, message) => {
   const key = `${message.guild.id}-${message.author.id}`;
 
   const userData = bot.functions.ensureUser(message.member, bot);
-  bot.userInfo.set(key, Date.now(), "lastMsg");
+  db.userInfo.set(key, Date.now(), "lastMsg");
 
   if (!message.member.hasPermission("MANAGE_GUILD") && message.channel.name != "training-grounds") {
     if (!users[key]) users[key] = [];
@@ -66,7 +67,7 @@ module.exports = async (bot, message) => {
       deleteAfterUse: true
     }).then(msg => msg.delete({ timeout: 5000 }));
 
-    bot.userInfo.inc(key, "stats.profanityWarns");
+    db.userInfo.inc(key, "stats.profanityWarns");
 
     const logChannel = message.guild.channels.cache.find(c => c.name == "incidents");
     if (logChannel) {
@@ -77,7 +78,7 @@ module.exports = async (bot, message) => {
         .addField("Detected Word", bot.blacklistedWords.find(w => plainArgs.includes(w)), true)
         .addField("Message Content", message.content)
         .setColor("#DD889F")
-        .setFooter(`${message.member.displayName} has used profanity ${bot.userInfo.get(key, "stats.profanityWarns")} time(s).`)
+        .setFooter(`${message.member.displayName} has used profanity ${db.userInfo.get(key, "stats.profanityWarns")} time(s).`)
         .setTimestamp();
 
       bot.functions.quickWebhook(logChannel, logEmbed, {
@@ -95,11 +96,11 @@ module.exports = async (bot, message) => {
     const activeEffects = userData.stats.activeEffects;
 
     activeEffects.splice(activeEffects.findIndex(e => e.type == object.type), 1, object);
-    bot.userInfo.set(key, activeEffects, "stats.activeEffects");
+    db.userInfo.set(key, activeEffects, "stats.activeEffects");
 
     if (object.reactionsLeft <= 0) {
       activeEffects.splice(activeEffects.findIndex(e => e.type == object.type), 1);
-      bot.userInfo.set(key, activeEffects, "stats.activeEffects");
+      db.userInfo.set(key, activeEffects, "stats.activeEffects");
     }
 
     const turboFartsEmoji = bot.emojis.cache.find(e => e.name.toLowerCase() == "turbofarts");
@@ -136,9 +137,9 @@ module.exports = async (bot, message) => {
     const house = houses.find(h => message.member.roles.some(r => r.name.toLowerCase() == h));
 
     if (house) {
-      bot.userInfo.inc(key, "stats.housePoints");
-      bot.guildInfo.inc(message.guild.id, `housePoints.${house}`);
-      bot.guildInfo.remove(message.guild.id, (s) => s.channel == message.channel.id && s.type == "trivia", "spawns");
+      db.userInfo.inc(key, "stats.housePoints");
+      db.guildInfo.inc(message.guild.id, `housePoints.${house}`);
+      db.guildInfo.remove(message.guild.id, (s) => s.channel == message.channel.id && s.type == "trivia", "spawns");
 
       bot.functions.quickWebhook(message.channel, `Congratulations ${message.member}! You guessed the answer correctly! you and your house have gained 1 point.`, webhookObjects[house]);
     }
@@ -217,10 +218,10 @@ module.exports = async (bot, message) => {
 
     if (!(guildData.spawns.some(s => s.channel == object.channel) && object.type == "trivia")) {
       if (guildData.spawns.some(s => s.channel == object.channel)) {
-        bot.guildInfo.remove(message.guild.id, (s) => s.channel == object.channel, "spawns");
+        db.guildInfo.remove(message.guild.id, (s) => s.channel == object.channel, "spawns");
       }
 
-      bot.guildInfo.push(message.guild.id, object, "spawns");
+      db.guildInfo.push(message.guild.id, object, "spawns");
     }
   }
 
@@ -229,7 +230,7 @@ module.exports = async (bot, message) => {
     !spells.some(s => s.spell == message.content.toLowerCase()) && ![`${bot.prefix}u`, `${bot.prefix}d`, `${bot.prefix}l`, `${bot.prefix}d`].includes(plainArgs[0])) {
 
     if (!xpCooldown.has(key)) {
-      bot.userInfo.math(key, "+", xpAmount, "xp");
+      db.userInfo.math(key, "+", xpAmount, "xp");
       xpCooldown.add(key);
 
       setTimeout(() => {
@@ -268,19 +269,19 @@ module.exports = async (bot, message) => {
 
   // Ensure their knuts and sickles aren't above 29 and 17 respectively
   if (userData.balance.knuts >= 29) {
-    let knuts = bot.userInfo.get(key, "balance.knuts");
+    let knuts = db.userInfo.get(key, "balance.knuts");
     for (let i = 0; knuts >= 29; i++) {
-      bot.userInfo.math(key, "+", 1, "balance.sickles");
-      bot.userInfo.math(key, "-", 29, "balance.knuts");
+      db.userInfo.math(key, "+", 1, "balance.sickles");
+      db.userInfo.math(key, "-", 29, "balance.knuts");
       knuts -= 29;
     }
   }
 
   if (userData.balance.sickles >= 17) {
-    let sickles = bot.userInfo.get(key, "balance.sickles");
+    let sickles = db.userInfo.get(key, "balance.sickles");
     for (let i = 0; sickles >= 17; i++) {
-      bot.userInfo.math(key, "+", 1, "balance.galleons");
-      bot.userInfo.math(key, "-", 17, "balance.sickles");
+      db.userInfo.math(key, "+", 1, "balance.galleons");
+      db.userInfo.math(key, "-", 17, "balance.sickles");
       sickles -= 17;
     }
   }
@@ -292,7 +293,7 @@ module.exports = async (bot, message) => {
 
   command.args = args;
   message.author.key = `${message.guild.id}-${message.author.id}`;
-  bot.userInfo.set(key, { name: command.name, description: command.description }, "stats.lastSpell");
+  db.userInfo.set(key, { name: command.name, description: command.description }, "stats.lastSpell");
 
   command.execute(message, args, bot).catch(e => {
     bot.log(e.stack, "error");

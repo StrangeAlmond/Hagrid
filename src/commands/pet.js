@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const moment = require("moment-timezone");
 const badges = require("../jsonFiles/badges.json");
 const petImages = require("../jsonFiles/petImages.json");
@@ -8,7 +9,7 @@ module.exports = {
 	description: "View your pet, Feed your pet, or change your pet's name",
 	aliases: ["pets"],
 	async execute(message, args, bot) {
-		const userData = bot.userInfo.get(message.author.key);
+		const userData = db.userInfo.get(message.author.key);
 
 		const pets = userData.pets.filter(p => !p.retired);
 		const pet = pets[0];
@@ -22,7 +23,7 @@ module.exports = {
 
 		if (lastFeed && lastFeedObj.days >= 8 && pet.xp < 365) {
 			userData.pets.splice(userData.pets.findIndex(p => p.id == pet.id), 1);
-			bot.userInfo.set(message.author.key, userData.pets, "pets");
+			db.userInfo.set(message.author.key, userData.pets, "pets");
 			return message.channel.send(`Sorry ${message.author}, I'm gonna have to take yer ${pet.pet} away. Very disappointin' to see you neglect little ${pet.nickname} like that. When yer ready to care fer a pet again, you can go back to Diagon Alley and buy a new one.`);
 		}
 
@@ -30,7 +31,7 @@ module.exports = {
 			message.channel.send("Your pet has fainted after days of neglect!");
 			pet.fainted = true;
 			userData.pets.splice(userData.pets.findIndex(p => p.id == pet.id), 1, pet);
-			return bot.userInfo.set(message.author.key, userData.pets, "pets");
+			return db.userInfo.set(message.author.key, userData.pets, "pets");
 		}
 
 		if (!args[0]) {
@@ -64,7 +65,7 @@ module.exports = {
 					petHappiness = "Full";
 				}
 
-				if(p.xp >= 365) petHappiness = "Full";
+				if (p.xp >= 365) petHappiness = "Full";
 				if (p.fainted) petHappiness = "Fainted";
 
 				const embed = new Discord.MessageEmbed()
@@ -161,7 +162,7 @@ module.exports = {
 					const badge = badges.find(b => b.name.toLowerCase() == "care of magical creatures badge"); // Care of magical creatures badge
 
 					if (!userData.badges.includes(badge.credential)) {
-						bot.userInfo.push(message.author.key, badge.credential, "badges");
+						db.userInfo.push(message.author.key, badge.credential, "badges");
 						await message.channel.send(`${bot.emojis.get(badge.emojiId)} - Care of Magical Creatures badge earned!`);
 					}
 				}
@@ -170,7 +171,7 @@ module.exports = {
 			pet.lastFeed = moment.tz("America/Los_Angeles").format("l");
 
 			userData.pets.splice(userData.pets.findIndex(p => p.id == pet.id), 1, pet);
-			bot.userInfo.set(message.author.key, userData.pets, "pets");
+			db.userInfo.set(message.author.key, userData.pets, "pets");
 
 			message.channel.send("You have fed your pet!");
 		} else if (args[0] == "set-name") {
@@ -189,7 +190,7 @@ module.exports = {
 
 			pet.nickname = name;
 			userData.pets.splice(userData.pets.findIndex(p => p.id == pet.id), 1, pet);
-			bot.userInfo.set(message.author.key, userData.pets, "pets");
+			db.userInfo.set(message.author.key, userData.pets, "pets");
 
 			message.channel.send(`I have set your pets name to ${name}`);
 		}

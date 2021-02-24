@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "points",
@@ -38,10 +39,10 @@ module.exports = {
 		if (pointsToGive == 0) return errorMessage("You can't give 0 points!");
 
 		if (user) {
-			bot.userInfo.math(`${message.guild.id}-${user.id}`, "+", pointsToGive, "stats.housePoints");
+			db.userInfo.math(`${message.guild.id}-${user.id}`, "+", pointsToGive, "stats.housePoints");
 		}
 
-		bot.guildInfo.math(message.guild.id, "+", pointsToGive, `housePoints.${house}`);
+		db.guildInfo.math(message.guild.id, "+", pointsToGive, `housePoints.${house}`);
 
 		const embed = new Discord.MessageEmbed()
 			.setAuthor(`${pointsToGive} points ${points > 0 ? "To" : "From"} ${house.charAt(0).toUpperCase() + house.slice(1)} ${user ? `and ${user.displayName}` : ""}!`)

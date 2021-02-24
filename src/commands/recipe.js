@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const recipes = require("../jsonFiles/potions.json");
 
 module.exports = {
@@ -10,7 +11,7 @@ module.exports = {
 			avatar: "../images/webhook_avatars/severusSnape.jpg"
 		};
 
-		const userData = bot.userInfo.get(message.author.key);
+		const userData = db.userInfo.get(message.author.key);
 
 		if (!args[0]) {
 			const embeds = [];

@@ -1,7 +1,7 @@
+const db = require("../utils/db.js");
 const sm = require("string-similarity");
 const otherItems = ["balance.knuts", "balance.sickles", "balance.galleons", "stats.butterbeer", "xp"];
 const inventoryItems = require("../jsonFiles/inventoryItems.json").map(i => `inventory.${i}`);
-
 
 module.exports = {
 	name: "give",
@@ -34,11 +34,11 @@ module.exports = {
 
 		mentionedUsers.forEach(mentionedUser => {
 			bot.functions.ensureUser(mentionedUser, bot);
-			if (!bot.userInfo.has(`${message.guild.id}-${mentionedUser.id}`, item)) {
-				bot.userInfo.set(`${message.guild.id}-${mentionedUser.id}`, 0, item);
+			if (!db.userInfo.has(`${message.guild.id}-${mentionedUser.id}`, item)) {
+				db.userInfo.set(`${message.guild.id}-${mentionedUser.id}`, 0, item);
 			}
 
-			bot.userInfo.math(`${message.guild.id}-${mentionedUser.id}`, "+", amount, item);
+			db.userInfo.math(`${message.guild.id}-${mentionedUser.id}`, "+", amount, item);
 			usersMessage += `**${mentionedUser.displayName}** has received **${amount}** **${item.replace(/inventory./g, "").replace(/balance./g, "")}**.\n`;
 
 			if (usersMessage.length > 1900) {

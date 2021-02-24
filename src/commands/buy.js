@@ -1,4 +1,5 @@
 const items = require("../jsonFiles/shop.json");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "buy",
@@ -72,7 +73,7 @@ module.exports = {
 			bot.functions.quickWebhook(message.channel, webhookMessage, webhookOption);
 			message.member.roles.remove(shopRole).catch(e => console.error(e));
 		} else if ("apparition lessons".includes(args.join(" "))) {
-			const user = bot.userInfo.get(message.author.key);
+			const user = db.userInfo.get(message.author.key);
 			if (user.year < 6) return;
 
 			const apparitionRole = message.guild.roles.cache.find(r => r.name.toLowerCase() == "apparition");
@@ -82,13 +83,13 @@ module.exports = {
 				return message.channel.send("You need 12 galleons to buy apparition lessons!");
 			}
 
-			bot.userInfo.math(message.author.key, "-", 12, "balance.galleons");
+			db.userInfo.math(message.author.key, "-", 12, "balance.galleons");
 			message.member.roles.add(apparitionRole);
 			message.channel.send("You have studied apparition lessons for 12 galleons!");
 		} else {
 			if (!items[args[0]]) return message.channel.send("Invalid Item!");
 
-			const user = bot.userInfo.get(message.author.key);
+			const user = db.userInfo.get(message.author.key);
 
 			if (items[args[0]].name.toLowerCase().includes("cauldron")) {
 				if (user.balance.galleons < items[args[0]].price) {
@@ -101,9 +102,9 @@ module.exports = {
 
 				const price = parseInt(items[args[0]].price.split(/ +/)[0]);
 
-				bot.userInfo.math(message.author.key, "-", price, "balance.galleons");
-				bot.userInfo.set(message.author.key, items[args[0]].name.toLowerCase().split(/ +/)[0], "cauldron");
-				bot.userInfo.inc(message.author.key, "stats.purchases");
+				db.userInfo.math(message.author.key, "-", price, "balance.galleons");
+				db.userInfo.set(message.author.key, items[args[0]].name.toLowerCase().split(/ +/)[0], "cauldron");
+				db.userInfo.inc(message.author.key, "stats.purchases");
 
 				message.channel.send(`You have purchased a ${items[args[0]].name}`);
 				bot.log(`${message.member.displayName} purchased a ${items[args[0]].name}`, "info");
@@ -134,22 +135,22 @@ module.exports = {
 					return message.channel.send("You can't afford this item.");
 				}
 
-				for (let i = 0; price > bot.userInfo.get(message.author.key, "balance.knuts"); i++) {
-					if (bot.userInfo.get(message.author.key, "balance.sickles") <= 0 && bot.userInfo.get(message.author.key, "balance.galleons") > 0) {
-						bot.userInfo.math(message.author.key, "+", 17, "balance.sickles");
-						bot.userInfo.math(message.author.key, "-", 1, "balance.galleons");
+				for (let i = 0; price > db.userInfo.get(message.author.key, "balance.knuts"); i++) {
+					if (db.userInfo.get(message.author.key, "balance.sickles") <= 0 && db.userInfo.get(message.author.key, "balance.galleons") > 0) {
+						db.userInfo.math(message.author.key, "+", 17, "balance.sickles");
+						db.userInfo.math(message.author.key, "-", 1, "balance.galleons");
 					}
 
-					bot.userInfo.dec(message.author.key, "balance.sickles");
-					bot.userInfo.math(message.author.key, "+", 29, "balance.knuts");
+					db.userInfo.dec(message.author.key, "balance.sickles");
+					db.userInfo.math(message.author.key, "+", 29, "balance.knuts");
 				}
 
-				if (!bot.userInfo.has(message.author.key, `inventory.${items[args[0]].key}`)) {
-					bot.userInfo.set(message.author.key, 0, `inventory.${items[args[0]].key}`);
+				if (!db.userInfo.has(message.author.key, `inventory.${items[args[0]].key}`)) {
+					db.userInfo.set(message.author.key, 0, `inventory.${items[args[0]].key}`);
 				}
 
-				bot.userInfo.math(message.author.key, "-", price, "balance.knuts");
-				bot.userInfo.math(message.author.key, "+", amount, "stats.purchases");
+				db.userInfo.math(message.author.key, "-", price, "balance.knuts");
+				db.userInfo.math(message.author.key, "+", amount, "stats.purchases");
 
 				message.channel.send(`You have purchased ${amount} ${items[args[0]].name}(s)`);
 
@@ -161,7 +162,7 @@ module.exports = {
 				if (items[args[0]].id == "712") amount *= 5;
 				if (items[args[0]].id == "1000") amount *= 5;
 
-				bot.userInfo.math(message.author.key, "+", amount, `inventory.${items[args[0]].key}`);
+				db.userInfo.math(message.author.key, "+", amount, `inventory.${items[args[0]].key}`);
 				bot.log(`${message.member.displayName} purchased ${amount} ${items[args[0]].name}(s)`, "info");
 			} else if (items[args[0]].type == "pet") {
 				const pets = user.pets.filter(p => !p.retired);
@@ -185,7 +186,7 @@ module.exports = {
 					return message.channel.send("You can only purchase a tier 2 pet!");
 				}
 
-				if (bot.userInfo.get(message.author.key, "balance.galleons") < price) {
+				if (db.userInfo.get(message.author.key, "balance.galleons") < price) {
 					return message.channel.send("You can't afford this pet!");
 				}
 
@@ -207,9 +208,9 @@ module.exports = {
 				if (pet) pet.retired = true;
 				user.pets.push(object);
 
-				bot.userInfo.set(message.author.key, user.pets, "pets");
-				bot.userInfo.math(message.author.key, "-", price, "balance.galleons");
-				bot.userInfo.inc(message.author.key, "stats.purchases");
+				db.userInfo.set(message.author.key, user.pets, "pets");
+				db.userInfo.math(message.author.key, "-", price, "balance.galleons");
+				db.userInfo.inc(message.author.key, "stats.purchases");
 
 				message.channel.send(`Congratulations ${message.member.displayName}! You have purchased a ${petObject.name}! Make sure you use !pet feed every day to make sure your pet doesn't faint!`);
 				bot.log(`${message.member.displayName} purchased a ${items[args[0]].name}`, "info");

@@ -1,3 +1,5 @@
+const db = require("../utils/db.js");
+
 module.exports = {
 	name: "use",
 	description: "Use an item",
@@ -23,13 +25,13 @@ module.exports = {
 		];
 
 		const item = items.find(i => i.includes(args.join(" ")) || args.join(" ").includes(i));
-		const userData = bot.userInfo.get(message.author.key);
+		const userData = db.userInfo.get(message.author.key);
 
 		if (["714", "715", "wiggenweld potion"].includes(item)) {
 			if (userData.stats.fainted) return;
 
 			if (userData.stats.health < 0) {
-				bot.userInfo.set(message.author.key, 0, "stats.health");
+				db.userInfo.set(message.author.key, 0, "stats.health");
 				userData.stats.health = 0;
 			}
 
@@ -43,9 +45,9 @@ module.exports = {
 
 			const healthToGive = (userData.stats.health + 48) > userData.stats.maxHealth ? userData.stats.maxHealth - userData.stats.health : 48;
 
-			bot.userInfo.math(message.author.key, "+", healthToGive, "stats.health");
+			db.userInfo.math(message.author.key, "+", healthToGive, "stats.health");
 			userData.stats.health += healthToGive;
-			bot.userInfo.dec(message.author.key, "inventory.wiggenweldPotion");
+			db.userInfo.dec(message.author.key, "inventory.wiggenweldPotion");
 
 			message.channel.send(healthToGive == 48 ?
 				`+48 HP! You now have ${userData.stats.health}/${userData.stats.maxHealth} HP.` :
@@ -56,8 +58,8 @@ module.exports = {
 				return message.channel.send("You don't have any girding potions!");
 			}
 
-			bot.userInfo.dec(message.author.key, "inventory.girdingPotion");
-			bot.userInfo.inc(message.author.key, "stats.maxHealth");
+			db.userInfo.dec(message.author.key, "inventory.girdingPotion");
+			db.userInfo.inc(message.author.key, "stats.maxHealth");
 
 			message.channel.send("You have used one girding potion.");
 		} else if (item == "wideye potion") {
@@ -65,8 +67,8 @@ module.exports = {
 				return message.channel.send("You don't have any wideye potions!");
 			}
 
-			bot.userInfo.dec(message.author.key, "inventory.wideyePotion");
-			bot.userInfo.set(message.author.key, null, "cooldowns.lastStudy");
+			db.userInfo.dec(message.author.key, "inventory.wideyePotion");
+			db.userInfo.set(message.author.key, null, "cooldowns.lastStudy");
 
 			message.channel.send("You have used one wideye potion.");
 		} else if (item == "fire protection potion") {
@@ -83,8 +85,8 @@ module.exports = {
 				type: "fire protection"
 			};
 
-			bot.userInfo.dec(message.author.key, "inventory.fireProtectionPotion");
-			bot.userInfo.push(message.author.key, object, "stats.activeEffects");
+			db.userInfo.dec(message.author.key, "inventory.fireProtectionPotion");
+			db.userInfo.push(message.author.key, object, "stats.activeEffects");
 
 			message.channel.send("You have used one fire protection potion. This will expire in one hour!");
 		} else if (item == "strength potion") {
@@ -101,9 +103,9 @@ module.exports = {
 				type: "strength"
 			};
 
-			bot.userInfo.dec(message.author.key, "inventory.strengthPotion");
-			bot.userInfo.math(message.author.key, "+", 2, "stats.defense");
-			bot.userInfo.push(message.author.key, object, "stats.activeEffects");
+			db.userInfo.dec(message.author.key, "inventory.strengthPotion");
+			db.userInfo.math(message.author.key, "+", 2, "stats.defense");
+			db.userInfo.push(message.author.key, object, "stats.activeEffects");
 
 			message.channel.send("You have used one strength potion. This will expire in two hours!");
 		} else if (item == "exstimulo potion") {
@@ -120,9 +122,9 @@ module.exports = {
 				type: "exstimulo"
 			};
 
-			bot.userInfo.dec(message.author.key, "inventory.strengthPotion");
-			bot.userInfo.math(message.author.key, "+", 2, "stats.attack");
-			bot.userInfo.push(message.author.key, object, "stats.activeEffects");
+			db.userInfo.dec(message.author.key, "inventory.strengthPotion");
+			db.userInfo.math(message.author.key, "+", 2, "stats.attack");
+			db.userInfo.push(message.author.key, object, "stats.activeEffects");
 
 			message.channel.send("You have used one exstimulo potion. This will expire in two hours!");
 		} else if (item == "felix felicis") {
@@ -139,8 +141,8 @@ module.exports = {
 				type: "luck"
 			};
 
-			bot.userInfo.dec(message.author.key, "inventory.felixFelicis");
-			bot.userInfo.push(message.author.key, object, "stats.activeEffects");
+			db.userInfo.dec(message.author.key, "inventory.felixFelicis");
+			db.userInfo.push(message.author.key, object, "stats.activeEffects");
 
 			message.channel.send("You have used one felix felicis potion. This will expire in one hour!");
 		} else if (item == "wit-sharpening potion") {
@@ -148,8 +150,8 @@ module.exports = {
 				return message.channel.send("You don't have any wit-sharpening potions!");
 			}
 
-			bot.userInfo.math(message.author.key, "+", 1000, "xp");
-			bot.userInfo.dec(message.author.key, "inventory.wit-sharpeningPotion");
+			db.userInfo.math(message.author.key, "+", 1000, "xp");
+			db.userInfo.dec(message.author.key, "inventory.wit-sharpeningPotion");
 
 			message.channel.send("You have used one wit-sharpening potion.");
 		} else if (item == "training token") {
@@ -170,8 +172,8 @@ module.exports = {
 
 			message.member.roles.add(role);
 
-			bot.userInfo.dec(message.author.key, "inventory.trainingTokens");
-			bot.userInfo.set(message.author.key, Date.now(), "trainingTokenUse");
+			db.userInfo.dec(message.author.key, "inventory.trainingTokens");
+			db.userInfo.set(message.author.key, Date.now(), "trainingTokenUse");
 
 			message.channel.send("You have used one training token. This will expire in one hour!").then(m => {
 				m.delete({ timeout: 5000 });
@@ -186,7 +188,7 @@ module.exports = {
 			const mentionedUser = bot.functions.getUserFromMention(args[3], message.guild) || message.guild.members.cache.get(args[3]);
 			if (!mentionedUser) return message.channel.send("Specify the user use maximum turbo farts on!");
 
-			const mentionedUserData = bot.userInfo.get(`${message.guild.id}-${mentionedUser.id}`);
+			const mentionedUserData = db.userInfo.get(`${message.guild.id}-${mentionedUser.id}`);
 
 			const object = {
 				time: Date.now(),
@@ -196,11 +198,11 @@ module.exports = {
 
 			if (mentionedUserData.stats.activeEffects.find(i => i.reactionsLeft > 0)) {
 				object.reactionsLeft += mentionedUserData.stats.activeEffects.find(i => i.reactionsLeft > 0).reactionsLeft;
-				bot.userInfo.remove(`${message.guild.id}-${mentionedUser.id}`, (i) => i.reactionsLeft > 0, "stats.activeEffects");
+				db.userInfo.remove(`${message.guild.id}-${mentionedUser.id}`, (i) => i.reactionsLeft > 0, "stats.activeEffects");
 			}
 
-			bot.userInfo.dec(message.author.key, "inventory.maximumTurboFarts");
-			bot.userInfo.push(`${message.guild.id}-${mentionedUser.id}`, object, "stats.activeEffects");
+			db.userInfo.dec(message.author.key, "inventory.maximumTurboFarts");
+			db.userInfo.push(`${message.guild.id}-${mentionedUser.id}`, object, "stats.activeEffects");
 
 			message.delete();
 			message.author.send(`You have used a maximum turbo farts potion on ${mentionedUser.displayName}`);
@@ -210,7 +212,7 @@ module.exports = {
 			}
 
 			const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
-			const userObject = bot.userInfo.get(`${message.guild.id}-${user.id}`);
+			const userObject = db.userInfo.get(`${message.guild.id}-${user.id}`);
 
 			const pets = userObject.pets.filter(p => !p.retired);
 			const pet = pets[0];
@@ -219,14 +221,14 @@ module.exports = {
 				return message.channel.send(`${user.id == message.author.id ? "You don't " : `${user.displayName} does not `} have a pet to revive!`);
 			}
 
-			bot.userInfo.dec(message.author.key, "inventory.vialOfStinksap");
+			db.userInfo.dec(message.author.key, "inventory.vialOfStinksap");
 
 			pet.lastFeed = null;
 			pet.fainted = false;
 
 			userObject.pets.splice(userObject.pets.findIndex(p => p.id == pet.id), 1, pet);
 
-			bot.userInfo.set(`${message.guild.id}-${user.id}`, userObject.pets, "pets");
+			db.userInfo.set(`${message.guild.id}-${user.id}`, userObject.pets, "pets");
 
 			message.channel.send(`You have revived ${user.id == message.author.id ? "your pet" : `${user.displayName}'s pet`}.`);
 		} else if (item == "floo powder") {
@@ -242,8 +244,8 @@ module.exports = {
 				type: "floo powder"
 			};
 
-			bot.userInfo.dec(message.author.key, "inventory.flooPowder");
-			bot.userInfo.push(message.author.key, object, "stats.activeEffects");
+			db.userInfo.dec(message.author.key, "inventory.flooPowder");
+			db.userInfo.push(message.author.key, object, "stats.activeEffects");
 			message.channel.send("You have used floo powder and now have access to Knockturn Alley. Your access will expire in one hour.");
 		}
 

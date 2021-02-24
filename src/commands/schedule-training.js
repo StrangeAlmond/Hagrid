@@ -1,3 +1,4 @@
+const db = require("../utils/db.js");
 const beasts = require("../jsonFiles/training_sessions/beasts.json");
 const moment = require("moment-timezone");
 
@@ -9,12 +10,12 @@ module.exports = {
     if (![bot.ownerId, "137269251361865728"].includes(message.author.id)) return;
 
     if (args[0] == "list") {
-      const scheduledTrainingSessions = bot.guildInfo.get(message.guild.id, "scheduledTrainingSessions");
+      const scheduledTrainingSessions = db.guildInfo.get(message.guild.id, "scheduledTrainingSessions");
       const list = scheduledTrainingSessions
         .sort((a, b) => a.time - b.time)
         .map(ts => `**${scheduledTrainingSessions.findIndex(s => s.time == ts.time) + 1}.** ${moment.tz(ts.time, bot.timezone).format("llll")} - ${ts.filter ?
-					bot.functions.capitalizeFirstLetter(ts.filter) :
-					"No Filter"}`)
+          bot.functions.capitalizeFirstLetter(ts.filter) :
+          "No Filter"}`)
         .join("\n");
 
       return message.channel.send(list);
@@ -22,12 +23,12 @@ module.exports = {
       const toRemove = parseInt(args[1]);
       if (isNaN(toRemove)) return message.channel.send("Invalid training session!");
 
-      const scheduledTrainingSessions = bot.guildInfo.get(message.guild.id, "scheduledTrainingSessions");
+      const scheduledTrainingSessions = db.guildInfo.get(message.guild.id, "scheduledTrainingSessions");
 
       if (!scheduledTrainingSessions[toRemove - 1]) return message.channel.send("Invalid training session!");
       scheduledTrainingSessions.splice(toRemove - 1, 1);
 
-      bot.guildInfo.set(message.guild.id, scheduledTrainingSessions, "scheduledTrainingSessions");
+      db.guildInfo.set(message.guild.id, scheduledTrainingSessions, "scheduledTrainingSessions");
       return message.channel.send("This training session has been removed.");
     }
 
@@ -63,7 +64,7 @@ module.exports = {
       object.filter = filter;
     }
 
-    bot.guildInfo.push(message.guild.id, object, "scheduledTrainingSessions");
+    db.guildInfo.push(message.guild.id, object, "scheduledTrainingSessions");
 
     message.channel.send(`Got it! I have scheduled a training session for ${timeObject.format("dddd, MMMM Do YYYY, h:mm:ss a")}`);
   },

@@ -1,4 +1,5 @@
 const moment = require("moment-timezone");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "carpe",
@@ -8,7 +9,7 @@ module.exports = {
 
 		if (!bot.functions.isMazeChannel(message.channel.name, message.member)) return;
 
-		const user = bot.userInfo.get(message.author.key);
+		const user = db.userInfo.get(message.author.key);
 		const today = moment.tz("America/Los_Angeles").format("l");
 
 		if (!user.studiedSpells.includes("carpe retractum")) {
@@ -21,22 +22,22 @@ module.exports = {
 		}
 
 		if (today != user.mazeInfo.lastForage) {
-			bot.userInfo.set(message.author.key, 100, "mazeInfo.dailyForagesLeft");
-			bot.userInfo.set(message.author.key, today, "mazeInfo.lastForage");
+			db.userInfo.set(message.author.key, 100, "mazeInfo.dailyForagesLeft");
+			db.userInfo.set(message.author.key, today, "mazeInfo.lastForage");
 		}
 
 		const chanceNumber = Math.random() * 100;
 		const failResponses = ["They don't seem to be biting right now. Better keep at it.", "Waving your wand around like it's an actual fishing pole probably isn't helping.", "You catch a Flying Seahorse, but you stop to celebrate and it flies away.", "You catch a Flying Seahorse but a bear takes it out of your bag and runs off."];
 		const successResponses = ["Nice one! You caught a Flying Seahorse and put it in your bag.", "After hours and hours of fishing you start to become frustrated when a Flying Seahorse jumps into your bag!"];
 
-		bot.userInfo.dec(message.author.key, "mazeInfo.dailyForagesLeft");
-		bot.userInfo.inc(message.author.key, "stats.forages");
+		db.userInfo.dec(message.author.key, "mazeInfo.dailyForagesLeft");
+		db.userInfo.inc(message.author.key, "stats.forages");
 
 		if (chanceNumber <= 10) {
 			message.reply(successResponses[Math.floor(Math.random() * successResponses.length)]);
 
-			if (!bot.userInfo.has(message.author.key, "inventory.flyingSeahorses")) bot.userInfo.set(message.author.key, 0, "inventory.flyingSeahorses");
-			bot.userInfo.inc(message.author.key, "inventory.flyingSeahorses");
+			if (!db.userInfo.has(message.author.key, "inventory.flyingSeahorses")) db.userInfo.set(message.author.key, 0, "inventory.flyingSeahorses");
+			db.userInfo.inc(message.author.key, "inventory.flyingSeahorses");
 		} else {
 			message.channel.send(failResponses[Math.floor(Math.random() * failResponses.length)]);
 		}

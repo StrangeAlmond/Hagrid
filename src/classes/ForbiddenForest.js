@@ -1,4 +1,5 @@
 const fs = require("fs");
+const db = require("../utils/db.js");
 const Discord = require("discord.js");
 const encountersFile = require("../jsonFiles/forbidden_forest/encounters.json");
 const ambushesFile = require("../jsonFiles/forbidden_forest/ambushes.json");
@@ -51,8 +52,8 @@ class ForbiddenForest {
 		this.lastPos = this.curPos;
 		this.curPos = newPos;
 
-		this.bot.userInfo.set(this.dbKey, this.lastPos, "mazeInfo.lastPos");
-		this.bot.userInfo.set(this.dbKey, this.curPos, "mazeInfo.curPos");
+		db.userInfo.set(this.dbKey, this.lastPos, "mazeInfo.lastPos");
+		db.userInfo.set(this.dbKey, this.curPos, "mazeInfo.curPos");
 	}
 
 	sendCurPosition() {
@@ -69,7 +70,7 @@ class ForbiddenForest {
 		this.setPos(parseFloat(firstLevelPos));
 		this.level = "level1";
 
-		this.bot.userInfo.set(this.dbKey, "level1", "mazeInfo.curMaze");
+		db.userInfo.set(this.dbKey, "level1", "mazeInfo.curMaze");
 	}
 
 	setLevelTwo() {
@@ -77,7 +78,7 @@ class ForbiddenForest {
 		this.setPos(parseFloat(secondLevelPos));
 		this.level = "level2";
 
-		this.bot.userInfo.set(this.dbKey, "level2", "mazeInfo.curMaze");
+		db.userInfo.set(this.dbKey, "level2", "mazeInfo.curMaze");
 	}
 
 	moveUp() {
@@ -122,7 +123,7 @@ class ForbiddenForest {
 			const newLocations = possibleEncounters.map(e => e.tiles[Math.floor(Math.random() * e.tiles.length)]); // Create an array of new locations
 
 			this.encounterLocations = newLocations;
-			this.bot.userInfo.set(this.dbKey, newLocations, "mazeInfo.encounterPositions");
+			db.userInfo.set(this.dbKey, newLocations, "mazeInfo.encounterPositions");
 		}
 
 		if (this.ambushLocations.some(l => !tiles.some(t => t.includes(l))) || this.ambushLocations.length <= 0) {
@@ -136,7 +137,7 @@ class ForbiddenForest {
 			const newLocations = possibleAmbushes.map(e => e.tiles[Math.floor(Math.random() * e.tiles.length)]);
 
 			this.ambushLocations = newLocations;
-			this.bot.userInfo.set(this.dbKey, newLocations, "mazeInfo.ambushPositions");
+			db.userInfo.set(this.dbKey, newLocations, "mazeInfo.ambushPositions");
 		}
 
 		if (this.itemLocations.some(l => !tiles.some(t => t.includes(l))) || this.itemLocations.length <= 0) {
@@ -150,7 +151,7 @@ class ForbiddenForest {
 			const newLocations = possibleItems.map(e => e.tiles[Math.floor(Math.random() * e.tiles.length)]);
 
 			this.itemLocations = newLocations;
-			this.bot.userInfo.set(this.dbKey, newLocations, "mazeInfo.itemPositions");
+			db.userInfo.set(this.dbKey, newLocations, "mazeInfo.itemPositions");
 		}
 	}
 
@@ -158,7 +159,7 @@ class ForbiddenForest {
 		const ambushInfo = ambushesFile.find(a => a.tiles.includes(this.curPos)); // Gets the ambush info from the ambush file
 		if (!ambushInfo) return this.sendCurPosition(); // Invalid ambush location
 
-		const userData = this.bot.userInfo.get(this.dbKey);
+		const userData = db.userInfo.get(this.dbKey);
 
 		if (ambushInfo.ambushType == "poison") {
 			if (userData.stats.poisonedObject) return this.sendCurPosition(); // They've already been poisoned.
@@ -187,7 +188,7 @@ class ForbiddenForest {
 
 			// Replace the current tile with the new tile
 			this.ambushLocations.splice(this.ambushLocations.indexOf(this.curPos), 1, newTile);
-			this.bot.userInfo.set(this.dbKey, this.ambushLocations, "mazeInfo.ambushPositions");
+			db.userInfo.set(this.dbKey, this.ambushLocations, "mazeInfo.ambushPositions");
 
 			this.bot.log(`${ambushInfo.name} relocated to forbidden forest tile ${newTile}`);
 		}
@@ -199,9 +200,9 @@ class ForbiddenForest {
 		const encounterInfo = encountersFile.find(e => e.tiles.includes(this.curPos));
 		if (!encounterInfo) return;
 
-		this.bot.userInfo.set(this.dbKey, true, "mazeInfo.inFight");
+		db.userInfo.set(this.dbKey, true, "mazeInfo.inFight");
 
-		let userData = this.bot.userInfo.get(this.dbKey);
+		let userData = db.userInfo.get(this.dbKey);
 
 		const attachment = new Discord.MessageAttachment(this.activeTilesFormat + `Forest_${this.curPos}.png`, "map.png");
 		await this.channel.send(attachment);
@@ -220,18 +221,18 @@ class ForbiddenForest {
 				this.encounterMessageCollector = null;
 
 				this.setPos(parseFloat(this.lastPos));
-				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+				db.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
 				this.bot.log(`${this.member.displayName} was attacked by their encounter`, "info");
 				const damageByEncounter = userData.stats.defense < encounterInfo.attack ? encounterInfo.attack - userData.stats.defense : 0;
 
 				userData.stats.health -= damageByEncounter;
-				this.bot.userInfo.set(this.dbKey, userData.stats.health, "stats.health");
+				db.userInfo.set(this.dbKey, userData.stats.health, "stats.health");
 
 				if (userData.stats.health <= 0) {
 					if (userData.inventory.resurrectionStone > 0 && (Date.now() - userData.cooldowns.lastResurrectionStoneUse) >= 3600000) {
 						userData.stats.health += damageByEncounter;
-						this.bot.userInfo.set(this.dbKey, userData.stats.health, "stats.health");
+						db.userInfo.set(this.dbKey, userData.stats.health, "stats.health");
 						return this.bot.useResurrectionStone(this.webhook, this.bot.guilds.get(this.guildId), this.member);
 					}
 
@@ -246,7 +247,7 @@ class ForbiddenForest {
 				return this.channel.send("You have retreated back to your original position.");
 			}
 
-			userData = this.bot.userInfo.get(this.dbKey);
+			userData = db.userInfo.get(this.dbKey);
 
 			const chance = Math.random() * 100;
 
@@ -255,17 +256,17 @@ class ForbiddenForest {
 				const damageByEncounter = userData.stats.defense < encounterInfo.attack ? encounterInfo.attack - userData.stats.defense : 0;
 
 				userData.stats.health -= damageByEncounter;
-				this.bot.userInfo.set(this.dbKey, userData.stats.health, "stats.health");
+				db.userInfo.set(this.dbKey, userData.stats.health, "stats.health");
 
 				if (userData.stats.health <= 0) {
 					if (userData.inventory.resurrectionStone > 0 && (Date.now() - userData.cooldowns.lastResurrectionStoneUse) >= 3600000) {
 						userData.stats.health += damageByEncounter;
-						this.bot.userInfo.set(this.dbKey, userData.stats.health, "stats.health");
+						db.userInfo.set(this.dbKey, userData.stats.health, "stats.health");
 						return this.bot.useResurrectionStone(this.webhook, this.bot.guilds.get(this.guildId), this.member);
 					}
 
 					this.channel.send("You have fainted!");
-					this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+					db.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 					return this.bot.functions.fainted(this.member,
 						`${this.member} has fainted from a ${encounterInfo.name} attack! Would you like to use a revive potion to heal them faster?`,
 						this.bot);
@@ -283,8 +284,8 @@ class ForbiddenForest {
 				this.encounterMessageCollector.stop();
 				this.encounterMessageCollector = null;
 
-				this.bot.userInfo.math(this.dbKey, "+", encounterInfo.health, "xp");
-				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+				db.userInfo.math(this.dbKey, "+", encounterInfo.health, "xp");
+				db.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
 				this.channel.send(`You scared off the ${encounterInfo.name} and got ${encounterInfo.health} XP!`);
 
@@ -292,8 +293,8 @@ class ForbiddenForest {
 				const newTile = encounterTiles[Math.floor(Math.random() * encounterTiles.length)];
 
 				this.encounterLocations.splice(this.encounterLocations.indexOf(this.curPos), 1, newTile);
-				this.bot.userInfo.set(this.dbKey, this.encounterLocations, "mazeInfo.encounterPositions");
-				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+				db.userInfo.set(this.dbKey, this.encounterLocations, "mazeInfo.encounterPositions");
+				db.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
 				return this.bot.log(`${encounterInfo.name} relocated to forbidden forest tile ${newTile}`);
 			}
@@ -305,7 +306,7 @@ class ForbiddenForest {
 	}
 
 	async centaurEncounter() {
-		const userData = this.bot.userInfo.get(this.dbKey);
+		const userData = db.userInfo.get(this.dbKey);
 		const levelTwoUnlockedMessage = "Level two unlocked.";
 
 		if (userData.inventory.invisibilityCloak > 0) {
@@ -317,7 +318,7 @@ class ForbiddenForest {
 			return this.sendCurPosition();
 		}
 
-		this.bot.userInfo.set(this.dbKey, true, "mazeInfo.inFight");
+		db.userInfo.set(this.dbKey, true, "mazeInfo.inFight");
 
 		await this.bot.functions.quickWebhook(this.channel, "Halt! What makes you think you can wander around my forest?", centaurWebhookInfo);
 
@@ -347,14 +348,14 @@ class ForbiddenForest {
 
 				if (!userData.inventory.mallowsweet || userData.inventory.mallowsweet < 1) {
 					this.bot.log(`${this.member.displayName} tried to trick the centaur.`, "info");
-					this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+					db.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 					return this.bot.functions.quickWebhook(this.channel, "Are you trying to trick me? I hope you're aware that tricking a centaur is never a good choice.", centaurWebhookInfo);
 				}
 
-				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+				db.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
 				userData.inventory.mallowsweet--;
-				this.bot.userInfo.dec(this.dbKey, "inventory.mallowsweet");
+				db.userInfo.dec(this.dbKey, "inventory.mallowsweet");
 
 				await this.bot.functions.quickWebhook(this.channel, "Thank you human, good luck in your adventures.", {
 					username: "Centaur",
@@ -374,7 +375,7 @@ class ForbiddenForest {
 			} else if (secondResponse.content == "2") {
 				this.bot.log(`${this.member.displayName} decided not to give the centaur any mallowsweet`);
 
-				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+				db.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
 				// Set their curPos to tile to the left of the centaur
 				this.setPos(parseFloat(this.lastPos));
@@ -389,13 +390,13 @@ class ForbiddenForest {
 			await this.bot.functions.quickWebhook(this.channel, "Silly little human. Don't try that again.", centaurWebhookInfo);
 
 			userData.stats.health -= 20;
-			this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
-			this.bot.userInfo.set(this.dbKey, userData.stats.health, "stats.health");
+			db.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+			db.userInfo.set(this.dbKey, userData.stats.health, "stats.health");
 
 			if (userData.stats.health <= 0) {
 				// If they have a resurrection stone
 				if (userData.inventory.resurrectionStone > 0 && (Date.now - userData.cooldowns.lastResurrectionStoneUse) > 3600000) {
-					this.bot.userInfo.math(this.dbKey, "+", 20, "stats.health");
+					db.userInfo.math(this.dbKey, "+", 20, "stats.health");
 					return this.bot.useResurrectionStone(this.webhook, this.bot.guilds.get(this.guildId), this.member);
 				}
 
@@ -409,7 +410,7 @@ class ForbiddenForest {
 		} else if (firstResponse.content == "3") {
 			this.bot.log(`${this.member.displayName} retreated from the centaur`, "info");
 
-			this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+			db.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
 			// Set their curPos to tile to the left of the centaur
 			this.setPos(parseFloat(this.lastPos));
@@ -421,8 +422,8 @@ class ForbiddenForest {
 	async darkWizardEncounter() {
 		this.bot.log(`${this.member.displayName} encounters the dark wizard`, "info");
 
-		this.bot.userInfo.set(this.dbKey, true, "mazeInfo.inFight");
-		const userData = this.bot.userInfo.get(this.dbKey);
+		db.userInfo.set(this.dbKey, true, "mazeInfo.inFight");
+		const userData = db.userInfo.get(this.dbKey);
 
 		const darkWizardAttachment = new Discord.MessageAttachment(`../images/forbidden_forest/${this.level}/Active/Forest_${this.curPos}.png`, "map.png");
 		await this.channel.send(darkWizardAttachment);
@@ -439,7 +440,7 @@ class ForbiddenForest {
 		if (response == "1") { // Flee
 			this.bot.log(`${this.member.displayName} ignores the dark wizard`, "info");
 
-			this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+			db.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
 			const chance = Math.random() * 100;
 
@@ -454,14 +455,14 @@ class ForbiddenForest {
 				this.channel.send("You ignore the dark wizard. He attacks you and takes an item from your bag.");
 
 				// Possible items that could be taken away
-				const possibleItems = Object.keys(darkWizardItems).filter(i => this.bot.userInfo.get(this.dbKey, `inventory.${i}`) >= 0);
+				const possibleItems = Object.keys(darkWizardItems).filter(i => db.userInfo.get(this.dbKey, `inventory.${i}`) >= 0);
 				// Item that will be taken away
 				const item = possibleItems[Math.floor(Math.random() * possibleItems.length)];
 
 				// If that item is undefined don't take away the item
 				if (!item) return;
 				// Decrease their amount of that item by 1
-				this.bot.userInfo.dec(this.dbKey, `inventory.${item}`);
+				db.userInfo.dec(this.dbKey, `inventory.${item}`);
 			}
 		} else if (response == "2") { // Buy an item
 			this.bot.log(`${this.member.displayName} is buying an item from the dark wizard`, "info");
@@ -470,7 +471,7 @@ class ForbiddenForest {
 			setTimeout(() => {
 				// Move the user to the left
 				this.moveLeft();
-				this.bot.userInfo.set(this.dbKey, this.curPos, "mazeInfo.curPos");
+				db.userInfo.set(this.dbKey, this.curPos, "mazeInfo.curPos");
 
 				// Create an attachment for that area
 				const attachment = new Discord.MessageAttachment(`../images/forbidden_forest/${this.level}/Active/Forest_${this.curPos}.png`, "map.png");
@@ -497,7 +498,7 @@ class ForbiddenForest {
 			if (buyResponse.content == `${this.bot.prefix}nevermind`) {
 				this.bot.log(`${this.member.displayName} changed their mind.`, "info");
 
-				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+				db.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
 				// Chance for the dark wizard to attack the user
 				const chance = Math.random() * 100;
@@ -517,7 +518,7 @@ class ForbiddenForest {
 
 					// Possible items that can decreased
 					const possibleItems = Object.keys(darkWizardItems)
-						.filter(i => this.bot.userInfo.has(this.member.id, `inventory.${i}`) && this.bot.userInfo.get(this.member.id, `inventory.${i}`) > 0);
+						.filter(i => db.userInfo.has(this.member.id, `inventory.${i}`) && db.userInfo.get(this.member.id, `inventory.${i}`) > 0);
 
 					// Item that will be taken away
 					const item = possibleItems[Math.floor(Math.random() * possibleItems.length)];
@@ -525,7 +526,7 @@ class ForbiddenForest {
 					if (!item) return;
 
 					// Decrease the amount of that item
-					this.bot.userInfo.dec(this.member.id, `inventory.${item}`);
+					db.userInfo.dec(this.member.id, `inventory.${item}`);
 				}
 			} else {
 				// Args given
@@ -557,25 +558,25 @@ class ForbiddenForest {
 				if ((userData.balance.sickles * 29) + (userData.balance.galleons * 493) + userData.balance.knuts < price) return this.channel.send("You can't afford this item.");
 
 				// Ensure they have the item key in their inventory object
-				if (!this.bot.userInfo.has(this.dbKey, `inventory.${item}`)) this.bot.userInfo.set(this.dbKey, 0, `inventory.${item}`);
+				if (!db.userInfo.has(this.dbKey, `inventory.${item}`)) db.userInfo.set(this.dbKey, 0, `inventory.${item}`);
 
 				// Convert their money to knuts until they have enough to cover the cost of the item
-				for (let i = 0; this.bot.userInfo.get(this.dbKey, "balance.knuts") < price; i++) {
-					if (this.bot.userInfo.get(this.dbKey, "balance.sickles") <= 0 && this.bot.userInfo.get(this.dbKey, "balance.galleons") > 0) {
-						this.bot.userInfo.math(this.dbKey, "+", 17, "balance.sickles");
-						this.bot.userInfo.math(this.dbKey, "-", 1, "balance.galleons");
+				for (let i = 0; db.userInfo.get(this.dbKey, "balance.knuts") < price; i++) {
+					if (db.userInfo.get(this.dbKey, "balance.sickles") <= 0 && db.userInfo.get(this.dbKey, "balance.galleons") > 0) {
+						db.userInfo.math(this.dbKey, "+", 17, "balance.sickles");
+						db.userInfo.math(this.dbKey, "-", 1, "balance.galleons");
 					}
 
-					this.bot.userInfo.dec(this.dbKey, "balance.sickles");
-					this.bot.userInfo.math(this.dbKey, "+", 29, "balance.knuts");
+					db.userInfo.dec(this.dbKey, "balance.sickles");
+					db.userInfo.math(this.dbKey, "+", 29, "balance.knuts");
 				}
 
 				// Take away <price> knuts
-				this.bot.userInfo.math(this.dbKey, "-", price, "balance.knuts");
+				db.userInfo.math(this.dbKey, "-", price, "balance.knuts");
 				// Add <amount> item
-				this.bot.userInfo.math(this.dbKey, "+", amount, `inventory.${item}`);
+				db.userInfo.math(this.dbKey, "+", amount, `inventory.${item}`);
 
-				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+				db.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
 				// Dark wizard says
 				this.bot.functions.quickWebhook(this.channel, "Pleasure doin' business with ya. You know where to find me if you need somethin' in the future.", darkWizardWebhookInfo);
@@ -615,7 +616,7 @@ class ForbiddenForest {
 			if (sellResponse == `${this.bot.prefix}nevermind`) {
 				this.bot.log(`${this.member} changed their mind.`, "info");
 
-				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+				db.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
 				// Chance for whether or not the dark wizard will attack them
 				const chance = Math.random() * 100;
@@ -636,7 +637,7 @@ class ForbiddenForest {
 
 					// Possible items that could be decreased
 					const possibleItems = Object.keys(darkWizardItems)
-						.filter(i => this.bot.userInfo.has(this.member.id, `inventory.${i}`) && this.bot.userInfo.get(this.member.id, `inventory.${i}`) > 0);
+						.filter(i => db.userInfo.has(this.member.id, `inventory.${i}`) && db.userInfo.get(this.member.id, `inventory.${i}`) > 0);
 
 					// Item that will be decreased
 					const item = possibleItems[Math.floor(Math.random() * possibleItems.length)];
@@ -645,7 +646,7 @@ class ForbiddenForest {
 					if (!item) return;
 
 					// Decrease the item
-					this.bot.userInfo.dec(this.member.id, `inventory.${item}`);
+					db.userInfo.dec(this.member.id, `inventory.${item}`);
 				}
 			} else {
 				// Args given
@@ -669,16 +670,16 @@ class ForbiddenForest {
 				let price = parseInt(buyDetails[0]) * amount;
 
 				// Ensure they have the item's key in their inventory object
-				if (!this.bot.userInfo.has(this.dbKey, `inventory.${item}`)) this.bot.userInfo.set(this.dbKey, `inventory.${item}`);
+				if (!db.userInfo.has(this.dbKey, `inventory.${item}`)) db.userInfo.set(this.dbKey, `inventory.${item}`);
 				// If they don't have <amount> of the item then send a message saying they don't have enough
-				if (this.bot.userInfo.get(this.dbKey, `inventory.${item}`) < amount) return this.channel.send("You don't have enough to sell!");
+				if (db.userInfo.get(this.dbKey, `inventory.${item}`) < amount) return this.channel.send("You don't have enough to sell!");
 
 				// Take away <amount> <item>
-				this.bot.userInfo.math(this.dbKey, "-", amount, `inventory.${item}`);
+				db.userInfo.math(this.dbKey, "-", amount, `inventory.${item}`);
 				// Give them <price> <currency>
-				this.bot.userInfo.math(this.dbKey, "+", price, `balance.${currency}`);
+				db.userInfo.math(this.dbKey, "+", price, `balance.${currency}`);
 
-				this.bot.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
+				db.userInfo.set(this.dbKey, false, "mazeInfo.inFight");
 
 				// Dark wizard says
 				this.bot.functions.quickWebhook(this.channel, "Pleasure doin' business with ya. You know where to find me next time you've got goods to unload.", darkWizardWebhookInfo);

@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "start",
@@ -57,13 +58,13 @@ module.exports = {
 		// Tell them the channel has been created
 		message.reply(`I have created a channel for you to use the maze commands in ${usersChannel}`);
 
-		const userData = bot.userInfo.get(message.author.key);
+		const userData = db.userInfo.get(message.author.key);
 		const curPos = userData.mazeInfo.curPos;
 		const curMazeLevel = userData.mazeInfo.curMaze;
 
 		// Create an attachment for their current location
 		let attachment;
-		if (bot.userInfo.get(message.author.key, "mazeInfo.itemPositions").includes(curPos)) {
+		if (db.userInfo.get(message.author.key, "mazeInfo.itemPositions").includes(curPos)) {
 			attachment = new Discord.MessageAttachment(`../images/forbidden_forest/${curMazeLevel}/Active/Forest_${curPos}.png`, "map.png");
 		} else {
 			attachment = new Discord.MessageAttachment(`../images/forbidden_forest/${curMazeLevel}/Inactive/Forest_${curPos}X.png`, "map.png");

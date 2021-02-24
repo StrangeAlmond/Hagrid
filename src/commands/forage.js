@@ -1,3 +1,4 @@
+const db = require("../utils/db.js");
 const moment = require("moment-timezone");
 const items = require("../jsonFiles/forbidden_forest/forageLocations.json");
 
@@ -5,7 +6,7 @@ module.exports = {
 	name: "forage",
 	description: "Forage for an item in the forbidden forest.",
 	async execute(message, args, bot) {
-		const user = bot.userInfo.get(message.author.key);
+		const user = db.userInfo.get(message.author.key);
 
 		if (user.stats.fainted) return;
 		if (user.mazeInfo.inFight) return;
@@ -17,9 +18,9 @@ module.exports = {
 			return message.channel.send("It looks like this area has been picked clean already. We'd better wait a little bit to let it grow back.");
 		}
 
-		if (today != bot.userInfo.get(message.author.key, "mazeInfo.lastForage")) {
-			bot.userInfo.set(message.author.key, 100, "mazeInfo.dailyForagesLeft");
-			bot.userInfo.set(message.author.key, today, "mazeInfo.lastForage");
+		if (today != db.userInfo.get(message.author.key, "mazeInfo.lastForage")) {
+			db.userInfo.set(message.author.key, 100, "mazeInfo.dailyForagesLeft");
+			db.userInfo.set(message.author.key, today, "mazeInfo.lastForage");
 		}
 
 		const forageItem = items.find(i => i.location == user.mazeInfo.curPos);
@@ -57,19 +58,19 @@ module.exports = {
 			successResponses = ["You find a nearby axe and use it successfully cut off a piece of Wiggenweld Bark"];
 		}
 
-		bot.userInfo.inc(message.author.key, "stats.forages");
-		bot.userInfo.dec(message.author.key, "mazeInfo.dailyForagesLeft");
+		db.userInfo.inc(message.author.key, "stats.forages");
+		db.userInfo.dec(message.author.key, "mazeInfo.dailyForagesLeft");
 
 		if (user.mazeInfo.lastForage != today) {
-			bot.userInfo.set(message.author.key, today, "mazeInfo.lastForage");
+			db.userInfo.set(message.author.key, today, "mazeInfo.lastForage");
 		}
 
 		if (chanceNumber <= 10 || user.stats.activeEffects.some(e => e.type == "luck")) {
-			if (!bot.userInfo.has(message.author.key, `inventory.${forageItem.key}`)) {
-				bot.userInfo.set(message.author.key, 0, `inventory.${forageItem.key}`);
+			if (!db.userInfo.has(message.author.key, `inventory.${forageItem.key}`)) {
+				db.userInfo.set(message.author.key, 0, `inventory.${forageItem.key}`);
 			}
 
-			bot.userInfo.inc(message.author.key, `inventory.${forageItem.key}`);
+			db.userInfo.inc(message.author.key, `inventory.${forageItem.key}`);
 			message.reply(successResponses[Math.floor(Math.random() * successResponses.length)]);
 		} else {
 			const response = failResponses[Math.floor(Math.random() * failResponses.length)];

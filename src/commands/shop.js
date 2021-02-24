@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const items = require("../jsonFiles/shop.json");
 
 module.exports = {
@@ -74,7 +75,7 @@ module.exports = {
 			.setAuthor(shop.shops.find(s => s.id == shopIDs.find(i => i == parseInt(args[0]))).name, message.author.displayAvatarURL())
 			.setColor(message.member.displayHexColor)
 			.setDescription(shopItems)
-			.setFooter(`You have ${bot.userInfo.get(message.author.key, "balance.knuts")} knuts, ${bot.userInfo.get(message.author.key, "balance.sickles")} sickles, and ${bot.userInfo.get(message.author.key, "balance.galleons")} galleons`)
+			.setFooter(`You have ${db.userInfo.get(message.author.key, "balance.knuts")} knuts, ${db.userInfo.get(message.author.key, "balance.sickles")} sickles, and ${db.userInfo.get(message.author.key, "balance.galleons")} galleons`)
 			.setTimestamp();
 
 		if (shopName == "Magical Menagerie") {
@@ -83,7 +84,7 @@ module.exports = {
 			const formattedTierOnePets = shopItems.filter(i => i.tier == 1).map(i => `**${i.id}** ${i.name} - ${i.price}`);
 			const formattedTierTwoPets = shopItems.filter(i => i.tier == 2).map(i => `**${i.id}** ${i.name} - ${i.price}`);
 
-			const pets = bot.userInfo.get(message.author.key, "pets").filter(p => !p.retired);
+			const pets = db.userInfo.get(message.author.key, "pets").filter(p => !p.retired);
 			const pet = pets[0];
 
 			shopEmbed.setDescription(`**Tier 1**\n${formattedTierOnePets.join("\n")}\n\n${pet && (pet.level == 7 || pet.tier == 2) ? `**Tier 2**\n${formattedTierTwoPets.join("\n")}` : ""}`);

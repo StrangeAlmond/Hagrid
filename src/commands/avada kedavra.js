@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "avada",
@@ -14,10 +15,10 @@ module.exports = {
 			const house = houses.find(h => message.member.roles.cache.some(r => r.name.toLowerCase() == h.toLowerCase()));
 			if (!house) return;
 
-			bot.guildInfo.math(message.guild.id, "-", 20, `housePoints.${house}`);
-			bot.userInfo.math(message.author.key, "-", 20, "stats.housePoints");
+			db.guildInfo.math(message.guild.id, "-", 20, `housePoints.${house}`);
+			db.userInfo.math(message.author.key, "-", 20, "stats.housePoints");
 
-			const channel = message.guild.channels.find(c => c.name == "house-cup");
+			const channel = message.guild.channels.cache.find(c => c.name == "house-cup");
 			if (!channel) return;
 
 			const memberEmbed = new Discord.MessageEmbed()
@@ -27,9 +28,9 @@ module.exports = {
 				.setFooter(`${message.member.displayName} tried to use a forbidden curse`)
 				.setTimestamp();
 
-			return bot.quickWebhook(channel, memberEmbed, {
+			return bot.functions.quickWebhook(channel, memberEmbed, {
 				username: "House Cup",
-				avatar: "./images/webhook_avatars/houseCup.png",
+				avatar: "../images/webhook_avatars/houseCup.png",
 				deleteAfterUse: true
 			});
 

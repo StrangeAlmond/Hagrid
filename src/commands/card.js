@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "card",
@@ -6,7 +7,7 @@ module.exports = {
 	async execute(message, args, bot) {
 		if (!args[0]) return message.channel.send("Specify which card you would like to view!");
 
-		const user = bot.userInfo.get(message.author.key);
+		const user = db.userInfo.get(message.author.key);
 		if (!user.collectorsItems || !user.collectorsItems.cards) {
 			return message.channel.send("You don't have any collectors cards! You can find some by buying chocolate frogs in Hogsmeade and opening them.");
 		}

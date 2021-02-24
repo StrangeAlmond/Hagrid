@@ -1,8 +1,10 @@
+const db = require("../utils/db.js");
+
 module.exports = {
 	name: "opt",
 	description: "Allows you to opt out/in of/to training session notifications.",
 	async execute(message, args, bot) {
-		const user = bot.userInfo.get(message.author.key);
+		const user = db.userInfo.get(message.author.key);
 
 		if (!args[0]) return message.channel.send(`Proper Usage: \`${bot.prefix}opt out/in\``);
 		if (args[0] == "out" && !user.settings.trainingSessionAlerts) {
@@ -14,7 +16,7 @@ module.exports = {
 		}
 
 		if (args[0] == "out") {
-			bot.userInfo.set(message.author.key, false, "settings.trainingSessionAlerts");
+			db.userInfo.set(message.author.key, false, "settings.trainingSessionAlerts");
 			message.channel.send("You have opted out of training session pings.");
 
 			const usersStudiedSpells = user.studiedSpells.filter(s => message.member.roles.cache.find(r => r.name.toLowerCase() == s));
@@ -25,7 +27,7 @@ module.exports = {
 			});
 
 		} else if (args[0] == "in") {
-			bot.userInfo.set(message.author.key, true, "settings.trainingSessionAlerts");
+			db.userInfo.set(message.author.key, true, "settings.trainingSessionAlerts");
 			message.channel.send("You have opted in to training session pings.");
 
 			const usersStudiedSpells = user.studiedSpells.filter(s => !message.member.roles.cache.find(r => r.name.toLowerCase() == s) &&

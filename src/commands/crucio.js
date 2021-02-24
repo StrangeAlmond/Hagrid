@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "crucio",
@@ -13,8 +14,8 @@ module.exports = {
 		const house = houses.find(h => message.member.roles.cache.some(r => r.name.toLowerCase() == h.toLowerCase()));
 		if (!house) return;
 
-		await bot.guildInfo.math(message.guild.id, "-", 20, `housePoints.${house}`);
-		await bot.userInfo.math(message.author.key, "-", 20, "stats.housePoints");
+		await db.guildInfo.math(message.guild.id, "-", 20, `housePoints.${house}`);
+		await db.userInfo.math(message.author.key, "-", 20, "stats.housePoints");
 
 		const channel = message.guild.channels.cache.find(c => c.name == "house-cup");
 		if (!channel) return;

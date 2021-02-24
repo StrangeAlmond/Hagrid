@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const collectorsCards = require("../jsonFiles/collectorsCards.json");
 
 module.exports = {
@@ -6,10 +7,10 @@ module.exports = {
 	description: "Open an item.",
 	async execute(message, args, bot) {
 		if (["chocolate frog"].some(i => i.includes(args.join(" ")))) {
-			const user = bot.userInfo.get(message.author.key);
+			const user = db.userInfo.get(message.author.key);
 			if (!user.inventory.chocolateFrogs || user.inventory.chocolateFrogs <= 0) return message.channel.send("You don't have any chocolate frogs!");
 			if (!user.collectorsItems) {
-				bot.userInfo.set(`${user.guild}-${user.user}`, {
+				db.userInfo.set(`${user.guild}-${user.user}`, {
 					cards: []
 				}, "collectorsItems");
 
@@ -17,7 +18,7 @@ module.exports = {
 			}
 
 			if (!user.collectorsItems.cards) {
-				bot.userInfo.set(`${user.guild}-${user.user}`, [], "collectorsItems.cards");
+				db.userInfo.set(`${user.guild}-${user.user}`, [], "collectorsItems.cards");
 				user.collectorsItems.cards = [];
 			}
 
@@ -57,8 +58,8 @@ module.exports = {
 
 			user.collectorsItems.cards.push(object);
 
-			bot.userInfo.set(`${user.guild}-${user.user}`, user.collectorsItems.cards, "collectorsItems.cards");
-			bot.userInfo.dec(`${user.guild}-${user.user}`, "inventory.chocolateFrogs");
+			db.userInfo.set(`${user.guild}-${user.user}`, user.collectorsItems.cards, "collectorsItems.cards");
+			db.userInfo.dec(`${user.guild}-${user.user}`, "inventory.chocolateFrogs");
 
 			const embed = new Discord.MessageEmbed()
 				.setTitle(card)

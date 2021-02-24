@@ -1,3 +1,4 @@
+const db = require("../utils/db.js");
 const moment = require("moment-timezone");
 
 module.exports = {
@@ -5,7 +6,7 @@ module.exports = {
 	description: "Gives you your daily items.",
 	aliases: ["d"],
 	async execute(message, args, bot) {
-		const userData = bot.userInfo.get(message.author.key);
+		const userData = db.userInfo.get(message.author.key);
 		const lastDaily = userData.cooldowns.lastDaily;
 
 		let sickles = 6;
@@ -26,11 +27,11 @@ module.exports = {
 			if (chance <= 30) sickles += 2;
 		}
 
-		bot.userInfo.math(message.author.key, "+", sickles, "balance.sickles");
+		db.userInfo.math(message.author.key, "+", sickles, "balance.sickles");
 
-		if (!userData.inventory.trainingTokens) bot.userInfo.set(message.author.key, 0, "inventory.trainingTokens");
-		bot.userInfo.math(message.author.key, "+", trainingTokens, "inventory.trainingTokens");
-		bot.userInfo.set(message.author.key, moment.tz("America/Los_Angeles").format("l"), "cooldowns.lastDaily");
+		if (!userData.inventory.trainingTokens) db.userInfo.set(message.author.key, 0, "inventory.trainingTokens");
+		db.userInfo.math(message.author.key, "+", trainingTokens, "inventory.trainingTokens");
+		db.userInfo.set(message.author.key, moment.tz("America/Los_Angeles").format("l"), "cooldowns.lastDaily");
 
 		bot.functions.quickWebhook(message.channel, `You have collected your ${sickles} daily sickles and 1 training token.`, {
 			username: "Gringotts Goblin",

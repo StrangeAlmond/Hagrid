@@ -1,8 +1,10 @@
+const db = require("../utils/db.js");
+
 module.exports = {
 	name: "frogsoap",
 	description: "Spawns frogs in the current channel.",
 	async execute(message, args, bot) {
-		if (bot.userInfo.get(message.author.key, "inventory.frogSpawnSoap") <= 0) {
+		if (db.userInfo.get(message.author.key, "inventory.frogSpawnSoap") <= 0) {
 			return message.channel.send("You don't have any frog spawn soap!");
 		}
 
@@ -10,8 +12,8 @@ module.exports = {
 			channel: message.channel.id
 		});
 
-		bot.userInfo.inc(message.author.key, "stats.pranks");
-		bot.userInfo.dec(message.author.key, "inventory.frogSpawnSoap");
+		db.userInfo.inc(message.author.key, "stats.pranks");
+		db.userInfo.dec(message.author.key, "inventory.frogSpawnSoap");
 
 		const messages = await message.channel.messages.fetch({
 			limit: 25

@@ -1,11 +1,12 @@
-const items = require("../jsonFiles/forbidden_forest/items.json");
 const fs = require("fs");
+const db = require("../utils/db.js");
+const items = require("../jsonFiles/forbidden_forest/items.json");
 
 module.exports = {
 	name: "explore",
 	description: "Check for any hidden items at your current position in the maze",
 	async execute(message, args, bot) {
-		const userData = bot.userInfo.get(message.author.key);
+		const userData = db.userInfo.get(message.author.key);
 
 		if (!bot.functions.isMazeChannel(message.channel.name, message.member)) return;
 		if (!userData.mazeInfo.itemPositions.includes(userData.mazeInfo.curPos)) {
@@ -18,7 +19,7 @@ module.exports = {
 		let amount = parseInt(item.split(/ +/)[0]);
 		const itemKey = item.split(/ +/)[1];
 
-		if (!userData[itemKey]) bot.userInfo.set(message.author.key, 0, itemKey);
+		if (!userData[itemKey]) db.userInfo.set(message.author.key, 0, itemKey);
 
 		if (userData.stats.activeEffects.some(e => e.type == "luck")) {
 			const chance = Math.floor(Math.random() * 100);
@@ -28,7 +29,7 @@ module.exports = {
 			}
 		}
 
-		bot.userInfo.math(message.author.key, "+", amount, itemKey);
+		db.userInfo.math(message.author.key, "+", amount, itemKey);
 
 		let itemName = itemKey.split(".");
 		itemName = itemName[itemName.length - 1];
@@ -44,6 +45,6 @@ module.exports = {
 		const newTile = possibleItemTiles[Math.floor(Math.random() * possibleItemTiles.length)];
 
 		itemsTiles.splice(itemsTiles.indexOf(userData.mazeInfo.curPos), 1, newTile);
-		bot.userInfo.set(message.author.key, itemsTiles, "mazeInfo.itemPositions");
+		db.userInfo.set(message.author.key, itemsTiles, "mazeInfo.itemPositions");
 	},
 };

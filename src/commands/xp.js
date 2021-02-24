@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const numeral = require("numeral");
 const yearsFile = require("../jsonFiles/years.json");
 
@@ -8,7 +9,7 @@ module.exports = {
 	aliases: ["year"],
 	async execute(message, args, bot) {
 		const user = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
-		const userData = bot.userInfo.get(`${message.guild.id}-${user.id}`);
+		const userData = db.userInfo.get(`${message.guild.id}-${user.id}`);
 
 		let xpToLevelUp = userData.year == 7 ? 0 : yearsFile[userData.year + 1].xp - userData.xp;
 		if (xpToLevelUp < 0) xpToLevelUp = 0;

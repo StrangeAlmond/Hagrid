@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("./db.js");
 const moment = require("moment-timezone");
 const quickWebhook = require("./quickWebhook.js");
 const years = require("../jsonFiles/years.json");
@@ -6,13 +7,13 @@ const ytdl = require("ytdl-core");
 const ytpl = require("ytpl");
 
 module.exports = {
-  ensureUser(user, bot) { // Ensures the user has an entry in the database.
+  ensureUser(user) { // Ensures the user has an entry in the database.
     const woodTypes = ["Acacia", "Alder", "Apple", "Ash", "Aspen", "Beech", "Blackthorn", "Black Walnut", "Cedar", "Cherry", "Chestnut", "Cypress", "Dogwood", "Ebony", "Elder", "Elm", "English Oak", "Fir", "Hawthorn", "Hazel", "Holly", "Hornbeam", "Latch", "Laurel", "Maple", "Pear", "Pine", "Poplar", "Red Oak", "Redwood", "Rowan", "Silver Lime", "Spruce", "Sycamore", "Vine", "Walnut", "Willow", "Yew"];
     const cores = ["Unicorn Hair", "Dragon Heartstring", "Phoenix Feather"];
     const lengths = ["9", "9 1/4", "9 1/2", "9 3/4", "10", "10 1/4", "10 1/2", "10 3/4", "11", "11 1/4", "11 1/2", "11 3/4", "12", "12 1/4", "12 1/2", "12 3/4", "13", "13 1/4", "13 1/2", "13 3/4", "14"];
     const flexibilities = ["Surprisingly Swishy", "Pliant", "Supple", "Reasonably Supple", "Quite Flexible", "Quite Bendy", "Slightly Yielding", "Slightly Springy", "Unbending", "Unyielding", "Brittle", "Rigid", "Solid", "Hard"];
 
-    return bot.userInfo.ensure(`${user.guild.id}-${user.id}`, {
+    return db.userInfo.ensure(`${user.guild.id}-${user.id}`, {
       user: user.id,
       name: user.displayName,
       guild: user.guild.id,
@@ -105,15 +106,15 @@ module.exports = {
     });
   },
 
-  levelUp(bot, member, channel) {
+  levelUp(member, channel) {
     const guild = member.guild;
-    const userData = bot.userInfo.get(`${guild.id}-${member.id}`);
+    const userData = db.userInfo.get(`${guild.id}-${member.id}`);
 
     const lootbox = years[userData.year + 1].lootbox;
 
     for (const [key, value] of Object.entries(lootbox)) {
-      if (!bot.userInfo.has(`${guild.id}-${member.id}`, `inventory.${key}`)) bot.userInfo.set(`${guild.id}-${member.id}`, 0, `inventory.${key}`);
-      bot.userInfo.math(`${guild.id}-${member.id}`, "+", value, `inventory.${key}`);
+      if (!db.userInfo.has(`${guild.id}-${member.id}`, `inventory.${key}`)) db.userInfo.set(`${guild.id}-${member.id}`, 0, `inventory.${key}`);
+      db.userInfo.math(`${guild.id}-${member.id}`, "+", value, `inventory.${key}`);
     }
 
     const roleNames = {
@@ -131,13 +132,13 @@ module.exports = {
     member.roles.remove(role);
     member.roles.add(newRole);
 
-    bot.userInfo.inc(`${guild.id}-${member.id}`, "year");
+    db.userInfo.inc(`${guild.id}-${member.id}`, "year");
 
-    bot.userInfo.math(`${guild.id}-${member.id}`, "+", 2, "stats.health");
-    bot.userInfo.math(`${guild.id}-${member.id}`, "+", 2, "stats.maxHealth");
+    db.userInfo.math(`${guild.id}-${member.id}`, "+", 2, "stats.health");
+    db.userInfo.math(`${guild.id}-${member.id}`, "+", 2, "stats.maxHealth");
 
-    bot.userInfo.inc(`${guild.id}-${member.id}`, "stats.defense");
-    bot.userInfo.inc(`${guild.id}-${member.id}`, "stats.attack");
+    db.userInfo.inc(`${guild.id}-${member.id}`, "stats.defense");
+    db.userInfo.inc(`${guild.id}-${member.id}`, "stats.attack");
 
     const lootboxContent = Object.entries(lootbox).map(i => `**${i[0].replace(/([A-Z])/g, " $1").replace(/^./, str => str.toUpperCase())}:** ${i[1]}`).join("\n");
 
@@ -153,12 +154,12 @@ module.exports = {
     return msToMidnight;
   },
 
-  async fainted(member, faintMessage, bot) {
+  async fainted(member, faintMessage) {
     const hospitalChannel = member.guild.channels.cache.find(c => c.name.includes("hospital"));
     if (!hospitalChannel) return;
 
-    const userData = bot.userInfo.get(`${member.guild.id}-${member.id}`);
-    bot.userInfo.set(`${member.guild.id}-${member.id}`, true, "stats.fainted");
+    const userData = db.userInfo.get(`${member.guild.id}-${member.id}`);
+    db.userInfo.set(`${member.guild.id}-${member.id}`, true, "stats.fainted");
 
     const hospitalMessages = await hospitalChannel.messages.fetch();
     const poisonedMessage = hospitalMessages.find(m => m.content.includes(member.id) && m.content.toLowerCase().includes("poison") && !userData.stats.poisonedObject);
@@ -173,9 +174,9 @@ module.exports = {
     msg.react("✅");
 
     setTimeout(() => {
-      if (bot.userInfo.get(`${member.guild.id}-${member.id}`, "stats.fainted")) {
-        bot.userInfo.set(`${member.guild.id}-${member.id}`, false, "stats.fainted");
-        bot.userInfo.set(`${member.guild.id}-${member.id}`, 1, "stats.health");
+      if (db.userInfo.get(`${member.guild.id}-${member.id}`, "stats.fainted")) {
+        db.userInfo.set(`${member.guild.id}-${member.id}`, false, "stats.fainted");
+        db.userInfo.set(`${member.guild.id}-${member.id}`, 1, "stats.health");
 
         msg.delete();
       }
@@ -192,7 +193,7 @@ module.exports = {
       time: Date.now()
     };
 
-    bot.userInfo.set(`${member.guild.id}-${member.id}`, poisonedObject, "stats.poisonedObject");
+    db.userInfo.set(`${member.guild.id}-${member.id}`, poisonedObject, "stats.poisonedObject");
 
     const potionEmoji = bot.emojis.cache.find(e => e.name.toLowerCase() == "potion");
 
@@ -230,7 +231,7 @@ module.exports = {
   useResurrectionStone(bot, member, channel) {
     channel.send(`Just as ${member} was about to be attacked, the spirit of their loved one appeared and protected them.`);
 
-    bot.userInfo.set(`${member.guild.id}-${member.id}`, Date.now(), "cooldowns.lastResurrectionStoneUse");
+    db.userInfo.set(`${member.guild.id}-${member.id}`, Date.now(), "cooldowns.lastResurrectionStoneUse");
     bot.log(`${member.displayName} used the resurrection stone.`, "info");
   },
 
@@ -275,13 +276,13 @@ module.exports = {
     };
 
     const guild = channel.guild;
-    const guildData = bot.guildInfo.get(guild.id);
+    const guildData = db.guildInfo.get(guild.id);
 
     const attachment = new Discord.MessageAttachment("../images/spawns/dementor.jpg", "dementor.jpg");
     channel.send(`A dementor has spawned! Students who have studied the patronus charm can banish it by using \`${bot.prefix}expecto patronum\`!`, attachment);
 
-    if (guildData.spawns.some(s => s.channel == object.channel)) bot.guildInfo.remove(guild.id, (s) => s.channel == object.channel, "spawns");
-    bot.guildInfo.push(guild.id, object, "spawns");
+    if (guildData.spawns.some(s => s.channel == object.channel)) db.guildInfo.remove(guild.id, (s) => s.channel == object.channel, "spawns");
+    db.guildInfo.push(guild.id, object, "spawns");
   },
 
   spawnBoggart(channel, bot) {
@@ -291,13 +292,13 @@ module.exports = {
     };
 
     const guild = channel.guild;
-    const guildData = bot.guildInfo.get(guild.id);
+    const guildData = db.guildInfo.get(guild.id);
 
     const attachment = new Discord.MessageAttachment("../images/spawns/boggart.jpg", "boggart.jpg");
     channel.send(`A boggart has spawned! Students who have studied the boggart-banishing spell can banish it by using \`${bot.prefix}riddikulus\`!`, attachment);
 
-    if (guildData.spawns.some(s => s.channel == object.channel)) bot.guildInfo.remove(guild.id, (s) => s.channel == object.channel, "spawns");
-    bot.guildInfo.push(guild.id, object, "spawns");
+    if (guildData.spawns.some(s => s.channel == object.channel)) db.guildInfo.remove(guild.id, (s) => s.channel == object.channel, "spawns");
+    db.guildInfo.push(guild.id, object, "spawns");
   },
 
   spawnChest(channel, bot) {
@@ -307,16 +308,16 @@ module.exports = {
     };
 
     const guild = channel.guild;
-    const guildData = bot.guildInfo.get(guild.id);
+    const guildData = db.guildInfo.get(guild.id);
 
     const attachment = new Discord.MessageAttachment("../images/spawns/chest.png", "chest.png");
     channel.send(`A chest has appeared! open it with \`${bot.prefix}cistem aperio\`!`, attachment);
 
     if (guildData.spawns.some(s => s.channel == object.channel)) {
-      bot.guildInfo.remove(guild.id, (s) => s.channel == object.channel, "spawns");
+      db.guildInfo.remove(guild.id, (s) => s.channel == object.channel, "spawns");
     }
 
-    bot.guildInfo.push(guild.id, object, "spawns");
+    db.guildInfo.push(guild.id, object, "spawns");
   },
 
   parseMs(ms, intOnly) { // Formats the given time and returns an object of different measures of time

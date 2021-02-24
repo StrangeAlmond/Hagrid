@@ -1,9 +1,11 @@
+const db = require("../utils/db.js");
+
 module.exports = async (bot, reaction, user) => {
   if (user.bot) return;
 
   const message = reaction.message;
   const args = message.content.toLowerCase().split(/ +/);
-  const guildData = bot.guildInfo.get(message.guild.id);
+  const guildData = db.guildInfo.get(message.guild.id);
 
   // Allows a user to use a training token by clicking on the ⚔ emoji
   if (reaction.emoji.name == "⚔" &&
@@ -11,7 +13,7 @@ module.exports = async (bot, reaction, user) => {
     message.embeds.length > 0 &&
     message.embeds[0].description.toLowerCase().includes(guildData.spawns.find(s => s.type == "trainingSession").beast.name.toLowerCase())) {
 
-    const userData = bot.userInfo.get(`${message.guild.id}-${user.id}`);
+    const userData = db.userInfo.get(`${message.guild.id}-${user.id}`);
     const member = message.guild.members.cache.get(user.id);
     const channel = message.guild.channels.cache.find(c => c.name == "training-grounds");
 
@@ -30,8 +32,8 @@ module.exports = async (bot, reaction, user) => {
 
     member.roles.add(role);
 
-    bot.userInfo.dec(`${message.guild.id}-${user.id}`, "inventory.trainingTokens");
-    bot.userInfo.set(`${message.guild.id}-${user.id}`, Date.now(), "trainingTokenUse");
+    db.userInfo.dec(`${message.guild.id}-${user.id}`, "inventory.trainingTokens");
+    db.userInfo.set(`${message.guild.id}-${user.id}`, Date.now(), "trainingTokenUse");
 
     return message.channel.send(`${member}, You have used one training token to gain access to <#${channel.id}>. This will expire in one hour!`)
       .then(m => m.delete({ timeout: 5000 }));
@@ -54,8 +56,8 @@ module.exports = async (bot, reaction, user) => {
       return msg.delete({ timeout: 5000 });
     }
 
-    if (!bot.userInfo.has(`${message.guild.id}-${reviver.id}`, "inventory.revivePotion") ||
-      bot.userInfo.get(`${message.guild.id}-${reviver.id}`, "inventory.revivePotion") <= 0) {
+    if (!db.userInfo.has(`${message.guild.id}-${reviver.id}`, "inventory.revivePotion") ||
+      db.userInfo.get(`${message.guild.id}-${reviver.id}`, "inventory.revivePotion") <= 0) {
 
       message.reactions.cache.find(r => r.emoji.name == "✅").users.remove(reviver);
       const msg = await bot.functions.quickWebhook(message.channel, `${reviver}, you don't have any revive potions!`, {
@@ -66,18 +68,18 @@ module.exports = async (bot, reaction, user) => {
       return msg.delete({ timeout: 5000 });
     }
 
-    if (!bot.userInfo.get(`${message.guild.id}-${revivee.id}`, "stats.fainted")) return message.delete();
+    if (!db.userInfo.get(`${message.guild.id}-${revivee.id}`, "stats.fainted")) return message.delete();
 
     reviveUser(revivee);
 
-    bot.userInfo.dec(`${message.guild.id}-${revivee.id}`, "inventory.revivePotion");
+    db.userInfo.dec(`${message.guild.id}-${revivee.id}`, "inventory.revivePotion");
 
     const houses = ["slytherin", "gryffindor", "hufflepuff", "ravenclaw"];
     const house = houses.find(h => reviver.roles.cache.find(r => r.name.toLowerCase() == h.toLowerCase()));
     if (!house) return;
 
-    bot.guildInfo.inc(message.guild.id, `housePoints.${house}`);
-    bot.userInfo.inc(`${message.guild.id}-${reviver.id}`, "stats.housePoints");
+    db.guildInfo.inc(message.guild.id, `housePoints.${house}`);
+    db.userInfo.inc(`${message.guild.id}-${reviver.id}`, "stats.housePoints");
 
     const msg = await bot.functions.quickWebhook(message.channel, `${reviver}, You have revived ${revivee} and recieved 1 house point!`, {
       username: "Madam Pomfrey",
@@ -91,13 +93,13 @@ module.exports = async (bot, reaction, user) => {
     const curer = message.guild.members.cache.get(user.id);
     const curee = bot.functions.getUserFromMention(args[0], message.guild);
 
-    if (!bot.userInfo.get(`${message.guild.id}-${curee.id}`, "stats.poisonedObject")) return message.delete();
+    if (!db.userInfo.get(`${message.guild.id}-${curee.id}`, "stats.poisonedObject")) return message.delete();
 
-    const poisonType = bot.userInfo.get(`${message.guild.id}-${curee.id}`, "stats.poisonedObject").type;
+    const poisonType = db.userInfo.get(`${message.guild.id}-${curee.id}`, "stats.poisonedObject").type;
 
     const requiredPotion = `antidoteTo${poisonType.charAt(0).toUpperCase() + poisonType.slice(1)}Poisons`;
 
-    if (!bot.userInfo.has(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`) || bot.userInfo.get(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`) <= 0) {
+    if (!db.userInfo.has(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`) || db.userInfo.get(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`) <= 0) {
       message.reactions.cache.find(r => r.emoji.name.toLowerCase() == "potion").users.remove(curer);
       const msg = await bot.functions.quickWebhook(message.channel, `${curer}, you don't have any antidote to ${poisonType} poisons potions!`, {
         username: "Madam Pomfrey",
@@ -109,7 +111,7 @@ module.exports = async (bot, reaction, user) => {
 
     cureUser(curee);
 
-    bot.userInfo.dec(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`);
+    db.userInfo.dec(`${message.guild.id}-${curer.id}`, `inventory.${requiredPotion}`);
 
     let msgContent = "";
 
@@ -122,8 +124,8 @@ module.exports = async (bot, reaction, user) => {
       const house = houses.find(h => curer.roles.cache.find(r => r.name.toLowerCase() == h.toLowerCase()));
       if (!house) return;
 
-      bot.guildInfo.inc(message.guild.id, `housePoints.${house}`);
-      bot.userInfo.inc(`${message.guild.id}-${curer.id}`, "stats.housePoints");
+      db.guildInfo.inc(message.guild.id, `housePoints.${house}`);
+      db.userInfo.inc(`${message.guild.id}-${curer.id}`, "stats.housePoints");
     }
 
     const msg = await bot.functions.quickWebhook(message.channel, msgContent, {
@@ -136,8 +138,8 @@ module.exports = async (bot, reaction, user) => {
   }
 
   async function reviveUser(toRevive) {
-    bot.userInfo.set(`${message.guild.id}-${toRevive.id}`, false, "stats.fainted");
-    bot.userInfo.set(`${message.guild.id}-${toRevive.id}`, 1, "stats.health");
+    db.userInfo.set(`${message.guild.id}-${toRevive.id}`, false, "stats.fainted");
+    db.userInfo.set(`${message.guild.id}-${toRevive.id}`, 1, "stats.health");
 
     const hospitalChannel = await message.guild.channels.cache.find(c => c.name.includes("hospital"));
     const messages = await hospitalChannel.messages.fetch();
@@ -151,7 +153,7 @@ module.exports = async (bot, reaction, user) => {
   }
 
   async function cureUser(toCure) {
-    bot.userInfo.set(`${message.guild.id}-${toCure.id}`, null, "stats.poisonedObject");
+    db.userInfo.set(`${message.guild.id}-${toCure.id}`, null, "stats.poisonedObject");
 
     const hospitalChannel = await message.guild.channels.find(c => c.name.includes("hospital"));
     const messages = await hospitalChannel.messages.fetch();

@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const moment = require("moment-timezone");
 let spells = require("../jsonFiles/spells.json");
 
@@ -18,7 +19,7 @@ module.exports = {
 	name: "study",
 	description: "Study a spell or view the spells you can study.",
 	async execute(message, args, bot) {
-		const userData = bot.userInfo.get(message.author.key);
+		const userData = db.userInfo.get(message.author.key);
 		const timeTillNextStudy = bot.functions.parseMs(bot.functions.timeUntilMidnight(), true);
 
 		if (!args[0]) {
@@ -118,13 +119,13 @@ module.exports = {
 		}
 
 		if (!userData.spellInfo[spell.spellName]) {
-			bot.userInfo.set(message.author.key, spell, `spellInfo.${spell.spellName}`);
+			db.userInfo.set(message.author.key, spell, `spellInfo.${spell.spellName}`);
 			userData.spellInfo[spell.spellName] = Object.assign({}, spell);
 		}
 
 		userData.spellInfo[spell.spellName].daysToLearn--;
-		bot.userInfo.dec(message.author.key, `spellInfo.${spell.spellName}.daysToLearn`);
-		bot.userInfo.set(message.author.key, today, "cooldowns.lastStudy");
+		db.userInfo.dec(message.author.key, `spellInfo.${spell.spellName}.daysToLearn`);
+		db.userInfo.set(message.author.key, today, "cooldowns.lastStudy");
 
 		if (userData.spellInfo[spell.spellName].daysToLearn <= 0) {
 			if (["herbology", "care of magical creatures"].includes(spell.class.toLowerCase())) { // Herbology and Care of Magical Creatures give items instead of spells.
@@ -132,13 +133,13 @@ module.exports = {
 				const item = spell.reward.split(/ +/)[1];
 
 				if (!userData.inventory[item]) {
-					bot.userInfo.set(message.author.key, 0, `inventory.${item}`);
+					db.userInfo.set(message.author.key, 0, `inventory.${item}`);
 				}
 
-				bot.userInfo.math(message.author.key, "+", amount, `inventory.${item}`);
+				db.userInfo.math(message.author.key, "+", amount, `inventory.${item}`);
 				message.channel.send(`Congratulations ${message.member.displayName}! You have finished studying ${spell.name} and have gained ${amount} ${spell.spellName}`);
 			} else {
-				bot.userInfo.push(message.author.key, spell.spellName, "studiedSpells");
+				db.userInfo.push(message.author.key, spell.spellName, "studiedSpells");
 
 				const role = message.guild.roles.cache.find(s => s.spellName == s.name.toLowerCase());
 				if (role && userData.settings.trainingSessionAlerts) message.member.roles.add(role);
@@ -147,7 +148,7 @@ module.exports = {
 			}
 
 			delete userData.spellInfo[spell.spellName];
-			return bot.userInfo.delete(message.author.key, `spellInfo.${spell.spellName}`);
+			return db.userInfo.delete(message.author.key, `spellInfo.${spell.spellName}`);
 		}
 
 		message.channel.send(`You have studied the **${spell.name}**, you have ${userData.spellInfo[spell.spellName].daysToLearn} days left until you learn this spell!`);

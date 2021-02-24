@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const info = require("../jsonFiles/training_sessions/info.json");
 const beasts = require("../jsonFiles/training_sessions/beasts.json");
 const spells = require("../jsonFiles/spells.json");
@@ -20,7 +21,7 @@ class TrainingSession {
 			users: []
 		};
 
-		const guildData = this.bot.guildInfo.get(this.guild.id);
+		const guildData = db.guildInfo.get(this.guild.id);
 
 		const beastNames = beasts.map(b => b.name.toLowerCase());
 		const beastSpells = beasts.map(b => b.spell.slice(1).toLowerCase());
@@ -39,7 +40,7 @@ class TrainingSession {
 
 		guildData.spawns.push(object);
 
-		this.bot.guildInfo.set(this.guild.id, guildData.spawns, "spawns");
+		db.guildInfo.set(this.guild.id, guildData.spawns, "spawns");
 
 		const image = beast.image;
 		const spawnMsg = `A ${beast.name} has been released into the ${this.channel}!
@@ -74,8 +75,8 @@ class TrainingSession {
 	}
 
 	async processTrainingSession(member, object) {
-		const guildData = this.bot.guildInfo.get(this.guild.id);
-		const userData = this.bot.userInfo.get(`${this.guild.id}-${member.id}`);
+		const guildData = db.guildInfo.get(this.guild.id);
+		const userData = db.userInfo.get(`${this.guild.id}-${member.id}`);
 
 		if (!userData.studiedSpells.includes(object.beast.spell.slice(1)) || userData.stats.fainted) return;
 		if (object.beast.name.toLowerCase() == "ashwinder" && !userData.stats.activeEffects.some(e => e.type.toLowerCase() == "fire protection")) return;
@@ -127,10 +128,10 @@ class TrainingSession {
 			object.beast.health -= damageDealt;
 
 			guildData.spawns[guildData.spawns.findIndex(s => s.channel == object.channel)] = object;
-			this.bot.guildInfo.set(this.guild.id, guildData.spawns, "spawns");
+			db.guildInfo.set(this.guild.id, guildData.spawns, "spawns");
 
-			this.bot.userInfo.math(`${this.guild.id}-${member.id}`, "+", damageDealt, "xp");
-			this.bot.userInfo.math(`${this.guild.id}-${member.id}`, "+", damageDealt, "stats.trainingSessionDamage");
+			db.userInfo.math(`${this.guild.id}-${member.id}`, "+", damageDealt, "xp");
+			db.userInfo.math(`${this.guild.id}-${member.id}`, "+", damageDealt, "stats.trainingSessionDamage");
 
 			msgContent += `${member.displayName}, You cast ${object.beast.spell.slice(1)} for ${damageDealt} damage.\nThe beast has ${object.beast.health} health left.\n`;
 		}
@@ -145,14 +146,14 @@ class TrainingSession {
 			const damage = object.beast.attack > userData.stats.defense ? object.beast.attack - userData.stats.defense : 0;
 
 			userData.stats.health -= damage;
-			this.bot.userInfo.math(`${this.guild.id}-${member.id}`, "-", damage, "stats.health");
+			db.userInfo.math(`${this.guild.id}-${member.id}`, "-", damage, "stats.health");
 
 			if (userData.stats.health <= 0) {
 				if (userData.inventory.resurrectionStone > 1 && (Date.now() - userData.cooldowns.lastResurrectionStoneUse) > 3600000) {
 					msgContent += `Just as ${member} was about to be attacked, the spirit of their loved one appeared and protected them.`;
 
-					this.bot.userInfo.math(`${this.guild.id}-${member.id}`, "+", damage, "stats.health");
-					this.bot.userInfo.set(`${this.guild.id}-${member.id}`, Date.now(), "cooldowns.lastResurrectionStoneUse");
+					db.userInfo.math(`${this.guild.id}-${member.id}`, "+", damage, "stats.health");
+					db.userInfo.set(`${this.guild.id}-${member.id}`, Date.now(), "cooldowns.lastResurrectionStoneUse");
 				} else {
 					msgContent += `${member}, you have fainted!`;
 					this.bot.functions.fainted(member, `${member} has fainted from a ${object.beast.name.toLowerCase()} attack! can you help me heal them faster?`, this.bot);
@@ -167,16 +168,16 @@ class TrainingSession {
 	}
 
 	endTrainingSession(object, webhook, member) {
-		const guildData = this.bot.guildInfo.get(this.guild.id);
+		const guildData = db.guildInfo.get(this.guild.id);
 		const lootboxData = info.lootboxes;
 
 		guildData.spawns.splice(guildData.spawns.findIndex(s => s.channel == object.channel), 1);
-		this.bot.guildInfo.set(this.guild.id, guildData.spawns, "spawns");
+		db.guildInfo.set(this.guild.id, guildData.spawns, "spawns");
 
 		this.channel.setRateLimitPerUser(0, "Training session ended.");
 
-		this.bot.userInfo.inc(`${this.guild.id}-${member.id}`, "balance.sickles");
-		this.bot.userInfo.inc(`${this.guild.id}-${member.id}`, "stats.trainingSessionsDefeated");
+		db.userInfo.inc(`${this.guild.id}-${member.id}`, "balance.sickles");
+		db.userInfo.inc(`${this.guild.id}-${member.id}`, "stats.trainingSessionsDefeated");
 
 		object.users = object.users.sort((a, b) => b.damageDealt - a.damageDealt);
 
@@ -217,11 +218,11 @@ ${object.users.map(u => `${this.guild.members.cache.get(u.id).displayName}, you 
 				const item = reward[1];
 				const amount = parseInt(reward[0]);
 
-				if (!this.bot.userInfo.has(`${this.guild.id}-${member.id}`, item)) {
-					this.bot.userInfo.set(`${this.guild.id}-${member.id}`, 0, item);
+				if (!db.userInfo.has(`${this.guild.id}-${member.id}`, item)) {
+					db.userInfo.set(`${this.guild.id}-${member.id}`, 0, item);
 				}
 
-				this.bot.userInfo.math(`${this.guild.id}-${member.id}`, "+", amount, item);
+				db.userInfo.math(`${this.guild.id}-${member.id}`, "+", amount, item);
 			});
 
 			msg += `**${this.guild.members.cache.get(u.id).displayName}**, you got a tier ${lootboxTier} lootbox! the contents are below:

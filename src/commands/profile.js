@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const numeral = require("numeral");
 const yearsFile = require("../jsonFiles/years.json");
 const badgesArray = require("../jsonFiles/badges.json");
@@ -9,7 +10,7 @@ module.exports = {
 	aliases: ["p"],
 	async execute(message, args, bot) {
 		const user = bot.functions.getUserFromMention(args[0], message.guild) || message.guild.members.cache.get(args[0]) || message.member;
-		const userData = bot.userInfo.get(`${message.guild.id}-${user.id}`);
+		const userData = db.userInfo.get(`${message.guild.id}-${user.id}`);
 
 		let xpToLevelUp = userData.year < 7 ? yearsFile[userData.year + 1].xp - userData.xp : 0;
 		if (xpToLevelUp < 0) xpToLevelUp = 0;

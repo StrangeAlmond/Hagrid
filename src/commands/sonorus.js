@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "sonorus",
@@ -27,7 +28,7 @@ module.exports = {
 		const mutedRole = await message.guild.roles.cache.find(r => r.name == "Silenced");
 		await userToUnmute.roles.remove(mutedRole);
 
-		bot.userInfo.set(`${message.guild.id}-${userToUnmute.id}`, null, "muteObject");
+		db.userInfo.set(`${message.guild.id}-${userToUnmute.id}`, null, "muteObject");
 
 		const embed = new Discord.MessageEmbed()
 			.setAuthor(`${userToUnmute.displayName} has been unmuted`, userToUnmute.user.displayAvatarURL())

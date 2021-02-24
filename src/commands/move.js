@@ -1,3 +1,4 @@
+const db = require("../utils/db.js");
 const ForbiddenForest = require("../classes/ForbiddenForest.js");
 const mazePositions = require("../jsonFiles/forbidden_forest/mazePositions.json");
 
@@ -9,7 +10,7 @@ module.exports = {
 			return message.channel.send(`❌ | Use \`${bot.prefix}start\` to begin your journey!`);
 		}
 
-		let user = bot.userInfo.get(message.author.key);
+		let user = db.userInfo.get(message.author.key);
 
 		if (user.stats.fainted || user.mazeInfo.inFight) return;
 

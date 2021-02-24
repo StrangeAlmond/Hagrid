@@ -1,11 +1,12 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 
 module.exports = {
 	name: "divine",
 	description: "Ask the divine crystal ball a question.",
 	aliases: ["8ball", "orb"],
 	async execute(message, args, bot) {
-		if (!bot.userInfo.get(message.author.key, "studiedSpells").includes("divine")) return;
+		if (!db.userInfo.get(message.author.key, "studiedSpells").includes("divine")) return;
 		if (!args[0]) return message.reply("Ask the divine ball a question!");
 
 		const replies = [

@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const db = require("../utils/db.js");
 const badges = require("../jsonFiles/badges.json");
 
 module.exports = {
@@ -33,7 +34,7 @@ module.exports = {
 			members.forEach(async member => {
 				bot.functions.ensureUser(member, bot);
 
-				if (bot.userInfo.get(`${message.guild.id}-${member.id}`, "badges").includes(badge.credential)) {
+				if (db.userInfo.get(`${message.guild.id}-${member.id}`, "badges").includes(badge.credential)) {
 					const failEmbed = new Discord.MessageEmbed()
 						.setAuthor(`Failed to give ${member.displayName} a badge`, member.user.displayAvatarURL())
 						.setDescription(`${member.displayName} already has that badge`)
@@ -43,7 +44,7 @@ module.exports = {
 					return message.channel.send(failEmbed);
 				}
 
-				bot.userInfo.push(`${message.guild.id}-${member.id}`, badge.credential, "badges");
+				db.userInfo.push(`${message.guild.id}-${member.id}`, badge.credential, "badges");
 
 				const badgeAddedEmbed = new Discord.MessageEmbed()
 					.setAuthor("Badge Added", member.user.displayAvatarURL())
@@ -66,7 +67,7 @@ module.exports = {
 			members.forEach(async member => {
 				bot.functions.ensureUser(member, bot);
 
-				const usersBadges = bot.userInfo.get(`${message.guild.id}-${member.id}`, "badges");
+				const usersBadges = db.userInfo.get(`${message.guild.id}-${member.id}`, "badges");
 
 				if (!usersBadges.includes(badge.credential)) {
 					const failEmbed = new Discord.MessageEmbed()
@@ -88,7 +89,7 @@ module.exports = {
 				message.channel.send(badgeAddedEmbed);
 			});
 		} else if (args[0] == "profile") {
-			const usersBadges = bot.userInfo.get(message.author.key, "badges");
+			const usersBadges = db.userInfo.get(message.author.key, "badges");
 			if (usersBadges.length <= 0) return message.channel.send("You have not earned any badges.");
 
 			let badgesDescription = "You have earned the following badges:\n\n";
