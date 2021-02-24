@@ -35,10 +35,9 @@ T - Troll (0-${gradeInfo.T} spells/potions learned)`;
 			.setTimestamp();
 
 		const msg = await message.channel.send(embed);
-		await msg.react("✅");
-		await msg.react("❌");
+		["✅", "❌"].forEach(await msg.react);
 
-		const reactionFilter = (reaction, user) => (reaction.emoji.name == "✅" || reaction.emoji.name == "❌") && user.id == message.author.id;
+		const reactionFilter = (reaction, user) => ["✅", "❌"].includes(reaction.emoji.name) && user.id == message.author.id;
 		const reactionCollector = msg.createReactionCollector(reactionFilter, {
 			time: 60000
 		});
@@ -47,7 +46,7 @@ T - Troll (0-${gradeInfo.T} spells/potions learned)`;
 			reactionCollector.stop();
 
 			if (collected.emoji.name == "❌") {
-				message.delete();
+				message.delete().catch(console.error);
 				return msg.delete();
 			}
 
