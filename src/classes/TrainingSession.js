@@ -137,7 +137,7 @@ class TrainingSession {
 		}
 
 		if (object.beast.health <= 0) {
-			webhook.send(`Great job ${member}! you defeated the ${object.beast.name.toLowerCase()}, as a result, you have been awarded one sickle.`);
+			webhook.send(`Fantastic job, ${member}! You have defeated the ${object.beast.name.toLowerCase()} and have been awarded one sickle.`);
 			return this.endTrainingSession(object, webhook, member);
 		}
 
