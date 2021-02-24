@@ -12,6 +12,7 @@ module.exports = {
 	description: "Challenge a fellow wizard to a duel.",
 	aliases: ["battle"],
 	async execute(message, args, bot) {
+		if (!args[0]) return message.channel.send("You must specify who you would like to duel.");
 		const toDuel = bot.functions.getUserFromMention(args[0], message.guild) || message.guild.members.cache.get(args[0]);
 
 		if (!toDuel) {
@@ -32,57 +33,37 @@ module.exports = {
 
 		message.channel.send(`${toDuel}, ${message.author} has challenged you to a duel, do you wish to accept?`)
 			.then(async msg => {
-				await msg.react("✅");
-				await msg.react("❌");
+				["✅", "❌"].forEach(await msg.react);
 
 				const filter = (reaction, user) => ["✅", "❌"]
 					.includes(reaction.emoji.name) && user.id == toDuel.id;
 
 				const responseReactionCollector = msg.createReactionCollector(filter, {
-					time: 60000
+					time: 300000
 				});
 
 				const clearing = setTimeout(() => {
 					msg.reactions.removeAll();
 					msg.edit("This challenge has expired");
-				}, 60000);
+				}, 300000);
 
 				responseReactionCollector.on("collect", collected => {
-					responseReactionCollector.stop();
-
-					if (collected.emoji.name == "✅") {
-						msg.delete();
-						startDuel();
-					} else if (collected.emoji.name == "❌") {
-						message.channel.send(`${message.author}, ${toDuel} has declined your challenge.`);
-						msg.delete();
-					}
-
-					responseReactionCollector.stop();
 					clearTimeout(clearing);
+					responseReactionCollector.stop();
 
+					if (collected.emoji.name == "✅") startDuel();
+					else if (collected.emoji.name == "❌") message.channel.send(`${message.author}, ${toDuel} has declined your challenge.`);
+					msg.delete();
 				});
 			});
 
 		async function startDuel() {
-			let authorDodgeChance = 0;
-			let toDuelDodgeChance = 0;
-
 			const authorYear = db.userInfo.get(message.author.key, "year");
 			const toDuelYear = db.userInfo.get(`${message.guild.id}-${toDuel.id}`, "year");
 
-			let authorDodged = false;
-			let toDuelDodged = false;
-
-			if (authorYear > toDuelYear) {
-				authorDodgeChance = (authorYear - toDuelYear) * 10;
-				toDuelDodgeChance = 0;
-			}
-
-			if (toDuelYear > authorYear) {
-				toDuelDodgeChance = (toDuelYear - authorYear) * 10;
-				authorDodgeChance = 0;
-			}
+			let authorDodgeChance = authorYear > toDuelYear ? (authorYear - toDuelYear) * 10 : 0;
+			let toDuelDodgeChance = toDuelYear > authorYear ? (toDuelYear - authorYear) * 10 : 0;
+			let authorDodged, toDuelDodged = false;
 
 			if (db.userInfo.get(message.author.key, "stats.activeEffects").some(e => e.type == "luck")) {
 				authorDodgeChance = 100;
@@ -92,23 +73,13 @@ module.exports = {
 				toDuelDodgeChance = 100;
 			}
 
-			if (message.author.id == "137269251361865728") { // Headmaster can't lose.
-				authorDodgeChance = 100;
-			} else if (toDuel.id == "137269251361865728") {
-				toDuelDodgeChance = 100;
-			}
+			// Make it impossible for the headmaster to lose
+			if (message.member.roles.cache.some(r => r.name.toLowerCase() == "headmaster")) authorDodgeChance = 100;
+			else if (toDuel.roles.cache.some(r => r.name.toLowerCase() == "headmaster")) toDuelDodgeChance = 100;
 
-			// Their chosen move
-			let authorChosenMove = "";
-			let toDuelChosenMove = "";
-
-			// If they've picked a move or not
-			let authorStatus = false;
-			let toDuelStatus = false;
-
-			// Their point
-			let authorPoints = 0;
-			let toDuelPoints = 0;
+			let authorChosenMove, toDuelChosenMove = ""; // Their chosen move
+			let authorStatus, toDuelStatus = false; // If they've picked a move or not
+			let authorPoints, toDuelPoints = 0;
 
 			// Round win message and winner
 			let winStatus = "";
@@ -127,7 +98,7 @@ module.exports = {
 				.setAuthor("Scoreboard")
 				.setTimestamp();
 
-			// Array for messages sent to delete after 5 minutes if the duel isn't in #duelling-club
+			// Array for messages sent to which is used to delete them after 5 minutes if the duel isn't in #duelling-club
 			const messages = [];
 
 			message.channel.send(`${toDuel}, ${message.author}, the duel has begun, please check your DMs for instructions`);
@@ -148,15 +119,11 @@ module.exports = {
 					.setTimestamp();
 
 				await message.author.send(authorEmbed)
-					.catch(() => {
-						return message.channel.send(`I am unable to DM ${message.member}, Please change your DM settings to allow DMs from members of this server`);
-					})
-
 					.then(async collected => {
 						authorMessage = collected;
 
 						// The filter for the message collector
-						const filter = m => m.content.includes("1") || m.content.includes("2") || m.content.includes("3");
+						const filter = m => ["1", "2", "3"].includes(m.content);
 						// Create a message collector
 						authorMessageCollector = new Discord.MessageCollector(authorMessage.channel, filter, {
 							time: 300000
@@ -172,7 +139,7 @@ module.exports = {
 
 							// If toDuel has already chosen their move
 							if (toDuelStatus) {
-								const chance = Math.random() * (100 - 0 + 1) + 0;
+								const chance = Math.random() * (100);
 
 								if (chance <= authorDodgeChance) authorDodged = true;
 								if (chance <= toDuelDodgeChance) toDuelDodged = true;
@@ -240,20 +207,19 @@ module.exports = {
 								message.author.send(authorEmbed);
 								toDuel.user.send(toDuelEmbed);
 
-								authorStatus = false;
-								toDuelStatus = false;
+								authorStatus, toDuelStatus = false;
 							} else {
 								authorEmbed.setDescription(`You chose ${authorChosenMove}\nWaiting for ${toDuel.displayName}`);
 								message.author.send(authorEmbed);
 							}
 						});
+					})
+
+					.catch(() => {
+						return message.channel.send(`I am unable to DM ${message.member}, Please change your DM settings to allow DMs from members of this server`);
 					});
 
 				toDuel.user.send(toDuelEmbed)
-					.catch(() => {
-						return message.channel.send(`I am unable to DM ${message.member}, Please change your DM settings to allow DMs from members of this server`);
-					})
-
 					.then(async collected => {
 						toDuelMessage = collected;
 
@@ -345,6 +311,10 @@ module.exports = {
 								toDuel.user.send(toDuelEmbed);
 							}
 						});
+					})
+
+					.catch(() => {
+						return message.channel.send(`I am unable to DM ${message.member}, Please change your DM settings to allow DMs from members of this server`);
 					});
 
 				// If the author's message collector expires then the duel also expires due to inactivity
@@ -387,13 +357,10 @@ module.exports = {
 				}
 			};
 
-			if (winObject[choice1][choice2] == 1) {
-				return user1;
-			} else if (winObject[choice1][choice2] == -1) {
-				return user2;
-			} else {
-				return undefined;
-			}
+			if (winObject[choice1][choice2] == 1) return user1;
+			else if (winObject[choice1][choice2] == -1) return user2;
+			else return;
+
 		}
 
 		function win(duelWinner, duelLoser, winnerPoints, loserPoints) {
@@ -413,9 +380,7 @@ module.exports = {
 			db.userInfo.inc(`${message.guild.id}-${duelLoser.id}`, "stats.duelsLost");
 
 			db.userInfo.math(`${message.guild.id}-${duelWinner.id}`, "+", 5, "xp");
-
 			db.userInfo.math(`${message.guild.id}-${duelLoser.id}`, "+", 3, "xp");
-			db.userInfo.math(`${message.guild.id}-${duelLoser.id}`, "+", 3, "stats.lifetimeXp");
 
 			if (loserPoints <= 0 && !db.userInfo.get(`${message.guild.id}-${duelWinner.id}`, "badges")
 				.includes(badgesFile.find(b => b.name.toLowerCase() == "reflex badge").credential)) {
