@@ -6,6 +6,8 @@ module.exports = {
 	description: "Report a bug.",
 	aliases: ["bugreport", "reportbug", "bugs"],
 	async execute(message, args, bot) {
+		if (!args[0]) return message.channel.send("You must provide a description of the bug.");
+
 		const bugEmbed = new Discord.MessageEmbed()
 			.setTitle(`🐛 Bug report from ${message.member.displayName}!`)
 			.setColor("#FF0000")
