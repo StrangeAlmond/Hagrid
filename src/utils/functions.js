@@ -283,6 +283,7 @@ module.exports = {
 
     if (guildData.spawns.some(s => s.channel == object.channel)) db.guildInfo.remove(guild.id, (s) => s.channel == object.channel, "spawns");
     db.guildInfo.push(guild.id, object, "spawns");
+    db.guildInfo.inc(guild.id, "stats.spawns");
   },
 
   spawnBoggart(channel, bot) {
@@ -299,6 +300,7 @@ module.exports = {
 
     if (guildData.spawns.some(s => s.channel == object.channel)) db.guildInfo.remove(guild.id, (s) => s.channel == object.channel, "spawns");
     db.guildInfo.push(guild.id, object, "spawns");
+    db.guildInfo.inc(guild.id, "stats.spawns");
   },
 
   spawnChest(channel, bot) {
@@ -318,6 +320,7 @@ module.exports = {
     }
 
     db.guildInfo.push(guild.id, object, "spawns");
+    db.guildInfo.inc(guild.id, "stats.spawns");
   },
 
   parseMs(ms, intOnly) { // Formats the given time and returns an object of different measures of time

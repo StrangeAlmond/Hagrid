@@ -35,7 +35,8 @@ module.exports = async (bot, message) => {
     },
     stats: {
       trainingSessions: 0,
-      spawns: 0
+      spawns: 0,
+      triviaQuestions: 0
     }
   });
 
@@ -216,6 +217,8 @@ module.exports = async (bot, message) => {
 
           object.webhookObject = webhookObjects[house];
           bot.functions.quickWebhook(channel, `It's trivia time ${house} members! try to guess the answer to the question below:\n\n${question}`, webhookObjects[house]);
+          db.guildInfo.inc(message.guild.id, "stats.triviaQuestions");
+
         }
       }
     }
@@ -227,7 +230,6 @@ module.exports = async (bot, message) => {
 
       db.guildInfo.push(message.guild.id, object, "spawns");
     }
-    db.guildInfo.inc(message.guild.id, "stats.spawns");
   }
 
   // If the message isn't a command then give them xp
