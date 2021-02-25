@@ -87,6 +87,8 @@ class TrainingSession {
 				id: member.id,
 				damageDealt: 0
 			});
+
+			db.userInfo.inc(`${member.guild.id}-${member.id}`, "stats.trainingSessions");
 		}
 
 		const activeUsers = this.channel.guild.members.cache.filter(m => m.roles.cache.some(r => r.name.toLowerCase() == "training"));
