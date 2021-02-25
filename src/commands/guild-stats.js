@@ -12,7 +12,7 @@ module.exports = {
             .setAuthor(`${message.guild.name}'s Statistics`, message.guild.iconURL())
             .setColor(message.member.displayHexColor)
             .setDescription(`**Total Training Sessions:** ${guildStats.trainingSessions}\n**Total Spawns:** ${guildStats.spawns}\n**Total Trivia Questions:** ${guildStats.triviaQuestions}`)
-            .setFooter(`Utilizing ${bot.user.username} since ${moment.tz(message.guild.me.joinedTimestamp, bot.timezone).format("llll")}`)
+            .setFooter(`Utilizing ${bot.user.username} since ${moment.tz(message.guild.me.joinedTimestamp, bot.timezone).format("ll")}`)
             .setTimestamp();
 
         message.channel.send(statsEmbed);
