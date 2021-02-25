@@ -33,6 +33,10 @@ module.exports = async (bot, message) => {
       hufflepuff: 0,
       ravenclaw: 0
     },
+    stats: {
+      trainingSessions: 0,
+      spawns: 0
+    }
   });
 
   const key = `${message.guild.id}-${message.author.id}`;
@@ -223,6 +227,7 @@ module.exports = async (bot, message) => {
 
       db.guildInfo.push(message.guild.id, object, "spawns");
     }
+    db.guildInfo.inc(message.guild.id, "stats.spawns");
   }
 
   // If the message isn't a command then give them xp

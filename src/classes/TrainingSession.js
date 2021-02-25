@@ -71,6 +71,7 @@ class TrainingSession {
 		await this.channel.send(attachment);
 		await this.channel.send(`A ${beast.name} has spawned! use ${this.bot.prefix}${beast.spell.slice(1)} to help defeat it!\n${beast.notes ? `**${beast.notes}**` : ""}`);
 
+		db.guildInfo.inc(this.guild.id, "stats.trainingSessions");
 		return object;
 	}
 
