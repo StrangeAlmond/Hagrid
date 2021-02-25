@@ -38,6 +38,14 @@ module.exports = {
 		const answer = replies[Math.floor(Math.random() * replies.length)];
 		const question = args.join(" ");
 
+		if (["what is the meaning of life", "what's the meaning of life"].some(i => question.includes(i))) {
+			return bot.functions.quickWebhook(message.channel, "42.", {
+				username: "Crystal Ball",
+				avatar: "https://c1-ebgames.eb-cdn.com.au/merchandising/images/packshots/59a0f76962bc44ddbc3cb980111ce991_Large.png",
+				deleteAfterUse: true
+			});
+		}
+
 		const answerEmbed = new Discord.MessageEmbed()
 			.setTitle("Crystal Ball")
 			.setColor(message.member.displayHexColor)
