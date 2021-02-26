@@ -1,9 +1,9 @@
 module.exports = {
 	name: "clear",
 	description: "Purge a certain amount of messages from the current channel",
-	aliases: ["deletrius", "evanesco"],
+	aliases: ["deletrius", "evanesco", "purge"],
 	async execute(message, args, bot) {
-		if (!message.member.hasPermission("MANAGE_MESSAGES")) return;
+		if (!message.member.hasPermission("MANAGE_MESSAGES") && message.author.id != bot.ownerId) return;
 
 		if (!args[0]) {
 			return bot.functions.quickWebhook(message.channel, "Specify the amount of messages to delete!", {
