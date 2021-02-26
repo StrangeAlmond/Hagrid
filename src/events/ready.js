@@ -100,19 +100,19 @@ module.exports = async bot => {
       }
     });
 
-    const flooPowderUsers = users.filter(u => u.trainingTokenUse && (Date.now() - u.trainingTokenUse) > 3600000);
-    flooPowderUsers.forEach(user => { // Removes expired floo powder roles
+    const trainingTokenUsers = users.filter(u => u.trainingTokenUse && (Date.now() - u.trainingTokenUse) > 3600000);
+    trainingTokenUsers.forEach(user => { // Removes expired Training roles
       const guild = bot.guilds.cache.get(user.guild);
-      if (guild) {
-        const role = guild.roles.cache.find(r => r.name.toLowerCase() == "training");
+      if (!guild) return;
 
-        if (role) {
-          const u = guild.members.cache.get(user.user);
-          u.roles.remove(role);
+      const role = guild.roles.cache.find(r => r.name.toLowerCase() == "training");
+      if (!role) return;
 
-          db.userInfo.set(`${user.guild}-${user.user}`, null, "trainingTokenUse");
-        }
-      }
+      const u = guild.members.cache.get(user.user);
+      if (!u) return;
+      u.roles.remove(role);
+
+      db.userInfo.set(`${user.guild}-${user.user}`, null, "trainingTokenUse");
     });
 
     const mazeChannels = bot.channels.cache
