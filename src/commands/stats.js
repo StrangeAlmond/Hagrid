@@ -16,6 +16,7 @@ module.exports = {
 			"Trivia Questions Answered": "triviaAnswered",
 			"Dementors Defeated": "dementorsDefeated",
 			"Boggarts Defeated": "boggartsDefeated",
+			"Times Fainted": "faints",
 			"Chests Opened": "chestsOpened",
 			"Duels Won": "duelsWon",
 			"Duels Lost": "duelsLost",
