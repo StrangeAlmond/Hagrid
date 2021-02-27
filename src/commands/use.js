@@ -183,8 +183,6 @@ module.exports = {
 				return message.channel.send("You don't have any maximum turbo fart potions!");
 			}
 
-			console.log(args, args[3]);
-
 			const mentionedUser = bot.functions.getUserFromMention(args[3], message.guild) || message.guild.members.cache.get(args[3]);
 			if (!mentionedUser) return message.channel.send("Specify the user use maximum turbo farts on!");
 
@@ -202,6 +200,7 @@ module.exports = {
 			}
 
 			db.userInfo.dec(message.author.key, "inventory.maximumTurboFarts");
+			db.userInfo.inc(message.author.key, "stats.pranks");
 			db.userInfo.push(`${message.guild.id}-${mentionedUser.id}`, object, "stats.activeEffects");
 
 			message.delete();
