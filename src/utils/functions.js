@@ -89,6 +89,7 @@ module.exports = {
         butterbeer: 0,
         housePoints: 0,
         lifetimeXp: 0,
+        faints: 0,
         lastSpell: "N/A",
         owls: null,
         attack: 1,
@@ -160,6 +161,7 @@ module.exports = {
 
     const userData = db.userInfo.get(`${member.guild.id}-${member.id}`);
     db.userInfo.set(`${member.guild.id}-${member.id}`, true, "stats.fainted");
+    db.userInfo.inc(`${member.guild.id}-${member.id}`, "stats.faints");
 
     const hospitalMessages = await hospitalChannel.messages.fetch();
     const poisonedMessage = hospitalMessages.find(m => m.content.includes(member.id) && m.content.toLowerCase().includes("poison") && !userData.stats.poisonedObject);
