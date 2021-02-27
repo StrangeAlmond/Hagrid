@@ -54,6 +54,7 @@ module.exports = {
       collectorsItems: {},
       spellInfo: {},
       inventory: {},
+      collectibles: {},
       mazeInfo: {
         curPos: 42.12,
         lastPos: 42.12,

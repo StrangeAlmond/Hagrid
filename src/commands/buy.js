@@ -164,6 +164,45 @@ module.exports = {
 
 				db.userInfo.math(message.author.key, "+", amount, `inventory.${items[args[0]].key}`);
 				bot.log(`${message.member.displayName} purchased ${amount} ${items[args[0]].name}(s)`, "info");
+			} else if (items[args[0]].type == "collectible") {
+				if (db.userInfo.has(message.author.key, `collectibles.${items[args[0]].key}`)) {
+					return message.channel.send("You have already purchased this collectible!");
+				}
+
+				let price = 0;
+
+				const priceArray = items[args[0]].price.split(/, +/);
+				priceArray.forEach(p => {
+					p = p.split(/ +/);
+					if (p[1].startsWith("galleon")) {
+						price += (parseInt(p[0]) * 493);
+					} else if (p[1].startsWith("sickle")) {
+						price += (parseInt(p[0]) * 29);
+					} else if (p[1].startsWith("knut")) {
+						price += parseInt(p[0]);
+					}
+				});
+
+				if ((user.balance.sickles * 29) + (user.balance.galleons * 493) < price) {
+					return message.channel.send("You can't afford this item.");
+				}
+
+				for (let i = 0; price > db.userInfo.get(message.author.key, "balance.knuts"); i++) {
+					if (db.userInfo.get(message.author.key, "balance.sickles") <= 0 && db.userInfo.get(message.author.key, "balance.galleons") > 0) {
+						db.userInfo.math(message.author.key, "+", 17, "balance.sickles");
+						db.userInfo.math(message.author.key, "-", 1, "balance.galleons");
+					}
+
+					db.userInfo.dec(message.author.key, "balance.sickles");
+					db.userInfo.math(message.author.key, "+", 29, "balance.knuts");
+				}
+
+				db.userInfo.math(message.author.key, "-", price, "balance.knuts");
+				db.userInfo.inc(message.author.key, "stats.purchases");
+				db.userInfo.set(message.author.key, 1, `collectibles.${items[args[0]].key}`);
+
+				message.channel.send(`You have purchased the ${items[args[0]].name} collectible.`);
+				bot.log(`${message.member.displayName} purchased the ${items[args[0]].name} collectible.`, "info");
 			} else if (items[args[0]].type == "pet") {
 				const pets = user.pets.filter(p => !p.retired);
 				const pet = pets[0];

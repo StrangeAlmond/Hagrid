@@ -433,6 +433,342 @@
 		"price": "9 sickles",
 		"type": "item"
 	},
+	"1002": {
+		"id": "1002",
+		"name": "Acid Pops",
+		"shop": "Honeydukes",
+		"key": "acidPops",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1003": {
+		"id": "1003",
+		"name": "Bat's Blood Soup",
+		"shop": "Honeydukes",
+		"key": "batSBloodSoup",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1004": {
+		"id": "1004",
+		"name": "Blood-flavoured Lollipops",
+		"shop": "Honeydukes",
+		"key": "bloodFlavouredLollipops",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1005": {
+		"id": "1005",
+		"name": "Cauldron Cakes",
+		"shop": "Honeydukes",
+		"key": "cauldronCakes",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1006": {
+		"id": "1006",
+		"name": "Charm Choc",
+		"shop": "Honeydukes",
+		"key": "charmChoc",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1007": {
+		"id": "1007",
+		"name": "Choco-loco",
+		"shop": "Honeydukes",
+		"key": "chocoLoco",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1008": {
+		"id": "1008",
+		"name": "Chocoballs",
+		"shop": "Honeydukes",
+		"key": "chocoballs",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1009": {
+		"id": "1009",
+		"name": "Chocolate Cauldrons",
+		"shop": "Honeydukes",
+		"key": "chocolateCauldrons",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1010": {
+		"id": "1010",
+		"name": "Chocolate Frogs",
+		"shop": "Honeydukes",
+		"key": "chocolateFrogs",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1011": {
+		"id": "1011",
+		"name": "Chocolate Skeletons",
+		"shop": "Honeydukes",
+		"key": "chocolateSkeletons",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1012": {
+		"id": "1012",
+		"name": "Chocolate Wands",
+		"shop": "Honeydukes",
+		"key": "chocolateWands",
+		"price": "5 sickles",
+		"type": "collectible"
+	},
+	"1013": {
+		"id": "1013",
+		"name": "Cockroach Clusters",
+		"shop": "Honeydukes",
+		"key": "cockroachClusters",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1014": {
+		"id": "1014",
+		"name": "Crystallised pineapple",
+		"shop": "Honeydukes",
+		"key": "crystallisedPineapple",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1015": {
+		"id": "1015",
+		"name": "Drooble's Best Blowing Gum",
+		"shop": "Honeydukes",
+		"key": "droobleSBestBlowingGum",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1016": {
+		"id": "1016",
+		"name": "Exploding bonbons",
+		"shop": "Honeydukes",
+		"key": "explodingBonbons",
+		"price": "4 sickles",
+		"type": "collectible"
+	},
+	"1017": {
+		"id": "1017",
+		"name": "Fizzing Whizzbees",
+		"shop": "Honeydukes",
+		"key": "fizzingWhizzbees",
+		"price": "4 sickles",
+		"type": "collectible"
+	},
+	"1018": {
+		"id": "1018",
+		"name": "Fudge Flies",
+		"shop": "Honeydukes",
+		"key": "fudgeFlies",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1019": {
+		"id": "1019",
+		"name": "Glacial Snow Flakes",
+		"shop": "Honeydukes",
+		"key": "glacialSnowFlakes",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1020": {
+		"id": "1020",
+		"name": "Honeydukes Best Chocolate",
+		"shop": "Honeydukes",
+		"key": "honeydukesBestChocolate",
+		"price": "4 sickles",
+		"type": "collectible"
+	},
+	"1021": {
+		"id": "1021",
+		"name": "Honeydukes Mice Pops",
+		"shop": "Honeydukes",
+		"key": "honeydukesMicePops",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1022": {
+		"id": "1022",
+		"name": "Ice Mice",
+		"shop": "Honeydukes",
+		"key": "iceMice",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1023": {
+		"id": "1023",
+		"name": "Jelly Slugs",
+		"shop": "Honeydukes",
+		"key": "jellySlugs",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1024": {
+		"id": "1024",
+		"name": "Liquorice Wands",
+		"shop": "Honeydukes",
+		"key": "liquoriceWands",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1025": {
+		"id": "1025",
+		"name": "No-Melt Ice Cream",
+		"shop": "Honeydukes",
+		"key": "noMeltIceCream",
+		"price": "5 sickles",
+		"type": "collectible"
+	},
+	"1026": {
+		"id": "1026",
+		"name": "Nougat Chunks",
+		"shop": "Honeydukes",
+		"key": "nougatChunks",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1027": {
+		"id": "1027",
+		"name": "Pepper Imps",
+		"shop": "Honeydukes",
+		"key": "pepperImps",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1028": {
+		"id": "1028",
+		"name": "Peppermint Toad",
+		"shop": "Honeydukes",
+		"key": "peppermintToad",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1029": {
+		"id": "1029",
+		"name": "Pink Coconut Ice",
+		"shop": "Honeydukes",
+		"key": "pinkCoconutIce",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1030": {
+		"id": "1030",
+		"name": "Pixie Puffs",
+		"shop": "Honeydukes",
+		"key": "pixiePuffs",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1031": {
+		"id": "1031",
+		"name": "Pumpkin Fizz",
+		"shop": "Honeydukes",
+		"key": "pumpkinFizz",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1032": {
+		"id": "1032",
+		"name": "Pumpkin Pasties",
+		"shop": "Honeydukes",
+		"key": "pumpkinPasties",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1033": {
+		"id": "1033",
+		"name": "Salt Water Taffy",
+		"shop": "Honeydukes",
+		"key": "saltWaterTaffy",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1034": {
+		"id": "1034",
+		"name": "Shock-o-Choc",
+		"shop": "Honeydukes",
+		"key": "shockOChoc",
+		"price": "5 sickles",
+		"type": "collectible"
+	},
+	"1035": {
+		"id": "1035",
+		"name": "Skeletal Sweets",
+		"shop": "Honeydukes",
+		"key": "skeletalSweets",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1036": {
+		"id": "1036",
+		"name": "Spindle's Lick'O'Rish Spiders",
+		"shop": "Honeydukes",
+		"key": "spindleSLickORishSpiders",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1037": {
+		"id": "1037",
+		"name": "Sugar Quills",
+		"shop": "Honeydukes",
+		"key": "sugarQuills",
+		"price": "5 sickles",
+		"type": "collectible"
+	},
+	"1038": {
+		"id": "1038",
+		"name": "Sugared Butterfly Wings",
+		"shop": "Honeydukes",
+		"key": "sugaredButterflyWings",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1039": {
+		"id": "1039",
+		"name": "Toffees",
+		"shop": "Honeydukes",
+		"key": "toffees",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
+	"1040": {
+		"id": "1040",
+		"name": "Tooth-Splintering Strongmints",
+		"shop": "Honeydukes",
+		"key": "toothSplinteringStrongmints",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1041": {
+		"id": "1041",
+		"name": "Toothflossing Stringmints",
+		"shop": "Honeydukes",
+		"key": "toothflossingStringmints",
+		"price": "2 sickles",
+		"type": "collectible"
+	},
+	"1042": {
+		"id": "1042",
+		"name": "Treacle Fudge",
+		"shop": "Honeydukes",
+		"key": "treacleFudge",
+		"price": "5 sickles",
+		"type": "collectible"
+	},
+	"1043": {
+		"id": "1043",
+		"name": "Wizochoc",
+		"shop": "Honeydukes",
+		"key": "wizochoc",
+		"price": "3 sickles",
+		"type": "collectible"
+	},
 	"1102": {
 		"id": "1102",
 		"name": "Mallowsweet",
