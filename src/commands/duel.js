@@ -33,7 +33,7 @@ module.exports = {
 
 		message.channel.send(`${toDuel}, ${message.author} has challenged you to a duel, do you wish to accept?`)
 			.then(async msg => {
-				["✅", "❌"].forEach(await msg.react);
+				["✅", "❌"].forEach(async e => await msg.react(e));
 
 				const filter = (reaction, user) => ["✅", "❌"]
 					.includes(reaction.emoji.name) && user.id == toDuel.id;
