@@ -65,7 +65,9 @@ module.exports = {
         encounterPositions: [],
         ambushPositions: [],
         itemPositions: [],
-        inFight: false
+        inFight: false,
+        lvl2CaveUnlocked: false,
+        lvl2CaveLit: false
       },
       stats: {
         mutes: 0,

@@ -36,6 +36,16 @@ module.exports = {
 		forbiddenForest.syncLocations(message.guild.id, message.author.id);
 
 		if (forbiddenForest.curPos == "34.12" && args[0] == "up") return forbiddenForest.centaurEncounter(message.member);
+		if (forbiddenForest.curPos == "27.05" && args[0] == "up" && !user.mazeInfo.lvl2CaveUnlocked) {
+			return message.channel.send("There is no available path that way.");
+		}
+		if (forbiddenForest.curPos == "26.05") {
+			if (args[0] == "down") {
+				db.userInfo.set(message.author.key, false, "mazeInfo.lvl2CaveLit");
+			} else if (!db.userInfo.get(message.author.key, "mazeInfo.lvl2CaveLit")) {
+				return message.channel.send("It is too dark to continue onwards.");
+			}
+		}
 
 		if (args[0] == "up") forbiddenForest.moveUp();
 		if (args[0] == "down") forbiddenForest.moveDown();

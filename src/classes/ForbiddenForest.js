@@ -56,10 +56,14 @@ class ForbiddenForest {
 		db.userInfo.set(this.dbKey, this.curPos, "mazeInfo.curPos");
 	}
 
-	sendCurPosition() {
+	sendCurPosition(active) {
 		let attachment = new Discord.MessageAttachment(`../images/forbidden_forest/${this.level}/Inactive/Forest_${this.curPos}X.png`, "map.png");
 		if (this.itemLocations.includes(this.curPos)) {
 			attachment = new Discord.MessageAttachment(`../images/forbidden_forest/${this.level}/Active/Forest_${this.curPos}.png`, "map.png");
+		}
+
+		if (active == true) {
+			attachment = new Discord.MessageAttachment(`../images/forbidden_forest/${this.level}/Active/Forest_${this.curPos}X.png`, "map.png");
 		}
 
 		this.channel.send(attachment);
