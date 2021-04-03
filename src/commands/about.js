@@ -10,7 +10,7 @@ module.exports = {
 
 		const developer = bot.users.cache.get(bot.ownerId).tag;
 		const designer = bot.users.cache.get("137269251361865728").tag;
-		const specialThanks = ["330204257284521985", "339502515345293314", "362103171771793408", "341269487754149889"];
+		const specialThanks = ["330204257284521985", "339502515345293314", "362103171771793408", "341269487754149889"].filter(i => message.guild.members.cache.get(i));
 
 		const statsEmbed = new Discord.MessageEmbed()
 			.setColor(message.member.displayHexColor)
