@@ -49,7 +49,7 @@ class TrainingSession {
 				**Defense Power:** ${beast.defense}
         **HP:** ${beast.health}
 
-        Use the \`${this.bot.prefix}use training token\` to participate in this training sesssion!
+        Use the \`${this.bot.prefix}use training token\` command to participate in this training sesssion!
         ${beast.notes ? `**${beast.notes}**` : ""}`;
 
 		const role = this.guild.roles.cache.find(r => r.name.toLowerCase() == beast.spell.slice(1).toLowerCase());
