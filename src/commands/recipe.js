@@ -62,6 +62,12 @@ module.exports = {
 				}
 			});
 
+			reactionCollector.on("end", () => {
+				msg.reactions.removeAll();
+				embeds[page - 1].setFooter("This reaction menu has expired.");
+				msg.edit(embeds[page - 1]);
+			});
+
 			return;
 		}
 
