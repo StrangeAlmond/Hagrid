@@ -1,55 +1,161 @@
-[
-	"beans",
-	"burstingMushrooms",
-	"mistletoeBerries",
-	"sprigOfMint",
-	"wiggenweldBark",
-	"gingerRoot",
-	"mandrakeLeaf",
-	"sprigOfWolfsbane",
-	"moondewDrops",
-	"gillyweed",
-	"squillBulb",
-	"bottleOfHorklumpJuice",
-	"vialOfFlobberwormMucus",
-	"vialOfSalamanderBlood",
-	"murtlapTentacle",
-	"fairyWings",
-	"occamyEggshell",
-	"girdingPotion",
-	"wiggenweldPotion",
-	"fireProtectionPotion",
-	"wideyePotion",
-	"revivePotion",
-	"chizpurfleFangs",
-	"snakeFangs",
-	"boomBerryJuice",
-	"stewedMandrake",
-	"slothBrainMucus",
-	"lionfishSpines",
-	"billywigStingSlime",
-	"wolfsbane",
-	"bezoar",
-	"standardIngredients",
-	"dropsOfHoneywater",
-	"dragonflyThoraxes",
-	"flyingSeahorses",
-	"doxyEggs",
-	"driedBillywigStings",
-	"wartcapPowder",
-	"frogSpawnSoap",
-	"mallowsweet",
-	"antidoteToCommonPoisons",
-	"tinctureOfThyme",
-	"antidoteToUncommonPoisons",
-	"maximumTurboFarts",
-	"trainingTokens",
-	"pinchOfUnicornHorn",
-	"ashwinderEggs",
-	"wit-sharpeningPotion",
-	"strengthPotion",
-	"felixFelicis",
-	"stinksap",
-	"chocolateFrogs",
-	"armBone"
-]
+{
+	"beans": {
+		"type": "consumable"
+	},
+	"burstingMushrooms": {
+		"type": "item"
+	},
+	"mistletoeBerries": {
+		"type": "item"
+	},
+	"sprigOfMint": {
+		"type": "item"
+	},
+	"wiggenweldBark": {
+		"type": "item"
+	},
+	"gingerRoot": {
+		"type": "item"
+	},
+	"mandrakeLeaf": {
+		"type": "item"
+	},
+	"sprigOfWolfsbane": {
+		"type": "item"
+	},
+	"moondewDrops": {
+		"type": "item"
+	},
+	"gillyweed": {
+		"type": "item"
+	},
+	"squillBulb": {
+		"type": "item"
+	},
+	"bottleOfHorklumpJuice": {
+		"type": "item"
+	},
+	"vialOfFlobberwormMucus": {
+		"type": "item"
+	},
+	"vialOfSalamanderBlood": {
+		"type": "item"
+	},
+	"murtlapTentacle": {
+		"type": "item"
+	},
+	"fairyWings": {
+		"type": "item"
+	},
+	"occamyEggshell": {
+		"type": "item"
+	},
+	"girdingPotion": {
+		"type": "consumable"
+	},
+	"wiggenweldPotion": {
+		"type": "consumable"
+	},
+	"fireProtectionPotion": {
+		"type": "consumable"
+	},
+	"wideyePotion": {
+		"type": "consumable"
+	},
+	"revivePotion": {
+		"type": "consumable"
+	},
+	"chizpurfleFangs": {
+		"type": "item"
+	},
+	"snakeFangs": {
+		"type": "item"
+	},
+	"boomBerryJuice": {
+		"type": "item"
+	},
+	"stewedMandrake": {
+		"type": "item"
+	},
+	"slothBrainMucus": {
+		"type": "item"
+	},
+	"lionfishSpines": {
+		"type": "item"
+	},
+	"billywigStingSlime": {
+		"type": "item"
+	},
+	"wolfsbane": {
+		"type": "item"
+	},
+	"bezoar": {
+		"type": "item"
+	},
+	"standardIngredients": {
+		"type": "item"
+	},
+	"dropsOfHoneywater": {
+		"type": "item"
+	},
+	"dragonflyThoraxes": {
+		"type": "item"
+	},
+	"flyingSeahorses": {
+		"type": "item"
+	},
+	"doxyEggs": {
+		"type": "item"
+	},
+	"driedBillywigStings": {
+		"type": "item"
+	},
+	"wartcapPowder": {
+		"type": "item"
+	},
+	"frogSpawnSoap": {
+		"type": "consumable"
+	},
+	"mallowsweet": {
+		"type": "item"
+	},
+	"antidoteToCommonPoisons": {
+		"type": "consumable"
+	},
+	"tinctureOfThyme": {
+		"type": "item"
+	},
+	"antidoteToUncommonPoisons": {
+		"type": "consumable"
+	},
+	"maximumTurboFarts": {
+		"type": "consumable"
+	},
+	"trainingTokens": {
+		"type": "consumable"
+	},
+	"pinchOfUnicornHorn": {
+		"type": "item"
+	},
+	"ashwinderEggs": {
+		"type": "item"
+	},
+	"wit-sharpeningPotion": {
+		"type": "consumable"
+	},
+	"strengthPotion": {
+		"type": "consumable"
+	},
+	"felixFelicis": {
+		"type": "consumable"
+	},
+	"stinksap": {
+		"type": "item"
+	},
+	"chocolateFrogs": {
+		"type": "consumable"
+	},
+	"armBone": {
+		"type": "item"
+	}
+}
