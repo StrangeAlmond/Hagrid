@@ -137,21 +137,21 @@ module.exports = {
 				}
 
 				db.userInfo.math(message.author.key, "+", amount, `inventory.${item}`);
-				message.channel.send(`Congratulations ${message.member.displayName}! You have finished studying ${spell.name} and have gained ${amount} ${spell.spellName}`);
+				message.channel.send(`Congratulations, ${message.member.displayName}! You have finished studying ${spell.name} and have received ${amount} ${spell.spellName}`);
 			} else {
 				db.userInfo.push(message.author.key, spell.spellName, "studiedSpells");
 
 				const role = message.guild.roles.cache.find(s => s.spellName == s.name.toLowerCase());
 				if (role && userData.settings.trainingSessionAlerts) message.member.roles.add(role);
 
-				message.channel.send(`Congratulations ${message.member.displayName}! You have finished learning the **${spell.name}**!`);
+				message.channel.send(`Congratulations, ${message.member.displayName}! You have finished studying the **${spell.name}**!`);
 			}
 
 			delete userData.spellInfo[spell.spellName];
 			return db.userInfo.delete(message.author.key, `spellInfo.${spell.spellName}`);
 		}
 
-		message.channel.send(`You have studied the **${spell.name}**, you have ${userData.spellInfo[spell.spellName].daysToLearn} days left until you learn this spell!`);
+		message.channel.send(`You have studied the **${spell.name}**, and have ${userData.spellInfo[spell.spellName].daysToLearn} days left until you learn this spell!`);
 
 		function findType(s) {
 			if (["herbology", "care of magical creatures"].includes(s.class.toLowerCase())) {
