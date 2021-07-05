@@ -41,6 +41,9 @@
 	"vialOfSalamanderBlood": {
 		"type": "item"
 	},
+	"vialOfStinksap": {
+		"type": "item"
+	},
 	"murtlapTentacle": {
 		"type": "item"
 	},
@@ -154,6 +157,15 @@
 	},
 	"chocolateFrogs": {
 		"type": "consumable"
+	},
+	"groundScarabBeetles": {
+		"type": "item"
+	},
+	"armadilloBile": {
+		"type": "item"
+	},
+	"purpleThornBlossoms": {
+		"type": "item"
 	},
 	"armBone": {
 		"type": "item"
