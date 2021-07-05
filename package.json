@@ -21,7 +21,7 @@
     "sodium": "^3.0.2",
     "string-similarity": "^3.0.0",
     "utf-8-validate": "^5.0.5",
-    "ytdl-core": "^4.8.2",
+    "ytdl-core": "^4.8.3",
     "ytpl": "^2.0.5",
     "zlib-sync": "^0.1.7"
   },
